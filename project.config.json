@@ -1,0 +1,157 @@
+{
+	"description": "项目配置文件",
+	"packOptions": {
+		"ignore": []
+	},
+	"setting": {
+		"urlCheck": false,
+		"es6": true,
+		"postcss": true,
+		"preloadBackgroundData": false,
+		"minified": true,
+		"newFeature": true,
+		"autoAudits": false,
+		"coverView": true,
+		"showShadowRootInWxmlPanel": true,
+		"scopeDataCheck": false,
+		"nodeModules": true,
+		"checkInvalidKey": true,
+		"checkSiteMap": true,
+		"uploadWithSourceMap": true,
+		"babelSetting": {
+			"ignore": [],
+			"disablePlugins": [],
+			"outputPath": ""
+		},
+		"useCompilerModule": true,
+		"userConfirmedUseCompilerModuleSwitch": false
+	},
+	"compileType": "miniprogram",
+	"libVersion": "2.11.0",
+	"appid": "wx6a5654216935e847",
+	"projectname": "%E7%8E%AF%E4%BF%9D%E4%BC%9A%E5%B1%95%E5%B0%8F%E7%A8%8B%E5%BA%8F",
+	"debugOptions": {
+		"hidedInDevtools": []
+	},
+	"isGameTourist": false,
+	"simulatorType": "wechat",
+	"simulatorPluginLibVersion": {},
+	"condition": {
+		"search": {
+			"current": -1,
+			"list": []
+		},
+		"conversation": {
+			"current": -1,
+			"list": []
+		},
+		"plugin": {
+			"current": -1,
+			"list": []
+		},
+		"game": {
+			"currentL": -1,
+			"list": []
+		},
+		"gamePlugin": {
+			"current": -1,
+			"list": []
+		},
+		"miniprogram": {
+			"current": -1,
+			"list": [
+				{
+					"id": -1,
+					"name": "城市列表",
+					"pathName": "pages/cityList/cityList",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": 1,
+					"name": "关键词搜索",
+					"pathName": "pages/keywordSearch/keywordSearch",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "酒店列表",
+					"pathName": "pages/hotelList/hotelList",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "酒店详情介绍",
+					"pathName": "pages/hotelIntroduction/hotelIntroduction",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "房间预订",
+					"pathName": "pages/roomReservation/roomReservation",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "发票信息",
+					"pathName": "pages/invoiceMessage/invoiceMessage",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "登录",
+					"pathName": "pages/login/login",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "酒店搜索",
+					"pathName": "pages/keywordSearch/keywordSearch",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": 8,
+					"name": "酒店订房",
+					"pathName": "pages/hotelDetail/hotelDetail",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "酒店图片",
+					"pathName": "pages/hotelPicture/hotelPicture",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "酒店详情",
+					"pathName": "pages/hotelIntroduction/hotelIntroduction",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "房间预定",
+					"pathName": "pages/roomReservation/roomReservation",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": 12,
+					"name": "是否开发票",
+					"pathName": "pages/invoiceMessage/invoiceMessage",
+					"query": "",
+					"scene": null
+				}
+			]
+		}
+	}
+}
