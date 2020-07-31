@@ -1,0 +1,21 @@
+/* 咨询 */
+.consult{
+  width: 100rpx;
+  height: 100rpx;
+  border-radius: 50%;
+  background-color: #43B2FC;
+  position: fixed;
+  right: 30rpx;
+  top: 900rpx;
+}
+
+.consult image{
+  width: 34rpx;
+  height: 34rpx;
+  margin-bottom: 4rpx;
+}
+
+.consult-title{
+  font-size: 18rpx;
+  color: #ffffff;
+}

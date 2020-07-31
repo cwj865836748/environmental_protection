@@ -1,0 +1,48 @@
+/* 名录 */
+.shop-list{
+  width: 100%;
+  height: 150rpx;
+  padding: 0 30rpx;
+  margin-bottom: 30rpx;
+}
+.shop-item-logo{
+  width: 150rpx;
+  height: 150rpx;
+  margin-right: 12rpx;
+  border-radius: 20rpx;
+}
+
+.shop-item-logo image{
+  width: 100%;
+  height: 100%;
+}
+
+.shop-item-right{
+  width: 529rpx;
+  height: 150rpx;
+  justify-content: space-between;
+}
+
+.shop-content{
+  width: 385rpx;
+  height: 100%;
+  padding-top: 10rpx;
+}
+.shop-content .shop-zh-name{
+  font-size: 30rpx;
+  color: #333333;
+  line-height: 44rpx;
+}
+.shop-content .shop-en-name{
+  font-size: 22rpx;
+  color: #999999;
+  line-height: 34rpx;
+}
+.shop-collect{
+  width: 26rpx;
+  height: 25rpx;
+}
+.shop-collect image{
+  width: 100%;
+  height: 100%;
+}

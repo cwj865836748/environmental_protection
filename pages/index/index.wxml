@@ -1,5 +1,104 @@
 <!--index.wxml-->
-<!--headColor设置为transparent 头就没眼色-->
+<!--headColor设置为transparent 头就没颜色-->
 <!--back设置为false没有返回键 不设置这个属性默认有返回-->
-<navbar title="首页" back="{{false}}"></navbar>
- 
+<!-- <navbar title="首页" back="{{false}}"></navbar> -->
+<!-- 轮播图 -->
+<view class="swiper-box">
+	<swiper indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" indicator-color="rgba(255,255,255,0.5)" indicator-active-color="#ffffff">
+		<block wx:for="{{swiperList}}" wx:key="*this">
+			<swiper-item>
+				<image class="swiper-item" src="{{item}}"></image>
+			</swiper-item>
+		</block>
+	</swiper>
+
+	<!-- 搜索框 -->
+	<navigator hover-class="none" url="/pages/search/index">
+		<view class="head-input flex-y-center">
+			<image class="input-icon flex-grow-0" src="/images/home/home_search@2x.png"></image>
+			<view class="input-tips flex-y-center">请输入您要找的企业/设备</view>
+		</view>
+	</navigator>
+
+
+</view>
+
+<!-- 功能模块 -->
+<view class="function-box flex-y-center">
+
+	<view class="function-item flex-grow-1 flex-col flex-xy-center">
+		<image class="function-icon flex-grow-0" src="/images/home/home_module_ico1@2x.png"></image>
+		<view class="function-dec">供需快报</view>
+	</view>
+
+	<view class="function-item flex-grow-1 flex-col flex-xy-center">
+		<image class="function-icon flex-grow-0" src="/images/home/home_module_ico2@2x.png"></image>
+		<view class="function-dec">专家论坛</view>
+	</view>
+
+	<view class="function-item flex-grow-1 flex-col flex-xy-center">
+		<image class="function-icon flex-grow-0" src="/images/home/home_module_ico3@2x.png"></image>
+		<view class="function-dec">创新技术</view>
+	</view>
+
+	<view class="function-item flex-grow-1 flex-col flex-xy-center">
+		<image class="function-icon flex-grow-0" src="/images/home/home_module_ico4@2x.png"></image>
+		<view class="function-dec">环保资讯</view>
+	</view>
+
+</view>
+
+<view class="line"></view>
+
+<!-- 产品库 -->
+<view class="produce-title flex-y-center">
+	<view class="produce-name">产品库</view>
+	<navigator url="/pages/produce-library/index">
+		<view class="look-more flex-y-center">查看更多
+			<view class="arrow-right flex-y-center">
+				<image class="flex-grow-0" src="/images/home/home_more@2x.png"></image>
+			</view>
+		</view>
+	</navigator>
+</view>
+
+<view class="produce-list flex-y-center">
+	<block wx:for="{{produceList}}">
+		<view class="produce-item flex-col flex-xy-center" wx:key="index" wx:if="{{index < 6}}">
+			<image class="produce-item-img flex-grow-0" src="/images/img/produce.png"></image>
+			<view class="produce-item-name">饮水机</view>
+		</view>
+	</block>
+</view>
+
+<view class="line"></view>
+
+<!-- 企业名录 -->
+<view class="produce-title flex-y-center">
+	<view class="produce-name">企业名录</view>
+	<view class="look-more flex-y-center">查看更多
+		<view class="arrow-right flex-y-center">
+			<image class="flex-grow-0" src="/images/home/home_more@2x.png"></image>
+		</view>
+	</view>
+</view>
+
+<include src="/common/enterprise/enterpriseList" />
+
+
+
+<view class="line"></view>
+
+<!-- 客商名录 -->
+<view class="produce-title flex-y-center">
+	<view class="produce-name">客商名录</view>
+	<view class="look-more flex-y-center">查看更多
+		<view class="arrow-right flex-y-center">
+			<image class="flex-grow-0" src="/images/home/home_more@2x.png"></image>
+		</view>
+	</view>
+</view>
+
+<include src="/common/merchantsList/merchantsList" />
+
+<include src="/common/consult/consult" />

@@ -1,0 +1,26 @@
+<!--pages/produce-library/index.wxml-->
+<!-- 头部搜索框 -->
+<navigator url="/pages/search/index">
+	<view class="head-input flex-y-center">
+		<image class="input-icon flex-grow-0" src="/images/home/home_search@2x.png"></image>
+		<view class="input-tips flex-y-center">请输入您要找的企业/设备</view>
+	</view>
+</navigator>
+
+<!-- tab 标签页 -->
+<view class="tab-list flex-y-center">
+	<view class="tab-item flex-col flex-xy-center" wx:key="index" wx:for="{{tabList}}" bindtap="handleChangeTab" data-id="{{item.id}}">
+		<view class="tab-item-name {{ tabIndex == item.id ? 'tab-item-name-active' : ''}}">{{item.title}}</view>
+		<view class="{{ tabIndex == item.id ? 'tab-item-line' : ''}}"></view>
+	</view>
+</view>
+
+<view class="produce-list flex-y-center">
+	<block wx:for="{{produceList}}">
+		<view class="produce-item ml flex-col flex-xy-center">
+			<image class="produce-item-img" src="/images/img/produce1.png"></image>
+			<view class="produce-item-dec text-more-single">AET系列诱导风机</view>
+		</view>
+	</block>
+
+</view>

@@ -14,6 +14,7 @@ textarea, navigator, audio, image, video, map, canvas, contact-button {
      background: #ffffff;
      font-family: Source Han Sans SC, Source Han Sans SC-Medium;
      font-size: 28rpx;
+     font-weight: 400;
      position: relative;
  }
  image{

@@ -1,0 +1,67 @@
+/* pages/produce-library/index.wxss */
+/* @import '/pages/index/index.wxss'; */
+/* 头部搜索框 */
+.head-input {
+  width: 690rpx;
+  height: 70rpx;
+  border-radius: 35rpx;
+  background:#F6F6F6;
+  margin: 0 auto;
+}
+
+.head-input .input-icon {
+  width: 27rpx;
+  height: 27rpx;
+  margin-left: 26rpx;
+  margin-right: 11rpx;
+}
+
+.head-input .input-tips {
+  color: #BEBEBE;
+}
+
+/* tab 标签页 */
+/* 隐藏滚动条 */
+::-webkit-scrollbar {
+  display: none
+}
+.tab-list{
+  overflow: scroll;
+  height: 90rpx;
+  padding-left: 30rpx;
+}
+.tab-item-name{
+  width: 160rpx;
+  text-align: center;
+  color: #999999;
+  font-size: 30rpx;
+  font-weight: 500;
+  margin-bottom: 8rpx;
+}
+.tab-item-name-active{
+  color: #333333 !important;
+  font-size: 30rpx;
+  font-weight: 500;
+}
+.tab-item-line{
+  width: 33rpx;
+  height: 4rpx;
+  background-color: #43B2FC;
+}
+
+/* 产品列表 */
+.produce-list{
+  flex-wrap: wrap;
+}
+.produce-item-img{
+  width: 332rpx;
+  height: 332rpx;
+}
+.produce-item-dec{
+  width: 252rpx;
+  font-size: 26rpx;
+  color: #666666;
+}
+.ml{
+  margin-left: 28rpx;
+}

@@ -1,6 +1,10 @@
 {
+  "navigationBarBackgroundColor": "#ffffff",
+  "navigationBarTextStyle": "black",
+  "navigationBarTitleText": "生态联合网",
+  "backgroundTextStyle": "dark",
   "usingComponents": {
-    "navbar": "/components/navbar/navbar"
-
+    "van-tab": "@vant/weapp/tab/index",
+    "van-tabs": "@vant/weapp/tabs/index"
   }
 }

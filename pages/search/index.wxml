@@ -1,0 +1,4 @@
+<!--pages/search/index.wxml-->
+<view class="search">
+	<van-field value="{{ search }}" placeholder="请输入您要找的企业/设备" border="{{ false }}" clearable bind:change="onChange" />
+</view>

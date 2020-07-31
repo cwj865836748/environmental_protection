@@ -8,7 +8,17 @@ Page({
    * 页面的初始数据
    */
   data: {
-  
+    indicatorDots:true,
+    autoplay:false,
+    interval:2000,
+    duration:500,
+    swiperList:['/images/img/swiper1.png','/images/img/swiper2.png','/images/img/swiper3.png'],
+    produceList:7,
+    enterpriseList:8,
+    merchantsList:8,
+    noData:false,
+    noInternet:false,
+    noContent:false
   },
 
   

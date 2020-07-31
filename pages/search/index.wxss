@@ -1,0 +1,26 @@
+/* pages/search/index.wxss */
+.search{
+  height: 60rpx;
+  width: 690rpx;
+  margin: 0 auto;
+}
+.van-cell{
+  width: 100%;
+}
+
+.van-field_input{
+  height: 60rpx !important;
+}
+
+
+.van-cell {
+  width: 100%;
+  height: 60rpx !important;
+  background: #f6f6f6 !important;
+  border-radius: 30rpx;
+  padding: 0 34rpx !important;
+  font-size: 28rpx;
+  font-weight: Normal;
+  color: #333333;
+  align-items: center;
+}

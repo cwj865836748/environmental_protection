@@ -1,13 +1,47 @@
 {
   "pages":[
-    "pages/index/index"
+    "pages/produce-library/index",
+    "pages/index/index",
+    "pages/search/index",
+    "pages/exhibition/index",
+    "pages/activity/index",
+    "pages/mine/index"
   ],
   "window":{
     "backgroundTextStyle":"light",
-    "navigationBarBackgroundColor": "#fff",
+    "navigationBarBackgroundColor": "#333333",
     "navigationBarTitleText": "WeChat",
-    "navigationBarTextStyle":"black",
-    "navigationStyle":"custom"
+    "navigationBarTextStyle":"black"
+  },
+  "tabBar":{
+    "color":"#BFBFBF",
+    "selectedColor":"#43B2FC",
+    "borderStyle":"white",
+    "backgroundColor":"#FFFFFF",
+    "list":[{
+      "pagePath":"pages/index/index",
+      "text":"首页",
+      "iconPath":"images/nav-bar/nav_home@2x.png",
+      "selectedIconPath":"images/nav-bar/nav_home0@2x.png"
+    },
+    {
+      "pagePath":"pages/exhibition/index",
+      "text":"展会",
+      "iconPath":"images/nav-bar/nav_exhibition@2x.png",
+      "selectedIconPath":"images/nav-bar/nav_exhibition0@2x.png"
+    },
+    {
+      "pagePath":"pages/activity/index",
+      "text":"活动",
+      "iconPath":"images/nav-bar/nav_activity@2x.png",
+      "selectedIconPath":"images/nav-bar/nav_activity0@2x.png"
+    },
+    {
+      "pagePath":"pages/mine/index",
+      "text":"我的",
+      "iconPath":"images/nav-bar/nav_my@2x.png",
+      "selectedIconPath":"images/nav-bar/nav_my0@2x.png"
+    }]
   },
   "sitemapLocation": "sitemap.json",
   "permission": {

@@ -1,0 +1,19 @@
+
+<block wx:for="{{enterpriseList}}">
+	<view class="shop-list flex" wx:key="index">
+		<view class="shop-item-logo flex-xy-center">
+			<image class="flex-grow-0" src="/images/img/shop.png"></image>
+		</view>
+		<view class="shop-item-right flex-y-center">
+			<view class="shop-content">
+				<view class="shop-zh-name">春晓环保集团</view>
+				<view class="shop-en-name">Chun Xiao Environmental Protection Group</view>
+			</view>
+			<view class="shop-collect flex-xy-center">
+				<image class="flex-grow-0" src="/images/home/home_collect@2x.png"></image>
+				<!-- <image class="flex-grow-0" src="/images/home/home_collect0@2x.png"></image> -->
+			</view>
+		</view>
+	</view>
+</block>
+	<include src="/common/noData/noData" />
