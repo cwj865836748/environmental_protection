@@ -25,12 +25,12 @@
 ::-webkit-scrollbar {
   display: none
 }
-.tab-list{
+.sub-tab-list{
   overflow: scroll;
   height: 90rpx;
   padding-left: 30rpx;
 }
-.tab-item-name{
+.sub-tab-item-name{
   width: 160rpx;
   text-align: center;
   color: #999999;
@@ -38,12 +38,12 @@
   font-weight: 500;
   margin-bottom: 8rpx;
 }
-.tab-item-name-active{
+.sub-tab-item-name-active{
   color: #333333 !important;
   font-size: 30rpx;
   font-weight: 500;
 }
-.tab-item-line{
+.sub-tab-item-line{
   width: 33rpx;
   height: 4rpx;
   background-color: #43B2FC;

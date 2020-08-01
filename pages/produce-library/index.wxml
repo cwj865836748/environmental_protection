@@ -8,12 +8,13 @@
 </navigator>
 
 <!-- tab 标签页 -->
-<view class="tab-list flex-y-center">
-	<view class="tab-item flex-col flex-xy-center" wx:key="index" wx:for="{{tabList}}" bindtap="handleChangeTab" data-id="{{item.id}}">
-		<view class="tab-item-name {{ tabIndex == item.id ? 'tab-item-name-active' : ''}}">{{item.title}}</view>
-		<view class="{{ tabIndex == item.id ? 'tab-item-line' : ''}}"></view>
+<view class="sub-tab-list flex-y-center">
+	<view class="sub-tab-item flex-col flex-xy-center" wx:key="index" wx:for="{{subTabList}}" bindtap="handleChangeTab" data-id="{{item.id}}">
+		<view class="sub-tab-item-name {{ subTabIndex == item.id ? 'sub-tab-item-name-active' : ''}}">{{item.title}}</view>
+		<view class="{{ subTabIndex == item.id ? 'sub-tab-item-line' : ''}}"></view>
 	</view>
 </view>
+
 
 <view class="produce-list flex-y-center">
 	<block wx:for="{{produceList}}">

@@ -1,29 +1,23 @@
-// pages/produce-library/index.js
+// pages/publish/index.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    tabIndex:1,
-    tabList:[{title:'全部',id:1},{title:'水处理类',id:2},{title:'泵闸类',id:3},{title:'空气清新类',id:4},{title:'固废气类',id:5},],
-    produceList:8
-  },
 
+  },
+  // 选择类型
+  handleType(){
+    
+  },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
 
   },
-  handleChangeTab(e){
-    console.log(this.data.tabIndex)
-    console.log(e.currentTarget.dataset.id)
-    let id = e.currentTarget.dataset.id;
-    this.setData({
-      tabIndex:id
-    })
-  },
+
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

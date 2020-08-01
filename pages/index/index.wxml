@@ -26,15 +26,21 @@
 <!-- 功能模块 -->
 <view class="function-box flex-y-center">
 
-	<view class="function-item flex-grow-1 flex-col flex-xy-center">
-		<image class="function-icon flex-grow-0" src="/images/home/home_module_ico1@2x.png"></image>
-		<view class="function-dec">供需快报</view>
-	</view>
+	<navigator class=" flex-grow-1" url="/pages/supply-demand/index">
+		<view class="function-item flex-col flex-xy-center">
+			<image class="function-icon flex-grow-0" src="/images/home/home_module_ico1@2x.png"></image>
+			<view class="function-dec">供需快报</view>
+		</view>
 
-	<view class="function-item flex-grow-1 flex-col flex-xy-center">
-		<image class="function-icon flex-grow-0" src="/images/home/home_module_ico2@2x.png"></image>
-		<view class="function-dec">专家论坛</view>
-	</view>
+	</navigator>
+
+	<navigator class="flex-grow-1" url="/pages/environmental-bbs/index">
+		<view class="function-item flex-col flex-xy-center">
+			<image class="function-icon flex-grow-0" src="/images/home/home_module_ico2@2x.png"></image>
+			<view class="function-dec">专家论坛</view>
+		</view>
+	</navigator>
+
 
 	<view class="function-item flex-grow-1 flex-col flex-xy-center">
 		<image class="function-icon flex-grow-0" src="/images/home/home_module_ico3@2x.png"></image>

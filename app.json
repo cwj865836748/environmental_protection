@@ -1,7 +1,12 @@
 {
   "pages":[
-    "pages/produce-library/index",
+    "pages/environmental-bbs/index",
     "pages/index/index",
+    "pages/news-detail/index",
+    "pages/publish/index",
+    "pages/supply-demand/index",
+    "pages/authorization/index",
+    "pages/produce-library/index",
     "pages/search/index",
     "pages/exhibition/index",
     "pages/activity/index",

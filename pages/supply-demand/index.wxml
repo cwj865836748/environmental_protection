@@ -1,0 +1,59 @@
+<!--pages/supply-demand/index.wxml-->
+<view class="head">
+	<view class="head-nav flex-col flex-xy-center" style="height:{{navHeight}}px;">
+		<view style='height:{{statusBarHeight}}px;'></view>
+		<view class="nav-bar flex-y-center">
+			<van-icon name="arrow-left" bindtap="goBack" />
+			<view class="head-title flex-grow-1">供需快报</view>
+		</view>
+	</view>
+
+	<!-- 轮播图 -->
+	<view class="swiper-box">
+		<swiper indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" indicator-color="rgba(255,255,255,0.5)" indicator-active-color="#ffffff">
+			<block wx:for="{{swiperList}}" wx:key="*this">
+				<swiper-item>
+					<image class="swiper-item" src="{{item}}"></image>
+				</swiper-item>
+			</block>
+		</swiper>
+	</view>
+
+	<!-- 头部阴影 -->
+	<!-- <view class="head-shadow"></view> -->
+</view>
+
+<!-- 快报信息 -->
+<view class="news-wrap flex-col">
+	<view class="tab-list flex-y-center">
+		<block wx:for="{{tabList}}">
+			<view class="news-tab flex-grow-1 flex-col flex-xy-center" wx:key="index" bindtap="handleChangeTab" data-id="{{item.id}}">
+				<view class=" tab-item {{tabIndex == item.id ? 'tab-item-active' : ''}}">{{item.title}}</view>
+				<view class="{{tabIndex == item.id ? 'tab-line-active' : ''}}"></view>
+			</view>
+		</block>
+	</view>
+
+	<view class="news-content">
+
+		<view class="news-list" wx:for="{{listData}}" bindtap="jumpPage">
+			<view class="news-item flex-y-center">
+				<view class="item-img flex-xy-center">
+					<image class="flex-grow-0" src="https://img02.mockplus.cn/idoc/xd/2020-07-30/9abe3fa2-d0b1-4b22-8c01-3fb65a099e7c.png"></image>
+				</view>
+				<view class="news-msg">
+					<view class="news-dec text-more">厦门国际环保展组委会授予集美大学机械与能源工程厦门国际环保展组委会授予集美大学机械与能源工程</view>
+					<view class="news-time">2020.07.05 10:20</view>
+				</view>
+			</view>
+		</view>
+		
+	</view>
+</view>
+
+<!-- 发布按钮 -->
+<view class="publish-btn">
+	<navigator url="/pages/publish/index">
+		<view class="btn flex-xy-center">我要发布</view>
+	</navigator>
+</view>

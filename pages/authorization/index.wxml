@@ -1,0 +1,25 @@
+<!--pages/authorization/index.wxml-->
+<!-- 头部导航栏 -->
+<view class="head">
+	<view class="head-nav flex-col flex-xy-center" style="height:{{navHeight}}px;">
+		<view style='height:{{statusBarHeight}}px;'></view>
+		<view class="nav-bar flex-y-center">
+			<!-- <image class="arrow" src="/images/shop_back@2x.png"></image> -->
+			<van-icon name="arrow-left" bindtap="goBack" />
+			<view class="head-title flex-grow-1">授权登录</view>
+		</view>
+	</view>
+	<image class="head-bg" src="/images/login_bg@2x.png"></image>
+</view>
+
+<!-- 生态logo -->
+<view class="logo-box flex-col flex-xy-center">
+	<view class="login-logo flex-xy-center">
+		<image class="logo flex-grow-0" src="/images/login_logo@2x.png"></image>
+	</view>
+	<view class="login-name">生态联合网</view>
+</view>
+
+<!-- 授权按钮 -->
+<view class="btn flex-xy-center" wx:if="{{!status}}">授权微信登录</view>
+<view class="btn flex-xy-center" wx:if='{{status}}'>获取手机号</view>

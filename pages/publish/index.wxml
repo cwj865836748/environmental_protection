@@ -1,0 +1,59 @@
+<!--pages/publish/index.wxml-->
+<van-cell-group>
+
+	<view class="list-cell flex-y-center">
+		<view class="list-cell-title">类型</view>
+		<view class="list-cell-choose flex-y-center">
+			<image class="list-cell-icon flex-grow-0" src="/images/form_select0@2x.png"></image>
+			<!-- <image class="list-cell-icon flex-grow-0" src="/images/form_select@2x.png"></image> -->
+			<view class="list-cell-name">供应</view>
+		</view>
+		<view class="list-cell-choose flex-y-center">
+			<!-- <image class="list-cell-icon flex-grow-0" src="/images/form_select0@2x.png"></image> -->
+			<image class="list-cell-icon flex-grow-0" src="/images/form_select@2x.png"></image>
+			<view class="list-cell-name">需求</view>
+		</view>
+	</view>
+
+	<van-field value="{{ username }}" placeholder="请输入姓名" label="姓名" bind:change="onChange" />
+
+	<view class="list-cell flex-y-center">
+		<view class="list-cell-title">性别</view>
+		<view class="list-cell-choose flex-y-center" bindtap="handleType">
+			<image class="list-cell-icon flex-grow-0" src="/images/form_select0@2x.png"></image>
+			<!-- <image class="list-cell-icon flex-grow-0" src="/images/form_select@2x.png"></image> -->
+			<view class="list-cell-name">男</view>
+		</view>
+		<view class="list-cell-choose flex-y-center">
+			<!-- <image class="list-cell-icon flex-grow-0" src="/images/form_select0@2x.png"></image> -->
+			<image class="list-cell-icon flex-grow-0" src="/images/form_select@2x.png"></image>
+			<view class="list-cell-name">女</view>
+		</view>
+	</view>
+
+	<van-field value="{{ companyName }}" placeholder="请输入公司名称" label="公司名称" bind:change="onChange" />
+
+		<view class="list-cell-content flex-y-center">
+			<van-field value="{{ category }}" placeholder="请选择" label="类别" disabled bind:change="onChange" />
+			<image class="arrow flex-grow-0" src="/images/form_down@2x.png"></image>
+		</view>
+
+
+	<van-field value="{{ post }}" placeholder="请输入职位" label="职位" bind:change="onChange" />
+
+	<van-field value="{{ email }}" placeholder="请输入邮箱账号" label="邮箱" bind:change="onChange" />
+
+	<van-field value="{{ phone }}" placeholder="请输入手机号" label="手机号" bind:change="onChange" />
+
+	<view class="textarea-wrap">
+		<van-field value="{{ companyInfo }}" bind:change="handleMainInfo" label="企业信息" type="textarea" clearable placeholder="请输入企业信息(选填)" autosize style="height:244rpx;" border="{{false}}" />
+	</view>
+
+	<view class="textarea-wrap border-no">
+		<van-field value="{{ ps }}" bind:change="handleMainInfo" label="备注" type="textarea" clearable placeholder="请输入您的备注(选填)" autosize style="height:244rpx;" border="{{false}}" />
+	</view>
+
+
+</van-cell-group>
+
+<view class="btn flex-xy-center">发布</view>

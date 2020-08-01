@@ -1,0 +1,11 @@
+{
+  "usingComponents": {
+    "navbar": "../../components/navbar/navbar",
+    "van-icon": "@vant/weapp/icon/index"
+  },
+  "navigationBarBackgroundColor": "#ffffff",
+  "navigationBarTextStyle": "white",
+  "navigationBarTitleText": "",
+  "backgroundTextStyle": "dark",
+  "navigationStyle": "custom"
+}

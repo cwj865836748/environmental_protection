@@ -1,0 +1,10 @@
+{
+  "usingComponents": {
+    "van-field": "@vant/weapp/field/index",
+    "van-popup": "@vant/weapp/popup/index"
+  },
+  "navigationBarBackgroundColor": "#ffffff",
+  "navigationBarTextStyle": "black",
+  "navigationBarTitleText": "我要发布",
+  "backgroundTextStyle": "dark"
+}

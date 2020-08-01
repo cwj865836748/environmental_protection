@@ -1,0 +1,44 @@
+/* pages/environmental-bbs/index.wxss */
+@import '/pages/supply-demand/index.wxss';
+@import '/pages/produce-library/index.wxss';
+.news-wrap{
+  padding: 0;
+}
+.ml30{
+  margin-left: 30rpx;
+}
+.ml20{
+  margin-left: 20rpx;
+}
+.pl30{
+  padding: 0 30rpx;
+}
+/* 专家列表 */
+.professor-list{
+  width: 100%;
+  flex-wrap: wrap;
+  background-color: #f8f8f8;
+}
+.professor-item{
+  min-width: 0;
+  width: 334rpx;
+  height: 376rpx;
+  background-color: #ffffff;
+  border-radius: 20rpx;
+  margin-top: 20rpx;
+}
+.professor-avatar{
+  width: 196rpx;
+  height: 196rpx;
+  border-radius: 50%;
+}
+.professor-name{
+  font-size: 34rpx;
+  color: #333333;
+  margin-bottom: 16rpx;
+}
+.professor-title{
+  color: #999999;
+  font-size: 26rpx;
+  width: 204rpx;
+}
