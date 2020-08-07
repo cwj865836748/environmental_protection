@@ -1,0 +1,152 @@
+/* pages/enterprise-detail/index.wxss */
+@import '/pages/authorization/index.wxss';
+@import '/pages/produce-library/index.wxss';
+.mb12{
+  margin-bottom: 12rpx;
+}
+.enterprise-icon {
+  width: 100%;
+  height: 434rpx;
+  opacity: 0.5;
+  background-color: #000000;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -2;
+}
+
+.enterprise-icon image {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -5;
+}
+
+/* 企业信息 */
+.enterprise-dec {
+  width: 100%;
+  height: 220rpx;
+  padding: 0 30rpx;
+}
+
+.enterprise-avatar {
+  width: 150rpx;
+  height: 150rpx;
+  margin-right: 10rpx;
+}
+
+.enterprise-avatar image {
+  width: 100%;
+  height: 100%;
+}
+
+.enterprise-msg {
+  width: 530rpx;
+  height: 150rpx;
+  justify-content: space-between;
+}
+
+.enterprise-zh-title {
+  font-size: 32rpx;
+  color: #ffffff;
+}
+
+.enterprise-en-title {
+  font-size: 26rpx;
+  color: #ffffff;
+  opacity: 0.6;
+  margin-top: 12rpx;
+}
+
+.msg-right {
+  width: 124rpx;
+  height: 44rpx;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 10rpx;
+  padding: 0 11rpx;
+}
+
+.msg-right image {
+  width: 25rpx;
+  height: 24rpx;
+}
+
+.msg-collect {
+  font-size: 24rpx;
+  color: #ffffff;
+  opacity: 0.8;
+  margin-left: 8rpx;
+}
+
+/* 企业介绍 */
+
+.enterprise-introduce-wrap {
+  width: 100%;
+  border-radius: 20rpx;
+  background-color: #ffffff;
+  /* margin-top: -20rpx; */
+  position: relative;
+  padding-left: 30rpx;
+  /* overflow: hidden; */
+}
+
+.enterprise-link-box {
+  margin-top: 28rpx;
+  justify-content: space-between;
+}
+
+.line {
+  width: 6rpx;
+  height: 30rpx;
+  background: #43b2fc;
+  border-radius: 4px;
+  margin-right: 12rpx;
+}
+
+.introduce-title {
+  font-size: 32rpx;
+  color: #333333;
+  line-height: 44rpx;
+}
+
+.exhibition {
+  width: 120rpx;
+  height: 50rpx;
+  font-size: 26rpx;
+  color: #ffffff;
+  background: #3ccbb4;
+  border-radius: 26px 0px 0px 26px;
+}
+
+.phone {
+  font-size: 26rpx;
+  color: #666666;
+  margin-top: 18rpx;
+  line-height: 52rpx;
+}
+
+.area {
+  font-size: 26rpx;
+  color: #666666;
+  line-height: 52rpx;
+}
+
+.etp-dec {
+  width: 690rpx;
+  font-size: 26rpx;
+  color: #666666;
+  line-height: 48rpx;
+  text-indent: 52rpx;
+  margin-top: 10rpx;
+}
+
+/* 模块分割线 */
+.segmentation{
+  width: 690rpx;
+  height: 2rpx;
+  background-color: #f8f8f8;
+  margin-top: 28rpx;
+  margin-bottom: 20rpx;
+}

@@ -1,52 +1,73 @@
 {
-  "pages":[
-    "pages/environmental-bbs/index",
+  "pages": [
     "pages/index/index",
-    "pages/news-detail/index",
-    "pages/publish/index",
+    "pages/mine/index",
+    "pages/browsing-history/index",
+    "pages/environmental-bbs/index",
     "pages/supply-demand/index",
-    "pages/authorization/index",
+    "pages/innovative-technology/index",
+    "pages/activity/index",
+    "pages/my-sign/index",
+    "pages/my-collect/index",
+    "pages/my-info/index",
+    "pages/apply/index",
+    "pages/activity-detail/index",
+    "pages/appointment/index",
+    "pages/publish/index",
+    "pages/exhibition-detail/index",
+    "pages/traffic-guidance/index",
+    "pages/conference-agenda/index",
+    "pages/link-us/index",
+    "pages/exhibition/index",
+    "pages/merchants-list/index",
+    "pages/enterprise-list/index",
+    "pages/enterprise-detail/index",
+    "pages/equipment-detail/index",
+    "pages/search-result/index",
     "pages/produce-library/index",
     "pages/search/index",
-    "pages/exhibition/index",
-    "pages/activity/index",
-    "pages/mine/index"
+    "pages/professor-detail/index",
+    "pages/environmental-consulte/index",
+    "pages/news-detail/index",
+    "pages/authorization/index"
   ],
-  "window":{
-    "backgroundTextStyle":"light",
+  "window": {
+    "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#333333",
     "navigationBarTitleText": "WeChat",
-    "navigationBarTextStyle":"black"
+    "navigationBarTextStyle": "black",
+    "navigationStyle": "custom"
   },
-  "tabBar":{
-    "color":"#BFBFBF",
-    "selectedColor":"#43B2FC",
-    "borderStyle":"white",
-    "backgroundColor":"#FFFFFF",
-    "list":[{
-      "pagePath":"pages/index/index",
-      "text":"首页",
-      "iconPath":"images/nav-bar/nav_home@2x.png",
-      "selectedIconPath":"images/nav-bar/nav_home0@2x.png"
-    },
-    {
-      "pagePath":"pages/exhibition/index",
-      "text":"展会",
-      "iconPath":"images/nav-bar/nav_exhibition@2x.png",
-      "selectedIconPath":"images/nav-bar/nav_exhibition0@2x.png"
-    },
-    {
-      "pagePath":"pages/activity/index",
-      "text":"活动",
-      "iconPath":"images/nav-bar/nav_activity@2x.png",
-      "selectedIconPath":"images/nav-bar/nav_activity0@2x.png"
-    },
-    {
-      "pagePath":"pages/mine/index",
-      "text":"我的",
-      "iconPath":"images/nav-bar/nav_my@2x.png",
-      "selectedIconPath":"images/nav-bar/nav_my0@2x.png"
-    }]
+  "tabBar": {
+    "color": "#BFBFBF",
+    "selectedColor": "#43B2FC",
+    "borderStyle": "white",
+    "backgroundColor": "#FFFFFF",
+    "list": [{
+        "pagePath": "pages/index/index",
+        "text": "首页",
+        "iconPath": "images/nav-bar/nav_home@2x.png",
+        "selectedIconPath": "images/nav-bar/nav_home0@2x.png"
+      },
+      {
+        "pagePath": "pages/exhibition/index",
+        "text": "展会",
+        "iconPath": "images/nav-bar/nav_exhibition@2x.png",
+        "selectedIconPath": "images/nav-bar/nav_exhibition0@2x.png"
+      },
+      {
+        "pagePath": "pages/activity/index",
+        "text": "活动",
+        "iconPath": "images/nav-bar/nav_activity@2x.png",
+        "selectedIconPath": "images/nav-bar/nav_activity0@2x.png"
+      },
+      {
+        "pagePath": "pages/mine/index",
+        "text": "我的",
+        "iconPath": "images/nav-bar/nav_my@2x.png",
+        "selectedIconPath": "images/nav-bar/nav_my0@2x.png"
+      }
+    ]
   },
   "sitemapLocation": "sitemap.json",
   "permission": {

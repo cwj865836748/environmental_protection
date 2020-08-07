@@ -1,1 +1,80 @@
 /* pages/exhibition/index.wxss */
+@import '/common/consult/consult.wxss';
+.exhibition-list {
+  width: 100%;
+  padding: 0 30rpx;
+  background-color: #f8f8f8;
+}
+
+.exhibition-item {
+  width: 690rpx;
+  height: 388rpx;
+  border-radius: 10rpx;
+  margin-top: 30rpx;
+  background-color: #ffffff;
+}
+
+.item-img {
+  width: 690rpx;
+  height: 260rpx;
+}
+
+.item-img image {
+  width: 100%;
+  height: 100%;
+}
+
+.exhibition-title {
+  font-size: 34rpx;
+  color: #333333;
+  margin-top: 10rpx;
+  margin-bottom: 12rpx;
+}
+
+.time-icon {
+  width: 22rpx;
+  height: 22rpx;
+}
+.time-icon image{
+  width: 100%;
+  height: 100%;
+}
+.time {
+  color: #999999;
+  font-size: 24rpx;
+  line-height: 44rpx;
+  margin-left: 14rpx;
+}
+
+.exhibition-status-box {
+  justify-content: space-between;
+}
+
+.exhibition-status {
+  font-size: 26rpx;
+  color: #ffffff;
+}
+
+.status-going {
+  width: 120rpx;
+  height: 50rpx;
+  background: #3ccbb4;
+  border-radius: 26px 0px 0px 26px;
+  background-color: #3ccbb4;
+}
+
+.status-writing {
+  width: 120rpx;
+  height: 50rpx;
+  background: #3ccbb4;
+  border-radius: 26px 0px 0px 26px;
+  background-color: #43b2fc;
+}
+
+.status-overed {
+  width: 120rpx;
+  height: 50rpx;
+  background: #3ccbb4;
+  border-radius: 26px 0px 0px 26px;
+  background-color: #c9c9c9;
+}

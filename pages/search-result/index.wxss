@@ -1,0 +1,19 @@
+/* pages/search-result/index.wxss */
+@import '/pages/search/index.wxss';
+@import '/pages/produce-library/index.wxss';
+@import '/pages/environmental-bbs/index.wxss';
+@import '/common/enterprise/enterpriseList.wxss';
+.sub-tab-list{
+  padding-left: 0;
+}
+.mt30{
+  margin-top: 30rpx;
+}
+.produce-list{
+  height: 76vh;
+  overflow-y: scroll;
+}
+.shop-wrap-list{
+  height: 76vh;
+  overflow-y: scroll;
+}

@@ -1,11 +1,28 @@
 // pages/exhibition/index.js
+const App = getApp()
+var utils = require('../../utils/util.js')
+import {
+  navigateTo
+} from '../../utils/wx.js'
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+    listData: [{
+      id: 0
+    }, {
+      id: 1
+    }, {
+      id: 2
+    }, {
+      id: 0
+    }, {
+      id: 1
+    }, {
+      id: 2
+    }]
   },
 
   /**

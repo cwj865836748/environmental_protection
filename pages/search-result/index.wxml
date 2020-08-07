@@ -1,0 +1,75 @@
+<!--pages/search-result/index.wxml-->
+<navbar title="搜索结果" back="{{true}}"></navbar>
+<!-- 搜索栏 -->
+<view class="search">
+	<van-field value="{{ search }}" placeholder="请输入您要找的企业/设备" border="{{ false }}" clearable bind:change="onChange" />
+</view>
+<!-- 搜索结果 -->
+<view class="result-wrap">
+	<!-- 一级 tab  -->
+	<view class="tab-list flex-y-center">
+		<block wx:for="{{tabList}}">
+			<view class="news-tab flex-grow-1 flex-col flex-xy-center" wx:key="index" bindtap="handleChangeTab" data-id="{{item.id}}">
+				<view class=" tab-item {{tabIndex == item.id ? 'tab-item-active' : ''}}">{{item.title}}</view>
+				<view class="{{tabIndex == item.id ? 'tab-line-active' : ''}}"></view>
+			</view>
+		</block>
+	</view>
+
+	<!-- 为设备时 -->
+	<view class="equipment-result" wx:if="{{tabIndex == 1}}">
+		<!-- 二级 tab 标签页 -->
+		<view class="sub-tab-list flex-y-center">
+			<view class="sub-tab-item flex-col flex-xy-center" wx:key="index" wx:for="{{subTabList}}" bindtap="handleChangeSubTab" data-id="{{item.id}}">
+				<view class="sub-tab-item-name {{ subTabIndex == item.id ? 'sub-tab-item-name-active' : ''}}">{{item.title}}</view>
+				<view class="{{ subTabIndex == item.id ? 'sub-tab-item-line' : ''}}"></view>
+			</view>
+		</view>
+		<!-- 设备列表 -->
+		<view class="produce-list flex-y-center">
+			<block wx:for="{{produceList}}">
+				<view class="produce-item ml flex-col flex-xy-center">
+					<view class="produce-item-img-box flex-xy-center">
+						<image class="produce-item-img flex-grow-0" src="https://img02.mockplus.cn/idoc/xd/2020-07-30/c1ce0340-dd65-427f-8e37-63f0e6a4ac02.png"></image>
+					</view>
+					<view class="produce-item-dec text-more-single">AET系列诱导风机</view>
+				</view>
+			</block>
+		</view>
+
+
+	</view>
+
+	<!-- 为企业时 -->
+	<view class="enterprise-result" wx:if="{{tabIndex == 2}}">
+		<!-- 二级 tab -->
+		<view class="sub-tab-list flex-y-center">
+			<view class="sub-tab-item flex-col flex-xy-center flex-grow-1" wx:key="index" wx:for="{{etpTabList}}" bindtap="handleChangeEtpTab" data-id="{{item.id}}">
+				<view class="sub-tab-item-name {{ etpTabIndex == item.id ? 'sub-tab-item-name-active' : ''}}">{{item.title}}</view>
+				<view class="{{ etpTabIndex == item.id ? 'sub-tab-item-line' : ''}}"></view>
+			</view>
+		</view>
+
+		<!-- 企业列表 -->
+		<view class="shop-wrap-list">
+			<view class="shop-list flex  {{ index == 0 ? 'mt30' : ''}}" wx:key="index" wx:for="{{enterpriseList}}">
+				<view class="shop-item-logo flex-xy-center">
+					<image class="flex-grow-0" src="https://img02.mockplus.cn/idoc/xd/2020-07-30/2c60fae2-3c9d-4a50-8005-9fb1f20fcc6b.png"></image>
+				</view>
+				<view class="shop-item-right flex-y-center">
+					<view class="shop-content">
+						<view class="shop-zh-name">春晓环保集团</view>
+						<view class="shop-en-name">Chun Xiao Environmental Protection Group</view>
+					</view>
+					<view class="shop-collect flex-xy-center">
+						<image class="flex-grow-0" src="/images/home/home_collect@2x.png"></image>
+						<!-- <image class="flex-grow-0" src="/images/home/home_collect0@2x.png"></image> -->
+					</view>
+				</view>
+			</view>
+		</view>
+
+
+	</view>
+
+</view>

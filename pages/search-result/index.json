@@ -1,0 +1,10 @@
+{
+  "usingComponents": {
+    "van-field": "@vant/weapp/field/index",
+    "navbar":"../../components/navbar/navbar"
+  },
+  "navigationBarBackgroundColor": "#ffffff",
+  "navigationBarTextStyle": "black",
+  "navigationBarTitleText": "搜索结果",
+  "backgroundTextStyle": "dark"
+}

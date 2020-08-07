@@ -1,2 +1,29 @@
 <!--pages/exhibition/index.wxml-->
-<text>pages/exhibition/index.wxml</text>
+<navbar title="展会列表" back="{{false}}"></navbar>
+<view class="exhibition-list flex-col">
+	<block wx:for="{{listData}}">
+		<navigator url="/pages/exhibition-detail/index">
+			<view class="exhibition-item">
+				<view class="item-img flex-xy-center">
+					<image class="flex-grow-0" src="https://img02.mockplus.cn/idoc/xd/2020-07-30/49b4d51a-60d1-4df1-85d7-83e9c571451a.png"></image>
+				</view>
+				<view class="exhibition-title">2020第五届厦门国际水展</view>
+				<view class="exhibition-status-box flex-y-center">
+					<view class="exhibition-time flex-y-center">
+						<view class="time-icon flex-xy-center">
+							<image class="flex-grow-0" src="/images/exhibition_time@2x.png"></image>
+						</view>
+						<view class="time flex-y-center">2020.07.05-2020.08.05</view>
+					</view>
+					<view class="exhibition-status flex-xy-center status-going" wx:if="{{item.id == 0}}">进行中</view>
+					<view class="exhibition-status flex-xy-center status-writing" wx:if="{{item.id == 1}}">未开始</view>
+					<view class="exhibition-status flex-xy-center status-overed" wx:if="{{item.id == 2}}">已结束</view>
+				</view>
+			</view>
+		</navigator>
+	</block>
+
+
+</view>
+
+<include src="/common/consult/consult" />

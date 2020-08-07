@@ -1,0 +1,3 @@
+<!--pages/link-us/index.wxml-->
+<navbar title="联系我们" back="{{true}}"></navbar>
+<view>富文本编辑</view>

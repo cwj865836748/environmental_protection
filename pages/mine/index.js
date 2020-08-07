@@ -1,18 +1,35 @@
 // pages/mine/index.js
+const App = getApp();
+import {
+  navigateTo
+} from '../../utils/wx.js'
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+    navHeight: null,
+    statusBarHeight: null,
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    if (App.globalData.navBar) {
+      this.setData({
+        navHeight: App.globalData.navBar.navHeight,
+        statusBarHeight: App.globalData.navBar.statusBarHeight
+      })
+    } else {
+      App.userInfoReadyCallback = res => {
+        this.setData({
+          navHeight: App.globalData.navBar.navHeight,
+          statusBarHeight: App.globalData.navBar.statusBarHeight
+        })
+      }
+    }
   },
 
   /**

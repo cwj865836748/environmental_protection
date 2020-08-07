@@ -1,0 +1,32 @@
+<!--pages/browsing-history/index.wxml-->
+<navbar title="浏览记录" back="{{true}}"></navbar>
+<view class="tab-list flex-y-center">
+	<block wx:for="{{tabList}}">
+		<view class="news-tab flex-grow-1 flex-col flex-xy-center" wx:key="index" bindtap="handleChangeTab" data-id="{{item.id}}">
+			<view class=" tab-item {{tabIndex == item.id ? 'tab-item-active' : ''}}">{{item.title}}</view>
+			<view class="{{tabIndex == item.id ? 'tab-line-active' : ''}}"></view>
+		</view>
+	</block>
+</view>
+
+<!-- 咨询 -->
+<view class="news-content" wx:if="{{tabIndex == 1}}">
+
+	<view class="news-list pl30" wx:for="{{listData}}" bindtap="jumpPage">
+		<view class="news-item flex-y-center">
+			<view class="item-img flex-xy-center">
+				<image class="flex-grow-0" src="https://img02.mockplus.cn/idoc/xd/2020-07-30/9abe3fa2-d0b1-4b22-8c01-3fb65a099e7c.png"></image>
+			</view>
+			<view class="news-msg">
+				<view class="news-dec text-more">厦门国际环保展组委会授予集美大学机械与能源工程厦门国际环保展组委会授予集美大学机械与能源工程</view>
+				<view class="news-time">2020.07.05 10:20</view>
+			</view>
+		</view>
+	</view>
+
+</view>
+
+<!-- 企业 -->
+<view class="news-content" wx:if="{{tabIndex == 2}}">
+	<include src="/common/enterprise/enterpriseList" />
+</view>

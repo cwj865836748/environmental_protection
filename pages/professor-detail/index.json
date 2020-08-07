@@ -1,0 +1,9 @@
+{
+  "usingComponents": {
+    "navbar":"../../components/navbar/navbar"
+  },
+  "navigationBarBackgroundColor": "#ffffff",
+  "navigationBarTextStyle": "black",
+  "navigationBarTitleText": "专家详情",
+  "backgroundTextStyle": "dark"
+}

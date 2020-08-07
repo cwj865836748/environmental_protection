@@ -13,8 +13,11 @@
 	<view class="swiper-box">
 		<swiper indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" indicator-color="rgba(255,255,255,0.5)" indicator-active-color="#ffffff">
 			<block wx:for="{{swiperList}}" wx:key="*this">
-				<swiper-item>
-					<image class="swiper-item" src="{{item}}"></image>
+				<swiper-item wx:if="{{item.type == 1}}">
+					<image class="swiper-item" src="{{item.url}}"></image>
+				</swiper-item>
+				<swiper-item wx:else>
+					<video class="video" src="{{item.url}}" controls='true'></video>
 				</swiper-item>
 			</block>
 		</swiper>
@@ -36,26 +39,41 @@
 		</block>
 	</view>
 
-	<!-- <view class="progessor-title-wrap">
-		<view class="professor-title-list">
-			<view class="professor-title-item" wx:for="{{titleList}}">
-        <view class="title-dec">标签1</view>
-        <image src=""></image>
+	<!-- 专家类型选择 -->
+	<view class="professor-title-wrap flex" wx:if="{{tabIndex == 1}}">
+		<view class="professor-title-list flex-y-center">
+			<view class="professor-title-item flex-y-center" wx:for="{{titleList}}">
+				<view class="title-dec flex-xy-center">标签1</view>
+				<image class="title-dec-delete flex-grow-0" src="/images/home/home_delete@2x.png"></image>
 			</view>
 		</view>
-    <image src="/images/form_down@2x.png"></image>
-	</view> -->
+		<image class="title-dec-arrow" src="/images/form_down@2x.png" bindtap="handleChooseTitle"></image>
+	</view>
 
+	<!-- 下拉框 -->
+	<view class="select-wrap" wx:if="{{titleFlag}}">
+		<view class="select-arrow"></view>
+		<view class="select-box">
+			<view class="select-list flex-y-center {{ index == 0 ? 'mt37' : 'mt53'}}" wx:for="{{selectList}}" bindtap="handleSelectTitle" data-id="{{index}}">
+				<view class="select-item {{index % 2 == 0 ? 'select-item-active' : ''}}">标签1</view>
+				<view class="select-right flex-xy-center">
+					<image class="flex-grow-0" src="/images/home/home_right@2x.png" wx:if="{{index % 2 == 0}}"></image>
+				</view>
+			</view>
+		</view>
+	</view>
 
+	<!-- 专家列表 -->
 	<view class="professor-list flex" wx:if="{{tabIndex == 1}}">
-		<view class="professor-item flex-col flex-xy-center {{ index % 2 == 0 ? 'ml30' : 'ml20'}}" wx:for="{{listData}}">
+		<view class="professor-item flex-col flex-xy-center {{ index % 2 == 0 ? 'ml30' : 'ml20'}}" wx:for="{{listData}}" bindtap="handleJump">
 			<image class="professor-avatar flex-grow-0" src="https://img02.mockplus.cn/idoc/xd/2020-07-31/15ec289b-595c-4923-9e6e-6b37fe2a4c95.png"></image>
 			<view class="professor-name">孙哲彬</view>
 			<view class="professor-title text-more-single">厦门大学教授</view>
 		</view>
 	</view>
 
-	<view class="pl30" wx:if="{{tabIndex == 2}}">
+	<!-- 论坛信息列表 -->
+	<block wx:if="{{tabIndex == 2}}">
 		<!-- 二级 tab 标签页 -->
 		<view class="sub-tab-list flex-y-center">
 			<view class="sub-tab-item flex-col flex-xy-center" wx:key="index" wx:for="{{subTabList}}" bindtap="handleChangeSubTab" data-id="{{item.id}}">
@@ -66,7 +84,7 @@
 
 		<view class="news-content">
 
-			<view class="news-list" wx:for="{{listData}}" bindtap="jumpPage">
+			<view class="news-list pl30" wx:for="{{listData}}" bindtap="jumpPage1">
 				<view class="news-item flex-y-center">
 					<view class="item-img flex-xy-center">
 						<image class="flex-grow-0" src="https://img02.mockplus.cn/idoc/xd/2020-07-30/9abe3fa2-d0b1-4b22-8c01-3fb65a099e7c.png"></image>
@@ -82,6 +100,6 @@
 
 
 
-	</view>
+	</block>
 
 </view>

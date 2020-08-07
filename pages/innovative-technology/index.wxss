@@ -1,0 +1,5 @@
+/* pages/innovative-technology/index.wxss */
+@import '/pages/environmental-bbs/index.wxss';
+.sub-tab-list{
+  padding-left: 0;
+}

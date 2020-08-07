@@ -1,0 +1,56 @@
+<!--pages/innovative-technology/index.wxml-->
+<!-- 头部导航 -->
+<view class="head">
+	<view class="head-nav flex-col flex-xy-center" style="height:{{navHeight}}px;">
+		<view style='height:{{statusBarHeight}}px;'></view>
+		<view class="nav-bar flex-y-center">
+			<van-icon name="arrow-left" bindtap="goBack" />
+			<view class="head-title flex-grow-1">创新技术</view>
+		</view>
+	</view>
+
+	<!-- 轮播图 -->
+	<view class="swiper-box">
+		<swiper indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" indicator-color="rgba(255,255,255,0.5)" indicator-active-color="#ffffff">
+			<block wx:for="{{swiperList}}" wx:key="*this">
+				<swiper-item wx:if="{{item.type == 1}}">
+					<image class="swiper-item" src="{{item.url}}"></image>
+				</swiper-item>
+				<swiper-item wx:else>
+					<video class="video" src="{{item.url}}" controls='true'></video>
+				</swiper-item>
+			</block>
+		</swiper>
+	</view>
+</view>
+
+<!-- tab 内容区 -->
+<view class="news-wrap flex-col">
+
+	<!-- 论坛信息列表 -->
+	<!-- 二级 tab 标签页 -->
+	<view class="sub-tab-list flex-y-center">
+		<view class="sub-tab-item flex-col flex-xy-center" wx:key="index" wx:for="{{subTabList}}" bindtap="handleChangeSubTab" data-id="{{item.id}}">
+			<view class="sub-tab-item-name {{ subTabIndex == item.id ? 'sub-tab-item-name-active' : ''}}">{{item.title}}</view>
+			<view class="{{ subTabIndex == item.id ? 'sub-tab-item-line' : ''}}"></view>
+		</view>
+	</view>
+
+	<view class="news-content">
+
+		<view class="{{index != 0 ? 'news-list' : ''}} pl30" wx:for="{{listData}}" bindtap="jumpPage">
+			<view class="news-item flex-y-center">
+				<view class="item-img flex-xy-center">
+					<image class="flex-grow-0" src="https://img02.mockplus.cn/idoc/xd/2020-07-30/9abe3fa2-d0b1-4b22-8c01-3fb65a099e7c.png"></image>
+				</view>
+				<view class="news-msg">
+					<view class="news-dec text-more">厦门国际环保展组委会授予集美大学机械与能源工程厦门国际环保展组委会授予集美大学机械与能源工程</view>
+					<view class="news-time">2020.07.05 10:20</view>
+				</view>
+			</view>
+		</view>
+
+	</view>
+
+
+</view>

@@ -1,0 +1,3 @@
+<!--pages/conference-agenda/index.wxml-->
+<navbar title="大会日程" back="{{true}}"></navbar>
+<view>富文本编辑</view>

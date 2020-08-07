@@ -1,0 +1,43 @@
+/* pages/exhibition-detail/index.wxss */
+@import '/pages/index/index.wxss';
+.exhibition-img{
+  width: 100%;
+  height: 480rpx;
+}
+.exhibition-img image{
+  width: 100%;
+  height: 100%;
+}
+.exhibition-wrap{
+  width: 100%;
+  border-radius: 40rpx;
+  margin-top: -40rpx;
+  background-color: #ffffff;
+  position: relative;
+  margin-bottom: 100rpx;
+}
+
+/* 功能模块 */
+.function-icon{
+  width: 100rpx;
+  height: 100rpx;
+}
+.function-dec{
+  margin-top: 14rpx;
+}
+.registration{
+  width: 100%;
+  height: 100rpx;
+  background-color: #ffffff;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+}
+.btn{
+  width: 690rpx;
+  height: 90rpx;
+  background: linear-gradient(90deg,#43b2fc 1%, #43a0fc 99%);
+  border-radius: 10rpx;
+  font-size: 28rpx;
+  color: #ffffff;
+}

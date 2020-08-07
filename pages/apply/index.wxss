@@ -1,0 +1,5 @@
+/* pages/apply/index.wxss */
+@import '/pages/appointment/index.wxss';
+.select-box{
+  height: 375rpx;
+}

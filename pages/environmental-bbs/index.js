@@ -15,8 +15,20 @@ Page({
     autoplay: false,
     interval: 2000,
     duration: 500,
-    // swiperList: ['/images/img/swiper2.png', '/images/img/swiper1.png', '/images/img/swiper3.png'],
-    swiperList:['https://img02.mockplus.cn/idoc/xd/2020-07-30/00cea579-9e88-4117-86c8-099bbe1206e4.png','https://img02.mockplus.cn/idoc/xd/2020-07-30/d2daeb77-852c-4b17-b75c-9740b8d5cc48.png','https://img02.mockplus.cn/idoc/xd/2020-07-30/619a01c6-c20d-4d55-8ea7-75f01de0ccae.png'],
+    // swiperList: ['https://img02.mockplus.cn/idoc/xd/2020-07-30/00cea579-9e88-4117-86c8-099bbe1206e4.png', 'https://img02.mockplus.cn/idoc/xd/2020-07-30/d2daeb77-852c-4b17-b75c-9740b8d5cc48.png', 'https://img02.mockplus.cn/idoc/xd/2020-07-30/619a01c6-c20d-4d55-8ea7-75f01de0ccae.png'],
+    swiperList: [{
+      url: 'https://img02.mockplus.cn/idoc/xd/2020-07-30/00cea579-9e88-4117-86c8-099bbe1206e4.png',
+      type: 1
+    }, {
+      url: 'https://img02.mockplus.cn/idoc/xd/2020-07-30/d2daeb77-852c-4b17-b75c-9740b8d5cc48.png',
+      type: 1
+    }, {
+      url: 'https://cloud.video.taobao.com/play/u/576446681/p/1/e/6/t/1/50140370746.mp4',
+      type: 2
+    }, {
+      url: 'https://img02.mockplus.cn/idoc/xd/2020-07-30/619a01c6-c20d-4d55-8ea7-75f01de0ccae.png',
+      type: 1
+    }],
     tabIndex: 1,
     tabList: [{
         title: '专家智库',
@@ -27,21 +39,70 @@ Page({
         id: 2
       }
     ],
-    listData:8,
-    subTabIndex:1,
-    subTabList:[{title:'全部',id:1},{title:'水处理类',id:2},{title:'泵闸类',id:3},{title:'空气清新类',id:4},{title:'固废气类',id:5},],
+    listData: 8,
+    subTabIndex: 1,
+    subTabList: [{
+      title: '全部',
+      id: 1
+    }, {
+      title: '水处理类',
+      id: 2
+    }, {
+      title: '泵闸类',
+      id: 3
+    }, {
+      title: '空气清新类',
+      id: 4
+    }, {
+      title: '固废气类',
+      id: 5
+    }, ],
+    titleList: 2,
+    selectList: 9,
+    titleFlag: false,
   },
-  handleChangeTab(e){
+  goBack() {
+    wx.navigateBack()
+  },
+  // 获取一级 tab 信息 
+  handleChangeTab(e) {
     let id = e.currentTarget.dataset.id;
     this.setData({
-      tabIndex:id
+      tabIndex: id
     })
   },
-  
-  handleChangeSubTab(e){
+  // 获取二级 tab 信息
+  handleChangeSubTab(e) {
     let id = e.currentTarget.dataset.id;
     this.setData({
-      subTabIndex:id
+      subTabIndex: id
+    })
+  },
+  // 下拉框显示与隐藏
+  handleChooseTitle() {
+    this.setData({
+      titleFlag: !this.data.titleFlag
+    })
+  },
+  // 选择专家类型
+  handleSelectTitle(e) {
+    let id = e.currentTarget.dataset.id;
+    let titleList = [{}, {}, {}];
+    for (let i = 0; i < titleList.length; i++) {
+      titleList[i].checked = false
+    }
+    console.log(titleList)
+
+  },
+  // 跳转专家详情页面
+  handleJump() {
+    wx.navigateTo({
+      url: '/pages/professor-detail/index',
+    })
+  },
+  jumpPage1(){
+    wx.navigateTo({
+      url: '/pages/news-detail/index',
     })
   },
   /**

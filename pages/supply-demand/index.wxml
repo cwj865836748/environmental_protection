@@ -12,8 +12,11 @@
 	<view class="swiper-box">
 		<swiper indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" indicator-color="rgba(255,255,255,0.5)" indicator-active-color="#ffffff">
 			<block wx:for="{{swiperList}}" wx:key="*this">
-				<swiper-item>
-					<image class="swiper-item" src="{{item}}"></image>
+				<swiper-item wx:if="{{item.type == 1}}">
+					<image class="swiper-item" src="{{item.url}}"></image>
+				</swiper-item>
+				<swiper-item wx:else>
+					<video class="video" src="{{item.url}}" controls='true'></video>
 				</swiper-item>
 			</block>
 		</swiper>
@@ -57,3 +60,5 @@
 		<view class="btn flex-xy-center">我要发布</view>
 	</navigator>
 </view>
+
+<include src="/common/consult/consult" />

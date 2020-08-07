@@ -13,14 +13,15 @@
   position: relative;
 }
 .title-container>van-icon {
-  font-size: 22px;
-  margin-left: 10px;
+  font-size: 44rpx;
+  margin-left: 20rpx;
 }
 .title_head {
   position: absolute; 
   transform: translate(-50%, -50%); 
   left: 50%; 
   top: 50%; 
-  font-size: 17px; 
-  font-weight: bold;
+  font-size: 36rpx; 
+  color: #333333;
+  /* font-weight: bold; */
 }

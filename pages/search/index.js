@@ -1,4 +1,7 @@
 // pages/search/index.js
+const App=getApp()
+var utils = require('../../utils/util.js')
+import {navigateTo} from '../../utils/wx.js'
 Page({
 
   /**
@@ -7,7 +10,11 @@ Page({
   data: {
     search:''
   },
-
+  handleJump(){
+    wx.navigateTo({
+      url: '/pages/search-result/index',
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */

@@ -1,0 +1,29 @@
+<!--pages/my-collect/index.wxml-->
+<navbar title="我的收藏" back="{{true}}"></navbar>
+<view class="tab-list flex-y-center">
+	<block wx:for="{{tabList}}">
+		<view class="news-tab flex-grow-1 flex-col flex-xy-center" wx:key="index" bindtap="handleChangeTab" data-id="{{item.id}}">
+			<view class=" tab-item {{tabIndex == item.id ? 'tab-item-active' : ''}}">{{item.title}}</view>
+			<view class="{{tabIndex == item.id ? 'tab-line-active' : ''}}"></view>
+		</view>
+	</block>
+</view>
+
+<!-- 设备列表 -->
+<view class="produce-list flex-y-center" wx:if="{{tabIndex == 1}}">
+	<block wx:for="{{produceList}}">
+		<view class="produce-item ml flex-col flex-xy-center">
+			<view class="produce-item-img-box flex-xy-center">
+				<image class="produce-item-img flex-grow-0" src="/images/img/produce1.png"></image>
+			</view>
+			<view class="produce-item-dec text-more-single">AET系列诱导风机</view>
+		</view>
+	</block>
+
+</view>
+
+<!-- 企业列表 -->
+
+<view class="list-wrap" wx:if="{{tabIndex == 2}}">
+	<include src="/common/enterprise/enterpriseList" />
+</view>

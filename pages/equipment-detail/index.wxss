@@ -1,0 +1,237 @@
+/* pages/equipment-detail/index.wxss */
+.equipment-img {
+  width: 750rpx;
+  height: 750rpx;
+}
+
+.equipment-img image {
+  width: 100%;
+  height: 100%;
+}
+
+/* 设备介绍 */
+.equipment-wrap {
+  width: 100%;
+  border-radius: 20rpx;
+  position: relative;
+  margin-top: -20rpx;
+  padding: 0 30rpx;
+  background-color: #ffffff;
+}
+
+.equipment-msg {
+  width: 100%;
+  height: 92rpx;
+  padding: 28rpx 0 20rpx 0;
+  justify-content: space-between;
+}
+
+.equipment-title {
+  font-size: 30rpx;
+  color: #333333;
+}
+
+.equipment-collect {
+  width: 37rpx;
+  height: 37rpx;
+}
+
+.equipment-collect image {
+  width: 100%;
+  height: 100%;
+}
+
+.equipment-share {
+  width: 37rpx;
+  height: 37rpx;
+  margin-left: 34rpx;
+}
+
+.equipment-share image {
+  width: 100%;
+  height: 100%;
+}
+
+.equipment-belong {
+  width: 690rpx;
+  height: 170rpx;
+  padding: 20rpx;
+  background-color: #ffffff;
+  border: 2rpx solid #efefef;
+  border-radius: 10rpx;
+}
+
+.belong-img {
+  width: 130rpx;
+  height: 130rpx;
+  margin-right: 16rpx;
+}
+
+.belong-img image {
+  width: 100%;
+  height: 100%;
+}
+
+.belong-dec {
+  width: 504rpx;
+  justify-content: space-between;
+}
+
+.dec-left {
+  width: 332rpx;
+}
+
+.belong-zh-title {
+  font-size: 32rpx;
+  color: #333333;
+  margin-bottom: 6rpx;
+}
+
+.belong-en-title {
+  font-size: 22rpx;
+  color: #333333;
+  opacity: 0.6;
+}
+
+.dec-right {
+  width: 122rpx;
+  height: 50rpx;
+  background: linear-gradient(180deg, #43b2fc, #43a0fc);
+  border-radius: 10px;
+  font-size: 24rpx;
+  color: #ffffff;
+}
+
+/* 产品简介 */
+.equipment-introduce {
+  height: 50rpx;
+  margin-top: 30rpx;
+}
+
+.introduce-line {
+  width: 6rpx;
+  height: 30rpx;
+  background: #43b2fc;
+  border-radius: 4px;
+  margin-right: 10rpx;
+}
+
+.introduce-title {
+  font-size: 32rpx;
+  color: #333333;
+}
+
+.equipment-content {
+  width: 690rpx;
+  color: #666666;
+  font-size: 26rpx;
+  margin-top: 20rpx;
+}
+
+/* 分享弹框 */
+/* 邀请好友 */
+
+.inviteshow-top {
+  height: 260rpx;
+}
+
+.inviteshow-bottom {
+  height: 84rpx;
+  font-size: 26rpx;
+  color: #fc4a5b;
+  letter-spacing: 2rpx;
+  border-top: 2rpx solid #efefef;
+
+}
+
+.inviteshow-left {
+  width: 50%;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 46rpx 0;
+  font-size: 24rpx;
+  color: #666666;
+  letter-spacing: 1rpx;
+  position: relative;
+}
+
+.inviteshow-left>button {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+
+}
+
+.inviteshow-left-img {
+  margin-bottom: 28rpx;
+}
+
+.inviteshow-left-img>image {
+  width: 120rpx;
+  height: 120rpx;
+}
+
+/* 生成海报 */
+.wrapper-poster {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.block-poster {
+  width: 630rpx;
+  height: 810rpx;
+  border-radius: 10rpx;
+  overflow: hidden;
+  position: relative;
+  background-color: #ffffff;
+}
+
+.block-poster .poster-bg {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -2;
+}
+
+.block-poster .shop-qr {
+  width: 188rpx;
+  height: 188rpx;
+  position: absolute;
+  bottom: 70rpx;
+  left: 42rpx;
+}
+
+.poster-btn-box {
+  /* width: 960rpx; */
+  margin-top: 34rpx;
+}
+
+.poster-btn-box .btn {
+  width: 330rpx;
+  height: 80rpx;
+  border-radius: 40rpx;
+  font-size: 28rpx;
+  color: #ffffff;
+}
+
+.poster-btn-box .save {
+  border: 2rpx solid #ffffff;
+  margin-right: 30rpx;
+}
+
+.poster-btn-box .save-icon {
+  width: 30rpx;
+  height: 30rpx;
+  margin-right: 26rpx;
+}
+.invite-tips{
+  height: 36rpx;
+}

@@ -11,7 +11,10 @@
   width: 100%;
   height: 100%;
 }
-
+.video{
+  width: 100%;
+  height: 100%;
+}
 swiper {
   height: 100%;
 }
@@ -42,12 +45,12 @@ swiper {
   height: 27rpx;
   margin-left: 26rpx;
   margin-right: 11rpx;
-  opacity: 0.5;
+  /* opacity: 0.5; */
 }
 
 .head-input .input-tips {
   color: #ffffff;
-  opacity: 0.5;
+  /* opacity: 0.5; */
 }
 
 /* 功能模块 */

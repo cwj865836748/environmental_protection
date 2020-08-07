@@ -1,44 +1,169 @@
 /* pages/environmental-bbs/index.wxss */
 @import '/pages/supply-demand/index.wxss';
 @import '/pages/produce-library/index.wxss';
-.news-wrap{
+
+.news-wrap {
   padding: 0;
+  width: 100%;
+  height: 68vh;
+  background: linear-gradient(180deg, #ffffff 16%, rgba(255, 255, 255, 0));
+  background-color: #f8f8f8;
+  position: relative;
 }
-.ml30{
+
+.ml30 {
   margin-left: 30rpx;
 }
-.ml20{
+
+.ml20 {
   margin-left: 20rpx;
 }
-.pl30{
+
+.pl30 {
   padding: 0 30rpx;
 }
-/* 专家列表 */
-.professor-list{
+
+/* 专家类型选择 */
+.professor-title-wrap {
+  width: 690rpx;
+  min-height: 80rpx;
+  background-color: #ffffff;
+  border-radius: 10rpx;
+  margin: 0 auto;
+  margin-top: 18rpx;
+  padding: 0 18rpx;
+  box-shadow: 0px 0px 12px 0px rgba(0, 0, 0, 0.05);
+}
+
+.professor-title-list {
   width: 100%;
   flex-wrap: wrap;
-  background-color: #f8f8f8;
+  padding: 10rpx 0;
 }
-.professor-item{
+
+.professor-title-item {
+  min-width: 112rpx;
+  height: 50rpx;
+  border-radius: 25rpx;
+  border: 2rpx solid #43B2FC;
+  justify-content: space-between;
+  padding: 0 10rpx;
+  margin: 5rpx 10rpx 5rpx 0;
+}
+
+.title-dec {
+  font-size: 24rpx;
+  color: #43B2FC;
+}
+
+.title-dec-delete {
+  width: 13rpx;
+  height: 13rpx;
+}
+
+.title-dec-arrow {
+  width: 21rpx;
+  height: 11rpx;
+  margin-top: 31rpx;
+}
+
+/* 下拉选择框 */
+.mt37{
+  margin-top: 37rpx;
+}
+.mt53{
+  margin-top: 53rpx;
+}
+.select-wrap {
+  width: 690rpx;
+  height: 398rpx;
+  position: absolute;
+  top: 176rpx;
+  left: 30rpx;
+  z-index: 50;
+}
+
+.select-arrow {
+  width: 0;
+  height: 0;
+  border-width: 20rpx 15rpx ;
+  border-style: solid;
+  border-color: transparent transparent #ffffff transparent;
+  position: absolute;
+  top: -20rpx;
+  left: 96rpx;
+}
+
+.select-box {
+  width: 100%;
+  height: 383rpx;
+  overflow-y: scroll;
+  margin-top: 15rpx;
+  background-color: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
+}
+.select-list{
+  justify-content: space-between;
+  padding: 0 35rpx;
+}
+
+.select-item-active{
+  font-size: 28rpx;
+  color: #43B2FC;
+}
+.select-right {
+  width: 28rpx;
+  height: 18rpx;
+}
+
+.select-right image {
+  width: 100%;
+  height: 100%;
+}
+
+/* 专家列表 */
+.professor-list {
+  width: 100%;
+  height: 61vh;
+  overflow-y: scroll;
+  flex-wrap: wrap;
+  /* background-color: #f8f8f8; */
+}
+
+.professor-item {
   min-width: 0;
   width: 334rpx;
   height: 376rpx;
   background-color: #ffffff;
   border-radius: 20rpx;
   margin-top: 20rpx;
+  box-shadow: 0px 0px 12px 0px rgba(0, 0, 0, 0.05);
 }
-.professor-avatar{
+
+.professor-avatar {
   width: 196rpx;
   height: 196rpx;
   border-radius: 50%;
 }
-.professor-name{
+
+.professor-name {
   font-size: 34rpx;
   color: #333333;
   margin-bottom: 16rpx;
 }
-.professor-title{
+
+.professor-title {
   color: #999999;
   font-size: 26rpx;
   width: 204rpx;
+}
+
+.news-content {
+  padding-bottom: 0;
+}
+
+.tab-list {
+  height: 50rpx;
+  margin-bottom: 10rpx;
 }

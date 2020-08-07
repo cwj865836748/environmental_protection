@@ -1,2 +1,98 @@
 <!--pages/activity/index.wxml-->
-<text>pages/activity/index.wxml</text>
+<navbar title="活动" back="{{false}}"></navbar>
+<view class="activity-wrap">
+	<!-- 轮播图 -->
+	<view class="swiper-box">
+		<swiper indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" indicator-color="rgba(255,255,255,0.5)" indicator-active-color="#ffffff">
+			<block wx:for="{{swiperList}}" wx:key="*this">
+				<swiper-item wx:if="{{item.type == 1}}">
+					<image class="swiper-item" src="{{item.url}}"></image>
+				</swiper-item>
+				<swiper-item wx:else>
+					<video class="video" src="{{item.url}}" controls='true'></video>
+				</swiper-item>
+			</block>
+		</swiper>
+	</view>
+
+	<!-- 活动列表 -->
+	<view class="activity-list">
+
+		<navigator url="/pages/activity-detail/index">
+			<view class="activity-item flex">
+				<view class="activity-item-left flex-xy-center">
+					<image class="activity-item-img flex-grow-0" src="https://img02.mockplus.cn/idoc/xd/2020-07-30/299ff44f-339b-42ff-8cd8-c69446bb02f0.png"></image>
+					<view class="activity-status-going flex-xy-center">进行中</view>
+					<!-- <view class="activity-status-writing flex-xy-center">未开始</view> -->
+					<!-- <view class="activity-status-overed flex-xy-center">已结束</view> -->
+				</view>
+				<view class="activity-item-right">
+					<view class="activity-name">厦门国际环保展组委会授予集美大学机械与能源工程学院</view>
+					<view class="activity-time-box flex-y-center">
+						<view class="activity-time-icon flex-xy-center">
+							<image class="flex-grow-0" src="/images/exhibition_time@2x.png"></image>
+						</view>
+						<view class="activity-time">2020.07.05-2020.08.05</view>
+					</view>
+					<view class="activity-location-box flex-y-center">
+						<view class="activity-location-icon flex-xy-center">
+							<image class="flex-grow-0" src="/images/activity_location@2x.png"></image>
+						</view>
+						<view class="activity-location">厦门国际会展中心</view>
+					</view>
+				</view>
+			</view>
+		</navigator>
+
+
+
+		<view class="activity-item flex">
+			<view class="activity-item-left flex-xy-center">
+				<image class="activity-item-img flex-grow-0" src="https://img02.mockplus.cn/idoc/xd/2020-07-30/299ff44f-339b-42ff-8cd8-c69446bb02f0.png"></image>
+				<view class="activity-status-writing flex-xy-center">未开始</view>
+			</view>
+			<view class="activity-item-right">
+				<view class="activity-name">2020第五届厦门国际水展</view>
+				<view class="activity-time-box flex-y-center">
+					<view class="activity-time-icon flex-xy-center">
+						<image class="flex-grow-0" src="/images/exhibition_time@2x.png"></image>
+					</view>
+					<view class="activity-time">2020.07.05-2020.08.05</view>
+				</view>
+				<view class="activity-location-box flex-y-center">
+					<view class="activity-location-icon flex-xy-center">
+						<image class="flex-grow-0" src="/images/activity_location@2x.png"></image>
+					</view>
+					<view class="activity-location">厦门国际会展中心</view>
+				</view>
+			</view>
+		</view>
+
+		<view class="activity-item flex">
+			<view class="activity-item-left flex-xy-center">
+				<image class="activity-item-img flex-grow-0" src="https://img02.mockplus.cn/idoc/xd/2020-07-30/299ff44f-339b-42ff-8cd8-c69446bb02f0.png"></image>
+				<view class="activity-status-overed flex-xy-center">已结束</view>
+			</view>
+			<view class="activity-item-right">
+				<view class="activity-name">2020第五届厦门国际水展</view>
+				<view class="activity-time-box flex-y-center">
+					<view class="activity-time-icon flex-xy-center">
+						<image class="flex-grow-0" src="/images/exhibition_time@2x.png"></image>
+					</view>
+					<view class="activity-time">2020.07.05-2020.08.05</view>
+				</view>
+				<view class="activity-location-box flex-y-center">
+					<view class="activity-location-icon flex-xy-center">
+						<image class="flex-grow-0" src="/images/activity_location@2x.png"></image>
+					</view>
+					<view class="activity-location">厦门国际会展中心</view>
+				</view>
+			</view>
+		</view>
+
+	</view>
+
+</view>
+
+
+<include src="/common/consult/consult" />

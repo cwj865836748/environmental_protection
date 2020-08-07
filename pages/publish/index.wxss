@@ -5,12 +5,20 @@
   font-size: 28rpx !important;
 }
 
-.van-field__control::-webkit-input-placeholder{
+.van-field__control::-webkit-input-placeholder {
+  color: #cccccc !important;
+}
+
+.van-field__placeholder {
   color: #cccccc !important;
 }
 
 .van-cell:after {
   left: 0 !important;
+}
+
+.van-field__input {
+  color: #333333 !important;
 }
 
 .list-cell {
@@ -70,4 +78,63 @@
   border-radius: 20rpx;
   background: linear-gradient(90deg, #43b2fc 1%, #43a0fc 99%);
   color: #ffffff;
+}
+
+/* 下拉选择框 */
+.mt37 {
+  margin-top: 37rpx;
+}
+
+.mt53 {
+  margin-top: 53rpx;
+}
+
+.select-wrap {
+  width: 690rpx;
+  height: 398rpx;
+  position: absolute;
+  top: 506rpx;
+  left: 30rpx;
+  z-index: 50;
+}
+
+.select-arrow {
+  width: 0;
+  height: 0;
+  border-width: 20rpx 15rpx;
+  border-style: solid;
+  border-color: transparent transparent #ffffff transparent;
+  position: absolute;
+  top: -20rpx;
+  left: 40rpx;
+}
+
+.select-box {
+  width: 100%;
+  height: 277rpx;
+  overflow-y: scroll;
+  margin-top: 15rpx;
+  background-color: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
+}
+
+.select-list {
+  justify-content: space-between;
+  padding: 0 35rpx;
+}
+
+.select-item-active {
+  font-size: 28rpx;
+  color: #43B2FC;
+}
+
+.select-right {
+  width: 28rpx;
+  height: 18rpx;
+}
+
+.select-right image {
+  width: 100%;
+  height: 100%;
 }

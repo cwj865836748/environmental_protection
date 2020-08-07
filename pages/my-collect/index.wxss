@@ -1,0 +1,31 @@
+/* pages/my-collect/index.wxss */
+@import '/pages/produce-library/index.wxss';
+@import '/common/enterprise/enterpriseList.wxss';
+.produce-list{
+  height: 84vh;
+}
+.list-wrap{
+  height: 84vh;
+  overflow-y: scroll;
+}
+.tab-item{
+  font-size: 30rpx;
+  color: #999999;
+  font-weight: 500;
+  margin-bottom: 8rpx;
+}
+.tab-item-active{
+  color: #333333;
+}
+.tab-line-active{
+  width: 33rpx;
+  height: 4rpx;
+  background: #43B2FC;
+}
+
+.tab-list{
+  padding: 0 120rpx;
+  justify-content: space-around;
+  margin-top: 26rpx;
+  margin-bottom: 20rpx;
+}

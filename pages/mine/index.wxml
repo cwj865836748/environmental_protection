@@ -1,2 +1,124 @@
 <!--pages/mine/index.wxml-->
-<text>pages/mine/index.wxml</text>
+<!-- 头部信息 -->
+<view class="wrap">
+
+	<view class="head">
+
+		<view class="head-nav flex-col flex-xy-center" style="height:{{navHeight}}px;">
+			<view style='height:{{statusBarHeight}}px;'></view>
+			<view class="nav-bar flex-y-center">
+				<van-icon name="arrow-left" bindtap="goBack" />
+				<view class="head-title flex-grow-1">个人中心</view>
+			</view>
+		</view>
+
+		<image class="my-bg" src="/images/mine/my_bg@2x.png"></image>
+
+		<view class="my-icon">
+			<image src="https://img02.mockplus.cn/idoc/xd/2020-07-30/a62cec8c-5e69-4b3b-abc3-ad4e56aec93f.png"></image>
+		</view>
+
+		<view class="my-name">郑艺</view>
+
+	</view>
+
+	<!-- 功能模块 -->
+
+	<view class="my-function-list mt20 flex-col">
+
+		<navigator url="/pages/my-info/index">
+			<view class="my-function-item flex-y-center">
+				<view class="function-item-left flex-y-center">
+					<image class="flex-grow-0 function-item-icon1" src="/images/mine/my_ico1@2x.png"></image>
+					<view class="function-item-name">个人信息</view>
+				</view>
+				<view class="function-item-right flex-xy-center">
+					<image class="function-item-arrow flex-grow-0" src="/images/mine/my_right@2x.png"></image>
+				</view>
+			</view>
+		</navigator>
+
+
+		<view class="function-line"></view>
+
+
+		<navigator url="/pages/my-collect/index">
+			<view class="my-function-item flex-y-center">
+				<view class="function-item-left flex-y-center">
+					<image class="flex-grow-0 function-item-icon2" src="/images/mine/my_ico2@2x.png"></image>
+					<view class="function-item-name">我的收藏</view>
+				</view>
+				<view class="function-item-right flex-xy-center">
+					<image class="function-item-arrow flex-grow-0" src="/images/mine/my_right@2x.png"></image>
+				</view>
+			</view>
+		</navigator>
+
+
+		<view class="function-line"></view>
+
+
+		<navigator url="/pages/my-sign/index">
+			<view class="my-function-item flex-y-center">
+				<view class="function-item-left flex-y-center">
+					<image class="flex-grow-0 function-item-icon3" src="/images/mine/my_ico3@2x.png"></image>
+					<view class="function-item-name">我的报名</view>
+				</view>
+				<view class="function-item-right flex-xy-center">
+					<image class="function-item-arrow flex-grow-0" src="/images/mine/my_right@2x.png"></image>
+				</view>
+			</view>
+		</navigator>
+
+
+
+	</view>
+
+	<view class="my-function-list mt24 flex-col">
+
+
+		<view class="my-function-item flex-y-center">
+			<view class="function-item-left flex-y-center">
+				<image class="flex-grow-0 function-item-icon4" src="/images/mine/my_ico4@2x.png"></image>
+				<view class="function-item-name">在线咨询</view>
+			</view>
+			<view class="function-item-right flex-xy-center">
+				<image class="function-item-arrow flex-grow-0" src="/images/mine/my_right@2x.png"></image>
+			</view>
+		</view>
+
+		<view class="function-line"></view>
+
+		<navigator url="/pages/link-us/index">
+			<view class="my-function-item flex-y-center">
+				<view class="function-item-left flex-y-center">
+					<image class="flex-grow-0 function-item-icon5" src="/images/mine/my_ico5@2x.png"></image>
+					<view class="function-item-name">联系我们</view>
+				</view>
+				<view class="function-item-right flex-xy-center">
+					<image class="function-item-arrow flex-grow-0" src="/images/mine/my_right@2x.png"></image>
+				</view>
+			</view>
+		</navigator>
+
+
+		<view class="function-line"></view>
+
+		<navigator url="/pages/browsing-history/index">
+			<view class="my-function-item flex-y-center">
+				<view class="function-item-left flex-y-center">
+					<image class="flex-grow-0 function-item-icon6" src="/images/mine/my_ico6@2x.png"></image>
+					<view class="function-item-name">浏览记录</view>
+				</view>
+				<view class="function-item-right flex-xy-center">
+					<image class="function-item-arrow flex-grow-0" src="/images/mine/my_right@2x.png"></image>
+				</view>
+			</view>
+		</navigator>
+
+
+
+	</view>
+
+
+</view>

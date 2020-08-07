@@ -1,0 +1,17 @@
+/* pages/traffic-guidance/index.wxss */
+.map{
+  width: 100%;
+  height: 560rpx;
+  /* position: relative; */
+}
+.btn{
+  width: 690rpx;
+  height: 90rpx;
+  background: linear-gradient(90deg,#43b2fc 1%, #43a0fc 99%);
+  border-radius: 10rpx;
+  position: absolute;
+  top: 550rpx;
+  left: calc(50% - 345rpx);
+  font-size: 28rpx;
+  color: #ffffff;
+}
