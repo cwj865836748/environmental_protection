@@ -76,16 +76,18 @@
 
 	<view class="my-function-list mt24 flex-col">
 
+		<!-- <button open-type="contact"> -->
+			<view class="my-function-item flex-y-center">
+				<view class="function-item-left flex-y-center">
+					<image class="flex-grow-0 function-item-icon4" src="/images/mine/my_ico4@2x.png"></image>
+					<view class="function-item-name">在线咨询</view>
+				</view>
+				<view class="function-item-right flex-xy-center">
+					<image class="function-item-arrow flex-grow-0" src="/images/mine/my_right@2x.png"></image>
+				</view>
+			</view>
+		<!-- </button> -->
 
-		<view class="my-function-item flex-y-center">
-			<view class="function-item-left flex-y-center">
-				<image class="flex-grow-0 function-item-icon4" src="/images/mine/my_ico4@2x.png"></image>
-				<view class="function-item-name">在线咨询</view>
-			</view>
-			<view class="function-item-right flex-xy-center">
-				<image class="function-item-arrow flex-grow-0" src="/images/mine/my_right@2x.png"></image>
-			</view>
-		</view>
 
 		<view class="function-line"></view>
 

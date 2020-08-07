@@ -108,3 +108,10 @@
 .mt20{
   margin-top: -110rpx;
 }
+
+button{
+  background-color: transparent;
+}
+button::after{
+  border: none;
+}
