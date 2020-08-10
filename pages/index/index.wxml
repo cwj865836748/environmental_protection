@@ -6,12 +6,12 @@
 <view class="swiper-box">
 	<swiper indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" indicator-color="rgba(255,255,255,0.5)" indicator-active-color="#ffffff">
 		<block wx:for="{{swiperList}}" wx:key="*this">
-			<swiper-item wx:if="{{item.type == 1}}">
-				<image class="swiper-item" src="{{item.url}}"></image>
+			<swiper-item>
+				<image class="swiper-item" src="{{item.pic}}" bindtap="handleJump" data-item="{{item}}"></image>
 			</swiper-item>
-			<swiper-item wx:else>
+			<!-- <swiper-item wx:else>
 				<video class="video" src="{{item.url}}" controls='true'></video>
-			</swiper-item>
+			</swiper-item> -->
 		</block>
 	</swiper>
 
@@ -82,8 +82,8 @@
 	<block wx:for="{{produceList}}">
 		<navigator url="/pages/equipment-detail/index">
 			<view class="produce-item flex-col flex-xy-center" wx:key="index" wx:if="{{index < 6}}">
-				<image class="produce-item-img flex-grow-0" src="https://img02.mockplus.cn/idoc/xd/2020-07-30/0b2f3579-1b5f-4d33-a0b7-1d4d1b04ea06.png"></image>
-				<view class="produce-item-name">饮水机</view>
+				<image class="produce-item-img flex-grow-0" src="{{item.pic}}"></image>
+				<view class="produce-item-name">{{item.name}}</view>
 			</view>
 		</navigator>
 	</block>

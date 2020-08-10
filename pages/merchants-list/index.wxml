@@ -1,17 +1,20 @@
 <!--pages/merchants-list/index.wxml-->
 <navbar title="客商名录" back="{{true}}"></navbar>
 <!-- 头部搜索框 -->
-<navigator url="/pages/search/index">
+<!-- <navigator url="/pages/search/index">
 	<view class="head-input flex-y-center">
 		<image class="input-icon flex-grow-0" src="/images/home/home_icon_search@2x.png"></image>
 		<view class="input-tips flex-y-center">请输入您要找的企业</view>
 	</view>
-</navigator>
+</navigator> -->
+<view class="search">
+	<van-field value="{{ search }}" placeholder="请输入您要找的设备" border="{{ false }}" clearable bind:change="onChange" bind:confirm="onConfirm" />
+</view>
 
 <!-- tab 标签页 -->
 <view class="sub-tab-list flex-y-center">
 	<view class="sub-tab-item flex-col flex-xy-center" wx:key="index" wx:for="{{subTabList}}" bindtap="handleChangeTab" data-id="{{item.id}}">
-		<view class="sub-tab-item-name {{ subTabIndex == item.id ? 'sub-tab-item-name-active' : ''}}">{{item.title}}</view>
+		<view class="sub-tab-item-name {{ subTabIndex == item.id ? 'sub-tab-item-name-active' : ''}}">{{item.name}}</view>
 		<view class="{{ subTabIndex == item.id ? 'sub-tab-item-line' : ''}}"></view>
 	</view>
 </view>

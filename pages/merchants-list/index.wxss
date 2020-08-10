@@ -1,3 +1,4 @@
 /* pages/merchants-list/index.wxss */
 @import '/pages/enterprise-list/index.wxss';
 @import '/common/enterprise/enterpriseList.wxss';
+@import '/common/noData/noData.wxss';

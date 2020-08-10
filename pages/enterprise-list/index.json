@@ -1,6 +1,7 @@
 {
   "usingComponents": {
-    "navbar":"../../components/navbar/navbar"
+    "navbar":"../../components/navbar/navbar",
+    "van-field": "@vant/weapp/field/index"
   },
   "navigationBarBackgroundColor": "#ffffff",
   "navigationBarTextStyle": "black",

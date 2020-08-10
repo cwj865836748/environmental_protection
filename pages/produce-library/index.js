@@ -1,32 +1,136 @@
 // pages/produce-library/index.js
-const App=getApp()
-var utils = require('../../utils/util.js')
-import {navigateTo} from '../../utils/wx.js'
+const App=getApp();
+var utils = require('../../utils/util.js');
+import {navigateTo} from '../../utils/wx.js';
+const api = require('../../request/api.js');
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
+    search:'',
     subTabIndex:1,
     subTabList:[{title:'全部',id:1},{title:'水处理类',id:2},{title:'泵闸类',id:3},{title:'空气清新类',id:4},{title:'固废气类',id:5},],
-    produceList:8
+    produceList:8,
+    noData:false,
+    noMore:false,
+    loading:false,
+    page:1,
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    this.getCategory();
+    this.getEqupmentList(1);
   },
   handleChangeTab(e){
     console.log(this.data. subTabIndex)
     console.log(e.currentTarget.dataset.id)
     let id = e.currentTarget.dataset.id;
     this.setData({
-      subTabIndex:id
+      subTabIndex:id,
+      produceList:[],
+      page:1,
+      noMore:false,
+      noData:false
+    })
+    this.getEqupmentList(id);
+  },
+  onConfirm(e){
+    this.setData({
+      search:e.detail,
+      produceList:[],
+      page:1,
+      noData:false,
+      noMore:false
+    })
+    this.getEqupmentList()
+  },
+  // 获取产品库分类
+  getCategory(){
+    const  that = this;
+    App.request({
+      url:api.equipment.category,
+      method:'post',
+      success:function(res){
+        console.log(res);
+        if(res.code == 200){
+          that.setData({
+            subTabList:res.data.list
+          })
+        }
+      },
+      fail:function(res){
+        console.log(res)
+      }
     })
   },
+  // 获取设备列表
+  getEqupmentList(id){
+    const that = this;
+    that.setData({
+      loading:true
+    })
+    App.request({
+      url:api.search.equipment,
+      method:'post',
+      data:{
+        cate_id:id,
+        name:that.data.search,
+        page:that.data.page
+      },
+      success:function(res){
+        that.setData({
+          loading:false,
+        })
+        console.log("设备列表",res);
+        if(res.code == 200){
+          let produceList = res.data.list ? res.data.list : [];
+          let is_next = res.data.is_next;
+          if(produceList.length == 0 && that.data.page == 1){
+            that.setData({
+              produceList:[],
+              noData:true,
+            })
+            return;
+          }
+
+          if(!is_next){
+            that.setData({
+              produceList:produceList,
+              noMore:true
+            })
+            return;
+          }
+        }
+
+        if(is_next){
+          that.setData({
+            produceList:that.data.produceList.concat(produceList),
+            page:that.data.page + 1
+          })
+          return;
+        }
+
+       
+      },
+      fail:function(res){
+        console.log(res)
+      }
+    })
+  },
+  // 跳转设备详情页
+  handleJump(e){
+    console.log(e.currentTarget.dataset.id);
+    let id = e.currentTarget.dataset.id;
+    wx.navigateTo({
+      url: '/pages/equipment-detail/index?id='+id,
+    })
+  },
+  // 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
@@ -59,7 +163,21 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-
+       // 显示顶部刷新图标
+    wx.showNavigationBarLoading();
+    this.setData({
+      page:1,
+      noMore:false,
+      noData:false,
+      loading:false,
+      search:'',
+      subTabIndex:1
+    })
+    this.getEqupmentList();
+     // 隐藏导航栏加载框
+     wx.hideNavigationBarLoading();
+     // 停止下拉动作
+     wx.stopPullDownRefresh();
   },
 
   /**

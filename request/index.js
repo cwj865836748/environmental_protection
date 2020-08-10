@@ -1,6 +1,6 @@
 import {showToast} from '../utils/wx'
 // 后台url
- const baseUrl = "https://api.zbztb.cn/api/public/v1";
+ const baseUrl = "http://106.52.153.11:8789/";
  
 // 同时发送异步代码的次数
 let ajaxTimes = 0;
@@ -9,7 +9,8 @@ const request = (params) => {
 
   let header = { ...params.header };
   if(wx.getStorageSync("token")){
-    header["token"] = wx.getStorageSync("token");
+    // header["token"] = wx.getStorageSync("token");
+    header["token"] = '1111'
   }
   header['Content-Type']="application/x-www-form-urlencoded"
   
@@ -29,7 +30,7 @@ const request = (params) => {
         if (res.data.code == 201 ) {
           wx.clearStorageSync();
           showToast(res.data.msg)
-          wx.reLaunch({ url: '/pages/authorization/authorization',}) 
+          wx.reLaunch({ url: '/pages/authorization/index',}) 
               }
         else{
                 resolve(result.data);

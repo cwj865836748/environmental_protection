@@ -1,8 +1,9 @@
-const App = getApp()
-var utils = require('../../utils/util.js')
+const App = getApp();
+var utils = require('../../utils/util.js');
+const api = require('../../request/api.js');
 import {
   navigateTo
-} from '../../utils/wx.js'
+} from '../../utils/wx.js';
 
 Page({
 
@@ -28,12 +29,17 @@ Page({
       url: 'https://img02.mockplus.cn/idoc/xd/2020-07-30/619a01c6-c20d-4d55-8ea7-75f01de0ccae.png',
       type: 1
     }],
-    produceList: 7,
-    enterpriseList: 8,
-    merchantsList: 8,
+    produceList: '',
+    enterpriseList: '',
+    merchantsList: '',
     noData: false,
+    noMore: false,
     noInternet: false,
-    noContent: false
+    noContent: false,
+    loading: false,
+    loading1: false,
+    noData1: false,
+    noMore1: false
   },
 
 
@@ -43,7 +49,10 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    this.getSlideshow();
+    this.getEquipment();
+    this.getBusinessList();
+    this.getCustomerList();
   },
 
   //获取当前位置
@@ -63,7 +72,132 @@ Page({
   onReady: function () {
 
   },
-
+  // 获取轮播图信息
+  getSlideshow() {
+    let that = this;
+    App.request({
+      url: api.common.slideshow,
+      method: 'post',
+      success: function (res) {
+        console.log(res.data);
+        if (res.code == 200) {
+          that.setData({
+            swiperList: res.data.list
+          })
+        }
+      }
+    })
+  },
+  // 轮播图跳转到相应页面
+  handleJump(e) {
+    console.log(e.currentTarget.dataset);
+    let item = e.currentTarget.dataset.item;
+    console.log(item)
+    if (item.jump_type == 1) {
+      let id = item.ex_id;
+      wx.navigateTo({
+        url: '/pages/exhibition-detail/index?id=' + id,
+      })
+    } else if (item.jump_type == 2) {
+      let id = item.active_id;
+      wx.navigateTo({
+        url: '/pages/activity-detail/index?id=' + id,
+      })
+    }
+  },
+  // 获取产品库信息
+  getEquipment() {
+    const that = this;
+    App.request({
+      url: api.common.equipment,
+      method: 'post',
+      success: function (res) {
+        console.log(res);
+        if (res.code == 200) {
+          that.setData({
+            produceList: res.data.list
+          })
+        }
+      }
+    })
+  },
+  // 获取企业名录列表
+  getBusinessList() {
+    const that = this;
+    that.setData({
+      loading: true
+    })
+    App.request({
+      url: api.common.businessList,
+      method: 'post',
+      success: function (res) {
+        that.setData({
+          loading: false
+        })
+        console.log(res);
+        if (res.code == 200) {
+          let enterpriseList = res.data.list ? res.data.list : [];
+          if (enterpriseList.length == 0) {
+            that.setData({
+              noData: true
+            })
+            return;
+          }
+          if (enterpriseList.length < 7) {
+            that.setData({
+              enterpriseList: enterpriseList,
+              noMore: true
+            })
+            return;
+          } else {
+            that.setData({
+              enterpriseList: enterpriseList.slice(0, 7)
+            })
+          }
+        }
+      },
+      fail: function (res) {
+        console.log(res)
+      }
+    })
+  },
+  // 获取客商名录列表
+  getCustomerList() {
+    const that = this;
+    that.setData({
+      loading1: true
+    })
+    App.request({
+      url: api.common.customerList,
+      method: 'post',
+      success: function (res) {
+        that.setData({
+          loading1: false
+        })
+        if (res.code == 200) {
+          let merchantsList = res.data.list ? res.data.list : [];
+          if (merchantsList.length == 0) {
+            that.setData({
+              merchantsList: [],
+              noData1: true
+            })
+            return;
+          }
+          if (merchantsList.length < 7) {
+            that.setData({
+              merchantsList: merchantsList,
+              noMore1: true
+            })
+          } else {
+            that.setData({
+              merchantsList:merchantsList.slice(0,7)
+            })
+            return;
+          }
+        }
+      }
+    })
+  },
   /**
    * 生命周期函数--监听页面显示
    */

@@ -1,5 +1,10 @@
 /* pages/produce-library/index.wxss */
 /* @import '/pages/index/index.wxss'; */
+@import '/pages/search/index.wxss';
+@import '/common/noData/noData.wxss';
+/* .van-field__input{
+  padding-left:30rpx !important;
+} */
 /* 头部搜索框 */
 .head-input {
   width: 690rpx;
@@ -9,7 +14,7 @@
   margin: 0 auto;
 }
 
-.head-input .input-icon {
+.input-icon {
   width: 27rpx;
   height: 27rpx;
   margin-left: 26rpx;
@@ -56,11 +61,12 @@
 /* 产品列表 */
 .produce-list {
   flex-wrap: wrap;
-  height: 79vh;
+  /* height: 79vh; */
   overflow-y: scroll;
 }
 
 .produce-item {
+  /* height: 400rpx; */
   margin-bottom: 44rpx;
 }
 

@@ -3,6 +3,7 @@
 <!-- 设备图片 -->
 <view class="equipment-img">
 	<image src="https://img02.mockplus.cn/idoc/xd/2020-07-30/d67e8976-266a-43cd-98cd-77e9ab94d0b4.png"></image>
+	<!-- <video class="video" src="https://cloud.video.taobao.com/play/u/576446681/p/1/e/6/t/1/50140370746.mp4" controls='true'></video> -->
 </view>
 <!-- 设备介绍 -->
 <view class="equipment-wrap">
@@ -10,7 +11,7 @@
 	<view class="equipment-msg flex-y-center">
 		<view class="equipment-title">ADA系列全金属管道换气扇</view>
 		<view class="equipment-function flex-y-center">
-			<view class="equipment-collect flex-xy-center">
+			<view class="equipment-collect flex-xy-center" bindtap="handleCollect">
 				<image class="flex-grow-0" src="/images/details_collect@2x.png"></image>
 				<!-- <image src="/images/details_collect0@2x.png"></image> -->
 			</view>

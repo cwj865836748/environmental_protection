@@ -2,19 +2,57 @@
 	<navigator url="/pages/enterprise-detail/index">
 		<view class="shop-list flex" wx:key="index">
 			<view class="shop-item-logo flex-xy-center">
-				<image class="flex-grow-0" src="https://img02.mockplus.cn/idoc/xd/2020-07-30/f74b7538-7f62-4790-84e7-7373d0b5730a.png"></image>
+				<image class="flex-grow-0" src="{{item.pic}}"></image>
 			</view>
 			<view class="shop-item-right flex-y-center">
 				<view class="shop-content">
-					<view class="shop-zh-name">春晓环保集团</view>
-					<view class="shop-en-name">Chun Xiao Environmental Protection Group</view>
+					<view class="shop-zh-name">{{item.name}}</view>
+					<view class="shop-en-name">{{item.name_eg}}</view>
 				</view>
 				<view class="shop-collect flex-xy-center">
-					<image class="flex-grow-0" src="/images/home/home_collect@2x.png"></image>
-					<!-- <image class="flex-grow-0" src="/images/home/home_collect0@2x.png"></image> -->
+					<image class="flex-grow-0" src="/images/home/home_collect@2x.png" wx:if="{{item.is_collect == 0}}"></image>
+					<image class="flex-grow-0" src="/images/home/home_collect0@2x.png" wx:if="{{item.is_collect == 1}}"></image>
 				</view>
 			</view>
 		</view>
 	</navigator>
 
 </block>
+<view>
+	<view class="qz-noda-box" wx:if="{{noData1}}">
+		<image src="/images/nodata/empty_no data.png" class="a-image"></image>
+		<view class="a-title">暂无数据</view>
+	</view>
+
+	<view class="qz-noda-box" wx:if="{{noOrder1}}">
+		<view class="a-title">暂无相关订单</view>
+	</view>
+
+	<view class="qz-noda-box" wx:if="{{noInternet1}}">
+		<image src="/images/nodata/empty_no network.png" class="a-image"></image>
+		<view class="a-title">暂无网络，点击页面刷新</view>
+	</view>
+
+	<view class="qz-noda-box" wx:if="{{noContent1}}">
+		<image src="/images/nodata/empty_no content.png" class="a-image"></image>
+		<view class="a-title">未找到相关内容</view>
+	</view>
+
+	<view>
+		<view class="foot-layout" wx:if="{{noMore1}}">
+			<view class="foot-divider">
+			</view>
+			<view class="foot-text">
+				没有更多了
+			</view>
+			<view class="foot-divider">
+			</view>
+		</view>
+		<view class="foot-layout" wx:if="{{loading1}}">
+			<view class="foot-text">
+				<view class="loading">
+				</view>加载中
+			</view>
+		</view>
+	</view>
+</view>

@@ -1,30 +1,32 @@
 <!--pages/produce-library/index.wxml-->
 <navbar title="产品库" back="{{true}}"></navbar>
 <!-- 头部搜索框 -->
-<navigator url="/pages/search/index">
-	<view class="head-input flex-y-center">
-		<image class="input-icon flex-grow-0" src="/images/home/home_icon_search@2x.png"></image>
-		<view class="input-tips flex-y-center">请输入您要找的企业/设备</view>
-	</view>
-</navigator>
+<!-- <view class="head-input flex-y-center" wx:if="!search">
+	<image class="input-icon flex-grow-0" src="/images/home/home_icon_search@2x.png"></image>
+	<view class="input-tips flex-y-center">请输入您要找的企业/设备</view>
+</view> -->
+<view class="search">
+	<van-field value="{{ search }}" placeholder="请输入您要找的设备" border="{{ false }}" clearable bind:change="onChange" bind:confirm="onConfirm" />
+</view>
 
 <!-- tab 标签页 -->
 <view class="sub-tab-list flex-y-center">
 	<view class="sub-tab-item flex-col flex-xy-center" wx:key="index" wx:for="{{subTabList}}" bindtap="handleChangeTab" data-id="{{item.id}}">
-		<view class="sub-tab-item-name {{ subTabIndex == item.id ? 'sub-tab-item-name-active' : ''}}">{{item.title}}</view>
+		<view class="sub-tab-item-name {{ subTabIndex == item.id ? 'sub-tab-item-name-active' : ''}}">{{item.name}}</view>
 		<view class="{{ subTabIndex == item.id ? 'sub-tab-item-line' : ''}}"></view>
 	</view>
 </view>
 
 
-<view class="produce-list flex-y-center">
+<view class="produce-list flex">
 	<block wx:for="{{produceList}}">
-		<view class="produce-item ml flex-col flex-xy-center">
+		<view class="produce-item ml flex-col flex-xy-center" bindtap="handleJump" data-id="{{item.id}}">
 			<view class="produce-item-img-box flex-xy-center">
-				<image class="produce-item-img flex-grow-0" src="/images/img/produce1.png"></image>
+				<image class="produce-item-img flex-grow-0" src="{{item.pic}}"></image>
 			</view>
-			<view class="produce-item-dec text-more-single">AET系列诱导风机</view>
+			<view class="produce-item-dec text-more-single">{{item.name}}</view>
 		</view>
 	</block>
 
 </view>
+	<include src="/common/noData/noData" />

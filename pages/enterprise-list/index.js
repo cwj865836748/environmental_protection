@@ -1,13 +1,21 @@
 // pages/enterprise-list/index.js
-const App=getApp()
-var utils = require('../../utils/util.js')
-import {navigateTo} from '../../utils/wx.js'
+const App = getApp();
+var utils = require('../../utils/util.js');
+import {
+  navigateTo
+} from '../../utils/wx.js';
+const api = require('../../request/api.js');
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
+    noData: false,
+    noMore: false,
+    loading: false,
+    page: 1,
+    search: '',
     subTabIndex: 1,
     subTabList: [{
       title: '全部',
@@ -25,21 +33,111 @@ Page({
       title: '固废气类',
       id: 5
     }, ],
-    enterpriseList: 8
+    enterpriseList: []
   },
   handleChangeTab(e) {
     console.log(this.data.subTabIndex)
     console.log(e.currentTarget.dataset.id)
     let id = e.currentTarget.dataset.id;
     this.setData({
-      subTabIndex: id
+      subTabIndex: id,
+      noMore:false,
+      noData:false,
+      page:1,
+      enterpriseList:[]
     })
+    this.getList();
+  },
+  onConfirm(e){
+    this.setData({
+      search:e.detail,
+      noData:false,
+      noMore:false,
+      page:1,
+      enterpriseList:[]
+    })
+    this.getList();
+    console.log(this.data.search)
   },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    this.getCategroy();
+    this.getList();
+  },
+  // 获取企业分类
+  getCategroy() {
+    const that = this;
+    App.request({
+      url: api.company.category,
+      method: 'post',
+      success: function (res) {
+        console.log(res);
+        if (res.code == 200) {
+          that.setData({
+            subTabList: res.data.list
+          })
+        }
+      },
+      fail: function (res) {
+        console.log(res)
+      }
+    })
+  },
+  // 获取企业列表
+  getList() {
+    const that = this;
+    that.setData({
+      loading: true
+    })
+    App.request({
+      url: api.common.lists,
+      method: 'post',
+      data: {
+        type: 0,
+        name: that.data.search,
+        cat_id: that.data.subTabIndex,
+        page: that.data.page
+      },
+      success: function (res) {
+        console.log(res);
+        that.setData({
+          loading: false,
+        })
+        if (res.code == 200) {
+          let enterpriseList = res.data.list ? res.data.list : [];
+          let is_next = res.data.is_next;
 
+          if (enterpriseList.length == 0 && that.data.page == 1) {
+            that.setData({
+              enterpriseList: [],
+              // noMore:false,
+              noData: true
+            })
+            return;
+          }
+
+          if (enterpriseList.length != 0 && !is_next) {
+            that.setData({
+              enterpriseList: that.data.enterpriseList.concat(enterpriseList),
+              noMore: true,
+            })
+            return;
+          } else {
+            that.setData({
+              enterpriseList: that.data.enterpriseList.concat(enterpriseList),
+              page: that.data.page + 1,
+            })
+            return ;
+          }
+
+        }
+      },
+      fail: function (res) {
+        console.log(res)
+      }
+    })
   },
 
   /**

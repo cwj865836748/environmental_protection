@@ -1,7 +1,10 @@
 // pages/equipment-detail/index.js
-const App=getApp()
-var utils = require('../../utils/util.js')
-import {navigateTo} from '../../utils/wx.js'
+const App = getApp();
+var utils = require('../../utils/util.js');
+import {
+  navigateTo
+} from '../../utils/wx.js';
+const api = require('../../request/api.js');
 Page({
 
   /**
@@ -13,6 +16,10 @@ Page({
     postImg: 'https://img02.mockplus.cn/idoc/xd/2020-07-30/79bffc54-d65a-4c76-8592-810c7c3c5e54.png',
     qrImg: 'https://img02.mockplus.cn/idoc/xd/2020-07-30/272d2398-e2ee-4119-8694-e33c43f765fe.png',
     saveImg: '',
+    id: '',
+    is_collect:false,
+    info:'',
+    company:''
   },
   // 显示弹框
   handleShowPopup() {
@@ -147,18 +154,86 @@ Page({
     })
   },
   // 跳转企业详情页
-  handleJump(){
+  handleJump() {
     wx.navigateTo({
       url: '/pages/enterprise-detail/index',
     })
+  },
+  // 点击是否收藏
+  handleCollect(){
+    if(this.data.is_collect){
+      this.getDel();
+      this.setData({
+        is_collect:false
+      })
+    }else{
+      this.getAdd();
+      this.setData({
+        is_collect:true
+      })
+    }
   },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    console.log('设备id', options.id);
+    this.setData({
+      id: options.id
+    })
+    this.getEquipmentInfo();
   },
-
+  // 获取设备详情信息
+  getEquipmentInfo() {
+    const that = this;
+    App.request({
+      url:api.equipment.detail,
+      method:'post',
+      data:{
+        id:that.data.id
+      },
+      success:function(res){
+        console.log(res)
+      },
+      fail:function(res){
+        console.log(res)
+      }
+    })
+  },
+  // 添加收藏
+  getAdd(){
+   const that = this;
+   App.request({
+    url:api.equipment.addCollect,
+    method:'post',
+    data:{
+      id:that.data.id
+    },
+    success:function(res){
+      console.log(res)
+    },
+    fail:function(res){
+      console.log(res)
+    }
+   })
+  },
+  // 删除收藏
+  getDel(){
+    const that = this;
+    App.request({
+      url:api.equipment.delCollect,
+      method:'post',
+      data:{
+        id:that.data.id
+      },
+      success:function(res){
+        console.log(res)
+      },
+      fail:function(res){
+        console.log(res)
+      }
+    })
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
