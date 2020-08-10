@@ -24,7 +24,7 @@ Page({
    */
   onLoad: function (options) {
     this.getCategory();
-    this.getEqupmentList(1);
+    this.getEqupmentList();
   },
   handleChangeTab(e){
     console.log(this.data. subTabIndex)
@@ -37,7 +37,7 @@ Page({
       noMore:false,
       noData:false
     })
-    this.getEqupmentList(id);
+    this.getEqupmentList();
   },
   onConfirm(e){
     this.setData({
@@ -78,7 +78,7 @@ Page({
       url:api.search.equipment,
       method:'post',
       data:{
-        cate_id:id,
+        cate_id:that.data.subTabIndex,
         name:that.data.search,
         page:that.data.page
       },

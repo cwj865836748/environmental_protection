@@ -185,12 +185,13 @@ Page({
   },
   // 获取设备详情信息
   getEquipmentInfo() {
+    console.log('设备详情')
     const that = this;
     App.request({
       url:api.equipment.detail,
       method:'post',
       data:{
-        id:that.data.id
+        equipment_id:that.data.id
       },
       success:function(res){
         console.log(res)
@@ -207,7 +208,7 @@ Page({
     url:api.equipment.addCollect,
     method:'post',
     data:{
-      id:that.data.id
+      equipment_id:that.data.id
     },
     success:function(res){
       console.log(res)
