@@ -2,7 +2,8 @@
 const App = getApp();
 import {
   navigateTo
-} from '../../utils/wx.js'
+} from '../../utils/wx.js';
+const api = require('../../request/api.js');
 Page({
 
   /**
@@ -15,20 +16,11 @@ Page({
     autoplay: false,
     interval: 2000,
     duration: 500,
-    // swiperList:['https://img02.mockplus.cn/idoc/xd/2020-07-30/00cea579-9e88-4117-86c8-099bbe1206e4.png','https://img02.mockplus.cn/idoc/xd/2020-07-30/d2daeb77-852c-4b17-b75c-9740b8d5cc48.png','https://img02.mockplus.cn/idoc/xd/2020-07-30/619a01c6-c20d-4d55-8ea7-75f01de0ccae.png'],
-    swiperList: [{
-      url: 'https://img02.mockplus.cn/idoc/xd/2020-07-30/00cea579-9e88-4117-86c8-099bbe1206e4.png',
-      type: 1
-    }, {
-      url: 'https://img02.mockplus.cn/idoc/xd/2020-07-30/d2daeb77-852c-4b17-b75c-9740b8d5cc48.png',
-      type: 1
-    }, {
-      url: 'https://cloud.video.taobao.com/play/u/576446681/p/1/e/6/t/1/50140370746.mp4',
-      type: 2
-    }, {
-      url: 'https://img02.mockplus.cn/idoc/xd/2020-07-30/619a01c6-c20d-4d55-8ea7-75f01de0ccae.png',
-      type: 1
-    }],
+    noData:false,
+    noMore:false,
+    loading:false,
+    page:1,
+    swiperList: [],
     tabIndex: 1,
     tabList: [{
         title: '供应',
@@ -39,7 +31,7 @@ Page({
         id: 2
       }
     ],
-    listData: 8
+    listData: []
   },
   goBack() {
     wx.navigateBack()
@@ -48,13 +40,23 @@ Page({
   handleChangeTab(e) {
     let id = e.currentTarget.dataset.id;
     this.setData({
-      tabIndex: id
+      tabIndex: id,
+      noData:false,
+      noMore:false,
+      loading:false,
+      listData:[]
     })
+
+    this.getLists();
   },
   jumpPage() {
     wx.navigateTo({
       url: '/pages/news-detail/index',
     })
+  },
+  // 轮播图跳转
+  handleSwiperJump(e){
+    console.log(e.currentTarget.dataset.id);
   },
   /**
    * 生命周期函数--监听页面加载
@@ -73,6 +75,82 @@ Page({
         })
       }
     }
+
+    this.getSlideshow();
+    this.getLists();
+  },
+
+  // 获取轮播图信息
+  getSlideshow(){
+    const that = this;
+    App.request({
+      url:api.supply.slideshow,
+      method:'post',
+      success:function(res){
+        console.log(res);
+        if(res.code == 200){
+          that.setData({
+            swiperList:res.data.list
+          })
+        }
+      },
+      fail:function(res){
+        console.log(res)
+      }
+    })
+  },
+  // 获取供需列表
+  getLists(){
+    const that = this;
+    that.setData({
+      loading:true
+    })
+    App.request({
+      url:api.supply.lists,
+      method:'post',
+      data:{
+        type:that.data.tabIndex,
+        page:that.data.page
+      },
+      success:function(res){
+        that.setData({
+          loading:false
+        })
+        console.log(res);
+        if(res.code == 200){
+          let listData = res.data.list ? res.data.list : [];
+          let is_next = res.data.is_next;
+
+          if(listData.length == 0 && that.data.page == 1){
+            that.setData({
+              listData:[],
+              noData:true
+            })
+            return;
+          }
+
+          if(listData.length != 0 && !is_next){
+            that.setData({
+              listData:that.data.listData.concat(listData),
+              noMore:true
+            })
+            return;
+          }
+
+          if(listData.length != 0 && is_next){
+            that.setData({
+             listData:that.data.listData.concat(listData),
+             page:that.data.page + 1
+            })
+          }
+
+        }
+
+      },
+      fail:function(res){
+        console.log(res)
+      }
+    })
   },
 
   /**

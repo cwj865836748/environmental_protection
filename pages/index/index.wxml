@@ -80,7 +80,7 @@
 <view class="produce-list flex-y-center">
 
 	<block wx:for="{{produceList}}">
-		<navigator url="/pages/equipment-detail/index">
+		<navigator url="/pages/equipment-detail/index?id={{item.id}}">
 			<view class="produce-item flex-col flex-xy-center" wx:key="index" wx:if="{{index < 6}}">
 				<image class="produce-item-img flex-grow-0" src="{{item.pic}}"></image>
 				<view class="produce-item-name">{{item.name}}</view>

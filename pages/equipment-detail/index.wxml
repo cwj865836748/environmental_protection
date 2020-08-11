@@ -1,19 +1,29 @@
 <!--pages/equipment-detail/index.wxml-->
 <navbar title="设备详情" back="{{true}}"></navbar>
+<!-- 轮播图 -->
+<view class="swiper-box"  wx:if="{{info.media_type == 0}}">
+	<swiper indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" indicator-color="rgba(255,255,255,0.5)" indicator-active-color="#ffffff">
+		<block wx:for="{{info.slideshow}}" wx:key="*this">
+			<swiper-item>
+				<image class="swiper-item" src="{{item}}"></image>
+			</swiper-item>
+		</block>
+	</swiper>
+</view>
+
 <!-- 设备图片 -->
-<view class="equipment-img">
-	<image src="https://img02.mockplus.cn/idoc/xd/2020-07-30/d67e8976-266a-43cd-98cd-77e9ab94d0b4.png"></image>
-	<!-- <video class="video" src="https://cloud.video.taobao.com/play/u/576446681/p/1/e/6/t/1/50140370746.mp4" controls='true'></video> -->
+<view class="equipment-img" wx:if="{{info.media_type == 1}}">
+	<video class="video" src="{{info.media}}" controls='true'></video>
 </view>
 <!-- 设备介绍 -->
 <view class="equipment-wrap">
 
 	<view class="equipment-msg flex-y-center">
-		<view class="equipment-title">ADA系列全金属管道换气扇</view>
+		<view class="equipment-title">{{info.name}}</view>
 		<view class="equipment-function flex-y-center">
-			<view class="equipment-collect flex-xy-center" bindtap="handleCollect">
-				<image class="flex-grow-0" src="/images/details_collect@2x.png"></image>
-				<!-- <image src="/images/details_collect0@2x.png"></image> -->
+			<view class="equipment-collect flex-xy-center" bindtap="handleCollect" data-collect="{{info.is_collect}}">
+				<image class="flex-grow-0" src="/images/details_collect@2x.png" wx:if="{{info.is_collect == 0}}"></image>
+				<image src="/images/details_collect0@2x.png" wx:if="{{info.is_collect == 1}}"></image>
 			</view>
 			<view class="equipment-share flex-xy-center" bindtap="handleShowPopup">
 				<image class="flex-grow-0" src="/images/details_share@2x.png"></image>
@@ -24,14 +34,14 @@
 	<!-- 设备企业 -->
 	<view class="equipment-belong flex-y-center">
 		<view class="belong-img flex-y-center">
-			<image class="flex-grow-0" src="https://img02.mockplus.cn/idoc/xd/2020-07-30/c93ff15d-0c92-4eeb-9000-df15c21aefaa.png"></image>
+			<image class="flex-grow-0" src="{{company.pic}}"></image>
 		</view>
 		<view class="belong-dec flex-y-center">
 			<view class="dec-left">
-				<view class="belong-zh-title">春晓环保集团</view>
-				<view class="belong-en-title">Chun Xiao Environmental Protection Group</view>
+				<view class="belong-zh-title">{{company.name}}</view>
+				<view class="belong-en-title">{{company.name_eg}}</view>
 			</view>
-			<view class="dec-right flex-xy-center" bindtap="handleJump">进入企业</view>
+			<view class="dec-right flex-xy-center" bindtap="handleJump" data-id="{{company.id}}">进入企业</view>
 		</view>
 	</view>
 
@@ -41,12 +51,9 @@
 		<view class="introduce-title">产品简介</view>
 	</view>
 
-	<view class="equipment-content">结构特点：吸顶式设计，可接管道，噪声低，效率高；安装灵活。
-		机号范围：NO.10-20共11个机号。
-		最大风量：1200m3/h
-		最大压力：186m/s
-		适合用途：广泛应用于楼宇、民用住宅、房间、办公室、影院、医院、卫生间等通风换气。
-		使用环境：输送空气时无腐蚀、不自燃、不含粘性物质，介质温度一般不超过60℃,介质中所含微粒不大于150mg/m3。
+	<view class="equipment-content">
+		<import src="../../wxParse/wxParse.wxml" />
+		<template is="wxParse" data="{{wxParseData:content.nodes}}" />
 	</view>
 
 </view>
@@ -74,18 +81,18 @@
 </van-popup>
 
 <!-- 生成海报 -->
-		<van-overlay show="{{ showPoster }}" bind:click="onClickPoster" z-index="300">
-			<view class="wrapper-poster">
-				<view class="block-poster" catch:tap="noop">
-					<canvas canvas-id="myCanvas" style="width:630rpx;height:810rpx"></canvas>
+<van-overlay show="{{ showPoster }}" bind:click="onClickPoster" z-index="300">
+	<view class="wrapper-poster">
+		<view class="block-poster" catch:tap="noop">
+			<canvas canvas-id="myCanvas" style="width:630rpx;height:810rpx"></canvas>
+		</view>
+		<view class="poster-btn-box flex-y-center flex-x-center">
+			<view class="btn save flex-y-center flex-x-center">
+				<view class="save-icon-box flex-x-center flex-y-center">
+					<image class="save-icon" src="/images/details_download@2x.png"></image>
 				</view>
-				<view class="poster-btn-box flex-y-center flex-x-center">
-					<view class="btn save flex-y-center flex-x-center">
-						<view class="save-icon-box flex-x-center flex-y-center">
-							<image class="save-icon" src="/images/details_download@2x.png"></image>
-						</view>
-						<view class="save-name flex-x-center flex-y-center" bindtap="checkAuthorize">保存图片</view>
-					</view>
-				</view>
+				<view class="save-name flex-x-center flex-y-center" bindtap="checkAuthorize">保存图片</view>
 			</view>
-		</van-overlay>
+		</view>
+	</view>
+</van-overlay>

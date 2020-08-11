@@ -1,6 +1,7 @@
 /* pages/supply-demand/index.wxss */
 @import '/pages/authorization/index.wxss';
 @import '/common/consult/consult.wxss';
+@import '/common/noData/noData.wxss';
 .head{
   height: 500rpx;
 }

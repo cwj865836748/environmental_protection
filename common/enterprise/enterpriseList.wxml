@@ -1,5 +1,5 @@
 <block wx:for="{{enterpriseList}}">
-	<navigator url="/pages/enterprise-detail/index">
+	<navigator url="/pages/enterprise-detail/index?id={{item.id}}">
 		<view class="shop-list flex" wx:key="index">
 			<view class="shop-item-logo flex-xy-center">
 				<image class="flex-grow-0" src="{{item.pic}}"></image>

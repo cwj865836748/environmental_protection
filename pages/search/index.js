@@ -1,7 +1,7 @@
 // pages/search/index.js
 const App=getApp()
 var utils = require('../../utils/util.js')
-import {navigateTo} from '../../utils/wx.js'
+import {navigateTo} from '../../utils/wx.js';
 Page({
 
   /**
@@ -10,9 +10,17 @@ Page({
   data: {
     search:''
   },
-  handleJump(){
+  handleJump(e){
+    let search = e.detail;
+    this.setData({
+      search:search
+    })
+    console.log(search);
     wx.navigateTo({
-      url: '/pages/search-result/index',
+      url: '/pages/search-result/index?search=' + search,
+    });
+    this.setData({
+      search:''
     })
   },
   /**

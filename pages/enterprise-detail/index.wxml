@@ -16,21 +16,21 @@
 	<!-- 企业信息 -->
 	<view class="enterprise-dec flex-y-center">
 		<view class="enterprise-avatar flex-xy-center">
-			<image class="flex-grow-0" src="https://img02.mockplus.cn/idoc/xd/2020-07-30/2c60fae2-3c9d-4a50-8005-9fb1f20fcc6b.png"></image>
+			<image class="flex-grow-0" src="{{info.pic}}"></image>
 		</view>
 		<view class="enterprise-msg flex-y-center">
 			<view class="msg-left">
-				<view class="enterprise-zh-title">春晓环保集团</view>
-				<view class="enterprise-en-title">Chun Xiao Environmental Protection Group</view>
+				<view class="enterprise-zh-title">{{info.name}}</view>
+				<view class="enterprise-en-title">{{info.name_eg}}</view>
 			</view>
 			<!-- 收藏前 -->
-			<view class="msg-right flex-xy-center">
+			<view class="msg-right flex-xy-center"  wx:if="{{info.is_collect == 0}}" bindtap="handleCollect" data-collect="{{info.is_collect}}">
 				<image class="flex-grow-0" src="/images/business_details_collect@2x.png"></image>
 				<!-- <image src="/images/details_collect0@2x.png"></image> -->
 				<view class="msg-collect">收藏</view>
 			</view>
 			<!-- 收藏后 -->
-			<!-- <view class="msg-right flex-xy-center msg-collect">已收藏</view> -->
+			<view class="msg-right flex-xy-center msg-collect"  wx:if="{{info.is_collect == 1}}" bindtap="handleCollect" data-collect="{{info.is_collect}}">已收藏</view>
 		</view>
 	</view>
 
@@ -44,10 +44,10 @@
 			<view class="line"></view>
 			<view class="introduce-title">联系方式</view>
 		</view>
-		<view class="exhibition flex-xy-center">已参展</view>
+		<view class="exhibition flex-xy-center" wx:if="info.is_show == 1">已参展</view>
 	</view>
-	<view class="phone">电话：15036966636</view>
-	<view class="area">地址：厦门市湖里区高新技术园汇金湖里大厦</view>
+	<view class="phone">电话：{{info.mobile}}</view>
+	<view class="area">地址：{{info.address}}</view>
 
 	<view class="segmentation"></view>
 
@@ -57,8 +57,7 @@
 		<view class="introduce-title">企业简介</view>
 	</view>
 
-	<view class="etp-dec">厦门集团饮水设备股份有限公司是一家专业致力于健康饮水设备的设计、开发、生产和销售的大型企业。十多年的发展历程奠定了朗诗德在水家电行业的领先地位。目前，厦门集团已在厦门建成240多亩工业园，旨在打造国内健康饮水设备产业基地。通过多年的努力，公司现已组建起国内一流的研发中心和具有先进实验设备的检测中心。
-	</view>
+	<view class="etp-dec">{{info.introduce}}</view>
 
 	<view class="segmentation"></view>
 
@@ -73,12 +72,13 @@
 		<block wx:for="{{produceList}}">
 			<view class="produce-item flex-col flex-xy-center {{index % 2 != 0 ? 'ml' : ''}}">
 				<view class="produce-item-img-box flex-xy-center">
-					<image class="produce-item-img flex-grow-0" src="/images/img/produce1.png"></image>
+					<image class="produce-item-img flex-grow-0" src="{{item.pic}}"></image>
 				</view>
-				<view class="produce-item-dec text-more-single">AET系列诱导风机</view>
+				<view class="produce-item-dec text-more-single">{{item.name}}</view>
 			</view>
 		</block>
 
 	</view>
+	<include src="/common/noData/noData" />
 
 </view>

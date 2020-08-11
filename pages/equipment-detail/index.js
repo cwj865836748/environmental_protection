@@ -5,21 +5,25 @@ import {
   navigateTo
 } from '../../utils/wx.js';
 const api = require('../../request/api.js');
+var WxParse = require('../../wxParse/wxParse.js');
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
+    indicatorDots: true,
+    autoplay: false,
+    interval: 2000,
+    duration: 500,
     inviteShow: false,
     showPoster: false,
     postImg: 'https://img02.mockplus.cn/idoc/xd/2020-07-30/79bffc54-d65a-4c76-8592-810c7c3c5e54.png',
     qrImg: 'https://img02.mockplus.cn/idoc/xd/2020-07-30/272d2398-e2ee-4119-8694-e33c43f765fe.png',
     saveImg: '',
     id: '',
-    is_collect:false,
-    info:'',
-    company:''
+    info: '',
+    company: ''
   },
   // 显示弹框
   handleShowPopup() {
@@ -154,24 +158,24 @@ Page({
     })
   },
   // 跳转企业详情页
-  handleJump() {
+  handleJump(e) {
+    let id = e.currentTarget.dataset.id;
+    console.log(id)
     wx.navigateTo({
-      url: '/pages/enterprise-detail/index',
+      url: '/pages/enterprise-detail/index?id=' + id,
     })
   },
   // 点击是否收藏
-  handleCollect(){
-    if(this.data.is_collect){
-      this.getDel();
-      this.setData({
-        is_collect:false
-      })
-    }else{
-      this.getAdd();
-      this.setData({
-        is_collect:true
-      })
+  handleCollect(e) {
+    console.log(e.currentTarget.dataset.collect);
+    let collect = e.currentTarget.dataset.collect;
+    if (collect == 0) {
+      this.getAdd()
+    } else {
+      this.getDel()
     }
+
+    this.getEquipmentInfo();
   },
   /**
    * 生命周期函数--监听页面加载
@@ -188,49 +192,56 @@ Page({
     console.log('设备详情')
     const that = this;
     App.request({
-      url:api.equipment.detail,
-      method:'post',
-      data:{
-        equipment_id:that.data.id
+      url: api.equipment.detail,
+      method: 'post',
+      data: {
+        equipment_id: that.data.id
       },
-      success:function(res){
-        console.log(res)
+      success: function (res) {
+        console.log(res);
+        if (res.code == 200) {
+          that.setData({
+            info: res.data.info,
+            company: res.data.company
+          })
+          WxParse.wxParse('content', 'html', res.data.info.introduce, that);
+        }
       },
-      fail:function(res){
+      fail: function (res) {
         console.log(res)
       }
     })
   },
   // 添加收藏
-  getAdd(){
-   const that = this;
-   App.request({
-    url:api.equipment.addCollect,
-    method:'post',
-    data:{
-      equipment_id:that.data.id
-    },
-    success:function(res){
-      console.log(res)
-    },
-    fail:function(res){
-      console.log(res)
-    }
-   })
-  },
-  // 删除收藏
-  getDel(){
+  getAdd() {
     const that = this;
     App.request({
-      url:api.equipment.delCollect,
-      method:'post',
-      data:{
-        id:that.data.id
+      url: api.equipment.addCollect,
+      method: 'post',
+      data: {
+        equipment_id: that.data.id
       },
-      success:function(res){
+      success: function (res) {
         console.log(res)
       },
-      fail:function(res){
+      fail: function (res) {
+        console.log(res)
+      }
+    })
+  },
+  // 删除收藏
+  getDel() {
+    const that = this;
+    App.request({
+      url: api.equipment.delCollect,
+      method: 'post',
+      data: {
+        id: that.data.id
+      },
+      success: function (res) {
+        console.log(res)
+      },
+      fail: function (res) {
         console.log(res)
       }
     })
