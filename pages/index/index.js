@@ -29,9 +29,9 @@ Page({
       url: 'https://img02.mockplus.cn/idoc/xd/2020-07-30/619a01c6-c20d-4d55-8ea7-75f01de0ccae.png',
       type: 1
     }],
-    produceList: '',
-    enterpriseList: '',
-    merchantsList: '',
+    produceList: [],
+    enterpriseList: [],
+    merchantsList: [],
     noData: false,
     noMore: false,
     noInternet: false,
@@ -41,8 +41,27 @@ Page({
     noData1: false,
     noMore1: false
   },
-
-
+  // 企业详情跳转
+  handleJumpCompany(e) {
+    let id = e.currentTarget.dataset.id;
+    console.log(id)
+    wx.navigateTo({
+      url: '/pages/enterprise-detail/index?id=' + id,
+    })
+  },
+  // 收藏操作
+  handleCollect(e) {
+    let id = e.currentTarget.dataset.id;
+    let collect = e.currentTarget.dataset.collect;
+    console.log('收藏',collect)
+    if(collect == 1){
+      this.getDel(id);
+    }else{
+      this.getAdd(id);
+    }
+    this.getBusinessList();
+    this.getCustomerList();
+  },
 
 
   /**
@@ -54,7 +73,52 @@ Page({
     this.getBusinessList();
     this.getCustomerList();
   },
-
+  // 添加收藏
+  getAdd(id) {
+    const that = this;
+    App.request({
+      url: api.company.addCollect,
+      method: 'post',
+      data: {
+        company_id: id
+      },
+      success: function (res) {
+        console.log(res);
+        if (res.code == 200) {
+          wx.showToast({
+            title: res.msg,
+            icon: 'none'
+          })
+        }
+      },
+      fail: function (res) {
+        console.log(res)
+      }
+    })
+  },
+  // 取消收藏
+  getDel(id) {
+    const that = this;
+    App.request({
+      url: api.company.deCollect,
+      method: 'post',
+      data: {
+        company_id: id
+      },
+      success: function (res) {
+        console.log(res);
+        if (res.code == 200) {
+          wx.showToast({
+            title: res.msg,
+            icon: 'none'
+          })
+        }
+      },
+      fail: function (res) {
+        console.log(res)
+      }
+    })
+  },
   //获取当前位置
   getLocation() {
     utils.getAuth().then(re => {
@@ -190,7 +254,7 @@ Page({
             })
           } else {
             that.setData({
-              merchantsList:merchantsList.slice(0,7)
+              merchantsList: merchantsList.slice(0, 7)
             })
             return;
           }

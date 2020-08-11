@@ -198,7 +198,13 @@ Page({
           remark: that.data.remark
         },
         success: function (res) {
-          console.log(res)
+          console.log(res);
+          if(res.code == 200){
+            wx.showToast({
+              title: res.msg,
+              icon:"none"
+            })
+          }
         },
         fail: function (res) {
           console.log(res)

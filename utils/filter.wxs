@@ -1,0 +1,16 @@
+var filter = {
+
+  // 判断专家职称是否超过7个字
+  isMore: function (arr) {
+    if(arr.length >= 7){
+      return true
+    }else{
+      return false
+    }
+    
+  }
+}
+
+module.exports = {
+  isMore:filter.isMore
+}

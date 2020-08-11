@@ -1,12 +1,12 @@
 {
   "pages": [
-    "pages/supply-demand/index",
+    "pages/environmental-bbs/index",
     "pages/index/index",
+    "pages/supply-demand/index",
     "pages/merchants-list/index",
     "pages/produce-library/index",
     "pages/mine/index",
     "pages/browsing-history/index",
-    "pages/environmental-bbs/index",
     "pages/innovative-technology/index",
     "pages/activity/index",
     "pages/my-sign/index",

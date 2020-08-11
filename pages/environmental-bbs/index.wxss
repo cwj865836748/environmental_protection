@@ -54,6 +54,7 @@
 .title-dec {
   font-size: 24rpx;
   color: #43B2FC;
+  margin-right: 14rpx;
 }
 
 .title-dec-delete {
@@ -159,8 +160,13 @@
   width: 204rpx;
 }
 
+.professor-position{
+  margin-right: 10rpx;
+}
+
 .news-content {
   padding-bottom: 0;
+  height: auto;
 }
 
 .tab-list {

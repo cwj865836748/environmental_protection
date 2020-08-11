@@ -1,21 +1,21 @@
 <block wx:for="{{enterpriseList}}">
-	<navigator url="/pages/enterprise-detail/index?id={{item.id}}">
+	<!-- <navigator url="/pages/enterprise-detail/index?id={{item.id}}"> -->
 		<view class="shop-list flex" wx:key="index">
-			<view class="shop-item-logo flex-xy-center">
+			<view class="shop-item-logo flex-xy-center" bindtap="handleJumpCompany" data-id="{{item.id}}">
 				<image class="flex-grow-0" src="{{item.pic}}"></image>
 			</view>
 			<view class="shop-item-right flex-y-center">
-				<view class="shop-content">
+				<view class="shop-content" bindtap="handleJumpCompany" data-id="{{item.id}}">
 					<view class="shop-zh-name">{{item.name}}</view>
 					<view class="shop-en-name">{{item.name_eg}}</view>
 				</view>
-				<view class="shop-collect flex-xy-center">
+				<view class="shop-collect flex-xy-center" bindtap="handleCollect" data-id="{{item.id}}" data-collect="{{item.is_collext}}">
 					<image class="flex-grow-0" src="/images/home/home_collect@2x.png" wx:if="{{item.is_collext == 0}}"></image>
 					<image class="flex-grow-0" src="/images/home/home_collect0@2x.png" wx:if="{{item.is_collext == 1}}"></image>
 				</view>
 			</view>
 		</view>
-	</navigator>
+	<!-- </navigator> -->
 
 </block>
 <include src="/common/noData/noData" />
