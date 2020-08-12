@@ -1,7 +1,9 @@
 // pages/merchants-list/index.js
 const App = getApp();
 var utils = require('../../utils/util.js');
-import {request} from '../../request/index.js'
+import {
+  request
+} from '../../request/index.js'
 
 import {
   navigateTo
@@ -14,28 +16,16 @@ Page({
    */
   data: {
     noData1: false,
-    noMore1 :false,
+    noMore1: false,
     loading1: false,
     search: '',
-    page:1,
+    page: 1,
     subTabIndex: 1,
-    subTabList: [{
-      title: '全部',
-      id: 1
-    }, {
-      title: '水处理类',
-      id: 2
-    }, {
-      title: '泵闸类',
-      id: 3
-    }, {
-      title: '空气清新类',
-      id: 4
-    }, {
-      title: '固废气类',
-      id: 5
-    }, ],
-    merchantsList: []
+    subTabList: [],
+    merchantsList: [],
+    // type == 1 表示从首页跳转过来 type == 2 表示从展会详情跳转过来
+    type: '',
+    id: ''
   },
   handleChangeTab(e) {
     console.log(this.data.subTabIndex)
@@ -48,7 +38,13 @@ Page({
       page: 1,
       merchantsList: []
     })
-    this.getList()
+    if (this.data.type == 1) {
+      this.getList();
+      console.log(this.data.search)
+    } else if (this.data.type == 2) {
+      this.getList1();
+      console.log(this.data.search)
+    }
   },
   onConfirm(e) {
     this.setData({
@@ -58,69 +54,153 @@ Page({
       page: 1,
       merchantsList: []
     })
-    this.getList()
+    if (this.data.type == 1) {
+      this.getList();
+      console.log(this.data.search)
+    } else if (this.data.type == 2) {
+      this.getList1();
+      console.log(this.data.search)
+    }
+  },
+  // 企业详情跳转
+  handleJumpCompany(e) {
+    let id = e.currentTarget.dataset.id;
+    if (this.data.type == 1) {
+      wx.navigateTo({
+        url: '/pages/enterprise-detail/index?id=' + id + '&&show=false',
+      })
+    } else if (this.data.type == 2) {
+      wx.navigateTo({
+        url: '/pages/enterprise-detail/index?id=' + id + '&&show=true',
+      })
+    }
   },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    let type = options.type;
+    let id = options.id;
+    this.setData({
+      type: type,
+      id: id
+    })
     this.getCategroy();
-   this.getList();
+    if (type == 1) {
+      this.getList();
+    } else if (type == 2) {
+      this.getList1();
+    }
+
+
   },
   // 获取商家分类
   getCategroy() {
     const that = this;
-     request({ url: api.company.category }).then(res=>{
-         if (res.code == 200) {
-         that.setData({
-             subTabList: res.data.list
-          })
-        }
-   })
+    request({
+      url: api.company.category
+    }).then(res => {
+      if (res.code == 200) {
+        that.setData({
+          subTabList: res.data.list
+        })
+      }
+    })
   },
-  // 获取商家列表
+  // 获取商家列表 - 首页
   getList() {
     const that = this;
     that.setData({
       loading1: true
     })
-       request({ url: api.common.lists, data: {
+    request({
+      url: api.common.lists,
+      data: {
         type: 1,
         name: that.data.search,
         cat_id: that.data.subTabIndex,
         page: that.data.page
-      } }).then(res=>{
-         that.setData({
-          loading1: false,
-        })
-        if (res.code == 200) {
-          let merchantsList = res.data.list ? res.data.list : [];
-          let is_next = res.data.is_next;
+      }
+    }).then(res => {
+      that.setData({
+        loading1: false,
+      })
+      if (res.code == 200) {
+        let merchantsList = res.data.list ? res.data.list : [];
+        let is_next = res.data.is_next;
 
-          if (merchantsList.length == 0 && that.data.page == 1) {
-            that.setData({
-              merchantsList: [],
-              noData1: true
-            })
-            return;
-          }
-
-          if (merchantsList.length != 0 && !is_next) {
-            that.setData({
-              merchantsList: that.data.merchantsList.concat(merchantsList),
-              noMore1: true,
-            })
-            return;
-          } else {
-            that.setData({
-              merchantsList: that.data.merchantsList.concat(merchantsList),
-              page: that.data.page + 1,
-            })
-            return ;
-          }
-
+        if (merchantsList.length == 0 && that.data.page == 1) {
+          that.setData({
+            merchantsList: [],
+            noData1: true
+          })
+          return;
         }
-   })
+
+        if (merchantsList.length != 0 && !is_next) {
+          that.setData({
+            merchantsList: that.data.merchantsList.concat(merchantsList),
+            noMore1: true,
+          })
+          return;
+        } else {
+          that.setData({
+            merchantsList: that.data.merchantsList.concat(merchantsList),
+            page: that.data.page + 1,
+          })
+          return;
+        }
+
+      }
+    })
+  },
+  // 获取商家列表 - 展会详情
+  getList1() {
+    const that = this;
+    that.setData({
+      loading1: true
+    })
+    request({
+      url: api.exhibition.company,
+      data: {
+        type: 1,
+        exhibition_id: that.data.id,
+        name: that.data.search,
+        cat_id: that.data.subTabIndex,
+        page: that.data.page
+      }
+    }).then(res => {
+      that.setData({
+        loading1: false,
+      })
+      if (res.code == 200) {
+        let merchantsList = res.data.list ? res.data.list : [];
+        let is_next = res.data.is_next;
+
+        if (merchantsList.length == 0 && that.data.page == 1) {
+          that.setData({
+            merchantsList: [],
+            noData1: true
+          })
+          return;
+        }
+
+        if (merchantsList.length != 0 && !is_next) {
+          that.setData({
+            merchantsList: that.data.merchantsList.concat(merchantsList),
+            noMore1: true,
+          })
+          return;
+        } else {
+          that.setData({
+            merchantsList: that.data.merchantsList.concat(merchantsList),
+            page: that.data.page + 1,
+          })
+          return;
+        }
+
+      }
+    })
   },
   /**
    * 生命周期函数--监听页面初次渲染完成

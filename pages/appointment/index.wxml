@@ -1,7 +1,7 @@
 <!--pages/appointment/index.wxml-->
 <navbar title="预约登记" back="{{true}}"></navbar>
 <view class="list-cell-content flex-y-center" bindtap="handleChooseType">
-	<van-field value="{{ category }}" placeholder="请选择" label="参展类型" disabled bind:change="onChange" />
+	<van-field value="{{ type }}" placeholder="请选择" label="参展类型" disabled bind:change="onChangetype" />
 	<image class="arrow flex-grow-0" src="/images/form_down@2x.png"></image>
 </view>
 
@@ -21,9 +21,9 @@
 <!-- 企业参展 -->
 <van-cell-group wx:if="{{selectedIndex == 1}}">
 
-	<van-field value="{{ componyName }}" clearable placeholder="请输入公司名称" label="公司名称" bind:change="onChange" />
+	<van-field value="{{ company_name }}" clearable placeholder="请输入公司名称" label="公司名称" bind:change="onChangeCName" />
 
-	<van-field value="{{ mainPople }}" clearable placeholder="请输入负责人姓名" label="负责人" bind:change="onChange" />
+	<van-field value="{{ name }}" clearable placeholder="请输入负责人姓名" label="负责人" bind:change="onChangeName" />
 
 	<view class="list-cell flex-y-center">
 		<view class="list-cell-title">性别</view>
@@ -39,20 +39,20 @@
 		</view>
 	</view>
 
-	<van-field value="{{ post }}" clearable placeholder="请输入职位" label="职位" bind:change="onChange" />
+	<van-field value="{{ position }}" clearable placeholder="请输入职位" label="职位" bind:change="onChangePosition" />
 
-	<van-field value="{{ email }}" clearable placeholder="请输入邮箱账号" label="邮箱" bind:change="onChange" />
+	<van-field value="{{ email }}" clearable placeholder="请输入邮箱账号" label="邮箱" bind:change="onChangeEmail" />
 
-	<van-field value="{{ phone }}" clearable placeholder="请输入手机号" label="手机号" bind:change="onChange" />
+	<van-field value="{{ mobile }}" clearable placeholder="请输入手机号" label="手机号" bind:change="onChangeMobile" />
 
-	<van-field value="{{ companyArea }}" clearable placeholder="请输入公司网址(选填)" label="公司网址" bind:change="onChange" />
+	<van-field value="{{ company_url }}" clearable placeholder="请输入公司网址(选填)" label="公司网址" bind:change="onChangeUrl" />
 
-	<van-field value="{{ industry }}" clearable placeholder="请输入公司所在行业(选填)" label="所在行业" bind:change="onChange" />
+	<van-field value="{{ industry }}" clearable placeholder="请输入公司所在行业(选填)" label="所在行业" bind:change="onChangeIndustry" />
 
 </van-cell-group>
 
 <!-- 个人参展 -->
-<van-cell-group wx:if="{{selectedIndex == 2}}">
+<van-cell-group wx:if="{{selectedIndex == 0}}">
 
 	<van-field value="{{ username }}" clearable placeholder="请输入姓名" label="姓名" bind:change="onChange" />
 
@@ -80,4 +80,4 @@
 
 </van-cell-group>
 
-<view class="btn flex-xy-center">提交</view>
+<view class="btn flex-xy-center" bindtap="handleGit">提交</view>

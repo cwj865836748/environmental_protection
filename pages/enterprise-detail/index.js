@@ -17,6 +17,7 @@ Page({
     id: '',
     info: '',
     page: 1,
+    show:''
   },
   goBack() {
     wx.navigateBack()
@@ -53,7 +54,8 @@ Page({
 
     console.log('企业id', options.id);
     this.setData({
-      id: options.id
+      id: options.id,
+      show:options.show
     })
 
     this.getCompanyDetail();

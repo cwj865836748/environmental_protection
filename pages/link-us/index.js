@@ -1,23 +1,48 @@
 // pages/link-us/index.js
-const app=getApp()
-var utils = require('../../utils/util.js')
-import {navigateTo} from '../../utils/wx.js'
+const app = getApp();
+var utils = require('../../utils/util.js');
+import {
+  navigateTo
+} from '../../utils/wx.js';
+import {
+  request
+} from '../../request/index.js';
+const api = require('../../request/api.js');
+let WxParse = require('../../wxParse/wxParse.js');
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+    id: ''
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    console.log(options.id);
+    this.setData({
+      id: options.id
+    })
+    this.getDetail();
   },
-
+  // 获取展会详情
+  getDetail() {
+    const that = this;
+    request({
+      url: api.exhibition.detail,
+      data: {
+        exhibition_id: that.data.id
+      }
+    }).then(res => {
+      console.log(res);
+      if (res.code == 200) {
+        WxParse.wxParse('content', 'html', res.data.info.contact, that);
+      }
+    })
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

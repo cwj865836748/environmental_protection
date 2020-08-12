@@ -1,2 +1,3 @@
 /* pages/environmental-consulte/index.wxss */
 @import '/pages/innovative-technology/index.wxss';
+@import '/common/noData/noData.wxss';

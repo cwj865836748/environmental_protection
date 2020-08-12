@@ -1,7 +1,9 @@
 // pages/environmental-bbs/index.js
 const App = getApp();
 import api from '../../request/api.js';
-import {request} from '../../request/index.js'
+import {
+  request
+} from '../../request/index.js'
 const util = require('../../utils/util.js');
 Page({
 
@@ -69,12 +71,12 @@ Page({
     wx.navigateBack()
   },
   // 跳转轮播图详情
-  handleJumpSlide(e){
+  handleJumpSlide(e) {
     let jump = e.currentTarget.dataset.jump;
     let id = e.currentTarget.dataset.id;
-    if(jump == 1){
+    if (jump == 1) {
       wx.navigateTo({
-        url: '/pages/slideshow/index?id='+id,
+        url: '/pages/slideshow/index?id=' + id,
       })
     }
   },
@@ -167,14 +169,14 @@ Page({
         arr.push(titleList[i]);
       }
     }
-    console.log("选中的id",id)
+    console.log("选中的id", id)
     for (let i = 0; i < selectList.length; i++) {
       if (selectList[i].id == id) {
         selectList[i].checked = false;
       }
     }
-    for(let i=0;i<idList.length;i++){
-      if(idList[i] != id){
+    for (let i = 0; i < idList.length; i++) {
+      if (idList[i] != id) {
         arrId.push(idList[i])
       }
     }
@@ -235,50 +237,56 @@ Page({
   // 获取轮播图
   getSlideshow() {
     const that = this;
-     request({ url: api.forum.slideshow }).then(res=>{
-         if (res.code == 200) {
-         that.setData({
-            swiperList: res.data.list
-          })
-        }
-   })
+    request({
+      url: api.forum.slideshow
+    }).then(res => {
+      if (res.code == 200) {
+        that.setData({
+          swiperList: res.data.list
+        })
+      }
+    })
   },
   // 高峰论坛分类
   getForumCategory() {
     const that = this;
-     request({ url: api.forum.forumCategory }).then(res=>{
-         if (res.code == 200) {
-         that.setData({
-            subTabList: res.data.list
-          })
-        }
-   })
+    request({
+      url: api.forum.forumCategory
+    }).then(res => {
+      if (res.code == 200) {
+        that.setData({
+          subTabList: res.data.list
+        })
+      }
+    })
   },
   // 专家智库分类
   getExpertsCategory() {
     const that = this;
     let titleList = that.data.titleList;
-     request({ url: api.forum.expertsCategory }).then(res=>{
-         if (res.code == 200) {
-          let selectList = res.data.list;
-          console.log(selectList)
-          if (selectList.length != 0) {
-            for (let i = 0; i < selectList.length; i++) {
-              selectList[i].checked = false;
-              console.log('接口中的title', titleList);
-              for (let j = 0; j < selectList.length; j++) {
-                if ( titleList.length != 0 && selectList[j].name == titleList[j].name) {
-                  selectList[j].checked = true;
-                }
+    request({
+      url: api.forum.expertsCategory
+    }).then(res => {
+      if (res.code == 200) {
+        let selectList = res.data.list;
+        console.log(selectList)
+        if (selectList.length != 0) {
+          for (let i = 0; i < selectList.length; i++) {
+            selectList[i].checked = false;
+            console.log('接口中的title', titleList);
+            for (let j = 0; j < selectList.length; j++) {
+              if (titleList.length != 0 && selectList[j].name == titleList[j].name) {
+                selectList[j].checked = true;
               }
             }
           }
-          console.log(selectList)
-          that.setData({
-            selectList: selectList
-          })
         }
-   })
+        console.log(selectList)
+        that.setData({
+          selectList: selectList
+        })
+      }
+    })
   },
   // 高峰论坛列表
   getForumList() {
@@ -286,44 +294,48 @@ Page({
     that.setData({
       loading: false
     })
-      request({ 
-        url: api.forum.forumLists, 
-        data: {
+    request({
+      url: api.forum.forumLists,
+      data: {
         cat_id: that.data.subTabIndex,
-        page: that.data.page } 
-      }).then(res=>{
-         if (res.code == 200) {
-          let listData = res.data.list ? res.data.list : [];
-          let is_next = res.data.is_next;
+        page: that.data.page
+      }
+    }).then(res => {
+      if (res.code == 200) {
+        let listData = res.data.list ? res.data.list : [];
+        let is_next = res.data.is_next;
 
-          if (listData.length == 0 && that.data.page == 1) {
-            that.setData({
-              listData: [],
-              noData: true
-            })
-            return;
-          }
-
-          if (listData.length != 0 && !is_next) {
-            for(let i=0;i<listData.length;i++){
-              listData[i].createtime = util.formatDate(listData[i].createtime)
-            }
-            that.setData({
-              listData: that.data.listData.concat(listData),
-              noMore: true
-            })
-            return;
-          }
-
-          if (listData.length != 0 && is_next) {
-            that.setData({
-              listData: that.data.listData.concat(listData),
-              page: that.data.page + 1
-            })
-            return;
-          }
+        if (listData.length == 0 && that.data.page == 1) {
+          that.setData({
+            listData: [],
+            noData: true
+          })
+          return;
         }
-   })
+
+        if (listData.length != 0 && !is_next) {
+          for (let i = 0; i < listData.length; i++) {
+            listData[i].createtime = util.formatTimeTwo((listData[i].createtime) * 1000, 'Y-M-D h:m')
+          }
+          that.setData({
+            listData: that.data.listData.concat(listData),
+            noMore: true
+          })
+          return;
+        }
+
+        if (listData.length != 0 && is_next) {
+          for (let i = 0; i < listData.length; i++) {
+            listData[i].createtime = util.formatTimeTwo((listData[i].createtime) * 1000, 'Y-M-D h:m')
+          }
+          that.setData({
+            listData: that.data.listData.concat(listData),
+            page: that.data.page + 1
+          })
+          return;
+        }
+      }
+    })
   },
   // 专家智库列表
   getExpertsList() {
@@ -339,44 +351,46 @@ Page({
       }
       id = id.slice(0, id.length - 1)
     }
-     request({ url: api.forum.expertsLists,
+    request({
+      url: api.forum.expertsLists,
       data: {
         cat_id: id,
         page: that.data.page
-      } }).then(res=>{
-         that.setData({
-          loading: false
-        })
-        console.log('专家智库列表', res);
-        if (res.code == 200) {
-          let listData = res.data.list ? res.data.list : [];
-          let is_next = res.data.is_next;
+      }
+    }).then(res => {
+      that.setData({
+        loading: false
+      })
+      console.log('专家智库列表', res);
+      if (res.code == 200) {
+        let listData = res.data.list ? res.data.list : [];
+        let is_next = res.data.is_next;
 
-          if (listData.length == 0 && that.data.page == 1) {
-            that.setData({
-              listData: [],
-              noData: true
-            })
-            return;
-          }
-
-          if (listData.length != 0 && !is_next) {
-            that.setData({
-              listData: that.data.listData.concat(listData),
-              noMore: true
-            })
-            return;
-          }
-
-          if (listData.length != 0 && is_next) {
-            that.setData({
-              listData: that.data.listData.concat(listData),
-              page: that.data.page + 1
-            })
-            return;
-          }
+        if (listData.length == 0 && that.data.page == 1) {
+          that.setData({
+            listData: [],
+            noData: true
+          })
+          return;
         }
-   })
+
+        if (listData.length != 0 && !is_next) {
+          that.setData({
+            listData: that.data.listData.concat(listData),
+            noMore: true
+          })
+          return;
+        }
+
+        if (listData.length != 0 && is_next) {
+          that.setData({
+            listData: that.data.listData.concat(listData),
+            page: that.data.page + 1
+          })
+          return;
+        }
+      }
+    })
   },
   /**
    * 生命周期函数--监听页面初次渲染完成

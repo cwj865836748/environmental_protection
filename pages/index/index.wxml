@@ -4,14 +4,11 @@
 <navbar title="生态联合网" back="{{false}}"></navbar>
 <!-- 轮播图 -->
 <view class="swiper-box">
-	<swiper indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" indicator-color="rgba(255,255,255,0.5)" indicator-active-color="#ffffff">
+	<swiper indicator-dots="{{indicatorDots}}" indicator-color="rgba(255,255,255,0.5)" indicator-active-color="#ffffff">
 		<block wx:for="{{swiperList}}" wx:key="*this">
 			<swiper-item>
 				<image class="swiper-item" src="{{item.pic}}" bindtap="handleJump" data-item="{{item}}"></image>
 			</swiper-item>
-			<!-- <swiper-item wx:else>
-				<video class="video" src="{{item.url}}" controls='true'></video>
-			</swiper-item> -->
 		</block>
 	</swiper>
 
@@ -68,7 +65,7 @@
 <!-- 产品库 -->
 <view class="produce-title flex-y-center">
 	<view class="produce-name">产品库</view>
-	<navigator url="/pages/produce-library/index">
+	<navigator url="/pages/produce-library/index?type=1">
 		<view class="look-more flex-y-center">查看更多
 			<view class="arrow-right flex-y-center">
 				<image class="flex-grow-0" src="/images/home/home_more@2x.png"></image>
@@ -98,7 +95,7 @@
 
 <view class="produce-title flex-y-center">
 	<view class="produce-name">企业名录</view>
-	<navigator url="/pages/enterprise-list/index">
+	<navigator url="/pages/enterprise-list/index?type=1">
 		<view class="look-more flex-y-center">查看更多
 			<view class="arrow-right flex-y-center">
 				<image class="flex-grow-0" src="/images/home/home_more@2x.png"></image>
@@ -114,7 +111,7 @@
 <!-- 客商名录 -->
 <view class="produce-title flex-y-center">
 	<view class="produce-name">客商名录</view>
-	<navigator url="/pages/merchants-list/index">
+	<navigator url="/pages/merchants-list/index?type=1">
 		<view class="look-more flex-y-center">查看更多
 			<view class="arrow-right flex-y-center">
 				<image class="flex-grow-0" src="/images/home/home_more@2x.png"></image>

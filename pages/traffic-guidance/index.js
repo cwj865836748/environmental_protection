@@ -1,11 +1,18 @@
 // pages/traffic-guidance/index.js
-const app=getApp()
-var utils = require('../../utils/util.js')
-import {navigateTo} from '../../utils/wx.js'
+const app = getApp();
+var utils = require('../../utils/util.js');
+import {
+  navigateTo
+} from '../../utils/wx.js';
+import {
+  request
+} from '../../request/index.js';
+const api = require('../../request/api.js');
+let WxParse = require('../../wxParse/wxParse.js');
 var qqmap = require('../../plugin/qqmap-wx-jssdk1.2/qqmap-wx-jssdk.min.js');
-var  demo = new qqmap({
-  key:app.globalData.qqKey
-})
+var demo = new qqmap({
+  key: app.globalData.qqKey
+});
 Page({
 
   /**
@@ -21,14 +28,47 @@ Page({
       longitude: 113.324520,
       width: 44,
       height: 54
-    }]
+    }],
+    id: ''
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    console.log(options.id);
+    this.setData({
+      id: options.id
+    })
+    this.getDetail();
+  },
+  // 获取展会详情
+  getDetail() {
+    const that = this;
+    request({
+      url: api.exhibition.detail,
+      data: {
+        exhibition_id: that.data.id
+      }
+    }).then(res => {
+      console.log(res);
+      if (res.code == 200) {
+        WxParse.wxParse('content', 'html', res.data.info.traffic, that);
+        let info = res.data.info
+        that.setData({
+          latitude: info.latitude,
+          longitude: info.longitude,
+          markers: [{
+            iconPath: "/images/map_location@2x.png",
+            id: 0,
+            latitude: info.latitude,
+            longitude: info.longitude,
+            width: 44,
+            height: 54
+          }]
+        })
+      }
+    })
   },
   // 判断用户是否拒绝地理位置信息授权，拒绝的话重新请求授权
   getUserLocation: function () {
