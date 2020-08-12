@@ -3,6 +3,8 @@ const App = getApp();
 import {
   navigateTo
 } from '../../utils/wx.js'
+import api from '../../request/api.js';
+const util = require('../../utils/util.js');
 Page({
 
   /**
@@ -15,7 +17,10 @@ Page({
     autoplay: false,
     interval: 2000,
     duration: 500,
-    // swiperList: ['https://img02.mockplus.cn/idoc/xd/2020-07-30/00cea579-9e88-4117-86c8-099bbe1206e4.png', 'https://img02.mockplus.cn/idoc/xd/2020-07-30/d2daeb77-852c-4b17-b75c-9740b8d5cc48.png', 'https://img02.mockplus.cn/idoc/xd/2020-07-30/619a01c6-c20d-4d55-8ea7-75f01de0ccae.png'],
+    noData: false,
+    noMore: false,
+    loading: false,
+    page: 1,
     swiperList: [{
       url: 'https://img02.mockplus.cn/idoc/xd/2020-07-30/00cea579-9e88-4117-86c8-099bbe1206e4.png',
       type: 1
@@ -39,7 +44,7 @@ Page({
         id: 2
       }
     ],
-    listData: 8,
+    listData: [],
     subTabIndex: 1,
     subTabList: [{
       title: '全部',
@@ -57,9 +62,10 @@ Page({
       title: '固废气类',
       id: 5
     }, ],
-    titleList: 2,
-    selectList: 9,
+    titleList: [],
+    selectList: [],
     titleFlag: false,
+    idList: []
   },
   goBack() {
     wx.navigateBack()
@@ -68,15 +74,31 @@ Page({
   handleChangeTab(e) {
     let id = e.currentTarget.dataset.id;
     this.setData({
-      tabIndex: id
+      tabIndex: id,
+      noData: false,
+      noMore: false,
+      loading: false,
+      listData: []
     })
+    if (id == 1) {
+      this.getExpertsCategory();
+      this.getExpertsList();
+    } else {
+      this.getForumCategory();
+      this.getForumList();
+    }
   },
   // 获取二级 tab 信息
   handleChangeSubTab(e) {
     let id = e.currentTarget.dataset.id;
     this.setData({
-      subTabIndex: id
+      subTabIndex: id,
+      noData: false,
+      noMore: false,
+      loading: false,
+      listData: []
     })
+    this.getForumList();
   },
   // 下拉框显示与隐藏
   handleChooseTitle() {
@@ -86,13 +108,69 @@ Page({
   },
   // 选择专家类型
   handleSelectTitle(e) {
-    let id = e.currentTarget.dataset.id;
-    let titleList = [{}, {}, {}];
-    for (let i = 0; i < titleList.length; i++) {
-      titleList[i].checked = false
+    let id = e.currentTarget.dataset.item.id;
+    let checked = e.currentTarget.dataset.item.checked;
+    let index = e.currentTarget.dataset.index;
+    let name = e.currentTarget.dataset.item.name;
+    let selectList = this.data.selectList;
+    let titleList = this.data.titleList;
+    let idList = this.data.idList;
+    if (checked) {
+      selectList[index].checked = false;
+      titleList.pop(name);
+      idList.pop(id)
+    } else {
+      selectList[index].checked = true;
+      titleList.push(name);
+      idList.push(id);
     }
+    titleList = util.unique(titleList);
+    idList = util.unique(idList);
+    this.setData({
+      selectList: selectList,
+      titleList: titleList,
+      idList: idList,
+      noData: false,
+      noMore: false,
+      loading: false,
+      listData: []
+    })
+    wx.setStorageSync('titleList', titleList);
+    wx.setStorageSync('idList', idList);
     console.log(titleList)
+    this.getExpertsList();
+  },
+  // 删除专家类型
+  handleDelTile(e) {
+    let index = e.currentTarget.dataset.index;
+    console.log('删除', index)
+    let titleList = this.data.titleList;
+    let idList = this.data.idList;
+    let selectList = this.data.selectList;
+    let arr = [];
+    let arrId = [];
+    for (let i = 0; i < titleList.length; i++) {
+      if (i != index) {
+        arr.push(titleList[i]);
+        arrId.push(idList[i])
+      } else {
+        selectList[i].checked = false
+      }
+    }
+    this.setData({
+      titleList: arr,
+      idList: arrId,
+      selectList: selectList,
+      noData: false,
+      noMore: false,
+      loading: false,
+      listData: []
+    })
 
+    wx.setStorageSync('titleList', arr);
+    wx.setStorageSync('idList', arrId);
+
+    this.getExpertsList();
   },
   // 跳转专家详情页面
   handleJump() {
@@ -100,7 +178,7 @@ Page({
       url: '/pages/professor-detail/index',
     })
   },
-  jumpPage1(){
+  jumpPage1() {
     wx.navigateTo({
       url: '/pages/news-detail/index',
     })
@@ -122,8 +200,197 @@ Page({
         })
       }
     }
-  },
 
+    this.setData({
+      titleList: wx.getStorageSync('titleList') || [],
+      idList: wx.getStorageSync('idList') || []
+    })
+    this.getSlideshow();
+    this.getExpertsCategory();
+    this.getExpertsList();
+  },
+  // 获取轮播图
+  getSlideshow() {
+    const that = this;
+    App.request({
+      url: api.forum.slideshow,
+      method: 'post',
+      success: function (res) {
+        console.log(res);
+        if (res.code == 200) {
+          that.setData({
+            swiperList: res.data.list
+          })
+        }
+      },
+      fail: function (res) {
+        console.log(res)
+      }
+    })
+  },
+  // 高峰论坛分类
+  getForumCategory() {
+    const that = this;
+    App.request({
+      url: api.forum.forumCategory,
+      method: 'post',
+      success: function (res) {
+        console.log(res);
+        if (res.code == 200) {
+          that.setData({
+            subTabList: res.data.list
+          })
+        }
+      },
+      fail: function (res) {
+        console.log(res)
+      }
+    })
+  },
+  // 专家智库分类
+  getExpertsCategory() {
+    const that = this;
+    let titleList = that.data.titleList;
+    App.request({
+      url: api.forum.expertsCategory,
+      method: 'post',
+      success: function (res) {
+        console.log(res);
+        if (res.code == 200) {
+          let selectList = res.data.list;
+          console.log(selectList)
+          if (selectList.length != 0) {
+            for (let i = 0; i < selectList.length; i++) {
+              selectList[i].checked = false;
+              console.log('接口中的title', titleList);
+              for (let j = 0; j < selectList.length; j++) {
+                if (selectList[j].name == titleList[j]) {
+                  selectList[j].checked = true;
+                }
+              }
+            }
+          }
+          console.log(selectList)
+          that.setData({
+            selectList: selectList
+          })
+        }
+      },
+      fail: function (res) {
+        console.log(res)
+      }
+    })
+  },
+  // 高峰论坛列表
+  getForumList() {
+    const that = this;
+    that.setData({
+      loading: false
+    })
+    App.request({
+      url: api.forum.forumLists,
+      method: 'post',
+      data: {
+        cat_id: that.data.subTabIndex,
+        page: that.data.page
+      },
+      success: function (res) {
+        console.log('高峰论坛列表', res);
+        if (res.code == 200) {
+          let listData = res.data.list ? res.data.list : [];
+          let is_next = res.data.is_next;
+
+          if (listData.length == 0 && that.data.page == 1) {
+            that.setData({
+              listData: [],
+              noData: true
+            })
+            return;
+          }
+
+          if (listData.length != 0 && !is_next) {
+            that.setData({
+              listData: that.data.listData.concat(listData),
+              noMore: true
+            })
+            return;
+          }
+
+          if (listData.length != 0 && is_next) {
+            that.setData({
+              listData: that.data.listData.concat(listData),
+              page: that.data.page + 1
+            })
+            return;
+          }
+        }
+
+      },
+      fail: function (res) {
+        console.log(res)
+      }
+    })
+  },
+  // 专家智库列表
+  getExpertsList() {
+    const that = this;
+    that.setData({
+      loading: false
+    })
+    let idList = that.data.idList;
+    let id = '';
+    if (idList.length != 0) {
+      for (let i = 0; i < idList.length; i++) {
+        id += idList[i] + ',';
+      }
+      id = id.slice(0, id.length - 1)
+    }
+    App.request({
+      url: api.forum.expertsLists,
+      method: 'post',
+      data: {
+        cat_id: id,
+        page: that.data.page
+      },
+      success: function (res) {
+        that.setData({
+          loading: false
+        })
+        console.log('专家智库列表', res);
+        if (res.code == 200) {
+          let listData = res.data.list ? res.data.list : [];
+          let is_next = res.data.is_next;
+
+          if (listData.length == 0 && that.data.page == 1) {
+            that.setData({
+              listData: [],
+              noData: true
+            })
+            return;
+          }
+
+          if (listData.length != 0 && !is_next) {
+            that.setData({
+              listData: that.data.listData.concat(listData),
+              noMore: true
+            })
+            return;
+          }
+
+          if (listData.length != 0 && is_next) {
+            that.setData({
+              listData: that.data.listData.concat(listData),
+              page: that.data.page + 1
+            })
+            return;
+          }
+        }
+      },
+      fail: function (res) {
+        console.log(res)
+      }
+    })
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

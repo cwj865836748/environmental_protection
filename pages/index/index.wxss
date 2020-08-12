@@ -111,7 +111,10 @@ swiper {
   overflow: scroll;
   padding-bottom: 10rpx;
 }
-
+.produce-item-box{
+  margin-right: 40rpx;
+  /* width: 220rpx; */
+}
 .produce-item-img {
   width: 220rpx;
   height: 220rpx;
@@ -121,6 +124,8 @@ swiper {
   color: #666666;
   font-size: 26rpx;
   margin-bottom: 20rpx;
+  width: 220rpx;
+  text-align: center;
 }
 /* 隐藏滚动条 */
 ::-webkit-scrollbar {

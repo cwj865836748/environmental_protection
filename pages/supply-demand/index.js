@@ -21,6 +21,7 @@ Page({
     loading:false,
     page:1,
     swiperList: [],
+    slideshow_id:'',
     tabIndex: 1,
     tabList: [{
         title: '供应',
@@ -57,6 +58,12 @@ Page({
   // 轮播图跳转
   handleSwiperJump(e){
     console.log(e.currentTarget.dataset.id);
+    let id = e.currentTarget.dataset.id;
+    this.setData({
+      slideshow_id:1
+    })
+
+    this.getSlideDetail();
   },
   /**
    * 生命周期函数--监听页面加载
@@ -146,6 +153,23 @@ Page({
 
         }
 
+      },
+      fail:function(res){
+        console.log(res)
+      }
+    })
+  },
+  // 轮播图详情页
+  getSlideDetail(){
+    const that = this;
+    App.request({
+      url:api.supply.slideshowDetail,
+      method:'post',
+      data:{
+        slideshow_id:that.data.slideshow_id
+      },
+      success:function(res){
+        console.log(res);
       },
       fail:function(res){
         console.log(res)
