@@ -6,7 +6,6 @@
 	"setting": {
 		"urlCheck": false,
 		"es6": true,
-		"enhance": false,
 		"postcss": true,
 		"preloadBackgroundData": false,
 		"minified": true,
@@ -16,23 +15,24 @@
 		"autoAudits": false,
 		"showShadowRootInWxmlPanel": true,
 		"scopeDataCheck": false,
-		"uglifyFileName": false,
 		"checkInvalidKey": true,
 		"checkSiteMap": true,
 		"uploadWithSourceMap": true,
-		"compileHotReLoad": false,
 		"babelSetting": {
 			"ignore": [],
 			"disablePlugins": [],
 			"outputPath": ""
 		},
-		"useIsolateContext": true,
 		"useCompilerModule": true,
-		"userConfirmedUseCompilerModuleSwitch": false
+		"userConfirmedUseCompilerModuleSwitch": false,
+		"enhance": false,
+		"uglifyFileName": false,
+		"compileHotReLoad": false,
+		"useIsolateContext": true
 	},
 	"compileType": "miniprogram",
 	"libVersion": "2.11.0",
-	"appid": "wxddd46be7949307ed",
+	"appid": "wx6a5654216935e847",
 	"projectname": "%E7%8E%AF%E4%BF%9D%E4%BC%9A%E5%B1%95%E5%B0%8F%E7%A8%8B%E5%BA%8F",
 	"debugOptions": {
 		"hidedInDevtools": []
@@ -121,20 +121,6 @@
 					"scene": null
 				},
 				{
-					"id": 8,
-					"name": "酒店订房",
-					"pathName": "pages/hotelDetail/hotelDetail",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "酒店图片",
-					"pathName": "pages/hotelPicture/hotelPicture",
-					"query": "",
-					"scene": null
-				},
-				{
 					"id": -1,
 					"name": "酒店详情",
 					"pathName": "pages/hotelIntroduction/hotelIntroduction",
@@ -152,6 +138,13 @@
 					"id": 12,
 					"name": "是否开发票",
 					"pathName": "pages/invoiceMessage/invoiceMessage",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "活动",
+					"pathName": "pages/activity/index",
 					"query": "",
 					"scene": null
 				}

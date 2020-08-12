@@ -1,9 +1,7 @@
 const App = getApp();
-var utils = require('../../utils/util.js');
+import {request} from '../../request/index.js'
 const api = require('../../request/api.js');
-import {
-  navigateTo
-} from '../../utils/wx.js';
+
 
 Page({
 
@@ -44,7 +42,6 @@ Page({
   // 企业详情跳转
   handleJumpCompany(e) {
     let id = e.currentTarget.dataset.id;
-    console.log(id)
     wx.navigateTo({
       url: '/pages/enterprise-detail/index?id=' + id,
     })
@@ -53,7 +50,6 @@ Page({
   handleCollect(e) {
     let id = e.currentTarget.dataset.id;
     let collect = e.currentTarget.dataset.collect;
-    console.log('收藏',collect)
     if(collect == 1){
       this.getDel(id);
     }else{
@@ -75,59 +71,25 @@ Page({
   },
   // 添加收藏
   getAdd(id) {
-    const that = this;
-    App.request({
-      url: api.company.addCollect,
-      method: 'post',
-      data: {
-        company_id: id
-      },
-      success: function (res) {
-        console.log(res);
-        if (res.code == 200) {
+     request({ url: api.company.addCollect, data: {company_id: id} }).then(res=>{
+         if (res.code == 200) {
           wx.showToast({
             title: res.msg,
             icon: 'none'
           })
         }
-      },
-      fail: function (res) {
-        console.log(res)
-      }
-    })
+   })
   },
   // 取消收藏
   getDel(id) {
-    const that = this;
-    App.request({
-      url: api.company.deCollect,
-      method: 'post',
-      data: {
-        company_id: id
-      },
-      success: function (res) {
-        console.log(res);
-        if (res.code == 200) {
+     request({ url: api.company.deCollect, data: {company_id: id} }).then(res=>{
+         if (res.code == 200) {
           wx.showToast({
             title: res.msg,
             icon: 'none'
           })
         }
-      },
-      fail: function (res) {
-        console.log(res)
-      }
-    })
-  },
-  //获取当前位置
-  getLocation() {
-    utils.getAuth().then(re => {
-      console.log(re)
-    })
-  },
-  //跳转路径
-  goSearch() {
-    navigateTo('/pages/keywordSearch/keywordSearch')
+   })
   },
 
   /**
@@ -138,25 +100,15 @@ Page({
   },
   // 获取轮播图信息
   getSlideshow() {
-    let that = this;
-    App.request({
-      url: api.common.slideshow,
-      method: 'post',
-      success: function (res) {
-        console.log(res.data);
-        if (res.code == 200) {
-          that.setData({
+     request({url: api.common.slideshow}).then(res=>{
+        this.setData({
             swiperList: res.data.list
           })
-        }
-      }
-    })
+   })
   },
   // 轮播图跳转到相应页面
   handleJump(e) {
-    console.log(e.currentTarget.dataset);
     let item = e.currentTarget.dataset.item;
-    console.log(item)
     if (item.jump_type == 1) {
       let id = item.ex_id;
       wx.navigateTo({
@@ -171,19 +123,11 @@ Page({
   },
   // 获取产品库信息
   getEquipment() {
-    const that = this;
-    App.request({
-      url: api.common.equipment,
-      method: 'post',
-      success: function (res) {
-        console.log(res);
-        if (res.code == 200) {
-          that.setData({
+       request({url: api.common.equipment}).then(res=>{
+        this.setData({
             produceList: res.data.list
           })
-        }
-      }
-    })
+   })
   },
   // 获取企业名录列表
   getBusinessList() {
@@ -191,14 +135,10 @@ Page({
     that.setData({
       loading: true
     })
-    App.request({
-      url: api.common.businessList,
-      method: 'post',
-      success: function (res) {
-        that.setData({
+    request({url: api.common.businessList}).then(res=>{
+          that.setData({
           loading: false
         })
-        console.log(res);
         if (res.code == 200) {
           let enterpriseList = res.data.list ? res.data.list : [];
           if (enterpriseList.length == 0) {
@@ -220,23 +160,17 @@ Page({
             })
           }
         }
-      },
-      fail: function (res) {
-        console.log(res)
-      }
-    })
+   })
   },
   // 获取客商名录列表
   getCustomerList() {
     const that = this;
+    
     that.setData({
       loading1: true
     })
-    App.request({
-      url: api.common.customerList,
-      method: 'post',
-      success: function (res) {
-        that.setData({
+    request({url: api.common.equipment}).then(res=>{
+          that.setData({
           loading1: false
         })
         if (res.code == 200) {
@@ -260,8 +194,8 @@ Page({
             return;
           }
         }
-      }
-    })
+   })
+
   },
   /**
    * 生命周期函数--监听页面显示

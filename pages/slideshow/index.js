@@ -2,6 +2,8 @@
 const App = getApp();
 var utils = require('../../utils/util.js');
 const api = require('../../request/api.js');
+import {request} from '../../request/index.js'
+
 import {
   navigateTo
 } from '../../utils/wx.js';
@@ -30,25 +32,14 @@ Page({
   // 获取轮播图详情
   getSlideshowDetail() {
     const that = this;
-    App.request({
-      url:api.forum.slideshowDetail,
-      method:'post',
-      data:{
-        slideshow_id:that.data.id
-      },
-      success:function(res){
-        console.log(res);
-        if(res.code == 200){
+    request({ url: api.forum.slideshowDetail, data: {slideshow_id: that.data.id} }).then(res=>{
+         if(res.code == 200){
           WxParse.wxParse('content', 'html', res.data.info.content, that);
           that.setData({
             info:res.data.info
           })
         }
-      },
-      fail:function(res){
-        console.log(res);
-      }
-    })
+   })
   },
   /**
    * 生命周期函数--监听页面初次渲染完成

@@ -5,6 +5,8 @@ import {
   navigateTo
 } from '../../utils/wx.js';
 const api = require('../../request/api.js');
+import {request} from '../../request/index.js'
+
 Page({
 
   /**
@@ -106,21 +108,13 @@ Page({
   // 获取类别分类列表
   getTypeList() {
     const that = this;
-    App.request({
-      url: api.company.category,
-      method: 'post',
-      success: function (res) {
-        console.log(res);
-        if (res.code == 200) {
-          that.setData({
-            selectList: res.data.list
+     request({ url: api.company.category }).then(res=>{
+         if (res.code == 200) {
+         that.setData({
+          selectList: res.data.list
           })
         }
-      },
-      fail: function (res) {
-        console.log(res)
-      }
-    })
+   })
   },
   // 供需发布
   handlePublish() {
@@ -182,10 +176,7 @@ Page({
       })
       return;
     } else {
-      App.request({
-        url: api.supply.add,
-        method: 'post',
-        data: {
+       request({ url: api.supply.add,data: {
           type: that.data.typeIndex,
           name: that.data.name,
           sex: that.data.sexIndex,
@@ -196,20 +187,14 @@ Page({
           mobile: that.data.mobile,
           company_info: that.data.company_info,
           remark: that.data.remark
-        },
-        success: function (res) {
-          console.log(res);
-          if(res.code == 200){
+        } }).then(res=>{
+         if(res.code == 200){
             wx.showToast({
               title: res.msg,
               icon:"none"
             })
           }
-        },
-        fail: function (res) {
-          console.log(res)
-        }
-      })
+   })
     }
 
 

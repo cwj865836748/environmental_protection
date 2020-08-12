@@ -5,6 +5,8 @@ import {
 } from '../../utils/wx.js';
 const utils = require('../../utils/util.js');
 const api = require('../../request/api.js');
+import {request} from '../../request/index.js'
+
 Page({
 
   /**
@@ -92,21 +94,13 @@ Page({
   // 获取轮播图信息
   getSlideshow(){
     const that = this;
-    App.request({
-      url:api.supply.slideshow,
-      method:'post',
-      success:function(res){
-        console.log(res);
-        if(res.code == 200){
-          that.setData({
-            swiperList:res.data.list
+    request({ url: api.supply.slideshow }).then(res=>{
+         if (res.code == 200) {
+         that.setData({
+              swiperList:res.data.list
           })
         }
-      },
-      fail:function(res){
-        console.log(res)
-      }
-    })
+   })
   },
   // 获取供需列表
   getLists(){
@@ -114,15 +108,12 @@ Page({
     that.setData({
       loading:true
     })
-    App.request({
-      url:api.supply.lists,
-      method:'post',
+     request({ url: api.supply.lists,
       data:{
         type:that.data.tabIndex,
         page:that.data.page
-      },
-      success:function(res){
-        that.setData({
+      } }).then(res=>{
+      that.setData({
           loading:false
         })
         console.log(res);
@@ -158,29 +149,17 @@ Page({
           }
 
         }
-
-      },
-      fail:function(res){
-        console.log(res)
-      }
-    })
+   })
   },
   // 轮播图详情页
   getSlideDetail(){
     const that = this;
-    App.request({
-      url:api.supply.slideshowDetail,
-      method:'post',
+     request({ url: api.supply.slideshowDetail,
       data:{
         slideshow_id:that.data.slideshow_id
-      },
-      success:function(res){
-        console.log(res);
-      },
-      fail:function(res){
-        console.log(res)
-      }
-    })
+      } }).then(res=>{
+       console.log(res);
+   })
   },
 
   /**

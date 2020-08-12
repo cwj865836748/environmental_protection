@@ -5,6 +5,8 @@ import {
   navigateTo
 } from '../../utils/wx.js';
 const api = require('../../request/api.js');
+import {request} from '../../request/index.js'
+
 Page({
 
   /**
@@ -69,21 +71,13 @@ Page({
   // 获取企业分类
   getCategroy() {
     const that = this;
-    App.request({
-      url: api.company.category,
-      method: 'post',
-      success: function (res) {
-        console.log(res);
+     request({ url: api.company.category, data: {company_id: that.data.id} }).then(res=>{
         if (res.code == 200) {
           that.setData({
             subTabList: res.data.list
           })
         }
-      },
-      fail: function (res) {
-        console.log(res)
-      }
-    })
+   })
   },
   // 获取企业列表
   getList() {
@@ -91,18 +85,13 @@ Page({
     that.setData({
       loading: true
     })
-    App.request({
-      url: api.common.lists,
-      method: 'post',
-      data: {
+      request({ url: api.common.lists, data: {
         type: 0,
         name: that.data.search,
         cat_id: that.data.subTabIndex,
         page: that.data.page
-      },
-      success: function (res) {
-        console.log(res);
-        that.setData({
+      } }).then(res=>{
+       that.setData({
           loading: false,
         })
         if (res.code == 200) {
@@ -133,11 +122,7 @@ Page({
           }
 
         }
-      },
-      fail: function (res) {
-        console.log(res)
-      }
-    })
+   })
   },
 
   /**

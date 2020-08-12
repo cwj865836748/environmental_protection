@@ -1,9 +1,8 @@
 {
   "pages": [
+    "pages/index/index",
     "pages/environmental-bbs/index",
     "pages/supply-demand/index",
-    "pages/index/index",
-    "pages/slideshow/index",
     "pages/merchants-list/index",
     "pages/produce-library/index",
     "pages/mine/index",

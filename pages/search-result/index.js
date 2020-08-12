@@ -5,6 +5,7 @@ import {
   navigateTo
 } from '../../utils/wx.js';
 const api = require("../../request/api.js");
+import {request} from '../../request/index.js'
 Page({
 
   /**
@@ -120,21 +121,13 @@ Page({
   // 获取产品库分类
   getCategory() {
     const that = this;
-    App.request({
-      url: api.equipment.category,
-      method: 'post',
-      success: function (res) {
-        console.log(res);
-        if (res.code == 200) {
-          that.setData({
-            subTabList: res.data.list
+     request({  url: api.equipment.category }).then(res=>{
+         if (res.code == 200) {
+         that.setData({
+                subTabList: res.data.list
           })
         }
-      },
-      fail: function (res) {
-        console.log(res)
-      }
-    })
+   })
   },
   // 获取设备列表
   getEqupmentList(id) {
@@ -142,15 +135,11 @@ Page({
     that.setData({
       loading: true
     })
-    App.request({
-      url: api.search.equipment,
-      method: 'post',
-      data: {
+     request({  url: api.search.equipment,data: {
         cate_id: that.data.subTabIndex,
         name: that.data.search,
         page: that.data.page
-      },
-      success: function (res) {
+      } }).then(res=>{
         that.setData({
           loading: false,
         })
@@ -182,13 +171,7 @@ Page({
           })
           return;
         }
-
-
-      },
-      fail: function (res) {
-        console.log(res)
-      }
-    })
+   })
   },
   // 获取企业列表
   getComponyList(id) {
@@ -196,16 +179,13 @@ Page({
     that.setData({
       loading: true
     })
-    App.request({
-      url: api.search.company,
-      method: 'post',
+    request({  url: api.search.company,
       data: {
         cate_id: id,
         name: that.data.search,
         page: that.data.page
-      },
-      success: function (res) {
-        console.log(res);
+      }
+       }).then(res=>{
         that.setData({
           loading: false
         })
@@ -237,11 +217,7 @@ Page({
             return;
           }
         }
-      },
-      fail: function (res) {
-        console.log(res)
-      }
-    })
+   })
   },
   /**
    * 生命周期函数--监听页面初次渲染完成
