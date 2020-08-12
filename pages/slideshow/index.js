@@ -1,8 +1,11 @@
-const api = require("../../request/api");
+// pages/slideshow/index.js
 const App = getApp();
-const utils = require('../../utils/util.js');
+var utils = require('../../utils/util.js');
+const api = require('../../request/api.js');
+import {
+  navigateTo
+} from '../../utils/wx.js';
 let WxParse = require('../../wxParse/wxParse.js');
-// pages/news-detail/index.js
 Page({
 
   /**
@@ -10,67 +13,40 @@ Page({
    */
   data: {
     id: '',
-    info: '',
-    // type ==1 表示 高峰论坛  type == 0 表示 供需快报
-    type: ''
+    info:''
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    console.log(options.id)
+    console.log(options.id);
     this.setData({
-      id: options.id,
-      type: options.type
+      id: options.id
     })
 
-    if (this.data.type == 0) {
-      this.getSupplyDetail();
-    }else{
-      this.getForumDetail();
-    }
-
+    this.getSlideshowDetail();
   },
-  // 获取供需详情
-  getSupplyDetail() {
+  // 获取轮播图详情
+  getSlideshowDetail() {
     const that = this;
     App.request({
-      url: api.supply.detail,
-      method: 'post',
-      data: {
-        supply_id: that.data.id
+      url:api.forum.slideshowDetail,
+      method:'post',
+      data:{
+        slideshow_id:that.data.id
       },
-      success: function (res) {
+      success:function(res){
         console.log(res);
-        if (res.code == 200) {
+        if(res.code == 200){
           WxParse.wxParse('content', 'html', res.data.info.content, that);
-          let info = res.data.info;
-          info.createtime = utils.formatTimeTwo(info.createtime, 'Y-M-D h:m')
           that.setData({
-            info: info
+            info:res.data.info
           })
         }
       },
-      fail: function (res) {
-        console.log(res)
-      }
-    })
-  },
-  // 获取高峰论坛详情
-  getForumDetail(){
-    const that = this;
-    App.request({
-      url:api.forum.forumDetail,
-      method:'post',
-      data:{
-        forum_id:that.data.id
-      },
-      success:function(res){
-        console.log(res)
-      },
       fail:function(res){
-        console.log(res)
+        console.log(res);
       }
     })
   },

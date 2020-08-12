@@ -3,6 +3,7 @@ const App = getApp();
 import {
   navigateTo
 } from '../../utils/wx.js';
+const utils = require('../../utils/util.js');
 const api = require('../../request/api.js');
 Page({
 
@@ -22,14 +23,14 @@ Page({
     page:1,
     swiperList: [],
     slideshow_id:'',
-    tabIndex: 1,
+    tabIndex: 0,
     tabList: [{
         title: '供应',
-        id: 1
+        id: 0
       },
       {
         title: '需求',
-        id: 2
+        id: 1
       }
     ],
     listData: []
@@ -50,20 +51,21 @@ Page({
 
     this.getLists();
   },
-  jumpPage() {
+  jumpPage(e) {
+    let id = e.currentTarget.dataset.id;
     wx.navigateTo({
-      url: '/pages/news-detail/index',
+      url: '/pages/news-detail/index?id=' + id + '&&type=0',
     })
   },
-  // 轮播图跳转
-  handleSwiperJump(e){
-    console.log(e.currentTarget.dataset.id);
+  // 跳转轮播图详情
+  handleJumpSlide(e){
+    let jump = e.currentTarget.dataset.jump;
     let id = e.currentTarget.dataset.id;
-    this.setData({
-      slideshow_id:1
-    })
-
-    this.getSlideDetail();
+    if(jump == 1){
+      wx.navigateTo({
+        url: '/pages/slideshow/index?id='+id,
+      })
+    }
   },
   /**
    * 生命周期函数--监听页面加载
@@ -137,6 +139,10 @@ Page({
           }
 
           if(listData.length != 0 && !is_next){
+            for(let i=0;i<listData.length;i++){
+              console.log(utils.formatTimeTwo(listData[i].createtime,'Y-M-D h:m')) 
+              listData[i].createtime = utils.formatTimeTwo(listData[i].createtime,'Y-M-D h:m')
+            }
             that.setData({
               listData:that.data.listData.concat(listData),
               noMore:true

@@ -93,6 +93,7 @@ swiper {
 .look-more {
   color: #43B2FC;
   font-size: 24rpx;
+  align-items: center;
 }
 
 .arrow-right {
@@ -119,7 +120,9 @@ swiper {
   width: 220rpx;
   height: 220rpx;
 }
-
+.ml15{
+  margin-left: 15rpx;
+}
 .produce-item-name {
   color: #666666;
   font-size: 26rpx;

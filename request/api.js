@@ -38,7 +38,7 @@ const api = {
   },
   forum:{
     slideshow:_api_root + 'forum/slideshow',
-    slideshowDetail:_api_root + 'slideshow-detail',
+    slideshowDetail:_api_root + 'forum/slideshow-detail',
     forumCategory:_api_root + 'forum/category',
     forumLists:_api_root + 'forum/lists',
     forumDetail:_api_root + 'forum/detail',

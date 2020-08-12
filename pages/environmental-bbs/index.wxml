@@ -15,7 +15,7 @@
 		<swiper indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" indicator-color="rgba(255,255,255,0.5)" indicator-active-color="#ffffff">
 			<block wx:for="{{swiperList}}" wx:key="*this">
 				<swiper-item>
-					<image class="swiper-item" src="{{item.pic}}"></image>
+					<image class="swiper-item" src="{{item.pic}}" bindtap="handleJumpSlide" data-jump="{{item.jump_type}}" data-id="{{item.id}}"></image>
 				</swiper-item>
 			</block>
 		</swiper>
@@ -39,8 +39,8 @@
 	<view class="professor-title-wrap flex" wx:if="{{tabIndex == 1}}">
 		<view class="professor-title-list flex-y-center">
 			<view class="professor-title-item flex-y-center" wx:for="{{titleList}}">
-				<view class="title-dec flex-xy-center">{{item}}</view>
-				<image class="title-dec-delete flex-grow-0" src="/images/home/home_delete@2x.png" bindtap="handleDelTile" data-index="{{index}}"></image>
+				<view class="title-dec flex-xy-center">{{item.name}}</view>
+				<image class="title-dec-delete flex-grow-0" src="/images/home/home_delete@2x.png" bindtap="handleDelTile" data-id="{{item.id}}"></image>
 			</view>
 		</view>
 		<image class="title-dec-arrow" src="/images/form_down@2x.png" bindtap="handleChooseTitle"></image>
@@ -61,14 +61,14 @@
 
 	<!-- 专家列表 -->
 	<view class="professor-list flex" wx:if="{{tabIndex == 1}}">
-		<view class="professor-item flex-col flex-xy-center {{ index % 2 == 0 ? 'ml30' : 'ml20'}}" wx:for="{{listData}}" bindtap="handleJump">
+		<view class="professor-item flex-col flex-xy-center {{ index % 2 == 0 ? 'ml30' : 'ml20'}}" wx:for="{{listData}}" bindtap="handleEJump" data-id="{{item.id}}">
 			<image class="professor-avatar flex-grow-0" src="{{item.pic}}"></image>
 			<view class="professor-name">{{item.name}}</view>
-			<view class="professor-title text-more-single flex-xy-center">
+			<!-- <view class="professor-title text-more-single flex-xy-center">
 				<view class="text-more-single" wx:if="{{utils.isMore(item.position[0])}}">{{item.position[0]}}</view>
 				<view wx:if="{{!utils.isMore(item.position[0])}}" class="professor-position text-more-single" wx:for="{{item.position}}" wx:for-item="positionItem">{{positionItem}}</view>
-			</view>
-
+			</view> -->
+			<view class="professor-title text-more-single">{{item.position[0]}}</view>
 		</view>
 	</view>
 
@@ -84,7 +84,7 @@
 
 		<view class="news-content">
 
-			<view class="news-list pl30" wx:for="{{listData}}" bindtap="jumpPage1">
+			<view class="news-list pl30" wx:for="{{listData}}" bindtap="handleFJump" data-id="{{item.id}}">
 				<view class="news-item flex-y-center">
 					<view class="item-img flex-xy-center">
 						<image class="flex-grow-0" src="{{item.pic}}"></image>

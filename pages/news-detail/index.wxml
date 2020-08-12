@@ -1,10 +1,13 @@
 <!--pages/news-detail/index.wxml-->
 <navbar title="详情" back="{{true}}"></navbar>
 <view class="wrap">
-	<view class="news-title">厦门国际环保展组委会授予集美大学机械与能源工程学院“最佳协办单位”奖项</view>
-	<view class="news-time">2020.07.05 10:20</view>
-	<view class="news-content">富文本编辑</view>
-
+	<view class="news-title">{{info.title}}</view>
+	<view class="news-time">{{info.createtime}}</view>
+	<view class="news-content">
+		<import src="../../wxParse/wxParse.wxml" />
+		<template is="wxParse" data="{{wxParseData:content.nodes}}" />
+	</view>
 </view>
+
 
 <include src="/common/consult/consult" />
