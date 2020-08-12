@@ -1,4 +1,6 @@
 const api = require("../../request/api");
+import {request} from '../../request/index.js'
+
 const App = getApp();
 const utils = require('../../utils/util.js');
 let WxParse = require('../../wxParse/wxParse.js');
@@ -35,15 +37,8 @@ Page({
   // 获取供需详情
   getSupplyDetail() {
     const that = this;
-    App.request({
-      url: api.supply.detail,
-      method: 'post',
-      data: {
-        supply_id: that.data.id
-      },
-      success: function (res) {
-        console.log(res);
-        if (res.code == 200) {
+    request({ url: api.supply.detail, data: {supply_id: that.data.id} }).then(res=>{
+       if (res.code == 200) {
           WxParse.wxParse('content', 'html', res.data.info.content, that);
           let info = res.data.info;
           info.createtime = utils.formatTimeTwo(info.createtime, 'Y-M-D h:m')
@@ -51,28 +46,14 @@ Page({
             info: info
           })
         }
-      },
-      fail: function (res) {
-        console.log(res)
-      }
-    })
+   })
   },
   // 获取高峰论坛详情
   getForumDetail(){
     const that = this;
-    App.request({
-      url:api.forum.forumDetail,
-      method:'post',
-      data:{
-        forum_id:that.data.id
-      },
-      success:function(res){
-        console.log(res)
-      },
-      fail:function(res){
-        console.log(res)
-      }
-    })
+     request({ url: api.forum.forumDetail, data: {forum_id: that.data.id} }).then(res=>{
+       console.log(res)
+   })
   },
   /**
    * 生命周期函数--监听页面初次渲染完成

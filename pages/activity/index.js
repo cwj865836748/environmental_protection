@@ -1,5 +1,4 @@
 // pages/activity/index.js
-import {navigateTo} from '../../utils/wx.js'
 import {request} from '../../request/index.js'
 const api = require('../../request/api.js');
 Page({

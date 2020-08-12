@@ -1,9 +1,7 @@
 // pages/environmental-bbs/index.js
 const App = getApp();
-import {
-  navigateTo
-} from '../../utils/wx.js'
 import api from '../../request/api.js';
+import {request} from '../../request/index.js'
 const util = require('../../utils/util.js');
 Page({
 
@@ -237,51 +235,31 @@ Page({
   // 获取轮播图
   getSlideshow() {
     const that = this;
-    App.request({
-      url: api.forum.slideshow,
-      method: 'post',
-      success: function (res) {
-        console.log(res);
-        if (res.code == 200) {
-          that.setData({
+     request({ url: api.forum.slideshow }).then(res=>{
+         if (res.code == 200) {
+         that.setData({
             swiperList: res.data.list
           })
         }
-      },
-      fail: function (res) {
-        console.log(res)
-      }
-    })
+   })
   },
   // 高峰论坛分类
   getForumCategory() {
     const that = this;
-    App.request({
-      url: api.forum.forumCategory,
-      method: 'post',
-      success: function (res) {
-        console.log(res);
-        if (res.code == 200) {
-          that.setData({
+     request({ url: api.forum.forumCategory }).then(res=>{
+         if (res.code == 200) {
+         that.setData({
             subTabList: res.data.list
           })
         }
-      },
-      fail: function (res) {
-        console.log(res)
-      }
-    })
+   })
   },
   // 专家智库分类
   getExpertsCategory() {
     const that = this;
     let titleList = that.data.titleList;
-    App.request({
-      url: api.forum.expertsCategory,
-      method: 'post',
-      success: function (res) {
-        console.log(res);
-        if (res.code == 200) {
+     request({ url: api.forum.expertsCategory }).then(res=>{
+         if (res.code == 200) {
           let selectList = res.data.list;
           console.log(selectList)
           if (selectList.length != 0) {
@@ -300,11 +278,7 @@ Page({
             selectList: selectList
           })
         }
-      },
-      fail: function (res) {
-        console.log(res)
-      }
-    })
+   })
   },
   // 高峰论坛列表
   getForumList() {
@@ -312,16 +286,13 @@ Page({
     that.setData({
       loading: false
     })
-    App.request({
-      url: api.forum.forumLists,
-      method: 'post',
-      data: {
+      request({ 
+        url: api.forum.forumLists, 
+        data: {
         cat_id: that.data.subTabIndex,
-        page: that.data.page
-      },
-      success: function (res) {
-        console.log('高峰论坛列表', res);
-        if (res.code == 200) {
+        page: that.data.page } 
+      }).then(res=>{
+         if (res.code == 200) {
           let listData = res.data.list ? res.data.list : [];
           let is_next = res.data.is_next;
 
@@ -352,12 +323,7 @@ Page({
             return;
           }
         }
-
-      },
-      fail: function (res) {
-        console.log(res)
-      }
-    })
+   })
   },
   // 专家智库列表
   getExpertsList() {
@@ -373,15 +339,12 @@ Page({
       }
       id = id.slice(0, id.length - 1)
     }
-    App.request({
-      url: api.forum.expertsLists,
-      method: 'post',
+     request({ url: api.forum.expertsLists,
       data: {
         cat_id: id,
         page: that.data.page
-      },
-      success: function (res) {
-        that.setData({
+      } }).then(res=>{
+         that.setData({
           loading: false
         })
         console.log('专家智库列表', res);
@@ -413,11 +376,7 @@ Page({
             return;
           }
         }
-      },
-      fail: function (res) {
-        console.log(res)
-      }
-    })
+   })
   },
   /**
    * 生命周期函数--监听页面初次渲染完成

@@ -1,6 +1,8 @@
 // pages/merchants-list/index.js
 const App = getApp();
 var utils = require('../../utils/util.js');
+import {request} from '../../request/index.js'
+
 import {
   navigateTo
 } from '../../utils/wx.js';
@@ -68,21 +70,13 @@ Page({
   // 获取商家分类
   getCategroy() {
     const that = this;
-    App.request({
-      url: api.company.category,
-      method: 'post',
-      success: function (res) {
-        console.log(res);
-        if (res.code == 200) {
-          that.setData({
-            subTabList: res.data.list
+     request({ url: api.company.category }).then(res=>{
+         if (res.code == 200) {
+         that.setData({
+             subTabList: res.data.list
           })
         }
-      },
-      fail: function (res) {
-        console.log(res)
-      }
-    })
+   })
   },
   // 获取商家列表
   getList() {
@@ -90,18 +84,13 @@ Page({
     that.setData({
       loading1: true
     })
-    App.request({
-      url: api.common.lists,
-      method: 'post',
-      data: {
+       request({ url: api.common.lists, data: {
         type: 1,
         name: that.data.search,
         cat_id: that.data.subTabIndex,
         page: that.data.page
-      },
-      success: function (res) {
-        console.log(res);
-        that.setData({
+      } }).then(res=>{
+         that.setData({
           loading1: false,
         })
         if (res.code == 200) {
@@ -131,11 +120,7 @@ Page({
           }
 
         }
-      },
-      fail: function (res) {
-        console.log(res)
-      }
-    })
+   })
   },
   /**
    * 生命周期函数--监听页面初次渲染完成

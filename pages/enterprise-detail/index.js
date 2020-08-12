@@ -1,8 +1,6 @@
 // pages/enterprise-detail/index.js
 const App = getApp();
-import {
-  navigateTo
-} from '../../utils/wx.js';
+import {request} from '../../request/index.js'
 const api = require('../../request/api.js');
 Page({
 
@@ -65,24 +63,13 @@ Page({
   // 获取企业详情
   getCompanyDetail() {
     const that = this;
-    App.request({
-      url: api.company.detail,
-      method: 'post',
-      data: {
-        company_id: that.data.id
-      },
-      success: function (res) {
-        console.log(res);
-        if (res.code == 200) {
-          that.setData({
+     request({ url: api.company.detail, data: {company_id: that.data.id} }).then(res=>{
+         if (res.code == 200) {
+         that.setData({
             info: res.data.info
           })
         }
-      },
-      fail: function (res) {
-        console.log(res)
-      }
-    })
+   })
   },
   // 获取企业详情产品库
   getEquipment() {
@@ -90,18 +77,11 @@ Page({
     that.setData({
       loading: true
     })
-    App.request({
-      url: api.company.equipment,
-      method: 'post',
-      data: {
-        company_id: that.data.id,
-        page: that.data.page
-      },
-      success: function (res) {
-        that.setData({
+    request({ url: api.company.equipment, data: {company_id: that.data.id,
+        page: that.data.page} }).then(res=>{
+         that.setData({
           loading: false
         })
-        console.log(res);
         if (res.code == 200) {
           let prodeceList = res.data.list ? res.data.list : [];
           let is_next = res.data.is_next;
@@ -131,45 +111,23 @@ Page({
           }
 
         }
-      },
-      fail: function (res) {
-        console.log(res)
-      }
-    })
+   })
   },
   // 添加收藏
   getAdd() {
     const that = this;
-    App.request({
-      url: api.company.addCollect,
-      method: 'post',
-      data: {
-        company_id: that.data.id
-      },
-      success:function(res){
-        console.log(res)
-      },
-      fail:function(res){
-        console.log(res)
-      }
-    })
+     request({ url: api.company.addCollect, data: {company_id: that.data.id} }).then(res=>{
+         console.log(res)
+        
+   })
   },
   // 取消收藏
   getDel(){
     const that = this;
-    App.request({
-      url:api.company.deCollect,
-      method:'post',
-      data:{
-        company_id: that.data.id
-      },
-      success:function(res){
-        console.log(res)
-      },
-      fail:function(res){
-        console.log(res)
-      }
-    })
+     request({ url: api.company.deCollect, data: {company_id: that.data.id} }).then(res=>{
+         console.log(res)
+        
+   })
   },
 
   /**

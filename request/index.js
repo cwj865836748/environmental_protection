@@ -1,6 +1,6 @@
 import {showToast} from '../utils/wx'
 // 后台url
- const baseUrl = "http://106.52.153.11:8789/";
+ const baseUrl = "http://106.52.153.11:8789";
  
 // 同时发送异步代码的次数
 let ajaxTimes = 0;
@@ -35,7 +35,7 @@ export const request = (params) => {
           wx.reLaunch({ url: '/pages/authorization/authorization',}) 
               }
         else{
-                resolve(result.data);
+                resolve(res.data);
               }
       },
       fail: (res) => {

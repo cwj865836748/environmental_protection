@@ -5,6 +5,7 @@ import {
   navigateTo
 } from '../../utils/wx.js';
 const api = require('../../request/api.js');
+import {request} from '../../request/index.js'
 var WxParse = require('../../wxParse/wxParse.js');
 Page({
 
@@ -191,14 +192,7 @@ Page({
   getEquipmentInfo() {
     console.log('设备详情')
     const that = this;
-    App.request({
-      url: api.equipment.detail,
-      method: 'post',
-      data: {
-        equipment_id: that.data.id
-      },
-      success: function (res) {
-        console.log(res);
+    request({ url: api.equipment.detail, data: {equipment_id: that.data.id} }).then(res=>{
         if (res.code == 200) {
           that.setData({
             info: res.data.info,
@@ -206,45 +200,21 @@ Page({
           })
           WxParse.wxParse('content', 'html', res.data.info.introduce, that);
         }
-      },
-      fail: function (res) {
-        console.log(res)
-      }
-    })
+   })
   },
   // 添加收藏
   getAdd() {
     const that = this;
-    App.request({
-      url: api.equipment.addCollect,
-      method: 'post',
-      data: {
-        equipment_id: that.data.id
-      },
-      success: function (res) {
-        console.log(res)
-      },
-      fail: function (res) {
-        console.log(res)
-      }
-    })
+    request({ url: api.equipment.addCollect, data: {equipment_id: that.data.id} }).then(res=>{
+         console.log(res)
+   })
   },
   // 删除收藏
   getDel() {
     const that = this;
-    App.request({
-      url: api.equipment.delCollect,
-      method: 'post',
-      data: {
-        id: that.data.id
-      },
-      success: function (res) {
-        console.log(res)
-      },
-      fail: function (res) {
-        console.log(res)
-      }
-    })
+     request({ url: api.equipment.delCollect, data: {id: that.data.id} }).then(res=>{
+         console.log(res)
+   })
   },
   /**
    * 生命周期函数--监听页面初次渲染完成

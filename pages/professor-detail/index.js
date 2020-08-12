@@ -5,6 +5,8 @@ import {
   navigateTo
 } from '../../utils/wx.js'
 import api from '../../request/api.js';
+import {request} from '../../request/index.js'
+
 Page({
 
   /**
@@ -30,15 +32,8 @@ Page({
   // 获取专家详情
   getDetail() {
     const that = this;
-    app.request({
-      url:api.forum.expertsDetail,
-      method:'post',
-      data:{
-        experts_id:that.data.id
-      },
-      success:function(res){
-        console.log(res);
-        if(res.code == 200){
+     request({ url: api.forum.expertsDetail, data: {experts_id: that.data.id} }).then(res=>{
+         if(res.code == 200){
           let info = res.data.info
           let position = info.position;
           let str = '';
@@ -52,11 +47,7 @@ Page({
             titleList:res.data.cate
           })
         }
-      },
-      fail:function(res){
-        console.log(res)
-      }
-    })
+   })
   },
   /**
    * 生命周期函数--监听页面初次渲染完成
