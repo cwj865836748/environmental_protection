@@ -66,7 +66,7 @@ const api = {
     add:_api_root + 'exhibition/add'
   },
   activity:{
-    slideshow:_api_root + 'activity/slideshow',
+    slideshow: 'api/activity/slideshow',
     slideshowDetail:_api_root + 'activity/slideshow-detail',
     lists:_api_root + 'activity/lists',
     detail:_api_root + 'activity/detail',

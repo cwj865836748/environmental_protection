@@ -3,13 +3,10 @@
 <view class="activity-wrap">
 	<!-- 轮播图 -->
 	<view class="swiper-box">
-		<swiper indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" indicator-color="rgba(255,255,255,0.5)" indicator-active-color="#ffffff">
+		<swiper indicator-dots="{{true}}" indicator-color="rgba(255,255,255,0.5)" indicator-active-color="#ffffff">
 			<block wx:for="{{swiperList}}" wx:key="*this">
-				<swiper-item wx:if="{{item.type == 1}}">
+				<swiper-item>
 					<image class="swiper-item" src="{{item.url}}"></image>
-				</swiper-item>
-				<swiper-item wx:else>
-					<video class="video" src="{{item.url}}" controls='true'></video>
 				</swiper-item>
 			</block>
 		</swiper>

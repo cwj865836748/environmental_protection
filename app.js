@@ -126,6 +126,6 @@ App({
           object.complete(res);
       }
     });
-  },
+  }
 
 })
