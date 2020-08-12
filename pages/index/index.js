@@ -203,6 +203,7 @@ Page({
           let enterpriseList = res.data.list ? res.data.list : [];
           if (enterpriseList.length == 0) {
             that.setData({
+              enterpriseList:[],
               noData: true
             })
             return;
@@ -210,7 +211,7 @@ Page({
           if (enterpriseList.length < 7) {
             that.setData({
               enterpriseList: enterpriseList,
-              noMore: true
+              // noMore: true
             })
             return;
           } else {
@@ -250,7 +251,7 @@ Page({
           if (merchantsList.length < 7) {
             that.setData({
               merchantsList: merchantsList,
-              noMore1: true
+              // noMore1: true
             })
           } else {
             that.setData({

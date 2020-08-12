@@ -2,14 +2,14 @@
 <navbar title="专家详情" back="{{true}}"></navbar>
 <!-- 专家头像 -->
 <view class="professor-avatar">
-  <image src="https://img02.mockplus.cn/idoc/xd/2020-07-30/6364413e-5cd4-4df2-b056-0f7a0771c2cd.png"></image>
+  <image src="{{info.pic}}"></image>
 </view>
 <!-- 专家介绍 -->
 <view class="professor-introduce">
-  <view class="professor-name flex-y-center">孙哲彬</view>
-  <view class="professor-dec">厦门理工教授、厦门理工教授、厦门理工教授、厦门理工教授</view>
+  <view class="professor-name flex-y-center">{{info.name}}</view>
+  <view class="professor-dec">{{info.position}}</view>
   <view class="professor-title-list flex-y-center">
-    <view class="professor-title-item flex-xy-center" wx:for="{{titleList}}">大学</view>
+    <view class="professor-title-item flex-xy-center" wx:for="{{titleList}}">{{item.name}}</view>
   </view>
 </view>
 
@@ -19,4 +19,4 @@
   <view class="figure-title">人物简介</view>
 </view>
 
-<view class="figure-detail">从事脊柱外科临床工作十余年，追求以最小的创伤治愈脊柱疾病。擅长上颈椎创伤、脊柱畸形的手术治疗以及脊柱退行性疾病的微创手术治疗。AOSpine国际会员，脊柱外科Fellow；北美脊柱外科协会国际会员，脊柱外科Fellow。安徽省骨科学学会青年委员，安徽骨科医师协会脊柱学组委员、脊柱微创专业委员会委员，安徽省康复医学会理事、脊柱微创专业委员会委员，安徽省中西医结合医学会骨科微创委员会委员。多次赴欧美、马来西亚等著名脊柱外科中心交流学习，在国际著名临床脊柱专业期刊European Spine Journal, The Spine Journl, World Neurosurgery等发表3篇关于上颈椎损伤手术治疗的论文，临床发明专利两项，使寰枢椎损伤的手术治疗达到国际领先水平。</view>
+<view class="figure-detail">{{info.introduce}}</view>

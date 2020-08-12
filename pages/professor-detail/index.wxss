@@ -27,8 +27,13 @@
   margin-top: 14rpx;
 }
 
-.professor-dec {
+.professor-dec-box {
   width: 672rpx;
+  flex-wrap: wrap;
+}
+
+.professor-dec {
+
   font-size: 28rpx;
   line-height: 44rpx;
   opacity: 0.7;
@@ -43,7 +48,7 @@
 }
 
 .professor-title-item {
-  width: 82rpx;
+  /* width: 82rpx; */
   height: 38rpx;
   background: rgba(67, 178, 252, 0.1);
   border: 2rpx solid #43b2fc;
@@ -53,6 +58,7 @@
   color: #43b2fc;
   line-height: 36rpx;
   margin-bottom: 10rpx;
+  padding: 0 10rpx;
 }
 
 /* 人物简介 */

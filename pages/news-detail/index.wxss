@@ -14,3 +14,6 @@
   font-size: 26rpx;
   color: #999999;
 }
+.news-content{
+  margin-top: 20rpx;
+}

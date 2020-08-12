@@ -70,6 +70,16 @@ Page({
   goBack() {
     wx.navigateBack()
   },
+  // 跳转轮播图详情
+  handleJumpSlide(e){
+    let jump = e.currentTarget.dataset.jump;
+    let id = e.currentTarget.dataset.id;
+    if(jump == 1){
+      wx.navigateTo({
+        url: '/pages/slideshow/index?id='+id,
+      })
+    }
+  },
   // 获取一级 tab 信息 
   handleChangeTab(e) {
     let id = e.currentTarget.dataset.id;
@@ -117,11 +127,17 @@ Page({
     let idList = this.data.idList;
     if (checked) {
       selectList[index].checked = false;
+      if (titleList.length != 0) {
+        titleList.pop()
+      }
       titleList.pop(name);
       idList.pop(id)
     } else {
       selectList[index].checked = true;
-      titleList.push(name);
+      titleList.push({
+        name: name,
+        id: id
+      });
       idList.push(id);
     }
     titleList = util.unique(titleList);
@@ -142,19 +158,26 @@ Page({
   },
   // 删除专家类型
   handleDelTile(e) {
-    let index = e.currentTarget.dataset.index;
-    console.log('删除', index)
+    let id = e.currentTarget.dataset.id;
     let titleList = this.data.titleList;
     let idList = this.data.idList;
     let selectList = this.data.selectList;
     let arr = [];
     let arrId = [];
     for (let i = 0; i < titleList.length; i++) {
-      if (i != index) {
+      if (titleList[i].id != id) {
         arr.push(titleList[i]);
+      }
+    }
+    console.log("选中的id",id)
+    for (let i = 0; i < selectList.length; i++) {
+      if (selectList[i].id == id) {
+        selectList[i].checked = false;
+      }
+    }
+    for(let i=0;i<idList.length;i++){
+      if(idList[i] != id){
         arrId.push(idList[i])
-      } else {
-        selectList[i].checked = false
       }
     }
     this.setData({
@@ -173,14 +196,16 @@ Page({
     this.getExpertsList();
   },
   // 跳转专家详情页面
-  handleJump() {
+  handleEJump(e) {
+    let id = e.currentTarget.dataset.id;
     wx.navigateTo({
-      url: '/pages/professor-detail/index',
+      url: '/pages/professor-detail/index?id=' + id,
     })
   },
-  jumpPage1() {
+  handleFJump(e) {
+    let id = e.currentTarget.dataset.id;
     wx.navigateTo({
-      url: '/pages/news-detail/index',
+      url: '/pages/news-detail/index?id=' + id + '&&type = 1',
     })
   },
   /**
@@ -264,7 +289,7 @@ Page({
               selectList[i].checked = false;
               console.log('接口中的title', titleList);
               for (let j = 0; j < selectList.length; j++) {
-                if (selectList[j].name == titleList[j]) {
+                if ( titleList.length != 0 && selectList[j].name == titleList[j].name) {
                   selectList[j].checked = true;
                 }
               }
@@ -309,6 +334,9 @@ Page({
           }
 
           if (listData.length != 0 && !is_next) {
+            for(let i=0;i<listData.length;i++){
+              listData[i].createtime = util.formatTimeTwo(listData[i].createtime,'Y-M-D h:m')
+            }
             that.setData({
               listData: that.data.listData.concat(listData),
               noMore: true

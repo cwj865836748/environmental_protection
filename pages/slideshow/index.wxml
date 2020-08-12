@@ -1,0 +1,10 @@
+<!--pages/slideshow/index.wxml-->
+<navbar title="详情" back="{{true}}"></navbar>
+<view class="flex-xy-center img-box">
+	<image class="flex-grow-0" src="{{info.pic}}"></image>
+</view>
+
+<view class="content">
+	<import src="../../wxParse/wxParse.wxml" />
+	<template is="wxParse" data="{{wxParseData:content.nodes}}" />
+</view>
