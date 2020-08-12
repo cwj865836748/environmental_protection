@@ -136,9 +136,9 @@ function formatTimeTwo(number, format) {
 
   var formateArr = ['Y', 'M', 'D', 'h', 'm', 's'];
   var returnArr = [];
-
+  var num = number
   var date = new Date(number);
-  
+  console.log(new Date(num))
   returnArr.push(date.getFullYear());
   returnArr.push(formatNumber(date.getMonth() + 1));
   returnArr.push(formatNumber(date.getDate()));
@@ -153,10 +153,34 @@ function formatTimeTwo(number, format) {
   return format;
 }
 
+
+function formatDate(value) { // 时间戳转换日期格式方法
+  if (value == null) {
+    return '';
+  } else {
+    let date = new Date(value);
+    let y = date.getFullYear(); // 年
+    let MM = date.getMonth() + 1; // 月
+    MM = MM < 10 ? ('0' + MM) : MM;
+    let d = date.getDate(); // 日
+    d = d < 10 ? ('0' + d) : d;
+    let h = date.getHours(); // 时
+    h = h < 10 ? ('0' + h) : h;
+    let m = date.getMinutes(); // 分
+    m = m < 10 ? ('0' + m) : m;
+    let s = date.getSeconds(); // 秒
+    s = s < 10 ? ('0' + s) : s;
+    console.log(value)
+    console.log(date)
+    return y + '-' + MM + '-' + d + ' ' + h + ':' + m;
+  }
+}
+
 module.exports = {
   formatTime: formatTime,
   getAuth: getAuth,
   wxPromisify: wxPromisify,
   unique: unique,
   formatTimeTwo: formatTimeTwo,
+  formatDate:formatDate
 }

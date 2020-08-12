@@ -335,7 +335,7 @@ Page({
 
           if (listData.length != 0 && !is_next) {
             for(let i=0;i<listData.length;i++){
-              listData[i].createtime = util.formatTimeTwo(listData[i].createtime,'Y-M-D h:m')
+              listData[i].createtime = util.formatDate(listData[i].createtime)
             }
             that.setData({
               listData: that.data.listData.concat(listData),
