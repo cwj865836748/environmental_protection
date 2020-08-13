@@ -11,7 +11,7 @@
 
 	<!-- 轮播图 -->
 	<view class="swiper-box">
-		<swiper indicator-dots="{{indicatorDots}}" indicator-color="rgba(255,255,255,0.5)" indicator-active-color="#ffffff">
+		<swiper indicator-dots="{{indicatorDots}}" autoplay="true" indicator-color="rgba(255,255,255,0.5)" indicator-active-color="#ffffff">
 			<block wx:for="{{swiperList}}" wx:key="*this">
 				<swiper-item>
 					<image class="swiper-item" src="{{item.pic}}" bindtap="handleJump" data-item="{{item}}"></image>

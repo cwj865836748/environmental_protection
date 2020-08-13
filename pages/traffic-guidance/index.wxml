@@ -1,6 +1,6 @@
 <!--pages/traffic-guidance/index.wxml-->
 <navbar title="交通指引" back="{{true}}"></navbar>
-<map id="map" class="map" longitude="{{longitude}}" latitude="{{latitude}}" scale="14" markers="{{markers}}"></map>
+<map id="map" class="map" longitude="{{longitude}}" latitude="{{latitude}}" scale="14" markers="{{markers}}" show-location></map>
 <!-- 导航按钮 -->
 <view class="btn flex-xy-center" bindtap="getUserLocation">点击导航</view>
 <view class="content">

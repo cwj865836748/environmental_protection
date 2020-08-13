@@ -2,7 +2,9 @@
 const App = getApp();
 var utils = require('../../utils/util.js');
 const api = require('../../request/api.js');
-import {request} from '../../request/index.js'
+import {
+  request
+} from '../../request/index.js'
 
 import {
   navigateTo
@@ -15,7 +17,9 @@ Page({
    */
   data: {
     id: '',
-    info:''
+    info: '',
+    // type == 1 为供需快报  type == 2 为环保论坛 type == 3  为技术创新 type == 4 为环保展会
+    type: ''
   },
 
   /**
@@ -24,22 +28,90 @@ Page({
   onLoad: function (options) {
     console.log(options.id);
     this.setData({
-      id: options.id
+      id: options.id,
+      type: options.type
     })
 
-    this.getSlideshowDetail();
+    if (this.data.type == 1) {
+      this.getSlideshowDetailS();
+    } else if (this.data.type == 2) {
+      this.getSlideshowDetailF();
+    }else if(this.data.type == 3){
+      console.log('创新')
+      this.getSlideshowDetailT()
+    }else if(this.data.type == 4){
+      console.log('咨询')
+      this.getSlideshowDetailA();
+    }
+
   },
-  // 获取轮播图详情
-  getSlideshowDetail() {
+  // 获取轮播图详情-环保论坛
+  getSlideshowDetailF() {
     const that = this;
-    request({ url: api.forum.slideshowDetail, data: {slideshow_id: that.data.id} }).then(res=>{
-         if(res.code == 200){
-          WxParse.wxParse('content', 'html', res.data.info.content, that);
-          that.setData({
-            info:res.data.info
-          })
-        }
-   })
+    request({
+      url: api.forum.slideshowDetail,
+      data: {
+        slideshow_id: that.data.id
+      }
+    }).then(res => {
+      if (res.code == 200) {
+        WxParse.wxParse('content', 'html', res.data.info.content, that);
+        that.setData({
+          info: res.data.info
+        })
+      }
+    })
+  },
+  // 获取轮播图详情 - 供需快报
+  getSlideshowDetailS() {
+    const that = this;
+    request({
+      url: api.supply.slideshowDetail,
+      data: {
+        slideshow_id: that.data.id
+      }
+    }).then(res => {
+      if (res.code == 200) {
+        WxParse.wxParse('content', 'html', res.data.info.content, that);
+        that.setData({
+          info: res.data.info
+        })
+      }
+    })
+  },
+  // 获取轮播图详情 - 创新技术
+  getSlideshowDetailT() {
+    const that = this;
+    request({
+      url: api.technology.slideshowDetail,
+      data: {
+        slideshow_id: that.data.id
+      }
+    }).then(res => {
+      if (res.code == 200) {
+        WxParse.wxParse('content', 'html', res.data.info.content, that);
+        that.setData({
+          info: res.data.info
+        })
+      }
+    })
+  },
+  // 获取轮播图详情 - 环保咨询
+  getSlideshowDetailA() {
+    const that = this;
+    request({
+      url: api.article.slideshowDetail,
+      data: {
+        slideshow_id: that.data.id
+      }
+    }).then(res => {
+      if (res.code == 200) {
+        WxParse.wxParse('content', 'html', res.data.info.content, that);
+        that.setData({
+          info: res.data.info
+        })
+      }
+    })
   },
   /**
    * 生命周期函数--监听页面初次渲染完成

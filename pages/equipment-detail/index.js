@@ -5,7 +5,9 @@ import {
   navigateTo
 } from '../../utils/wx.js';
 const api = require('../../request/api.js');
-import {request} from '../../request/index.js'
+import {
+  request
+} from '../../request/index.js'
 var WxParse = require('../../wxParse/wxParse.js');
 Page({
 
@@ -14,9 +16,8 @@ Page({
    */
   data: {
     indicatorDots: true,
-    autoplay: false,
-    interval: 2000,
-    duration: 500,
+    canvasWidth: '',
+    canvasHeight: '',
     inviteShow: false,
     showPoster: false,
     postImg: 'https://img02.mockplus.cn/idoc/xd/2020-07-30/79bffc54-d65a-4c76-8592-810c7c3c5e54.png',
@@ -24,12 +25,13 @@ Page({
     saveImg: '',
     id: '',
     info: '',
-    company: ''
+    company: '',
+    posterInfo: ''
   },
   // 显示弹框
   handleShowPopup() {
     this.setData({
-      inviteShow: true
+      inviteShow: true,
     })
   },
   onClose() {
@@ -55,38 +57,39 @@ Page({
   createCanvas() {
     let that = this;
     const ctx = wx.createCanvasContext('myCanvas');
-    let postPath = this.data.postImg;
+    let postPath = this.data.info.pic;
     let qrImg = this.data.qrImg;
-    wx.getImageInfo({
-      src: qrImg,
-      success: function (res) {
-        console.log(res)
-        ctx.drawImage(res.path, 230, 270, 82, 82);
-      }
-    })
     wx.getImageInfo({
       src: postPath,
       success: function (res) {
         console.log(res);
-        ctx.drawImage(res.path, 0, 0, 315, 315);
+        ctx.drawImage(res.path, 0, 0, that.data.canvasWidth, 315);
+      }
+    })
+    wx.getImageInfo({
+      src: qrImg,
+      success: function (res) {
+        console.log(res)
+        ctx.drawImage(res.path, that.data.canvasWidth - 82, 270, 82, 82);
         // 设备名称
         ctx.setFillStyle('#333333');
         ctx.setFontSize(15);
-        ctx.fillText('ADA系列全金属管道换气扇', 20, 325);
+        // ctx.fillText(that.data.info.name, 20, 325);
+        utils.drawText(ctx, that.data.info.name, 20, 285, 200);
         ctx.stroke();
         // 企业名称
         ctx.fillStyle = '#f8f8f8';
-        ctx.fillRect(0, 375, 315, 30);
+        ctx.fillRect(0, that.data.canvasHeight - 34, that.data.canvasWidth, 30);
         ctx.setFillStyle('#999999');
         ctx.setFontSize(12);
         ctx.setTextAlign('center');
-        ctx.fillText('春晓环保集团', 155, 395);
+        ctx.fillText(that.data.company.name, that.data.canvasWidth / 2, that.data.canvasHeight - 18);
         ctx.draw(false, setTimeout(function () {
           wx.canvasToTempFilePath({
             x: 0,
             y: 0,
-            width: 630,
-            height: 810,
+            width: that.data.canvasWidth,
+            height: that.data.canvasHeight,
             destHeight: 630 * 2,
             destWidth: 810 * 2,
             canvasId: 'myCanvas',
@@ -107,8 +110,9 @@ Page({
   // 保存图片
   handleSave() {
     const that = this;
+    console.log('success')
     wx.downloadFile({
-      url: that.data.saveImg,
+      url: that.data.posterInfo,
       success: function (res) {
         wx.saveImageToPhotosAlbum({
           filePath: res.tempFilePath,
@@ -127,16 +131,17 @@ Page({
   },
   // 判断用户是否授权
   checkAuthorize() {
-    console.log('调用保存按钮')
+    // console.log('调用保存按钮');
+    const that = this;
     wx.getSetting({
       success: res => {
-        console.log('用户授权信息', res)
+        // console.log('用户授权信息', res)
         if (!res.authSetting['scope.writePhotosAlbum']) {
           // 未授权情况
           wx.authorize({
             scope: 'scope.writePhotosAlbum',
             success: () => {
-              this.handleSave()
+              that.handleSave()
             },
             fail: () => {
               // 用户拒绝授权
@@ -145,7 +150,7 @@ Page({
                   wx.authorize({
                     scope: 'scope.writePhotosAlbum',
                     success: () => {
-                      this.handleSave()
+                      that.handleSave()
                     }
                   })
                 }
@@ -153,7 +158,7 @@ Page({
             }
           })
         } else {
-          this.handleSave()
+          that.handleSave()
         }
       }
     })
@@ -161,14 +166,14 @@ Page({
   // 跳转企业详情页
   handleJump(e) {
     let id = e.currentTarget.dataset.id;
-    console.log(id)
+    // console.log(id)
     wx.navigateTo({
       url: '/pages/enterprise-detail/index?id=' + id,
     })
   },
   // 点击是否收藏
   handleCollect(e) {
-    console.log(e.currentTarget.dataset.collect);
+    // console.log(e.currentTarget.dataset.collect);
     let collect = e.currentTarget.dataset.collect;
     if (collect == 0) {
       this.getAdd()
@@ -182,39 +187,85 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    console.log('设备id', options.id);
+    // console.log('设备id', options.id);
+    let myCanvasWidth = '';
+    let myCanvasHeight = '';
+    wx.getSystemInfo({
+      success: function (res) {
+        myCanvasWidth = res.windowWidth - 60
+        myCanvasHeight = (res.windowWidth - 60) * 1.29
+      },
+    })
     this.setData({
-      id: options.id
+      id: options.id,
+      canvasWidth: myCanvasWidth,
+      canvasHeight: myCanvasHeight
     })
     this.getEquipmentInfo();
+    this.getPoster();
   },
   // 获取设备详情信息
   getEquipmentInfo() {
-    console.log('设备详情')
+    // console.log('设备详情')
     const that = this;
-    request({ url: api.equipment.detail, data: {equipment_id: that.data.id} }).then(res=>{
-        if (res.code == 200) {
-          that.setData({
-            info: res.data.info,
-            company: res.data.company
-          })
-          WxParse.wxParse('content', 'html', res.data.info.introduce, that);
-        }
-   })
+    request({
+      url: api.equipment.detail,
+      data: {
+        equipment_id: that.data.id
+      }
+    }).then(res => {
+      if (res.code == 200) {
+        that.setData({
+          info: res.data.info,
+          company: res.data.company
+        })
+        WxParse.wxParse('content', 'html', res.data.info.introduce, that);
+      }
+    })
   },
   // 添加收藏
   getAdd() {
     const that = this;
-    request({ url: api.equipment.addCollect, data: {equipment_id: that.data.id} }).then(res=>{
-         console.log(res)
-   })
+    request({
+      url: api.equipment.addCollect,
+      data: {
+        equipment_id: that.data.id
+      }
+    }).then(res => {
+      // console.log(res);
+      wx.showToast({
+        title: res.msg,
+        icon:'none'
+      })
+    })
   },
   // 删除收藏
   getDel() {
     const that = this;
-     request({ url: api.equipment.delCollect, data: {id: that.data.id} }).then(res=>{
-         console.log(res)
-   })
+    request({
+      url: api.equipment.delCollect,
+      data: {
+        id: that.data.id
+      }
+    }).then(res => {
+      // console.log(res)
+      wx.showToast({
+        title: res.msg,
+        icon:'none'
+      })
+    })
+  },
+  // 获取分享海报
+  getPoster() {
+    const that = this;
+    request({
+      url: api.configInfo.poster
+    }).then(res => {
+      // console.log(res);
+      that.setData({
+        posterInfo: res.data.info
+      })
+    })
   },
   /**
    * 生命周期函数--监听页面初次渲染完成

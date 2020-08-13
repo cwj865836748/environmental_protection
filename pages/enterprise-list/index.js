@@ -28,8 +28,8 @@ Page({
     id: ''
   },
   handleChangeTab(e) {
-    console.log(this.data.subTabIndex)
-    console.log(e.currentTarget.dataset.id)
+    // console.log(this.data.subTabIndex)
+    // console.log(e.currentTarget.dataset.id)
     let id = e.currentTarget.dataset.id;
     this.setData({
       subTabIndex: id,
@@ -59,7 +59,7 @@ Page({
       console.log(this.data.search)
     } else if (this.data.type == 2) {
       this.getList1();
-      console.log(this.data.search)
+      // console.log(this.data.search)
     }
 
   },
@@ -68,7 +68,7 @@ Page({
     let id = e.currentTarget.dataset.id;
     if (this.data.type == 1) {
       wx.navigateTo({
-        url: '/pages/enterprise-detail/index?id=' + id +'&&show=false',
+        url: '/pages/enterprise-detail/index?id=' + id + '&&show=false',
       })
     } else if (this.data.type == 2) {
       wx.navigateTo({

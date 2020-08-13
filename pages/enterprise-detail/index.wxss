@@ -26,6 +26,7 @@ swiper {
 .wx-swiper-dot {
   width: 12rpx !important;
   height: 12rpx !important;
+  margin-bottom: 20rpx;
 }
 
 .wx-swiper-dot.wx-swiper-dot-active {
@@ -106,7 +107,9 @@ swiper {
   /* opacity: 0.6; */
   margin-top: 12rpx;
 }
-
+.msg-left{
+  height: 150rpx;
+}
 .msg-right {
   width: 124rpx;
   height: 44rpx;

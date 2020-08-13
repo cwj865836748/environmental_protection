@@ -26,7 +26,13 @@ Page({
     loading: false,
     loading1: false
   },
-
+  // 企业详情跳转
+  handleJumpCompany(e) {
+    let id = e.currentTarget.dataset.id;
+    wx.navigateTo({
+      url: '/pages/enterprise-detail/index?id=' + id + '&&show=true',
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */
@@ -47,7 +53,7 @@ Page({
         exhibition_id: that.data.id
       }
     }).then(res => {
-      console.log(res);
+      // console.log(res);
       if (res.code == 200) {
         that.setData({
           info: res.data.info,
@@ -66,14 +72,14 @@ Page({
           })
         }
 
-        if( merchantsList.length == 0){
+        if (merchantsList.length == 0) {
           that.setData({
-            merchantsList:[],
-            noData1:true
+            merchantsList: [],
+            noData1: true
           })
-        }else{
+        } else {
           that.setData({
-            merchantsList:merchantsList.slice(0,7)
+            merchantsList: merchantsList.slice(0, 7)
           })
         }
 

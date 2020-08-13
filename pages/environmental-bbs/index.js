@@ -14,26 +14,11 @@ Page({
     navHeight: null,
     statusBarHeight: null,
     indicatorDots: true,
-    autoplay: false,
-    interval: 2000,
-    duration: 500,
     noData: false,
     noMore: false,
     loading: false,
     page: 1,
-    swiperList: [{
-      url: 'https://img02.mockplus.cn/idoc/xd/2020-07-30/00cea579-9e88-4117-86c8-099bbe1206e4.png',
-      type: 1
-    }, {
-      url: 'https://img02.mockplus.cn/idoc/xd/2020-07-30/d2daeb77-852c-4b17-b75c-9740b8d5cc48.png',
-      type: 1
-    }, {
-      url: 'https://cloud.video.taobao.com/play/u/576446681/p/1/e/6/t/1/50140370746.mp4',
-      type: 2
-    }, {
-      url: 'https://img02.mockplus.cn/idoc/xd/2020-07-30/619a01c6-c20d-4d55-8ea7-75f01de0ccae.png',
-      type: 1
-    }],
+    swiperList: [],
     tabIndex: 1,
     tabList: [{
         title: '专家智库',
@@ -46,22 +31,7 @@ Page({
     ],
     listData: [],
     subTabIndex: 1,
-    subTabList: [{
-      title: '全部',
-      id: 1
-    }, {
-      title: '水处理类',
-      id: 2
-    }, {
-      title: '泵闸类',
-      id: 3
-    }, {
-      title: '空气清新类',
-      id: 4
-    }, {
-      title: '固废气类',
-      id: 5
-    }, ],
+    subTabList: [],
     titleList: [],
     selectList: [],
     titleFlag: false,
@@ -153,7 +123,7 @@ Page({
     })
     wx.setStorageSync('titleList', titleList);
     wx.setStorageSync('idList', idList);
-    console.log(titleList)
+    // console.log(titleList)
     this.getExpertsList();
   },
   // 删除专家类型
@@ -169,7 +139,7 @@ Page({
         arr.push(titleList[i]);
       }
     }
-    console.log("选中的id", id)
+    // console.log("选中的id", id)
     for (let i = 0; i < selectList.length; i++) {
       if (selectList[i].id == id) {
         selectList[i].checked = false;
@@ -207,6 +177,16 @@ Page({
     wx.navigateTo({
       url: '/pages/news-detail/index?id=' + id + '&&type = 1',
     })
+  },
+  // 跳转轮播图详情
+  handleJumpSlide(e) {
+    let jump = e.currentTarget.dataset.jump;
+    let id = e.currentTarget.dataset.id;
+    if (jump == 1) {
+      wx.navigateTo({
+        url: '/pages/slideshow/index?id=' + id + '&&type=2',
+      })
+    }
   },
   /**
    * 生命周期函数--监听页面加载
@@ -263,7 +243,7 @@ Page({
   // 专家智库分类
   getExpertsCategory() {
     const that = this;
-    let titleList = that.data.titleList;
+    let titleList = wx.getStorageSync('titleList') || [];
     request({
       url: api.forum.expertsCategory
     }).then(res => {
@@ -273,12 +253,21 @@ Page({
         if (selectList.length != 0) {
           for (let i = 0; i < selectList.length; i++) {
             selectList[i].checked = false;
-            console.log('接口中的title', titleList);
-            for (let j = 0; j < selectList.length; j++) {
-              if (titleList.length != 0 && selectList[j].name == titleList[j].name) {
-                selectList[j].checked = true;
+            // console.log('接口中的title', titleList);
+          }
+          if (titleList.length != 0 && titleList.length < selectList.length) {
+            let name = ''
+            for (let i = 0; i < titleList.length; i++) {
+              name = titleList[i].name
+              for (let j = 0; j < selectList.length; j++) {
+                if (selectList[j].name == name) {
+                  selectList[j].checked = true;
+                  break
+                }
               }
+              name = '';
             }
+
           }
         }
         console.log(selectList)
@@ -361,7 +350,7 @@ Page({
       that.setData({
         loading: false
       })
-      console.log('专家智库列表', res);
+      // console.log('专家智库列表', res);
       if (res.code == 200) {
         let listData = res.data.list ? res.data.list : [];
         let is_next = res.data.is_next;

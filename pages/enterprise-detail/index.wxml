@@ -38,7 +38,7 @@
 <navbar title="企业详情" back="{{true}}"></navbar>
 <!-- 轮播图 -->
 <view class="swiper-box" wx:if="{{info.media_type == 0}}">
-	<swiper indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" indicator-color="rgba(255,255,255,0.5)" indicator-active-color="#ffffff">
+	<swiper indicator-dots="true" autoplay="true" indicator-color="rgba(255,255,255,0.5)" indicator-active-color="#ffffff">
 		<block wx:for="{{info.slideshow}}" wx:key="*this">
 			<swiper-item>
 				<image class="swiper-item" src="{{item}}"></image>

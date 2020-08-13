@@ -17,23 +17,8 @@ Page({
   data: {
     search: '',
     subTabIndex: 1,
-    subTabList: [{
-      title: '全部',
-      id: 1
-    }, {
-      title: '水处理类',
-      id: 2
-    }, {
-      title: '泵闸类',
-      id: 3
-    }, {
-      title: '空气清新类',
-      id: 4
-    }, {
-      title: '固废气类',
-      id: 5
-    }, ],
-    produceList: 8,
+    subTabList: [],
+    produceList: [],
     noData: false,
     noMore: false,
     loading: false,
@@ -47,7 +32,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    console.log(options.type);
+    // console.log(options.type);
     let type = options.type;
     let id = options.type || ''
     this.setData({
@@ -63,8 +48,8 @@ Page({
 
   },
   handleChangeTab(e) {
-    console.log(this.data.subTabIndex)
-    console.log(e.currentTarget.dataset.id)
+    // console.log(this.data.subTabIndex)
+    // console.log(e.currentTarget.dataset.id)
     let id = e.currentTarget.dataset.id;
     this.setData({
       subTabIndex: id,
@@ -120,7 +105,7 @@ Page({
       that.setData({
         loading: false,
       })
-      console.log("设备列表", res);
+      // console.log("设备列表", res);
       if (res.code == 200) {
         let produceList = res.data.list ? res.data.list : [];
         let is_next = res.data.is_next;
@@ -240,20 +225,20 @@ Page({
    */
   onPullDownRefresh: function () {
     // 显示顶部刷新图标
-    wx.showNavigationBarLoading();
-    this.setData({
-      page: 1,
-      noMore: false,
-      noData: false,
-      loading: false,
-      search: '',
-      subTabIndex: 1
-    })
-    this.getEqupmentList();
+    // wx.showNavigationBarLoading();
+    // this.setData({
+    //   page: 1,
+    //   noMore: false,
+    //   noData: false,
+    //   loading: false,
+    //   search: '',
+    //   subTabIndex: 1
+    // })
+    // this.getEqupmentList();
     // 隐藏导航栏加载框
-    wx.hideNavigationBarLoading();
+    // wx.hideNavigationBarLoading();
     // 停止下拉动作
-    wx.stopPullDownRefresh();
+    // wx.stopPullDownRefresh();
   },
 
   /**

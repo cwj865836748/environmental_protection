@@ -127,7 +127,8 @@ Page({
   getLocation: function () {
     let that = this;
     wx.getLocation({
-      type: 'wgs84',
+      // type: 'wgs84',
+      type:'gcj02',
       success: function (res) {
         console.log(res);
         // app.globalData.lat = res.latitude; //
@@ -135,44 +136,43 @@ Page({
         // wx.setStorageSync('lat', res.latitude)
         // wx.setStorageSync('lng', res.longitude)
         // that.getUserInfo();
-        wx.chooseLocation({
-          success(res) {
-            console.log(res)
-            that.setData({
-              address: res.address,
-              addressName: res.name,
-              latitude: res.latitude,
-              longitude: res.longitude
-            })
-            demo.reverseGeocoder({
-              location: {
-                latitude: res.latitude,
-                longitude: res.longitude
-              },
-              success: function (res) {
-                console.log(res);
-                var res = res.result;
-                that.setData({
-                  province: res.address_component.province,
-                  city: res.address_component.city,
-                  district: res.address_component.district
-                })
 
-              },
-              fail: function (res) {
-                // console.log(res);
-              },
-              complete: function (res) {
-                if (res.status != 0) { //提示用户失败可开启定位服务
-                  wx.showModal({
-                    title: '定位失败',
-                    content: '定位失败，未授权获取当前位置或服务错误',
-                  });
-                }
-              }
-            });
-          }
+        wx.openLocation({
+          latitude: Number(that.data.latitude) ,
+          longitude: Number(that.data.longitude) ,
         })
+
+        // wx.chooseLocation({
+        //   success(res) {
+        //     console.log(res)
+        //     that.setData({
+        //       address: res.address,
+        //       addressName: res.name,
+        //       latitude: res.latitude,
+        //       longitude: res.longitude
+        //     })
+        //     demo.reverseGeocoder({
+        //       location: {
+        //         latitude: res.latitude,
+        //         longitude: res.longitude
+        //       },
+        //       success: function (res) {
+        //         console.log(res);
+        //       },
+        //       fail: function (res) {
+        //         // console.log(res);
+        //       },
+        //       complete: function (res) {
+        //         if (res.status != 0) { //提示用户失败可开启定位服务
+        //           wx.showModal({
+        //             title: '定位失败',
+        //             content: '定位失败，未授权获取当前位置或服务错误',
+        //           });
+        //         }
+        //       }
+        //     });
+        //   }
+        // })
       },
       fail: function (res) {
         console.log('fail' + JSON.stringify(res))

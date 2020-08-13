@@ -153,27 +153,41 @@ function formatTimeTwo(number, format) {
   return format;
 }
 
+// canvas 文字换行
+function drawText(context, t, x, y, w) {
 
-function formatDate(value) { // 时间戳转换日期格式方法
-  if (value == null) {
-    return '';
-  } else {
-    let date = new Date(value);
-    let y = date.getFullYear(); // 年
-    let MM = date.getMonth() + 1; // 月
-    MM = MM < 10 ? ('0' + MM) : MM;
-    let d = date.getDate(); // 日
-    d = d < 10 ? ('0' + d) : d;
-    let h = date.getHours(); // 时
-    h = h < 10 ? ('0' + h) : h;
-    let m = date.getMinutes(); // 分
-    m = m < 10 ? ('0' + m) : m;
-    let s = date.getSeconds(); // 秒
-    s = s < 10 ? ('0' + s) : s;
-    console.log(value)
-    console.log(date)
-    return y + '-' + MM + '-' + d + ' ' + h + ':' + m;
+  var chr = t.split("");
+  var temp = "";
+  var row = [];
+
+  context.font = "15px Source Han Sans SC, Source Han Sans SC-Normal";
+  context.fillStyle = "#333333";
+  context.textBaseline = "middle";
+
+  for (var a = 0; a < chr.length; a++) {
+
+    if (context.measureText(temp).width < w && context.measureText(temp + (chr[a])).width <= w) {
+      temp += chr[a];
+    } //context.measureText(text).width  测量文本text的宽度
+    else {
+      row.push(temp);
+      temp = chr[a];
+    }
   }
+  row.push(temp);
+
+  for (var b = 0; b < row.length; b++) {
+    context.fillText(row[b], x, y + (b + 1) * 24); //字体20，间隔24。类似行高
+  }
+
+  // 只显示2行，加...
+  /*for(var b = 0; b < 2; b++){
+      var str = row[b];
+      if(b == 1){
+          str = str.substring(0,str.length-1) + '...';
+      }
+      context.fillText(str,x,y+(b+1)*24);
+  }*/
 }
 
 module.exports = {
@@ -182,5 +196,5 @@ module.exports = {
   wxPromisify: wxPromisify,
   unique: unique,
   formatTimeTwo: formatTimeTwo,
-  formatDate:formatDate
+  drawText:drawText
 }

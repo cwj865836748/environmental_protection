@@ -65,7 +65,7 @@ Page({
     let id = e.currentTarget.dataset.id;
     if(jump == 1){
       wx.navigateTo({
-        url: '/pages/slideshow/index?id='+id,
+        url: '/pages/slideshow/index?id='+id +'&&type=1',
       })
     }
   },

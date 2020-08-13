@@ -17,20 +17,8 @@ Page({
     navHeight: null,
     statusBarHeight: null,
     indicatorDots: true,
-    swiperList: [{
-      url: 'https://img02.mockplus.cn/idoc/xd/2020-07-30/00cea579-9e88-4117-86c8-099bbe1206e4.png',
-      type: 1
-    }, {
-      url: 'https://img02.mockplus.cn/idoc/xd/2020-07-30/d2daeb77-852c-4b17-b75c-9740b8d5cc48.png',
-      type: 1
-    }, {
-      url: 'https://cloud.video.taobao.com/play/u/576446681/p/1/e/6/t/1/50140370746.mp4',
-      type: 2
-    }, {
-      url: 'https://img02.mockplus.cn/idoc/xd/2020-07-30/619a01c6-c20d-4d55-8ea7-75f01de0ccae.png',
-      type: 1
-    }],
-    listData: 8,
+    swiperList: [],
+    listData: [],
     subTabIndex: 1,
     subTabList: [],
     noData: false,
@@ -60,7 +48,7 @@ Page({
     let id = e.currentTarget.dataset.item.id;
     if (jump == 1) {
       wx.navigateTo({
-        url: '/pages/slideshow/index?id=' + id,
+        url: '/pages/slideshow/index?id=' + id + '&&type=4',
       })
     }
   },
@@ -115,7 +103,7 @@ Page({
       console.log(res);
       if (res.code == 200) {
         this.setData({
-          subTabList: res.data.list
+          subTabList: res.data.list,
         })
       }
     })
