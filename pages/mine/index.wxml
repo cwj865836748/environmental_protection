@@ -1,22 +1,13 @@
 <!--pages/mine/index.wxml-->
+<navbar title="个人中心" back="{{false}}" headColor="transparent" titleColor="#fff"></navbar>
 <!-- 头部信息 -->
 <view class="wrap">
-
-	<view class="head">
-
-		<view class="head-nav flex-col flex-xy-center" style="height:{{navHeight}}px;">
-			<view style='height:{{statusBarHeight}}px;'></view>
-			<view class="nav-bar flex-y-center">
-				<van-icon name="arrow-left" bindtap="goBack" />
-				<view class="head-title flex-grow-1">个人中心</view>
-			</view>
-		</view>
-
+	<view class="minHead">
 		<image class="my-bg" src="/images/mine/my_bg@2x.png"></image>
 
-		<view class="my-icon">
+	  <view class="my-icon">
 			<image src="https://img02.mockplus.cn/idoc/xd/2020-07-30/a62cec8c-5e69-4b3b-abc3-ad4e56aec93f.png"></image>
-		</view>
+		</view> 
 
 		<view class="my-name">郑艺</view>
 
