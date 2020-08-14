@@ -90,8 +90,8 @@ Page({
             y: 0,
             width: that.data.canvasWidth,
             height: that.data.canvasHeight,
-            destHeight: 630 * 2,
-            destWidth: 810 * 2,
+            destHeight: that.data.canvasWidth * 2,
+            destWidth: that.data.canvasHeight * 2,
             canvasId: 'myCanvas',
             success: function (res) {
               console.log(res.tempFilePath);

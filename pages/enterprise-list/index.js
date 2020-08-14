@@ -68,7 +68,7 @@ Page({
     let id = e.currentTarget.dataset.id;
     if (this.data.type == 1) {
       wx.navigateTo({
-        url: '/pages/enterprise-detail/index?id=' + id + '&&show=false',
+        url: '/pages/enterprise-detail/index?id=' + id,
       })
     } else if (this.data.type == 2) {
       wx.navigateTo({
@@ -120,7 +120,7 @@ Page({
     request({
       url: api.common.lists,
       data: {
-        type: 0,
+        type: 1,
         name: that.data.search,
         cat_id: that.data.subTabIndex,
         page: that.data.page
@@ -169,7 +169,7 @@ Page({
     request({
       url: api.exhibition.company,
       data: {
-        type: 0,
+        type: 1,
         exhibition_id: that.data.id,
         name: that.data.search,
         cat_id: that.data.subTabIndex,
