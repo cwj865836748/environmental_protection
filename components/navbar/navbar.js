@@ -21,6 +21,10 @@ Component({
       home: {
         type: Boolean,  
         value: false
+      },
+      titleColor: {
+        type: String, 
+        value: '#333333'
       }
   },
 

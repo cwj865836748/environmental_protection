@@ -42,14 +42,23 @@
     var month = date.getMonth() + 1
     var day = date.getDate()
     
-      return year + '-' + month + '-' + day;
-     
-  
+      return year + '-' + month + '-' + day;      
 }
+   var activeStatus = function(status){
+      if(status==0){
+        return '报名中'
+      }else if (status==1){
+        return '进行中'
+      }else if (status==2){
+        return '未开始'
+      }else {
+        return '已结束'
+      }
+   }
 
-   
   module.exports = {
     orderPhone:orderPhone,
     orderMinutes:orderMinutes,
-    getTime:getTime
+    getTime:getTime,
+    activeStatus:activeStatus
   };

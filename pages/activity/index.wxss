@@ -96,6 +96,17 @@ swiper {
   font-size: 24rpx;
   color: #ffffff;
 }
+.activity-status-ready {
+  width: 100rpx;
+  height: 40rpx;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  background-color: #f52b2b;
+  border-radius: 10rpx 0 10rpx 0;
+  font-size: 24rpx;
+  color: #ffffff;
+}
 
 .activity-item-right {
   width: 412rpx;

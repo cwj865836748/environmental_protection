@@ -3,9 +3,5 @@
     "van-field": "@vant/weapp/field/index",
     "van-overlay": "@vant/weapp/overlay/index",
     "navbar":"../../components/navbar/navbar"
-  },
-  "navigationBarBackgroundColor": "#ffffff",
-  "navigationBarTextStyle": "black",
-  "navigationBarTitleText": "个人信息",
-  "backgroundTextStyle": "dark"
+  }
 }

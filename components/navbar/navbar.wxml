@@ -4,9 +4,9 @@
   <view class="title-container" style='height:{{navHeight-statusBarHeight}}px;'>
      <van-icon name="arrow-left" wx:if='{{back}}' bindtap="goBack"/>
      <van-icon name="wap-home-o" wx:if='{{home}}' bindtap="goHome"/>
-    <view class="title_head">{{title}}</view>
+    <view class="title_head" style='color:{{titleColor}};'>{{title}}</view>
   </view>
   </view>
-<view style='padding-top:{{navHeight}}px;'></view>
+<view style="padding-top:{{headColor=='transparent'?0:navHeight }}px;"></view>
 
  

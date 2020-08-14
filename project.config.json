@@ -6,6 +6,7 @@
 	"setting": {
 		"urlCheck": false,
 		"es6": true,
+		"enhance": false,
 		"postcss": true,
 		"preloadBackgroundData": false,
 		"minified": true,
@@ -15,6 +16,7 @@
 		"autoAudits": false,
 		"showShadowRootInWxmlPanel": true,
 		"scopeDataCheck": false,
+		"uglifyFileName": false,
 		"checkInvalidKey": true,
 		"checkSiteMap": true,
 		"uploadWithSourceMap": true,
@@ -25,8 +27,6 @@
 		},
 		"useCompilerModule": true,
 		"userConfirmedUseCompilerModuleSwitch": false,
-		"enhance": false,
-		"uglifyFileName": false,
 		"compileHotReLoad": false,
 		"useIsolateContext": true
 	},
@@ -66,85 +66,15 @@
 			"list": [
 				{
 					"id": -1,
-					"name": "城市列表",
-					"pathName": "pages/cityList/cityList",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": 1,
-					"name": "关键词搜索",
-					"pathName": "pages/keywordSearch/keywordSearch",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "酒店列表",
-					"pathName": "pages/hotelList/hotelList",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "酒店详情介绍",
-					"pathName": "pages/hotelIntroduction/hotelIntroduction",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "房间预订",
-					"pathName": "pages/roomReservation/roomReservation",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "发票信息",
-					"pathName": "pages/invoiceMessage/invoiceMessage",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "登录",
-					"pathName": "pages/login/login",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "酒店搜索",
-					"pathName": "pages/keywordSearch/keywordSearch",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "酒店详情",
-					"pathName": "pages/hotelIntroduction/hotelIntroduction",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "房间预定",
-					"pathName": "pages/roomReservation/roomReservation",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": 12,
-					"name": "是否开发票",
-					"pathName": "pages/invoiceMessage/invoiceMessage",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
 					"name": "活动",
 					"pathName": "pages/activity/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "我的",
+					"pathName": "pages/mine/index",
 					"query": "",
 					"scene": null
 				}

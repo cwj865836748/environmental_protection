@@ -8,6 +8,8 @@ Page({
    */
   data: {
     swiperList: [],
+    activityList:[],
+    page:1
   },
   
   /**
@@ -15,11 +17,26 @@ Page({
    */
   onLoad: function (options) {
     this.getSlideshow()
+    this.activityList()
   },
   getSlideshow(){
-   request({url:api.activity.slideshow}).then(re=>{
-     console.log(re)
+   request({url:api.activity.slideshow}).then(res=>{
+     this.setData({
+      swiperList:res.data.list
+     })
    })
+  },
+  activityList(){
+    request({url:api.activity.lists,data:{page:this.data.page}}).then(res=>{
+      this.setData({
+        activityList:[...res.data.list,...this.data.activityList],
+        is_next:res.data.is_next
+      })
+  
+    })
+  },
+  goSwiperDetail(e){
+   console.log(e)
   },
   /**
    * 生命周期函数--监听页面初次渲染完成
@@ -53,7 +70,10 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-
+    if(this.data.is_next){
+      this.data.page++
+      this.activityList()
+    }
   },
 
   /**

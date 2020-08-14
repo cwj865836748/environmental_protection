@@ -1,7 +1,6 @@
 // pages/my-info/index.js
-const app=getApp()
-var utils = require('../../utils/util.js')
-import {navigateTo} from '../../utils/wx.js'
+import {request} from '../../request/index.js'
+const api = require('../../request/api.js');
 Page({
 
   /**
@@ -10,6 +9,12 @@ Page({
   data: {
     getPhone: false,
     show: false,
+    form:{
+      realname:'',
+      company_name:'',
+      position:'',
+      email:''
+    }
   },
   handleGetPhone() {
     this.setData({
