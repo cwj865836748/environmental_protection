@@ -2,7 +2,7 @@
 <navbar title="设备详情" back="{{true}}"></navbar>
 <!-- 轮播图 -->
 <view class="swiper-box"  wx:if="{{info.media_type == 0}}">
-	<swiper indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" indicator-color="rgba(255,255,255,0.5)" indicator-active-color="#ffffff">
+	<swiper indicator-dots="{{indicatorDots}}" autoplay="true" indicator-color="rgba(255,255,255,0.5)" indicator-active-color="#ffffff">
 		<block wx:for="{{info.slideshow}}" wx:key="*this">
 			<swiper-item>
 				<image class="swiper-item" src="{{item}}"></image>
@@ -83,8 +83,9 @@
 <!-- 生成海报 -->
 <van-overlay show="{{ showPoster }}" bind:click="onClickPoster" z-index="300">
 	<view class="wrapper-poster">
-		<view class="block-poster" catch:tap="noop">
-			<canvas canvas-id="myCanvas" style="width:630rpx;height:810rpx"></canvas>
+		<view class="block-poster" style="width:{{canvasWidth}}px;height:{{canvasHeight}}px" catch:tap="noop">
+			<canvas canvas-id="myCanvas" style="width:{{canvasWidth}}px;height:{{canvasHeight}}px"></canvas>
+			<!-- <image class="poster-img" src="{{posterInfo}}"></image> -->
 		</view>
 		<view class="poster-btn-box flex-y-center flex-x-center">
 			<view class="btn save flex-y-center flex-x-center">

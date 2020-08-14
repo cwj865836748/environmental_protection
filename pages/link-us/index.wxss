@@ -1,1 +1,5 @@
 /* pages/link-us/index.wxss */
+.content{
+  width: 100%;
+  padding:0 30rpx;
+}

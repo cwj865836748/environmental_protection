@@ -1,6 +1,9 @@
 <!--pages/traffic-guidance/index.wxml-->
 <navbar title="交通指引" back="{{true}}"></navbar>
-<map id="map" class="map" longitude="{{longitude}}" latitude="{{latitude}}" scale="14" markers="{{markers}}"></map>
-	<!-- 导航按钮 -->
-	<view class="btn flex-xy-center" bindtap="getUserLocation" >点击导航</view>
-<view>富文本编辑</view>
+<map id="map" class="map" longitude="{{longitude}}" latitude="{{latitude}}" scale="14" markers="{{markers}}" show-location></map>
+<!-- 导航按钮 -->
+<view class="btn flex-xy-center" bindtap="getUserLocation">点击导航</view>
+<view class="content">
+	<import src="../../wxParse/wxParse.wxml" />
+	<template is="wxParse" data="{{wxParseData:content.nodes}}" />
+</view>

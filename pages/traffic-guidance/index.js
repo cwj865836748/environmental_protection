@@ -1,11 +1,18 @@
 // pages/traffic-guidance/index.js
-const app=getApp()
-var utils = require('../../utils/util.js')
-import {navigateTo} from '../../utils/wx.js'
+const app = getApp();
+var utils = require('../../utils/util.js');
+import {
+  navigateTo
+} from '../../utils/wx.js';
+import {
+  request
+} from '../../request/index.js';
+const api = require('../../request/api.js');
+let WxParse = require('../../wxParse/wxParse.js');
 var qqmap = require('../../plugin/qqmap-wx-jssdk1.2/qqmap-wx-jssdk.min.js');
-var  demo = new qqmap({
-  key:app.globalData.qqKey
-})
+var demo = new qqmap({
+  key: app.globalData.qqKey
+});
 Page({
 
   /**
@@ -21,14 +28,47 @@ Page({
       longitude: 113.324520,
       width: 44,
       height: 54
-    }]
+    }],
+    id: ''
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    console.log(options.id);
+    this.setData({
+      id: options.id
+    })
+    this.getDetail();
+  },
+  // 获取展会详情
+  getDetail() {
+    const that = this;
+    request({
+      url: api.exhibition.detail,
+      data: {
+        exhibition_id: that.data.id
+      }
+    }).then(res => {
+      console.log(res);
+      if (res.code == 200) {
+        WxParse.wxParse('content', 'html', res.data.info.traffic, that);
+        let info = res.data.info
+        that.setData({
+          latitude: info.latitude,
+          longitude: info.longitude,
+          markers: [{
+            iconPath: "/images/map_location@2x.png",
+            id: 0,
+            latitude: info.latitude,
+            longitude: info.longitude,
+            width: 44,
+            height: 54
+          }]
+        })
+      }
+    })
   },
   // 判断用户是否拒绝地理位置信息授权，拒绝的话重新请求授权
   getUserLocation: function () {
@@ -87,7 +127,8 @@ Page({
   getLocation: function () {
     let that = this;
     wx.getLocation({
-      type: 'wgs84',
+      // type: 'wgs84',
+      type:'gcj02',
       success: function (res) {
         console.log(res);
         // app.globalData.lat = res.latitude; //
@@ -95,44 +136,43 @@ Page({
         // wx.setStorageSync('lat', res.latitude)
         // wx.setStorageSync('lng', res.longitude)
         // that.getUserInfo();
-        wx.chooseLocation({
-          success(res) {
-            console.log(res)
-            that.setData({
-              address: res.address,
-              addressName: res.name,
-              latitude: res.latitude,
-              longitude: res.longitude
-            })
-            demo.reverseGeocoder({
-              location: {
-                latitude: res.latitude,
-                longitude: res.longitude
-              },
-              success: function (res) {
-                console.log(res);
-                var res = res.result;
-                that.setData({
-                  province: res.address_component.province,
-                  city: res.address_component.city,
-                  district: res.address_component.district
-                })
 
-              },
-              fail: function (res) {
-                // console.log(res);
-              },
-              complete: function (res) {
-                if (res.status != 0) { //提示用户失败可开启定位服务
-                  wx.showModal({
-                    title: '定位失败',
-                    content: '定位失败，未授权获取当前位置或服务错误',
-                  });
-                }
-              }
-            });
-          }
+        wx.openLocation({
+          latitude: Number(that.data.latitude) ,
+          longitude: Number(that.data.longitude) ,
         })
+
+        // wx.chooseLocation({
+        //   success(res) {
+        //     console.log(res)
+        //     that.setData({
+        //       address: res.address,
+        //       addressName: res.name,
+        //       latitude: res.latitude,
+        //       longitude: res.longitude
+        //     })
+        //     demo.reverseGeocoder({
+        //       location: {
+        //         latitude: res.latitude,
+        //         longitude: res.longitude
+        //       },
+        //       success: function (res) {
+        //         console.log(res);
+        //       },
+        //       fail: function (res) {
+        //         // console.log(res);
+        //       },
+        //       complete: function (res) {
+        //         if (res.status != 0) { //提示用户失败可开启定位服务
+        //           wx.showModal({
+        //             title: '定位失败',
+        //             content: '定位失败，未授权获取当前位置或服务错误',
+        //           });
+        //         }
+        //       }
+        //     });
+        //   }
+        // })
       },
       fail: function (res) {
         console.log('fail' + JSON.stringify(res))

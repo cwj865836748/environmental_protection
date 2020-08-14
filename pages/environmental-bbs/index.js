@@ -1,7 +1,9 @@
 // pages/environmental-bbs/index.js
 const App = getApp();
 import api from '../../request/api.js';
-import {request} from '../../request/index.js'
+import {
+  request
+} from '../../request/index.js'
 const util = require('../../utils/util.js');
 Page({
 
@@ -12,26 +14,11 @@ Page({
     navHeight: null,
     statusBarHeight: null,
     indicatorDots: true,
-    autoplay: false,
-    interval: 2000,
-    duration: 500,
     noData: false,
     noMore: false,
     loading: false,
     page: 1,
-    swiperList: [{
-      url: 'https://img02.mockplus.cn/idoc/xd/2020-07-30/00cea579-9e88-4117-86c8-099bbe1206e4.png',
-      type: 1
-    }, {
-      url: 'https://img02.mockplus.cn/idoc/xd/2020-07-30/d2daeb77-852c-4b17-b75c-9740b8d5cc48.png',
-      type: 1
-    }, {
-      url: 'https://cloud.video.taobao.com/play/u/576446681/p/1/e/6/t/1/50140370746.mp4',
-      type: 2
-    }, {
-      url: 'https://img02.mockplus.cn/idoc/xd/2020-07-30/619a01c6-c20d-4d55-8ea7-75f01de0ccae.png',
-      type: 1
-    }],
+    swiperList: [],
     tabIndex: 1,
     tabList: [{
         title: '专家智库',
@@ -44,22 +31,7 @@ Page({
     ],
     listData: [],
     subTabIndex: 1,
-    subTabList: [{
-      title: '全部',
-      id: 1
-    }, {
-      title: '水处理类',
-      id: 2
-    }, {
-      title: '泵闸类',
-      id: 3
-    }, {
-      title: '空气清新类',
-      id: 4
-    }, {
-      title: '固废气类',
-      id: 5
-    }, ],
+    subTabList: [],
     titleList: [],
     selectList: [],
     titleFlag: false,
@@ -69,12 +41,12 @@ Page({
     wx.navigateBack()
   },
   // 跳转轮播图详情
-  handleJumpSlide(e){
+  handleJumpSlide(e) {
     let jump = e.currentTarget.dataset.jump;
     let id = e.currentTarget.dataset.id;
-    if(jump == 1){
+    if (jump == 1) {
       wx.navigateTo({
-        url: '/pages/slideshow/index?id='+id,
+        url: '/pages/slideshow/index?id=' + id,
       })
     }
   },
@@ -151,7 +123,7 @@ Page({
     })
     wx.setStorageSync('titleList', titleList);
     wx.setStorageSync('idList', idList);
-    console.log(titleList)
+    // console.log(titleList)
     this.getExpertsList();
   },
   // 删除专家类型
@@ -167,14 +139,14 @@ Page({
         arr.push(titleList[i]);
       }
     }
-    console.log("选中的id",id)
+    // console.log("选中的id", id)
     for (let i = 0; i < selectList.length; i++) {
       if (selectList[i].id == id) {
         selectList[i].checked = false;
       }
     }
-    for(let i=0;i<idList.length;i++){
-      if(idList[i] != id){
+    for (let i = 0; i < idList.length; i++) {
+      if (idList[i] != id) {
         arrId.push(idList[i])
       }
     }
@@ -206,6 +178,16 @@ Page({
       url: '/pages/news-detail/index?id=' + id + '&&type = 1',
     })
   },
+  // 跳转轮播图详情
+  handleJumpSlide(e) {
+    let jump = e.currentTarget.dataset.jump;
+    let id = e.currentTarget.dataset.id;
+    if (jump == 1) {
+      wx.navigateTo({
+        url: '/pages/slideshow/index?id=' + id + '&&type=2',
+      })
+    }
+  },
   /**
    * 生命周期函数--监听页面加载
    */
@@ -235,50 +217,65 @@ Page({
   // 获取轮播图
   getSlideshow() {
     const that = this;
-     request({ url: api.forum.slideshow }).then(res=>{
-         if (res.code == 200) {
-         that.setData({
-            swiperList: res.data.list
-          })
-        }
-   })
+    request({
+      url: api.forum.slideshow
+    }).then(res => {
+      if (res.code == 200) {
+        that.setData({
+          swiperList: res.data.list
+        })
+      }
+    })
   },
   // 高峰论坛分类
   getForumCategory() {
     const that = this;
-     request({ url: api.forum.forumCategory }).then(res=>{
-         if (res.code == 200) {
-         that.setData({
-            subTabList: res.data.list
-          })
-        }
-   })
+    request({
+      url: api.forum.forumCategory
+    }).then(res => {
+      if (res.code == 200) {
+        that.setData({
+          subTabList: res.data.list
+        })
+      }
+    })
   },
   // 专家智库分类
   getExpertsCategory() {
     const that = this;
-    let titleList = that.data.titleList;
-     request({ url: api.forum.expertsCategory }).then(res=>{
-         if (res.code == 200) {
-          let selectList = res.data.list;
-          console.log(selectList)
-          if (selectList.length != 0) {
-            for (let i = 0; i < selectList.length; i++) {
-              selectList[i].checked = false;
-              console.log('接口中的title', titleList);
+    let titleList = wx.getStorageSync('titleList') || [];
+    request({
+      url: api.forum.expertsCategory
+    }).then(res => {
+      if (res.code == 200) {
+        let selectList = res.data.list;
+        console.log(selectList)
+        if (selectList.length != 0) {
+          for (let i = 0; i < selectList.length; i++) {
+            selectList[i].checked = false;
+            // console.log('接口中的title', titleList);
+          }
+          if (titleList.length != 0 && titleList.length < selectList.length) {
+            let name = ''
+            for (let i = 0; i < titleList.length; i++) {
+              name = titleList[i].name
               for (let j = 0; j < selectList.length; j++) {
-                if ( titleList.length != 0 && selectList[j].name == titleList[j].name) {
+                if (selectList[j].name == name) {
                   selectList[j].checked = true;
+                  break
                 }
               }
+              name = '';
             }
+
           }
-          console.log(selectList)
-          that.setData({
-            selectList: selectList
-          })
         }
-   })
+        console.log(selectList)
+        that.setData({
+          selectList: selectList
+        })
+      }
+    })
   },
   // 高峰论坛列表
   getForumList() {
@@ -286,44 +283,48 @@ Page({
     that.setData({
       loading: false
     })
-      request({ 
-        url: api.forum.forumLists, 
-        data: {
+    request({
+      url: api.forum.forumLists,
+      data: {
         cat_id: that.data.subTabIndex,
-        page: that.data.page } 
-      }).then(res=>{
-         if (res.code == 200) {
-          let listData = res.data.list ? res.data.list : [];
-          let is_next = res.data.is_next;
+        page: that.data.page
+      }
+    }).then(res => {
+      if (res.code == 200) {
+        let listData = res.data.list ? res.data.list : [];
+        let is_next = res.data.is_next;
 
-          if (listData.length == 0 && that.data.page == 1) {
-            that.setData({
-              listData: [],
-              noData: true
-            })
-            return;
-          }
-
-          if (listData.length != 0 && !is_next) {
-            for(let i=0;i<listData.length;i++){
-              listData[i].createtime = util.formatTimeTwo(listData[i].createtime,'Y-M-D h:m')
-            }
-            that.setData({
-              listData: that.data.listData.concat(listData),
-              noMore: true
-            })
-            return;
-          }
-
-          if (listData.length != 0 && is_next) {
-            that.setData({
-              listData: that.data.listData.concat(listData),
-              page: that.data.page + 1
-            })
-            return;
-          }
+        if (listData.length == 0 && that.data.page == 1) {
+          that.setData({
+            listData: [],
+            noData: true
+          })
+          return;
         }
-   })
+
+        if (listData.length != 0 && !is_next) {
+          for (let i = 0; i < listData.length; i++) {
+            listData[i].createtime = util.formatTimeTwo((listData[i].createtime) * 1000, 'Y-M-D h:m')
+          }
+          that.setData({
+            listData: that.data.listData.concat(listData),
+            noMore: true
+          })
+          return;
+        }
+
+        if (listData.length != 0 && is_next) {
+          for (let i = 0; i < listData.length; i++) {
+            listData[i].createtime = util.formatTimeTwo((listData[i].createtime) * 1000, 'Y-M-D h:m')
+          }
+          that.setData({
+            listData: that.data.listData.concat(listData),
+            page: that.data.page + 1
+          })
+          return;
+        }
+      }
+    })
   },
   // 专家智库列表
   getExpertsList() {
@@ -339,44 +340,46 @@ Page({
       }
       id = id.slice(0, id.length - 1)
     }
-     request({ url: api.forum.expertsLists,
+    request({
+      url: api.forum.expertsLists,
       data: {
         cat_id: id,
         page: that.data.page
-      } }).then(res=>{
-         that.setData({
-          loading: false
-        })
-        console.log('专家智库列表', res);
-        if (res.code == 200) {
-          let listData = res.data.list ? res.data.list : [];
-          let is_next = res.data.is_next;
+      }
+    }).then(res => {
+      that.setData({
+        loading: false
+      })
+      // console.log('专家智库列表', res);
+      if (res.code == 200) {
+        let listData = res.data.list ? res.data.list : [];
+        let is_next = res.data.is_next;
 
-          if (listData.length == 0 && that.data.page == 1) {
-            that.setData({
-              listData: [],
-              noData: true
-            })
-            return;
-          }
-
-          if (listData.length != 0 && !is_next) {
-            that.setData({
-              listData: that.data.listData.concat(listData),
-              noMore: true
-            })
-            return;
-          }
-
-          if (listData.length != 0 && is_next) {
-            that.setData({
-              listData: that.data.listData.concat(listData),
-              page: that.data.page + 1
-            })
-            return;
-          }
+        if (listData.length == 0 && that.data.page == 1) {
+          that.setData({
+            listData: [],
+            noData: true
+          })
+          return;
         }
-   })
+
+        if (listData.length != 0 && !is_next) {
+          that.setData({
+            listData: that.data.listData.concat(listData),
+            noMore: true
+          })
+          return;
+        }
+
+        if (listData.length != 0 && is_next) {
+          that.setData({
+            listData: that.data.listData.concat(listData),
+            page: that.data.page + 1
+          })
+          return;
+        }
+      }
+    })
   },
   /**
    * 生命周期函数--监听页面初次渲染完成

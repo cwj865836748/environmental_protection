@@ -21,6 +21,7 @@ swiper {
 .wx-swiper-dot {
   width: 12rpx !important;
   height: 12rpx !important;
+  margin-bottom: 20rpx;
 }
 
 .wx-swiper-dot.wx-swiper-dot-active {
@@ -230,6 +231,11 @@ swiper {
   top: 0;
   left: 0;
   z-index: -2;
+}
+
+.poster-img{
+  width: 100%;
+  height: 100%;
 }
 
 .block-poster .shop-qr {

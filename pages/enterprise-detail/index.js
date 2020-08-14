@@ -1,6 +1,8 @@
 // pages/enterprise-detail/index.js
 const App = getApp();
-import {request} from '../../request/index.js'
+import {
+  request
+} from '../../request/index.js'
 const api = require('../../request/api.js');
 Page({
 
@@ -17,17 +19,18 @@ Page({
     id: '',
     info: '',
     page: 1,
+    show: ''
   },
   goBack() {
     wx.navigateBack()
   },
   // 收藏操作
-  handleCollect(e){
-    console.log(e.currentTarget.dataset.collect);
+  handleCollect(e) {
+    // console.log(e.currentTarget.dataset.collect);
     let collect = e.currentTarget.dataset.collect;
-    if(collect == 0){
+    if (collect == 0) {
       this.getAdd()
-    }else{
+    } else {
       this.getDel()
     }
 
@@ -53,7 +56,8 @@ Page({
 
     console.log('企业id', options.id);
     this.setData({
-      id: options.id
+      id: options.id,
+      show: options.show
     })
 
     this.getCompanyDetail();
@@ -63,13 +67,18 @@ Page({
   // 获取企业详情
   getCompanyDetail() {
     const that = this;
-     request({ url: api.company.detail, data: {company_id: that.data.id} }).then(res=>{
-         if (res.code == 200) {
-         that.setData({
-            info: res.data.info
-          })
-        }
-   })
+    request({
+      url: api.company.detail,
+      data: {
+        company_id: that.data.id
+      }
+    }).then(res => {
+      if (res.code == 200) {
+        that.setData({
+          info: res.data.info
+        })
+      }
+    })
   },
   // 获取企业详情产品库
   getEquipment() {
@@ -77,57 +86,80 @@ Page({
     that.setData({
       loading: true
     })
-    request({ url: api.company.equipment, data: {company_id: that.data.id,
-        page: that.data.page} }).then(res=>{
-         that.setData({
-          loading: false
-        })
-        if (res.code == 200) {
-          let prodeceList = res.data.list ? res.data.list : [];
-          let is_next = res.data.is_next;
+    request({
+      url: api.company.equipment,
+      data: {
+        company_id: that.data.id,
+        page: that.data.page
+      }
+    }).then(res => {
+      that.setData({
+        loading: false
+      })
+      if (res.code == 200) {
+        let prodeceList = res.data.list ? res.data.list : [];
+        let is_next = res.data.is_next;
 
-          if (prodeceList.length == 0 && that.data.page == 1) {
-            that.setData({
-              produceList: [],
-              noData: true
-            })
-            return;
-          }
-
-          if (prodeceList.length != 0 && !is_next) {
-            that.setData({
-              produceList: that.data.produceList.concat(prodeceList),
-              noMore: true
-            })
-            return;
-          }
-
-          if (prodeceList.length != 0 && is_next) {
-            that.setData({
-              produceList: that.data.produceList.concat(prodeceList),
-              page: that.data.page + 1
-            })
-            return;
-          }
-
+        if (prodeceList.length == 0 && that.data.page == 1) {
+          that.setData({
+            produceList: [],
+            noData: true
+          })
+          return;
         }
-   })
+
+        if (prodeceList.length != 0 && !is_next) {
+          that.setData({
+            produceList: that.data.produceList.concat(prodeceList),
+            noMore: true
+          })
+          return;
+        }
+
+        if (prodeceList.length != 0 && is_next) {
+          that.setData({
+            produceList: that.data.produceList.concat(prodeceList),
+            page: that.data.page + 1
+          })
+          return;
+        }
+
+      }
+    })
   },
   // 添加收藏
   getAdd() {
     const that = this;
-     request({ url: api.company.addCollect, data: {company_id: that.data.id} }).then(res=>{
-         console.log(res)
-        
-   })
+    request({
+      url: api.company.addCollect,
+      data: {
+        company_id: that.data.id
+      }
+    }).then(res => {
+      //  console.log(res)
+      wx.showToast({
+        title: res.msg,
+        icon: 'none'
+      })
+
+    })
   },
   // 取消收藏
-  getDel(){
+  getDel() {
     const that = this;
-     request({ url: api.company.deCollect, data: {company_id: that.data.id} }).then(res=>{
-         console.log(res)
-        
-   })
+    request({
+      url: api.company.deCollect,
+      data: {
+        company_id: that.data.id
+      }
+    }).then(res => {
+      // console.log(res);
+      wx.showToast({
+        title: res.msg,
+        icon: 'none'
+      })
+
+    })
   },
 
   /**

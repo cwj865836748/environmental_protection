@@ -1,5 +1,6 @@
 /* pages/exhibition/index.wxss */
 @import '/common/consult/consult.wxss';
+@import '/common/noData/noData.wxss';
 .exhibition-list {
   width: 100%;
   padding: 0 30rpx;
@@ -29,6 +30,7 @@
   color: #333333;
   margin-top: 10rpx;
   margin-bottom: 12rpx;
+  padding-left: 20rpx;
 }
 
 .time-icon {
@@ -48,13 +50,20 @@
 
 .exhibition-status-box {
   justify-content: space-between;
+  padding-left: 20rpx;
 }
 
 .exhibition-status {
   font-size: 26rpx;
   color: #ffffff;
 }
-
+.status-sign{
+  width: 120rpx;
+  height: 50rpx;
+  background: #FF4664;
+  border-radius: 26px 0px 0px 26px;
+  background-color: #FF4664;
+}
 .status-going {
   width: 120rpx;
   height: 50rpx;

@@ -1,6 +1,6 @@
 <!--pages/enterprise-detail/index.wxml-->
 <!-- 头部导航 -->
-<view class="head">
+<!-- <view class="head">
 	<view class="head-nav flex-col flex-xy-center" style="height:{{navHeight}}px;">
 		<view style='height:{{statusBarHeight}}px;'></view>
 		<view class="nav-bar flex-y-center">
@@ -10,9 +10,50 @@
 	</view>
 
 	<view class="enterprise-icon">
-		<!-- <image src="https://img02.mockplus.cn/idoc/xd/2020-07-30/2c60fae2-3c9d-4a50-8005-9fb1f20fcc6b.png"></image> -->
 	</view>
 
+	企业信息
+	<view class="enterprise-dec flex-y-center">
+		<view class="enterprise-avatar flex-xy-center">
+			<image class="flex-grow-0" src="{{info.pic}}"></image>
+		</view>
+		<view class="enterprise-msg flex-y-center">
+			<view class="msg-left">
+				<view class="enterprise-zh-title">{{info.name}}</view>
+				<view class="enterprise-en-title">{{info.name_eg}}</view>
+			</view>
+			收藏前
+			<view class="msg-right flex-xy-center" wx:if="{{info.is_collect == 0}}" bindtap="handleCollect" data-collect="{{info.is_collect}}">
+				<image class="flex-grow-0" src="/images/business_details_collect@2x.png"></image>
+				<image src="/images/details_collect0@2x.png"></image>
+				<view class="msg-collect">收藏</view>
+			</view>
+			收藏后
+			<view class="msg-right flex-xy-center msg-collect" wx:if="{{info.is_collect == 1}}" bindtap="handleCollect" data-collect="{{info.is_collect}}">已收藏</view>
+		</view>
+	</view>
+
+</view> -->
+
+<navbar title="企业详情" back="{{true}}"></navbar>
+<!-- 轮播图 -->
+<view class="swiper-box" wx:if="{{info.media_type == 0}}">
+	<swiper indicator-dots="true" autoplay="true" indicator-color="rgba(255,255,255,0.5)" indicator-active-color="#ffffff">
+		<block wx:for="{{info.slideshow}}" wx:key="*this">
+			<swiper-item>
+				<image class="swiper-item" src="{{item}}"></image>
+			</swiper-item>
+		</block>
+	</swiper>
+</view>
+
+<!-- 企业图片 -->
+<view class="equipment-img" wx:if="{{info.media_type == 1}}">
+	<video class="video" src="{{info.media}}" controls='true'></video>
+</view>
+
+<!-- 企业介绍 -->
+<view class="enterprise-introduce-wrap flex-col">
 	<!-- 企业信息 -->
 	<view class="enterprise-dec flex-y-center">
 		<view class="enterprise-avatar flex-xy-center">
@@ -24,27 +65,22 @@
 				<view class="enterprise-en-title">{{info.name_eg}}</view>
 			</view>
 			<!-- 收藏前 -->
-			<view class="msg-right flex-xy-center"  wx:if="{{info.is_collect == 0}}" bindtap="handleCollect" data-collect="{{info.is_collect}}">
-				<image class="flex-grow-0" src="/images/business_details_collect@2x.png"></image>
-				<!-- <image src="/images/details_collect0@2x.png"></image> -->
-				<view class="msg-collect">收藏</view>
+			<view class="msg-right flex-xy-center" wx:if="{{info.is_collect == 0}}" bindtap="handleCollect" data-collect="{{info.is_collect}}">
+				<image class="flex-grow-0" src="/images/details_collect@2x.png"></image>
 			</view>
 			<!-- 收藏后 -->
-			<view class="msg-right flex-xy-center msg-collect"  wx:if="{{info.is_collect == 1}}" bindtap="handleCollect" data-collect="{{info.is_collect}}">已收藏</view>
+			<view class="msg-right flex-xy-center msg-collect" wx:if="{{info.is_collect == 1}}" bindtap="handleCollect" data-collect="{{info.is_collect}}">
+				<image class="flex-grow-0" src="/images/details_collect0@2x.png"></image>
+			</view>
 		</view>
 	</view>
-
-</view>
-
-<!-- 企业介绍 -->
-<view class="enterprise-introduce-wrap flex-col">
 	<!-- 联系方式 -->
 	<view class="enterprise-link-box flex-y-center">
 		<view class="enterprise-link-left flex-y-center">
 			<view class="line"></view>
 			<view class="introduce-title">联系方式</view>
 		</view>
-		<view class="exhibition flex-xy-center" wx:if="info.is_show == 1">已参展</view>
+		<view class="exhibition flex-xy-center" wx:if="{{show}}">已参展</view>
 	</view>
 	<view class="phone">电话：{{info.mobile}}</view>
 	<view class="area">地址：{{info.address}}</view>

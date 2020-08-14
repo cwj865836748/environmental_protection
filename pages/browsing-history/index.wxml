@@ -12,7 +12,7 @@
 <!-- 咨询 -->
 <view class="news-content" wx:if="{{tabIndex == 1}}">
 
-	<view class="news-list pl30" wx:for="{{listData}}" bindtap="jumpPage">
+	<view class="news-list pl30" wx:for="{{listData}}">
 		<view class="news-item flex-y-center">
 			<view class="item-img flex-xy-center">
 				<image class="flex-grow-0" src="https://img02.mockplus.cn/idoc/xd/2020-07-30/9abe3fa2-d0b1-4b22-8c01-3fb65a099e7c.png"></image>

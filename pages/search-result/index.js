@@ -17,6 +17,9 @@ Page({
     noData: false,
     noMore: false,
     loading: false,
+    noData1:false,
+    noMore1:false,
+    loading1:false,
     page: 1,
     tabList: [{
         title: '设备',
@@ -79,7 +82,12 @@ Page({
   handleChangeEtpTab(e) {
     let id = e.currentTarget.dataset.id;
     this.setData({
-      etpTabIndex: id
+      etpTabIndex: id,
+      noData:false,
+      noMore:false,
+      loading:false,
+      page:1,
+      enterpriseList:[],
     })
     if (id == 1) {
       this.getComponyList("")

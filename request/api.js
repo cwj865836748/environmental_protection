@@ -49,12 +49,14 @@ const api = {
   technology:{
     slideshow:_api_root + '/technology/slideshow',
     category:_api_root + '/technology/category',
+    slideshowDetail:_api_root + '/technology/slideshow-detail',
     lists:_api_root + '/technology/lists',
     detail:_api_root + '/technology/detail'
   },
   article:{
     slideshow:_api_root + '/article/slideshow',
     category:_api_root + '/article/category',
+    slideshowDetail:_api_root + '/article/slideshow-detail',
     lists:_api_root + '/article/lists',
     detail:_api_root + '/article/detail'
   },

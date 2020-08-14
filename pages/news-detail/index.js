@@ -1,5 +1,7 @@
 const api = require("../../request/api");
-import {request} from '../../request/index.js'
+import {
+  request
+} from '../../request/index.js'
 
 const App = getApp();
 const utils = require('../../utils/util.js');
@@ -13,7 +15,7 @@ Page({
   data: {
     id: '',
     info: '',
-    // type ==1 表示 高峰论坛  type == 0 表示 供需快报
+    // type ==1 表示 高峰论坛  type == 0 表示 供需快报 type == 2 表示创新技术  type == 3 表示环保咨询
     type: ''
   },
 
@@ -29,31 +31,93 @@ Page({
 
     if (this.data.type == 0) {
       this.getSupplyDetail();
-    }else{
+    } else if (this.data.type == 1) {
       this.getForumDetail();
+    } else if (this.data.type == 2) {
+      this.getTechnologyDetail();
+    } else if (this.data.type == 3) {
+      this.getArticleDetail();
     }
 
   },
   // 获取供需详情
   getSupplyDetail() {
     const that = this;
-    request({ url: api.supply.detail, data: {supply_id: that.data.id} }).then(res=>{
-       if (res.code == 200) {
-          WxParse.wxParse('content', 'html', res.data.info.content, that);
-          let info = res.data.info;
-          info.createtime = utils.formatTimeTwo(info.createtime, 'Y-M-D h:m')
-          that.setData({
-            info: info
-          })
-        }
-   })
+    request({
+      url: api.supply.detail,
+      data: {
+        supply_id: that.data.id
+      }
+    }).then(res => {
+      if (res.code == 200) {
+        WxParse.wxParse('content', 'html', res.data.info.content, that);
+        let info = res.data.info;
+        info.createtime = utils.formatTimeTwo(info.createtime * 1000, 'Y-M-D h:m')
+        that.setData({
+          info: info
+        })
+      }
+    })
   },
   // 获取高峰论坛详情
-  getForumDetail(){
+  getForumDetail() {
     const that = this;
-     request({ url: api.forum.forumDetail, data: {forum_id: that.data.id} }).then(res=>{
-       console.log(res)
-   })
+    request({
+      url: api.forum.forumDetail,
+      data: {
+        forum_id: that.data.id
+      }
+    }).then(res => {
+      console.log(res);
+      if (res.code == 200) {
+        WxParse.wxParse('content', 'html', res.data.info.content, that);
+        let info = res.data.info;
+        info.createtime = utils.formatTimeTwo(info.createtime * 1000, 'Y-M-D h:m')
+        that.setData({
+          info: info
+        })
+      }
+    })
+  },
+  // 获取创新技术详情
+  getTechnologyDetail() {
+    const that = this;
+    request({
+      url: api.technology.detail,
+      data: {
+        technology_id: that.data.id
+      }
+    }).then(res => {
+      console.log(res);
+      if (res.code == 200) {
+        WxParse.wxParse('content', 'html', res.data.info.content, that);
+        let info = res.data.info;
+        info.createtime = utils.formatTimeTwo(info.createtime * 1000, 'Y-M-D h:m')
+        that.setData({
+          info: info
+        })
+      }
+    })
+  },
+  // 获取环保咨询详情
+  getArticleDetail() {
+    const that = this;
+    request({
+      url: api.article.detail,
+      data: {
+        article_id: that.data.id
+      }
+    }).then(res => {
+      console.log(res);
+      if (res.code == 200) {
+        WxParse.wxParse('content', 'html', res.data.info.content, that);
+        let info = res.data.info;
+        info.createtime = utils.formatTimeTwo(info.createtime * 1000, 'Y-M-D h:m')
+        that.setData({
+          info: info
+        })
+      }
+    })
   },
   /**
    * 生命周期函数--监听页面初次渲染完成

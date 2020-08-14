@@ -1,5 +1,9 @@
 /* pages/innovative-technology/index.wxss */
 @import '/pages/environmental-bbs/index.wxss';
+@import '/common/noData/noData.wxss';
+page{
+  background-color: #f8f8f8;
+}
 .sub-tab-list{
   padding-left: 0;
 }

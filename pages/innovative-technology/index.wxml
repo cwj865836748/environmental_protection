@@ -11,13 +11,10 @@
 
 	<!-- 轮播图 -->
 	<view class="swiper-box">
-		<swiper indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" indicator-color="rgba(255,255,255,0.5)" indicator-active-color="#ffffff">
+		<swiper indicator-dots="{{indicatorDots}}" autoplay="true" indicator-color="rgba(255,255,255,0.5)" indicator-active-color="#ffffff">
 			<block wx:for="{{swiperList}}" wx:key="*this">
-				<swiper-item wx:if="{{item.type == 1}}">
-					<image class="swiper-item" src="{{item.url}}"></image>
-				</swiper-item>
-				<swiper-item wx:else>
-					<video class="video" src="{{item.url}}" controls='true'></video>
+				<swiper-item>
+					<image class="swiper-item" src="{{item.pic}}" bindtap="handleJump" data-item="{{item}}"></image>
 				</swiper-item>
 			</block>
 		</swiper>
@@ -31,25 +28,26 @@
 	<!-- 二级 tab 标签页 -->
 	<view class="sub-tab-list flex-y-center">
 		<view class="sub-tab-item flex-col flex-xy-center" wx:key="index" wx:for="{{subTabList}}" bindtap="handleChangeSubTab" data-id="{{item.id}}">
-			<view class="sub-tab-item-name {{ subTabIndex == item.id ? 'sub-tab-item-name-active' : ''}}">{{item.title}}</view>
+			<view class="sub-tab-item-name {{ subTabIndex == item.id ? 'sub-tab-item-name-active' : ''}}">{{item.name}}</view>
 			<view class="{{ subTabIndex == item.id ? 'sub-tab-item-line' : ''}}"></view>
 		</view>
 	</view>
 
 	<view class="news-content">
 
-		<view class="{{index != 0 ? 'news-list' : ''}} pl30" wx:for="{{listData}}" bindtap="jumpPage">
+		<view class="{{index != 0 ? 'news-list' : ''}} pl30" wx:for="{{listData}}" bindtap="jumpPage" data-id="{{item.id}}">
 			<view class="news-item flex-y-center">
 				<view class="item-img flex-xy-center">
-					<image class="flex-grow-0" src="https://img02.mockplus.cn/idoc/xd/2020-07-30/9abe3fa2-d0b1-4b22-8c01-3fb65a099e7c.png"></image>
+					<image class="flex-grow-0" src="{{item.pic}}"></image>
 				</view>
 				<view class="news-msg">
-					<view class="news-dec text-more">厦门国际环保展组委会授予集美大学机械与能源工程厦门国际环保展组委会授予集美大学机械与能源工程</view>
-					<view class="news-time">2020.07.05 10:20</view>
+					<view class="news-dec text-more">{{item.title}}</view>
+					<view class="news-time">{{item.createtime}}</view>
 				</view>
 			</view>
 		</view>
 
+		<include src="/common/noData/noData" />
 	</view>
 
 

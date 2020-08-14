@@ -3,6 +3,7 @@
   "navigationBarTextStyle": "black",
   "navigationBarTitleText": "生态联合网",
   "backgroundTextStyle": "dark",
+  "enablePullDownRefresh": true,
   "usingComponents": {
     "van-tab": "@vant/weapp/tab/index",
     "van-tabs": "@vant/weapp/tabs/index",

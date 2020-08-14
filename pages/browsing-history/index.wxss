@@ -10,7 +10,7 @@
 }
 
 .tab-list {
-  background: linear-gradient(180deg, #ffffff, rgba(255, 255, 255, 0));
+  /* background: linear-gradient(180deg, #ffffff, rgba(255, 255, 255, 0)); */
   padding-bottom: 20rpx;
 }
 .shop-list{

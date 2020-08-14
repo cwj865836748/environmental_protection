@@ -2,6 +2,9 @@
 @import '/pages/authorization/index.wxss';
 @import '/common/consult/consult.wxss';
 @import '/common/noData/noData.wxss';
+page{
+  background-color: #f8f8f8;
+}
 .head{
   height: 500rpx;
 }
@@ -76,14 +79,16 @@ swiper {
 .tab-list{
   padding: 0 120rpx;
   justify-content: space-around;
+  height: 106rpx;
   margin-top: 26rpx;
   margin-bottom: 20rpx;
+  /* background: linear-gradient(180deg,#ffffff 16%, rgba(255,255,255,0)); */
 }
 
 /* 快报内容 */
 .news-content{
   width: 100%;
-  height: 63vh;
+  /* height: 55vh; */
   overflow-y: scroll;
   padding-bottom: 100rpx;
 }
