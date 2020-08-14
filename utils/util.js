@@ -138,7 +138,7 @@ function formatTimeTwo(number, format) {
   var returnArr = [];
   var num = number
   var date = new Date(number);
-  console.log(new Date(num))
+  // console.log(new Date(num))
   returnArr.push(date.getFullYear());
   returnArr.push(formatNumber(date.getMonth() + 1));
   returnArr.push(formatNumber(date.getDate()));

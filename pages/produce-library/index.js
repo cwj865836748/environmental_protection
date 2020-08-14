@@ -27,14 +27,13 @@ Page({
     type: '',
     id: ''
   },
-
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    // console.log(options.type);
+    console.log('传参', options);
     let type = options.type;
-    let id = options.type || ''
+    let id = options.id || ''
     this.setData({
       type: type,
       id: id
@@ -45,7 +44,7 @@ Page({
     } else if (type == 2) {
       this.getEqupmentList1();
     }
-
+    // console.log(getCurrentPages()[1].options.type)
   },
   handleChangeTab(e) {
     // console.log(this.data.subTabIndex)
@@ -63,7 +62,7 @@ Page({
     } else if (this.data.type == 2) {
       this.getEqupmentList1();
     }
-   
+
   },
   onConfirm(e) {
     this.setData({
@@ -73,7 +72,12 @@ Page({
       noData: false,
       noMore: false
     })
-    this.getEqupmentList()
+    if (this.data.type == 1) {
+      this.getEqupmentList();
+    } else {
+      this.getEqupmentList1();
+    }
+
   },
   // 获取产品库分类
   getCategory() {
@@ -245,7 +249,14 @@ Page({
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-
+    if (this.data.noMore) {
+      return false;
+    }
+    if (this.data.type == 1) {
+      this.getEqupmentList()
+    } else {
+      this.getEqupmentList1()
+    }
   },
 
   /**

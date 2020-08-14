@@ -63,27 +63,27 @@ Page({
       src: postPath,
       success: function (res) {
         console.log(res);
-        ctx.drawImage(res.path, 0, 0, that.data.canvasWidth, 315);
+        ctx.drawImage(res.path, 0, 0, that.data.canvasWidth, that.data.canvasWidth);
       }
     })
     wx.getImageInfo({
       src: qrImg,
       success: function (res) {
         console.log(res)
-        ctx.drawImage(res.path, that.data.canvasWidth - 82, 270, 82, 82);
+        ctx.drawImage(res.path, that.data.canvasWidth - 82, that.data.canvasWidth - 20, 82, 82);
         // 设备名称
         ctx.setFillStyle('#333333');
         ctx.setFontSize(15);
         // ctx.fillText(that.data.info.name, 20, 325);
-        utils.drawText(ctx, that.data.info.name, 20, 285, 200);
+        utils.drawText(ctx, that.data.info.name, 20, that.data.canvasWidth, 200);
         ctx.stroke();
         // 企业名称
         ctx.fillStyle = '#f8f8f8';
-        ctx.fillRect(0, that.data.canvasHeight - 34, that.data.canvasWidth, 30);
+        ctx.fillRect(0, that.data.canvasHeight - 32, that.data.canvasWidth, 32);
         ctx.setFillStyle('#999999');
         ctx.setFontSize(12);
         ctx.setTextAlign('center');
-        ctx.fillText(that.data.company.name, that.data.canvasWidth / 2, that.data.canvasHeight - 18);
+        ctx.fillText(that.data.company.name, that.data.canvasWidth / 2, that.data.canvasHeight - 16);
         ctx.draw(false, setTimeout(function () {
           wx.canvasToTempFilePath({
             x: 0,
@@ -202,7 +202,8 @@ Page({
       canvasHeight: myCanvasHeight
     })
     this.getEquipmentInfo();
-    this.getPoster();
+    // this.getPoster();
+    this.getPosterInfo();
   },
   // 获取设备详情信息
   getEquipmentInfo() {
@@ -264,6 +265,21 @@ Page({
       // console.log(res);
       that.setData({
         posterInfo: res.data.info
+      })
+    })
+  },
+  // 获取海报内容相关信息
+  getPosterInfo(){
+    const that = this;
+    request({
+      url:api.equipment.qrcode,
+      data:{
+        id:that.data.id
+      }
+    }).then(res => {
+      console.log(res);
+      that.setData({
+        posterInfo:res.data.info
       })
     })
   },

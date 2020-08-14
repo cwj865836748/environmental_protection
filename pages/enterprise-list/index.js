@@ -149,6 +149,7 @@ Page({
           })
           return;
         } else {
+          console.log('xixi')
           that.setData({
             enterpriseList: that.data.enterpriseList.concat(enterpriseList),
             page: that.data.page + 1,
@@ -247,6 +248,14 @@ Page({
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
+    if (this.data.noMore) {
+      return false;
+    }
+    if (this.data.type == 1) {
+      this.getList()
+    }else{
+      this.getList1();
+    }
 
   },
 

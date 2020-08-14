@@ -21,5 +21,9 @@
 </view>
 
 <!-- 授权按钮 -->
-<view class="btn flex-xy-center" wx:if="{{!status}}">授权微信登录</view>
-<view class="btn flex-xy-center" wx:if='{{status}}'>获取手机号</view>
+<button wx:if="{{!status}}" open-type="getUserInfo" lang="zh_CN" bindgetuserinfo="authorLogin">
+	<view class="btn flex-xy-center" >授权微信登录</view>
+</button>
+<button  wx:if='{{status}}' open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber">
+	<view class="btn flex-xy-center">获取手机号</view>
+</button>

@@ -54,7 +54,7 @@
 	<!-- 产品库 -->
 	<view class="produce-title flex-y-center">
 		<view class="produce-name">产品库</view>
-		<navigator url="/pages/produce-library/index?type=2">
+		<navigator url="/pages/produce-library/index?type=2&&id={{info.id}}">
 			<view class="look-more flex-y-center">查看更多
 				<view class="arrow-right flex-y-center">
 					<image class="flex-grow-0" src="/images/home/home_more@2x.png"></image>
@@ -81,7 +81,7 @@
 
 	<view class="produce-title flex-y-center">
 		<view class="produce-name">企业名录</view>
-		<navigator url="/pages/enterprise-list/index?type=2">
+		<navigator url="/pages/enterprise-list/index?id={{info.id}}&&type=2">
 			<view class="look-more flex-y-center">查看更多
 				<view class="arrow-right flex-y-center">
 					<image class="flex-grow-0" src="/images/home/home_more@2x.png"></image>

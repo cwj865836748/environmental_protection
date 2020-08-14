@@ -9,5 +9,6 @@
 	</view>
 </view>
 
-
-<include src="/common/consult/consult" />
+<block wx:if="{{type == 1}}">
+	<include src="/common/consult/consult" />
+</block>

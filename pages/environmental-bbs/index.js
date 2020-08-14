@@ -175,7 +175,7 @@ Page({
   handleFJump(e) {
     let id = e.currentTarget.dataset.id;
     wx.navigateTo({
-      url: '/pages/news-detail/index?id=' + id + '&&type = 1',
+      url: '/pages/news-detail/index?id=' + id + '&&type=1',
     })
   },
   // 跳转轮播图详情
@@ -420,6 +420,14 @@ Page({
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
+    if (this.data.noMore) {
+      return false;
+    }
+    if (this.data.tabList == 1) {
+      this.getExpertsList();
+    }else{
+      this.getForumList();
+    }
 
   },
 
