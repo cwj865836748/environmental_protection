@@ -16,7 +16,8 @@ const api = {
     category: _api_root + '/equipment/category',
     detail: _api_root + '/equipment/detail',
     addCollect: _api_root + '/equipment/add-collect',
-    delCollect: _api_root + '/equipment/del-collect'
+    delCollect: _api_root + '/equipment/del-collect',
+    qrcode:_api_root + '/equipment/qrcode'
   },
   company: {
     category:_api_root + '/company/category',
