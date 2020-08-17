@@ -26,7 +26,8 @@ Page({
     id: '',
     info: '',
     company: '',
-    posterInfo: ''
+    posterInfo: '',
+    show: ''
   },
   // 显示弹框
   handleShowPopup() {
@@ -166,10 +167,19 @@ Page({
   // 跳转企业详情页
   handleJump(e) {
     let id = e.currentTarget.dataset.id;
+    console.log('展示',this.data.show);
+    let show = this.data.show;
+    if (this.data.show) {
+      wx.navigateTo({
+        url: '/pages/enterprise-detail/index?id=' + id + '&&show=' + show,
+      })
+    } else {
+      wx.navigateTo({
+        url: '/pages/enterprise-detail/index?id=' + id,
+      })
+    }
     // console.log(id)
-    wx.navigateTo({
-      url: '/pages/enterprise-detail/index?id=' + id,
-    })
+
   },
   // 点击是否收藏
   handleCollect(e) {
@@ -198,6 +208,7 @@ Page({
     })
     this.setData({
       id: options.id,
+      show: options.show,
       canvasWidth: myCanvasWidth,
       canvasHeight: myCanvasHeight
     })
@@ -236,7 +247,7 @@ Page({
       // console.log(res);
       wx.showToast({
         title: res.msg,
-        icon:'none'
+        icon: 'none'
       })
     })
   },
@@ -252,7 +263,7 @@ Page({
       // console.log(res)
       wx.showToast({
         title: res.msg,
-        icon:'none'
+        icon: 'none'
       })
     })
   },
@@ -269,17 +280,17 @@ Page({
     })
   },
   // 获取海报内容相关信息
-  getPosterInfo(){
+  getPosterInfo() {
     const that = this;
     request({
-      url:api.equipment.qrcode,
-      data:{
-        id:that.data.id
+      url: api.equipment.qrcode,
+      data: {
+        id: that.data.id
       }
     }).then(res => {
       console.log(res);
       that.setData({
-        posterInfo:res.data.info
+        posterInfo: res.data.info
       })
     })
   },

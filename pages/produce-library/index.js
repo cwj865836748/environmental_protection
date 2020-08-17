@@ -191,9 +191,16 @@ Page({
   handleJump(e) {
     console.log(e.currentTarget.dataset.id);
     let id = e.currentTarget.dataset.id;
-    wx.navigateTo({
-      url: '/pages/equipment-detail/index?id=' + id,
-    })
+    if (this.data.type == 1) {
+      wx.navigateTo({
+        url: '/pages/equipment-detail/index?id=' + id,
+      })
+    }else if(this.data.type == 2){
+      wx.navigateTo({
+        url: '/pages/equipment-detail/index?id='+id+'&&show=true',
+      })
+    }
+
   },
   // 
   /**
