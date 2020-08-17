@@ -54,7 +54,7 @@ Page({
       }
     }
 
-    console.log('企业id', options.id);
+    console.log('企业show', options.show);
     this.setData({
       id: options.id,
       show: options.show

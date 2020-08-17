@@ -2,6 +2,6 @@
 @import '/pages/produce-library/index.wxss';
 @import '/common/enterprise/enterpriseList.wxss';
 .list-wrap{
-  height: 79vh;
+  /* height: 79vh; */
   overflow-y: scroll;
 }

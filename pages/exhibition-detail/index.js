@@ -60,7 +60,7 @@ Page({
           produceList: res.data.equipment
         })
         let enterpriseList = res.data.business_list ? res.data.business_list : [];
-        let merchantsList = res.data.customer_list ? res.data.business_list : [];
+        let merchantsList = res.data.customer_list ? res.data.customer_list : [];
         if (enterpriseList.length == 0) {
           that.setData({
             enterpriseList: [],
