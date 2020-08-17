@@ -69,7 +69,7 @@
 				<image class="flex-grow-0" src="/images/details_collect@2x.png"></image>
 			</view>
 			<!-- 收藏后 -->
-			<view class="msg-right flex-xy-center msg-collect" wx:if="{{info.is_collect == 1}}" bindtap="handleCollect" data-collect="{{info.is_collect}}">
+			<view class="msg-right flex-xy-center msg-collect" wx:if="{{info.is_collect == 1}}" bindtap="handleCollect1" data-collect="{{info.is_collect}}">
 				<image class="flex-grow-0" src="/images/details_collect0@2x.png"></image>
 			</view>
 		</view>

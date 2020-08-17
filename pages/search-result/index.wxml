@@ -28,7 +28,7 @@
 		<!-- 设备列表 -->
 		<view class="produce-list flex-y-center">
 			<block wx:for="{{produceList}}">
-				<view class="produce-item ml flex-col flex-xy-center">
+				<view class="produce-item ml flex-col flex-xy-center" bindtap="handleJump" data-id="{{item.id}}">
 					<view class="produce-item-img-box flex-xy-center">
 						<image class="produce-item-img flex-grow-0" src="{{item.pic}}"></image>
 					</view>
@@ -52,7 +52,7 @@
 
 		<!-- 企业列表 -->
 		<view class="shop-wrap-list">
-			<view class="shop-list flex  {{ index == 0 ? 'mt30' : ''}}" wx:key="index" wx:for="{{enterpriseList}}">
+			<view class="shop-list flex  {{ index == 0 ? 'mt30' : ''}}" wx:key="index" wx:for="{{enterpriseList}}" bindtap="handleJumpCompany" data-id="{{item.id}}">
 				<view class="shop-item-logo flex-xy-center">
 					<image class="flex-grow-0" src="{{item.pic}}"></image>
 				</view>

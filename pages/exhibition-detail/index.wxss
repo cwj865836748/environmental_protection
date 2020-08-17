@@ -1,6 +1,12 @@
 /* pages/exhibition-detail/index.wxss */
 @import '/pages/index/index.wxss';
 
+.exhibition-img {
+  width: 100%;
+  height: 420rpx;
+  position: relative;
+}
+
 .swiper-box {
   width: 100%;
   height: 480rpx;

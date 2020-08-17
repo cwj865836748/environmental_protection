@@ -13,7 +13,7 @@
 	</swiper>
 
 	<!-- 搜索框 -->
-	<navigator hover-class="none" url="/pages/search/index">
+	<navigator hover-class="none" url="/pages/search/index?type=1">
 		<view class="head-input flex-y-center">
 			<image class="input-icon flex-grow-0" src="/images/home/home_search@2x.png"></image>
 			<view class="input-tips flex-y-center">请输入您要找的企业/设备</view>
