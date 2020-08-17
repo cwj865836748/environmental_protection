@@ -82,7 +82,7 @@
 
 		<view class="function-line"></view>
 
-		<navigator url="/pages/link-us/index">
+		<navigator url="/pages/link-us/index?type=1">
 			<view class="my-function-item flex-y-center">
 				<view class="function-item-left flex-y-center">
 					<image class="flex-grow-0 function-item-icon5" src="/images/mine/my_ico5@2x.png"></image>

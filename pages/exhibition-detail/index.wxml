@@ -39,7 +39,7 @@
 		</navigator>
 
 
-		<navigator url="/pages/link-us/index?id={{info.id}}" class=" flex-grow-1">
+		<navigator url="/pages/link-us/index?id={{info.id}}&&type=0" class=" flex-grow-1">
 			<view class="function-item flex-col flex-xy-center">
 				<image class="function-icon flex-grow-0" src="/images/exhibition_module_ico3@2x.png"></image>
 				<view class="function-dec">联系我们</view>

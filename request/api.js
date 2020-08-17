@@ -3,7 +3,7 @@ var _api_root = '/api';
 const api = {
   login: {
     login: _api_root + '/index/login',
-    userPhone: _api_root + '/indexi/get-user-phone'
+    userPhone: _api_root + '/index/get-user-phone'
   },
   common: {
     slideshow: _api_root + '/index/slideshow',
