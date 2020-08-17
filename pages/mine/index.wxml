@@ -6,10 +6,10 @@
 		<image class="my-bg" src="/images/mine/my_bg@2x.png"></image>
 
 	  <view class="my-icon">
-			<image src="https://img02.mockplus.cn/idoc/xd/2020-07-30/a62cec8c-5e69-4b3b-abc3-ad4e56aec93f.png"></image>
+			<image src="{{info.avatar}}"></image>
 		</view> 
 
-		<view class="my-name">郑艺</view>
+		<view class="my-name">{{info.nickname}}</view>
 
 	</view>
 
@@ -67,7 +67,7 @@
 
 	<view class="my-function-list mt24 flex-col">
 
-		<!-- <button open-type="contact"> -->
+		<button open-type="contact">
 			<view class="my-function-item flex-y-center">
 				<view class="function-item-left flex-y-center">
 					<image class="flex-grow-0 function-item-icon4" src="/images/mine/my_ico4@2x.png"></image>
@@ -77,7 +77,7 @@
 					<image class="function-item-arrow flex-grow-0" src="/images/mine/my_right@2x.png"></image>
 				</view>
 			</view>
-		<!-- </button> -->
+		</button>
 
 
 		<view class="function-line"></view>

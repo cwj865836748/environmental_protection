@@ -1,14 +1,8 @@
 // pages/slideshow/index.js
-const App = getApp();
-var utils = require('../../utils/util.js');
 const api = require('../../request/api.js');
 import {
   request
 } from '../../request/index.js'
-
-import {
-  navigateTo
-} from '../../utils/wx.js';
 let WxParse = require('../../wxParse/wxParse.js');
 Page({
 
@@ -18,7 +12,7 @@ Page({
   data: {
     id: '',
     info: '',
-    // type == 1 为供需快报  type == 2 为环保论坛 type == 3  为技术创新 type == 4 为环保展会
+    // type == 1 为供需快报  type == 2 为环保论坛 type == 3  为技术创新 type == 4 为环保展会 type ==5 为活动
     type: ''
   },
 
@@ -26,7 +20,6 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    console.log(options.id);
     this.setData({
       id: options.id,
       type: options.type
@@ -37,11 +30,11 @@ Page({
     } else if (this.data.type == 2) {
       this.getSlideshowDetailF();
     }else if(this.data.type == 3){
-      console.log('创新')
       this.getSlideshowDetailT()
     }else if(this.data.type == 4){
-      console.log('咨询')
       this.getSlideshowDetailA();
+    }else {
+      this.getSlideshowDetailC();
     }
 
   },
@@ -101,6 +94,22 @@ Page({
     const that = this;
     request({
       url: api.article.slideshowDetail,
+      data: {
+        slideshow_id: that.data.id
+      }
+    }).then(res => {
+      if (res.code == 200) {
+        WxParse.wxParse('content', 'html', res.data.info.content, that);
+        that.setData({
+          info: res.data.info
+        })
+      }
+    })
+  },
+  getSlideshowDetailC(){
+    const that = this;
+    request({
+      url: api.activity.slideshowDetail,
       data: {
         slideshow_id: that.data.id
       }

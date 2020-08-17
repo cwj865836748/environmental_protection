@@ -57,6 +57,11 @@
 
 .reset-phone {
   color: #43b2fc;
+  font-size: 14px;
+  background-color:transparent;
+}
+.reset-phone::after {
+  border:none
 }
 
 /* 弹框 */

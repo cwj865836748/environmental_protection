@@ -55,6 +55,17 @@
         return '已结束'
       }
    }
+   var readyType = function(type){
+    if(type==0){
+      return '个人'
+    }else if (type==1){
+      return '企业'
+    }else if (type==2){
+      return '协会'
+    }else {
+      return '院校'
+    }
+   }
 
   module.exports = {
     orderPhone:orderPhone,

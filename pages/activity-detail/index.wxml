@@ -1,13 +1,14 @@
 <!--pages/activity-detail/index.wxml-->
+<wxs src="../../wxs/filter.wxs" module="filter"></wxs>
 <navbar title="活动详情" back="{{true}}"></navbar>
 <!-- 活动标题 -->
-<view class="activity-title">厦门国际环保展组委会授予集美大学机械与能源工程学院“最佳协办单位”奖项</view>
+<view class="activity-title">{{info.title}}</view>
 <!-- 活动图片和状态 -->
 <view class="activity-img">
-	<image src="https://img02.mockplus.cn/idoc/xd/2020-07-30/0e443e9d-b7d1-40cf-b647-5f3838dbaf5d.png"></image>
-	<view class="activity-status-going flex-xy-center">进行中</view>
-	<!-- <view class="activity-status-writing flex-xy-center">未开始</view> -->
-	<!-- <view class="activity-status-overed flex-xy-center">已结束</view> -->
+	<image src="{{info.pic}}"></image>
+<view class="{{info.status==0?'activity-status-ready':(info.status==1?'activity-status-going':(info.status==2?'activity-status-writing':'activity-status-overed'))}} flex-xy-center">
+					{{filter.activeStatus(info.status)}}
+					</view>
 </view>
 
 <view class="activity-wrap">
@@ -18,8 +19,8 @@
 			<view class="introduce-title">活动时间与地点</view>
 		</view>
 	</view>
-	<view class="phone">时间：2020.07.05-2020.08.05</view>
-	<view class="area">地址：厦门市湖里区高新技术园汇金湖里大厦</view>
+	<view class="phone">时间：{{filter.getTime(info.start_time)}}-{{filter.getTime(info.end_time)}}</view>
+	<view class="area">地址：{{info.address}}</view>
 
 	<view class="segmentation"></view>
 
@@ -32,15 +33,17 @@
 	</view>
 
 	<view class="meeting-introduce">
-		<view class="meetting-title">会议介绍</view>
+		<!-- <view class="meetting-title">会议介绍</view>
 		<view class="meeting-dec">为提升重点行业VOCs污染治理水平，选择最佳可行的工艺和设备，并为相关管理机构、生产企业和治理企业搭建VOCs减排技术供需对接平台,我会特举办 “全国挥发性有机物（VOCs）及恶臭污染治理与监测技术实用案例分析暨供需对接交流会”。会议将邀请国家相关部门领导、有机废气(VOCs)污染治理领域相关专家进行政策和技术讲解。同时，还将邀请国内外VOCs技术治理机构及具有治理需求的相关企业代表现场分享先进处理方法及成功案例。
-		</view>
+		</view> -->
+			<import src="../../wxParse/wxParse.wxml" />
+	<template is="wxParse" data="{{wxParseData:content.nodes}}" />
 	</view>
 
 </view>
 
-<view class="btn-wrap flex-x-center">
-	<navigator url="/pages/apply/index">
+<view class="btn-wrap flex-x-center" wx:if="{{info.status==0}}">
+	<navigator url="/pages/apply/index?id={{activityId}}">
 		<view class="btn flex-xy-center">点我报名</view>
 	</navigator>
 </view>

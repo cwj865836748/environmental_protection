@@ -60,14 +60,12 @@
 .status-sign{
   width: 120rpx;
   height: 50rpx;
-  background: #FF4664;
   border-radius: 26px 0px 0px 26px;
   background-color: #FF4664;
 }
 .status-going {
   width: 120rpx;
   height: 50rpx;
-  background: #3ccbb4;
   border-radius: 26px 0px 0px 26px;
   background-color: #3ccbb4;
 }
@@ -75,7 +73,6 @@
 .status-writing {
   width: 120rpx;
   height: 50rpx;
-  background: #3ccbb4;
   border-radius: 26px 0px 0px 26px;
   background-color: #43b2fc;
 }
@@ -83,7 +80,6 @@
 .status-overed {
   width: 120rpx;
   height: 50rpx;
-  background: #3ccbb4;
   border-radius: 26px 0px 0px 26px;
   background-color: #c9c9c9;
 }

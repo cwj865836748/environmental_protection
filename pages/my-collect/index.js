@@ -1,7 +1,6 @@
 // pages/my-collect/index.js
-const app=getApp()
-var utils = require('../../utils/util.js')
-import {navigateTo} from '../../utils/wx.js'
+import {request} from '../../request/index.js'
+import api from '../../request/api.js'
 Page({
 
   /**
@@ -18,21 +17,71 @@ Page({
         id: 2
       }
     ],
-    produceList: 12,
-    enterpriseList:8
+    produceList: [],
+    enterpriseList:[],
+    producePage:1,
+    enterprisePage:1,
+    produceIs_Next:false,
+    enterpriseIs_Next:false,
+    noData:false
   },
   //  切换tab
   handleChangeTab(e) {
-    let id = e.currentTarget.dataset.id;
+    let {id} = e.currentTarget.dataset;
     this.setData({
-      tabIndex: id
+      tabIndex: id,
+      noData:false
     })
+    if(id==1){
+      this.data.producePage=1
+      this.data.produceList=[]
+      this.getEquipMentList()
+    }else{
+      this.data.enterprisePage=1
+      this.data.enterpriseList=[]
+      this.getCompanyList()
+    }
+    
+  },
+  getEquipMentList(){
+    request({url:api.user.equipment,data:{page:this.data.producePage}}).then(res=>{
+      if(res.code==200){
+        this.setData({
+          produceList:[...res.data.list,...this.data.produceList],
+          produceIs_Next:res.data.is_next
+        },()=>{
+          if(this.data.produceList.length){
+            return
+          }
+           this.setData({
+            noData:!this.data.produceList.length
+           })
+        })
+      }
+    })  
+  },
+  getCompanyList(){
+    request({url:api.user.company,data:{page:this.data.enterprisePage}}).then(res=>{
+      if(res.code==200){
+        this.setData({
+          enterpriseList:[...res.data.list,...this.data.enterpriseList],
+          enterpriseIs_Next:res.data.is_next
+        },()=>{
+          if(this.data.enterpriseList.length){
+            return
+          }
+          this.setData({
+           noData:!this.data.enterpriseList.length
+          })
+       })
+      }
+    })  
   },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    this.getEquipMentList()
   },
 
   /**
@@ -74,7 +123,18 @@ Page({
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-
+    if(this.data.tabIndex==1){
+      if(this.data.produceIs_Next){
+        this.data.producePage++
+        this.getEquipMentList()
+      }
+    }else {
+       if(this.data.enterpriseIs_Next){
+      this.data.enterprisePage++
+      this.getCompanyList()
+    }
+    }
+   
   },
 
   /**

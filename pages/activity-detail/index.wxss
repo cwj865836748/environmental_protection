@@ -57,7 +57,17 @@
   font-size: 24rpx;
   color: #ffffff;
 }
-
+.activity-status-ready{
+  width: 132rpx;
+  height: 52rpx;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  background-color: #f52b2b;
+  border-radius: 10rpx 0 10rpx 0;
+  font-size: 24rpx;
+  color: #ffffff;
+}
 .activity-wrap{
   width: 100%;
   padding: 0 30rpx;

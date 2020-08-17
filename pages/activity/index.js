@@ -9,7 +9,8 @@ Page({
   data: {
     swiperList: [],
     activityList:[],
-    page:1
+    page:1,
+    noData:false
   },
   
   /**
@@ -31,12 +32,31 @@ Page({
       this.setData({
         activityList:[...res.data.list,...this.data.activityList],
         is_next:res.data.is_next
+      },()=>{
+        if(this.data.activityList.length){
+          return
+        }
+        this.setData({
+        noData:!this.data.activityList.length
+        })
       })
-  
+     
     })
   },
   goSwiperDetail(e){
-   console.log(e)
+   const {item} = e.target.dataset
+   if(item.jump_type==0){
+     return
+   }else if(item.jump_type==1){
+     wx.navigateTo({
+       url: `/pages/slideshow/index?id=${item.id}&&type=5`,
+     })
+   }else {
+    wx.navigateTo({
+      url: `/pages/activity-detail
+      /index?id=${item.active_id}`,
+    })
+   }
   },
   /**
    * 生命周期函数--监听页面初次渲染完成

@@ -1,140 +1,45 @@
 <!--pages/apply/index.wxml-->
+<wxs src="../../wxs/filter.wxs" module="filter"></wxs>
 <navbar title="报名" back="{{true}}"></navbar>
-<view class="list-cell-content flex-y-center" bindtap="handleChooseType">
-	<van-field value="{{ category }}" placeholder="请选择" label="报名类型" disabled bind:change="onChange" />
-	<image class="arrow flex-grow-0" src="/images/form_down@2x.png"></image>
+<van-cell-group>
+	<van-field value='{{ readyType}}' placeholder="请选择" label="报名类型" disabled bindtap='showSelect'/>
+
+	<van-field wx:if="{{addForm.type==1}}" value="{{ addForm.company_name }}" clearable placeholder="请输入公司名称" data-key='company_name' label="公司名称" bind:change="onChange"/>
+	<!-- 院校 -->
+	<van-field wx:if="{{addForm.type==3}}" value="{{ addForm.company_name }}" clearable placeholder="请输入院校名称" label="院校名称" bind:change="onChange" data-key='company_name'/>
+	<!-- 协会 -->
+	<van-field wx:if="{{addForm.type==2}}" value="{{ addForm.company_name }}" clearable placeholder="请输入协会名称" label="协会名称" bind:change="onChange" data-key='company_name' />
+	<!-- 个人 -->
+	<van-field wx:if="{{addForm.type==0}}" value="{{ addForm.name }}" clearable placeholder="请输入姓名" label="姓名" bind:change="onChange" data-key='name'/>
+	<van-field wx:if="{{addForm.type!=0}}" value="{{ addForm.name }}" clearable placeholder="请输入负责人姓名" label="负责人" bind:change="onChange" data-key='name'/>
+
+<view class="list-cell flex-y-center">
+	<view class="list-cell-title">性别</view>
+	<van-radio-group value="{{ addForm.sex }}" bind:change="onChange" data-key='sex' class="flex-y-center">
+    <van-radio icon-size="17" name="1">男</van-radio>
+    <van-radio icon-size="17" name="2">女</van-radio>
+  </van-radio-group>
 </view>
 
-<!-- 下拉框 -->
-<view class="select-wrap" wx:if="{{arrowFlag}}">
-	<view class="select-arrow"></view>
-	<view class="select-box">
-		<view class="select-list flex-y-center {{ index == 0 ? 'mt37' : 'mt53'}}" wx:for="{{selectList}}" bindtap="handleSelectTitle" data-id="{{item.id}}" data-title="{{item.title}}">
-			<view class="select-item {{selectedIndex == item.id ? 'select-item-active' : ''}}">{{item.title}}</view>
-			<view class="select-right flex-xy-center">
-				<image class="flex-grow-0" src="/images/home/home_right@2x.png" wx:if="{{ selectedIndex == item.id}}"></image>
-			</view>
-		</view>
-	</view>
-</view>
+	<van-field  wx:if="{{addForm.type!=0}}" value="{{ addForm.position }}" clearable placeholder="请输入职位" label="职位" bind:change="onChange" data-key='position' />
 
-<!-- 企业 -->
-<van-cell-group wx:if="{{selectedIndex == 1}}">
+	<van-field value="{{ addForm.email }}" clearable placeholder="请输入邮箱账号" label="邮箱" bind:change="onChange" data-key='email'/>
 
-	<van-field value="{{ componyName }}" clearable placeholder="请输入公司名称" label="公司名称" bind:change="onChange" />
+	<van-field value="{{ addForm.mobile }}" clearable placeholder="请输入手机号" label="手机号" bind:change="onChange" data-key='mobile'/>
 
-	<van-field value="{{ mainPople }}" clearable placeholder="请输入负责人姓名" label="负责人" bind:change="onChange" />
+	<van-field  wx:if="{{addForm.type==1}}" value="{{  addForm.company_url	  }}" clearable placeholder="请输入公司网址(选填)" label="公司网址" bind:change="onChange" data-key='company_url'/>
 
-	<view class="list-cell flex-y-center">
-		<view class="list-cell-title">性别</view>
-		<view class="list-cell-choose flex-y-center" bindtap="handleChooseSex" data-sexIndex="1" data-sexName="男">
-			<image class="list-cell-icon flex-grow-0" src="/images/form_select0@2x.png" wx:if="{{sexIndex == 1 && sexName == '男'}}"></image>
-			<image class="list-cell-icon flex-grow-0" src="/images/form_select@2x.png" wx:if="{{sexIndex != 1 && sexName != '男'}}"></image>
-			<view class="list-cell-name">男</view>
-		</view>
-		<view class="list-cell-choose flex-y-center" bindtap="handleChooseSex" data-sexIndex="2" data-sexName="女">
-			<image class="list-cell-icon flex-grow-0" src="/images/form_select0@2x.png" wx:if="{{sexIndex == 2 && sexName == '女'}}"></image>
-			<image class="list-cell-icon flex-grow-0" src="/images/form_select@2x.png" wx:if="{{sexIndex != 2 && sexName != '女'}}"></image>
-			<view class="list-cell-name">女</view>
-		</view>
-	</view>
+	<van-field wx:if="{{addForm.type==1}}" value="{{ addForm.industry }}" clearable placeholder="请输入公司所在行业(选填)" label="所在行业" bind:change="onChange" data-key='industry'/>
 
-	<van-field value="{{ post }}" clearable placeholder="请输入职位" label="职位" bind:change="onChange" />
-
-	<van-field value="{{ email }}" clearable placeholder="请输入邮箱账号" label="邮箱" bind:change="onChange" />
-
-	<van-field value="{{ phone }}" clearable placeholder="请输入手机号" label="手机号" bind:change="onChange" />
-
-	<van-field value="{{ companyArea }}" clearable placeholder="请输入公司网址(选填)" label="公司网址" bind:change="onChange" />
-
-	<van-field value="{{ industry }}" clearable placeholder="请输入公司所在行业(选填)" label="所在行业" bind:change="onChange" />
-
-</van-cell-group>
-
-<!-- 院校 -->
-<van-cell-group wx:if="{{selectedIndex == 2}}">
-
-	<van-field value="{{ componyName }}" clearable placeholder="请输入院校名称" label="院校名称" bind:change="onChange" />
-
-	<van-field value="{{ mainPople }}" clearable placeholder="请输入负责人姓名" label="负责人" bind:change="onChange" />
-
-	<view class="list-cell flex-y-center">
-		<view class="list-cell-title">性别</view>
-		<view class="list-cell-choose flex-y-center" bindtap="handleChooseSex" data-sexIndex="1" data-sexName="男">
-			<image class="list-cell-icon flex-grow-0" src="/images/form_select0@2x.png" wx:if="{{sexIndex == 1 && sexName == '男'}}"></image>
-			<image class="list-cell-icon flex-grow-0" src="/images/form_select@2x.png" wx:if="{{sexIndex != 1 && sexName != '男'}}"></image>
-			<view class="list-cell-name">男</view>
-		</view>
-		<view class="list-cell-choose flex-y-center" bindtap="handleChooseSex" data-sexIndex="2" data-sexName="女">
-			<image class="list-cell-icon flex-grow-0" src="/images/form_select0@2x.png" wx:if="{{sexIndex == 2 && sexName == '女'}}"></image>
-			<image class="list-cell-icon flex-grow-0" src="/images/form_select@2x.png" wx:if="{{sexIndex != 2 && sexName != '女'}}"></image>
-			<view class="list-cell-name">女</view>
-		</view>
-	</view>
-
-	<van-field value="{{ post }}" clearable placeholder="请输入职位" label="职位" bind:change="onChange" />
-
-	<van-field value="{{ email }}" clearable placeholder="请输入邮箱账号" label="邮箱" bind:change="onChange" />
-
-	<van-field value="{{ phone }}" clearable placeholder="请输入手机号" label="手机号" bind:change="onChange" />
-
-</van-cell-group>
-
-<!-- 协会 -->
-<van-cell-group wx:if="{{selectedIndex == 3}}">
-
-	<van-field value="{{ componyName }}" clearable placeholder="请输入协会名称" label="协会名称" bind:change="onChange" />
-
-	<van-field value="{{ mainPople }}" clearable placeholder="请输入负责人姓名" label="负责人" bind:change="onChange" />
-
-	<view class="list-cell flex-y-center">
-		<view class="list-cell-title">性别</view>
-		<view class="list-cell-choose flex-y-center" bindtap="handleChooseSex" data-sexIndex="1" data-sexName="男">
-			<image class="list-cell-icon flex-grow-0" src="/images/form_select0@2x.png" wx:if="{{sexIndex == 1 && sexName == '男'}}"></image>
-			<image class="list-cell-icon flex-grow-0" src="/images/form_select@2x.png" wx:if="{{sexIndex != 1 && sexName != '男'}}"></image>
-			<view class="list-cell-name">男</view>
-		</view>
-		<view class="list-cell-choose flex-y-center" bindtap="handleChooseSex" data-sexIndex="2" data-sexName="女">
-			<image class="list-cell-icon flex-grow-0" src="/images/form_select0@2x.png" wx:if="{{sexIndex == 2 && sexName == '女'}}"></image>
-			<image class="list-cell-icon flex-grow-0" src="/images/form_select@2x.png" wx:if="{{sexIndex != 2 && sexName != '女'}}"></image>
-			<view class="list-cell-name">女</view>
-		</view>
-	</view>
-
-	<van-field value="{{ post }}" clearable placeholder="请输入职位" label="职位" bind:change="onChange" />
-
-	<van-field value="{{ email }}" clearable placeholder="请输入邮箱账号" label="邮箱" bind:change="onChange" />
-
-	<van-field value="{{ phone }}" clearable placeholder="请输入手机号" label="手机号" bind:change="onChange" />
-
-</van-cell-group>
-
-<!-- 个人 -->
-<van-cell-group wx:if="{{selectedIndex == 4}}">
-
-	<van-field value="{{ componyName }}" clearable placeholder="请输入姓名" label="姓名" bind:change="onChange" />
-
-	<view class="list-cell flex-y-center">
-		<view class="list-cell-title">性别</view>
-		<view class="list-cell-choose flex-y-center" bindtap="handleChooseSex" data-sexIndex="1" data-sexName="男">
-			<image class="list-cell-icon flex-grow-0" src="/images/form_select0@2x.png" wx:if="{{sexIndex == 1 && sexName == '男'}}"></image>
-			<image class="list-cell-icon flex-grow-0" src="/images/form_select@2x.png" wx:if="{{sexIndex != 1 && sexName != '男'}}"></image>
-			<view class="list-cell-name">男</view>
-		</view>
-		<view class="list-cell-choose flex-y-center" bindtap="handleChooseSex" data-sexIndex="2" data-sexName="女">
-			<image class="list-cell-icon flex-grow-0" src="/images/form_select0@2x.png" wx:if="{{sexIndex == 2 && sexName == '女'}}"></image>
-			<image class="list-cell-icon flex-grow-0" src="/images/form_select@2x.png" wx:if="{{sexIndex != 2 && sexName != '女'}}"></image>
-			<view class="list-cell-name">女</view>
-		</view>
-	</view>
-
-	<van-field value="{{ email }}" clearable placeholder="请输入邮箱账号" label="邮箱" bind:change="onChange" />
-
-	<van-field value="{{ phone }}" clearable placeholder="请输入手机号" label="手机号" bind:change="onChange" />
 
 </van-cell-group>
 
 
-
-
-<view class="btn flex-xy-center">提交</view>
+<view class="btn flex-xy-center" bindtap="submit">提交</view>
+<van-action-sheet
+  show="{{ show }}"
+  actions="{{ selectList }}"
+  bind:select="onSelect"
+	cancel-text="取消"
+	bind:cancel="onCancle"
+/>

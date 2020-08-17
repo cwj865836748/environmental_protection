@@ -2,14 +2,14 @@
 <navbar title="个人信息" back="{{true}}"></navbar>
 <view class="my-msg flex-col flex-xy-center">
 	<view class="my-avatar flex-xy-center">
-		<image class="flex-grow-0" src="https://img02.mockplus.cn/idoc/xd/2020-07-30/e4c85348-e2b4-44c6-b01d-2cfd7abf3e74.png"></image>
+		<image class="flex-grow-0" src="{{form.avatar}}"></image>
 	</view>
-	<view class="my-name">郑艺</view>
+	<view class="my-name">{{form.nickname}}</view>
 </view>
 
 <van-cell-group>
 
-	<van-field value="{{ form.realname }}" clearable placeholder="请输入真实姓名" label="姓名"/>
+	<van-field value="{{ form.realname }}" clearable placeholder="请输入真实姓名" label="姓名"  bind:change="onChange" data-key="realname"/>
 
 	<view class="list-cell flex-y-center">
 		<view class="list-cell-title flex-y-center">
@@ -18,24 +18,24 @@
 		</view>
 		<view class="get-phone" bindtap="handleGetPhone" wx:if="{{!getPhone}}">获取手机号</view>
 		<view class="reset-phone-box flex-y-center" wx:if="{{getPhone}}">
-			<view class="phone">15056235698</view>
-			<view class="reset-phone" bindtap="onClickShow">重新获取</view>
+			<view class="phone">{{form.mobile}}</view>
+			<button class="reset-phone" open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber">重新获取</button>
 		</view>
 	</view>
 
-	<van-field value="{{ form.company_name }}" clearable placeholder="请输入公司名称" label="公司"/>
+	<van-field value="{{ form.company_name }}" clearable placeholder="请输入公司名称" label="公司"  bind:change="onChange" data-key="company_name"/>
 
-	<van-field value="{{ form.position }}" clearable placeholder="请输入职位" label="职位" />
+	<van-field value="{{ form.position }}" clearable placeholder="请输入职位" label="职位"  bind:change="onChange" data-key="position"/>
 
-	<van-field value="{{ form.email }}" clearable placeholder="请输入邮箱账号" label="邮箱" />
+	<van-field value="{{ form.email }}" clearable placeholder="请输入邮箱账号" label="邮箱"  bind:change="onChange" data-key="email"/>
 
 </van-cell-group>
 
-<view class="btn flex-xy-center">保存</view>
+<view class="btn flex-xy-center" bindtap="saveUser">保存</view>
 
 
 <!-- 弹框 -->
-<van-overlay show="{{ show }}" bind:click="onClickHide" z-index="9999">
+<!-- <van-overlay show="{{ show }}" z-index="9999">
 	<view class="wrapper">
 		<view class="block" catch:tap="noop">
 			<view class="popup-tips flex-xy-center">修改手机号</view>
@@ -56,4 +56,4 @@
 
 		</view>
 	</view>
-</van-overlay>
+</van-overlay> -->

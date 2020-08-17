@@ -15,8 +15,7 @@
 
 	<!-- 活动列表 -->
 	<view class="activity-list">
-
-		<navigator url="/pages/activity-detail/index" wx:for="{{activityList}}" wx:key="index">
+		<navigator url='/pages/activity-detail/index?id={{item.id}}' wx:for="{{activityList}}" wx:key="index">
 			<view class="activity-item flex">
 				<view class="activity-item-left flex-xy-center">
 					<image class="activity-item-img flex-grow-0" src="{{item.pic}}"></image>
@@ -43,7 +42,7 @@
 				</view>
 			</view>
 		</navigator>
-
+   <include src="/common/noData/noData"/> 
 
 	</view>
 

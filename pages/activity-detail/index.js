@@ -1,21 +1,37 @@
 // pages/activity-detail/index.js
-const app=getApp()
-var utils = require('../../utils/util.js')
-import {navigateTo} from '../../utils/wx.js'
+import {request} from '../../request/index.js'
+const api = require('../../request/api.js');
+let WxParse = require('../../wxParse/wxParse.js');
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+    info:null,
+    activityId:null,
+    noData:false
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+      this.getDetail(options.id)
+  },
+  getDetail(id){
+    this.setData({
+      activityId:id
+    })
+   request({url:api.activity.detail,data:{active_id:id}}).then(res=>{
+     if(res.code==200){
+      WxParse.wxParse('content', 'html', res.data.info.content, this);
+      this.setData({
+        info:res.data.info
+      })
+     }
+     
+   })
   },
 
   /**

@@ -2,7 +2,7 @@
 @import '/pages/produce-library/index.wxss';
 @import '/common/enterprise/enterpriseList.wxss';
 .produce-list{
-  height: 84vh;
+  /* height: 84vh; */
 }
 .list-wrap{
   height: 84vh;

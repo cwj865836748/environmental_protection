@@ -81,8 +81,8 @@ const api = {
     company:_api_root + '/user/company',
     exhibition:_api_root + '/user/exhibition',
     activity:_api_root + '/user/activity',
-    browsingArticle:_api_root + '/browsing-article',
-    browsingCompany:_api_root + '/browsing-company'
+    browsingArticle:_api_root + '/user/browsing-article',
+    browsingCompany:_api_root + '/user/browsing-company'
   },
   configInfo:{
     contact:_api_root + '/config/contact',

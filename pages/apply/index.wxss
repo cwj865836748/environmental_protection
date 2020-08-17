@@ -3,3 +3,7 @@
 .select-box{
   height: 375rpx;
 }
+.van-radio:first-child {
+  margin-right: 150rpx;
+
+}
