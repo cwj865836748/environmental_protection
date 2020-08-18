@@ -10,23 +10,21 @@
 	<view class="login-name">生态联合网</view>
 </view> -->
 <view class='logo-box'>
-<image src="/images/mine/my_bg@2x.png" class='logo-box-bg'></image>
-<view class='login-logo flex-xy-center'>
-<image src="/images/login_logo@2x.png" class='logo'></image>
-</view>
+	<image src="/images/mine/my_bg@2x.png" class='logo-box-bg'></image>
+	<view class='login-logo flex-xy-center'>
+		<image src="/images/login_logo@2x.png" class='logo'></image>
+	</view>
 </view>
 <view class='login-name'>生态联合网</view>
 
 <!-- 授权按钮 -->
- <view wx:if="{{canIUse}}">
-<button wx:if="{{!status}}" open-type="getUserInfo" lang="zh_CN" 
-class="btn flex-xy-center" bindgetuserinfo="authorLogin">
-授权微信登录
-</button>
+<view wx:if="{{canIUse}}">
+	<button wx:if="{{!status}}" open-type="getUserInfo" lang="zh_CN" class="btn flex-xy-center" bindgetuserinfo="authorLogin">
+		授权微信登录
+	</button>
 
-<button  wx:if='{{status}}' open-type="getPhoneNumber" 
-class="btn flex-xy-center" bindgetphonenumber="getPhoneNumber">
-获取手机号
-</button>
+	<button wx:if='{{status}}' open-type="getPhoneNumber" class="btn flex-xy-center" bindgetphonenumber="getPhoneNumber">
+		获取手机号
+	</button>
 </view>
-<view wx:else>请升级微信版本</view> 
+<view wx:else>请升级微信版本</view>

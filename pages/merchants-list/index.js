@@ -75,6 +75,27 @@ Page({
       })
     }
   },
+  // 收藏操作
+  handleCollect(e) {
+    let id = e.currentTarget.dataset.id;
+    let collect = e.currentTarget.dataset.collect;
+    if (collect == 1) {
+      this.getDel(id);
+    } else {
+      this.getAdd(id);
+    }
+    if (this.data.type == 1) {
+      this.setData({
+        merchantsList: []
+      })
+      this.getList();
+    } else if (this.data.type == 2) {
+      this.setData({
+        merchantsList: []
+      })
+      this.getList1();
+    }
+  },
   /**
    * 生命周期函数--监听页面加载
    */
@@ -202,6 +223,38 @@ Page({
       }
     })
   },
+  // 添加收藏
+  getAdd(id) {
+    request({
+      url: api.company.addCollect,
+      data: {
+        company_id: id
+      }
+    }).then(res => {
+      if (res.code == 200) {
+        wx.showToast({
+          title: res.msg,
+          icon: 'none'
+        })
+      }
+    })
+  },
+  // 取消收藏
+  getDel(id) {
+    request({
+      url: api.company.deCollect,
+      data: {
+        company_id: id
+      }
+    }).then(res => {
+      if (res.code == 200) {
+        wx.showToast({
+          title: res.msg,
+          icon: 'none'
+        })
+      }
+    })
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
@@ -241,12 +294,12 @@ Page({
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-    if(this.data.noMore1){
+    if (this.data.noMore1) {
       return false;
     }
-    if(this.data.type == 1){
+    if (this.data.type == 1) {
       this.getList();
-    }else{
+    } else {
       this.getList1();
     }
   },

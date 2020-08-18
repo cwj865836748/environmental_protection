@@ -174,6 +174,27 @@ Page({
     }
 
   },
+  // 收藏操作
+  handleCollect(e) {
+    let id = e.currentTarget.dataset.id;
+    let collect = e.currentTarget.dataset.collect;
+    if (collect == 1) {
+      this.getDel(id);
+    } else {
+      this.getAdd(id);
+    }
+    if (this.data.type == 1) {
+      this.setData({
+        enterpriseList: []
+      })
+      this.getComponyList();
+    } else if (this.data.type == 2) {
+      this.setData({
+        enterpriseList: []
+      })
+      this.getList1();
+    }
+  },
   /**
    * 生命周期函数--监听页面加载
    */
@@ -397,6 +418,38 @@ Page({
           return;
         }
 
+      }
+    })
+  },
+  // 添加收藏
+  getAdd(id) {
+    request({
+      url: api.company.addCollect,
+      data: {
+        company_id: id
+      }
+    }).then(res => {
+      if (res.code == 200) {
+        wx.showToast({
+          title: res.msg,
+          icon: 'none'
+        })
+      }
+    })
+  },
+  // 取消收藏
+  getDel(id) {
+    request({
+      url: api.company.deCollect,
+      data: {
+        company_id: id
+      }
+    }).then(res => {
+      if (res.code == 200) {
+        wx.showToast({
+          title: res.msg,
+          icon: 'none'
+        })
       }
     })
   },

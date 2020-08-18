@@ -1,14 +1,7 @@
 <!--pages/environmental-consulte/index.wxml-->
 <!-- 头部导航 -->
 <view class="head">
-	<view class="head-nav flex-col flex-xy-center" style="height:{{navHeight}}px;">
-		<view style='height:{{statusBarHeight}}px;'></view>
-		<view class="nav-bar flex-y-center">
-			<van-icon name="arrow-left" bindtap="goBack" />
-			<view class="head-title flex-grow-1">环保资讯</view>
-		</view>
-	</view>
-
+	<navbar title="环保资讯" back="{{true}}" headColor="transparent" titleColor="#fff"></navbar>
 	<!-- 轮播图 -->
 	<view class="swiper-box">
 		<swiper indicator-dots="{{indicatorDots}}" autoplay="true" indicator-color="rgba(255,255,255,0.5)" indicator-active-color="#ffffff">
@@ -47,7 +40,7 @@
 					</view>
 				</view>
 			</view>
-			
+
 			<include src="/common/noData/noData" />
 
 		</view>

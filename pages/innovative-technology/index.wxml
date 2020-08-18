@@ -1,13 +1,7 @@
 <!--pages/innovative-technology/index.wxml-->
 <!-- 头部导航 -->
 <view class="head">
-	<view class="head-nav flex-col flex-xy-center" style="height:{{navHeight}}px;">
-		<view style='height:{{statusBarHeight}}px;'></view>
-		<view class="nav-bar flex-y-center">
-			<van-icon name="arrow-left" bindtap="goBack" />
-			<view class="head-title flex-grow-1">创新技术</view>
-		</view>
-	</view>
+	<navbar title="创新技术" back="{{true}}" headColor="transparent" titleColor="#fff"></navbar>
 
 	<!-- 轮播图 -->
 	<view class="swiper-box">
