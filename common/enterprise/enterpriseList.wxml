@@ -6,8 +6,8 @@
 			</view>
 			<view class="shop-item-right flex-y-center">
 				<view class="shop-content" bindtap="handleJumpCompany" data-id="{{item.id||item.company.id}}">
-					<view class="shop-zh-name">{{item.name||item.company.name}}</view>
-					<view class="shop-en-name">{{item.name_eg||item.company.name_eg}}</view>
+					<view class="shop-zh-name text-more-single">{{item.name||item.company.name}}</view>
+					<view class="shop-en-name text-more">{{item.name_eg||item.company.name_eg}}</view>
 				</view>
 				<view class="shop-collect flex-xy-center" bindtap="handleCollect" data-id="{{item.id||item.company.id}}" data-collect="{{item.is_collect}}" data-type="1">
 					<image class="flex-grow-0" src="/images/home/home_collect@2x.png" wx:if="{{item.is_collect == 0}}"></image>

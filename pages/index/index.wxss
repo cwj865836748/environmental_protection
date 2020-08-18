@@ -11,12 +11,16 @@
   width: 100%;
   height: 100%;
 }
+.swiper-item image{
+  width: 750rpx;
+  height: 420rpx;
+}
 .video{
   width: 100%;
   height: 100%;
 }
 swiper {
-  height: 100%;
+  height: 420rpx;
 }
 
 .wx-swiper-dot {
@@ -115,6 +119,10 @@ swiper {
 .produce-item-box{
   margin-right: 40rpx;
   /* width: 220rpx; */
+}
+.produce-item{
+  border-radius: 20rpx;
+  overflow: hidden;
 }
 .produce-item-img {
   width: 220rpx;

@@ -1,3 +1,6 @@
+/* .noData{
+  background-color: #ffffff;
+} */
 .qz-noda-box {
   text-align: center;
   padding-top: 100rpx;

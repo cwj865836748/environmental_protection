@@ -75,24 +75,25 @@ swiper {
 
 /* 企业信息 */
 .enterprise-dec {
+  margin: 20rpx 0 ;
   width: 100%;
-  height: 220rpx;
+  /* height: 220rpx; */
 }
 
 .enterprise-avatar {
   width: 150rpx;
-  height: 150rpx;
+  height: 100%;
   margin-right: 10rpx;
 }
 
 .enterprise-avatar image {
-  width: 100%;
-  height: 100%;
+  width: 150rpx;
+  height: 150rpx;
 }
 
 .enterprise-msg {
   width: 530rpx;
-  height: 150rpx;
+  /* height: 150rpx; */
   justify-content: space-between;
 }
 
@@ -106,9 +107,6 @@ swiper {
   color: #666666;
   /* opacity: 0.6; */
   margin-top: 12rpx;
-}
-.msg-left{
-  height: 150rpx;
 }
 .msg-right {
   width: 124rpx;
@@ -181,6 +179,8 @@ swiper {
   font-size: 26rpx;
   color: #666666;
   line-height: 52rpx;
+  word-break: break-all;
+  width: 690rpx;
 }
 
 .etp-dec {
@@ -190,6 +190,8 @@ swiper {
   line-height: 48rpx;
   text-indent: 52rpx;
   margin-top: 10rpx;
+  word-break: break-all;
+  width: 690rpx;
 }
 
 /* 模块分割线 */

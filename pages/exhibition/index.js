@@ -25,7 +25,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.getList();
+    // this.getList();
   },
   // 获取展会列表
   getList() {
@@ -85,7 +85,14 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    this.setData({
+      noMore:false,
+      noData:false,
+      page:1,
+      loading:false,
+      listData:[]
+    })
+    this.getList();
   },
 
   /**

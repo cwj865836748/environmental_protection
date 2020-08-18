@@ -5,7 +5,9 @@ import {
   navigateTo
 } from '../../utils/wx.js';
 const api = require('../../request/api.js');
-import {request} from '../../request/index.js'
+import {
+  request
+} from '../../request/index.js'
 
 Page({
 
@@ -84,7 +86,8 @@ Page({
     let name = e.currentTarget.dataset.name;
     this.setData({
       selectedIndex: id,
-      category: name
+      category: name,
+      arrowFlag: false
     })
   },
   // 选择性别
@@ -108,13 +111,15 @@ Page({
   // 获取类别分类列表
   getTypeList() {
     const that = this;
-     request({ url: api.company.category }).then(res=>{
-         if (res.code == 200) {
-         that.setData({
+    request({
+      url: api.company.category
+    }).then(res => {
+      if (res.code == 200) {
+        that.setData({
           selectList: res.data.list
-          })
-        }
-   })
+        })
+      }
+    })
   },
   // 供需发布
   handlePublish() {
@@ -176,7 +181,9 @@ Page({
       })
       return;
     } else {
-       request({ url: api.supply.add,data: {
+      request({
+        url: api.supply.add,
+        data: {
           type: that.data.typeIndex,
           name: that.data.name,
           sex: that.data.sexIndex,
@@ -187,14 +194,29 @@ Page({
           mobile: that.data.mobile,
           company_info: that.data.company_info,
           remark: that.data.remark
-        } }).then(res=>{
-         if(res.code == 200){
-            wx.showToast({
-              title: res.msg,
-              icon:"none"
-            })
-          }
-   })
+        }
+      }).then(res => {
+        if (res.code == 200) {
+          wx.showToast({
+            title: '成功',
+            icon: "none"
+          })
+        }
+        that.setData({
+          type:0,
+          name:'',
+          sex:1,
+          company_name:'',
+          position:'',
+          email:'',
+          mobile:'',
+          company_info:'',
+          remark:''
+        })
+        setTimeout(res => {
+          wx.navigateBack()
+        },1000)
+      })
     }
 
 

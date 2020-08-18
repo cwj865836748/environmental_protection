@@ -33,10 +33,12 @@
 		<view class="professor-title-list flex-y-center">
 			<view class="professor-title-item flex-y-center" wx:for="{{titleList}}">
 				<view class="title-dec flex-xy-center">{{item.name}}</view>
-				<image class="title-dec-delete flex-grow-0" src="/images/home/home_delete@2x.png" bindtap="handleDelTile" data-id="{{item.id}}"></image>
+				<image class="title-dec-delete flex-grow-0" src="/images/home/home_delete@2x.png"  bindtap="handleDelTile" data-id="{{item.id}}"></image>
 			</view>
 		</view>
-		<image class="title-dec-arrow" src="/images/form_down@2x.png" bindtap="handleChooseTitle"></image>
+		<view class="title-dec-arrow-box flex-y-center"  bindtap="handleChooseTitle">
+			<image class="title-dec-arrow" src="/images/form_down@2x.png"></image>
+		</view>
 	</view>
 
 	<!-- 下拉框 -->

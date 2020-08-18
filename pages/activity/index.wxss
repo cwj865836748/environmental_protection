@@ -53,6 +53,7 @@ swiper {
   height: 190rpx;
   position: relative;
   margin-right: 18rpx;
+  border-radius: 10rpx;
 }
 
 .activity-item-left image {
@@ -152,4 +153,5 @@ swiper {
   font-size: 24rpx;
   color: #999999;
   line-height: 44rpx;
+  width: 380rpx;
 }
