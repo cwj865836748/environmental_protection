@@ -84,17 +84,6 @@ Page({
     } else {
       this.getAdd(id);
     }
-    if (this.data.type == 1) {
-      this.setData({
-        merchantsList: []
-      })
-      this.getList();
-    } else if (this.data.type == 2) {
-      this.setData({
-        merchantsList: []
-      })
-      this.getList1();
-    }
   },
   /**
    * 生命周期函数--监听页面加载
@@ -223,6 +212,17 @@ Page({
       }
     })
   },
+  changeCollect(id) {
+    const List = this.data.merchantsList
+    List.forEach(item => {
+      if (item.id == id) {
+        item.is_collect = item.is_collect == 0 ? 1 : 0
+      }
+    })
+    this.setData({
+      merchantsList: [...List]
+    })
+  },
   // 添加收藏
   getAdd(id) {
     request({
@@ -236,6 +236,7 @@ Page({
           title: res.msg,
           icon: 'none'
         })
+        this.changeCollect(id);
       }
     })
   },
@@ -252,6 +253,7 @@ Page({
           title: res.msg,
           icon: 'none'
         })
+        this.changeCollect(id);
       }
     })
   },

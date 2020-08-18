@@ -9,7 +9,7 @@
 					<view class="shop-zh-name">{{item.name||item.company.name}}</view>
 					<view class="shop-en-name">{{item.name_eg||item.company.name_eg}}</view>
 				</view>
-				<view class="shop-collect flex-xy-center" bindtap="handleCollect" data-id="{{item.id||item.company.id}}" data-collect="{{item.is_collect}}">
+				<view class="shop-collect flex-xy-center" bindtap="handleCollect" data-id="{{item.id||item.company.id}}" data-collect="{{item.is_collect}}" data-type="2">
 					<image class="flex-grow-0" src="/images/home/home_collect@2x.png" wx:if="{{item.is_collect == 0}}"></image>
 					<image class="flex-grow-0" src="/images/home/home_collect0@2x.png" wx:if="{{item.is_collect == 1}}"></image>
 				</view>

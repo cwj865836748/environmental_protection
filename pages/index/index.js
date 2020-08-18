@@ -1,5 +1,7 @@
 const App = getApp();
-import {request} from '../../request/index.js'
+import {
+  request
+} from '../../request/index.js'
 const api = require('../../request/api.js');
 
 
@@ -34,15 +36,38 @@ Page({
   handleCollect(e) {
     let id = e.currentTarget.dataset.id;
     let collect = e.currentTarget.dataset.collect;
-    if(collect == 1){
-      this.getDel(id);
-    }else{
-      this.getAdd(id);
+    let type = e.currentTarget.dataset.type;
+    if (collect == 1) {
+      this.getDel(id,type);
+    } else {
+      this.getAdd(id,type);
     }
-    this.getBusinessList();
-    this.getCustomerList();
   },
-
+  changeCollect(id,type) {
+    if(type == 1){
+      const List = this.data.enterpriseList
+      List.forEach(item => {
+        if (item.id == id) {
+          item.is_collect = item.is_collect == 0 ? 1 : 0
+        }
+      })
+      this.setData({
+        enterpriseList: [...List]
+      })
+    }else{
+      const List = this.data.merchantsList
+      List.forEach(item => {
+        if (item.id == id) {
+          item.is_collect = item.is_collect == 0 ? 1 : 0
+        }
+      })
+      this.setData({
+        merchantsList: [...List]
+      })
+    }
+    
+   
+  },
 
   /**
    * 生命周期函数--监听页面加载
@@ -54,26 +79,38 @@ Page({
     this.getCustomerList();
   },
   // 添加收藏
-  getAdd(id) {
-     request({ url: api.company.addCollect, data: {company_id: id} }).then(res=>{
-         if (res.code == 200) {
-          wx.showToast({
-            title: res.msg,
-            icon: 'none'
-          })
-        }
-   })
+  getAdd(id,type) {
+    request({
+      url: api.company.addCollect,
+      data: {
+        company_id: id
+      }
+    }).then(res => {
+      if (res.code == 200) {
+        wx.showToast({
+          title: res.msg,
+          icon: 'none'
+        })
+        this.changeCollect(id,type)
+      }
+    })
   },
   // 取消收藏
-  getDel(id) {
-     request({ url: api.company.deCollect, data: {company_id: id} }).then(res=>{
-         if (res.code == 200) {
-          wx.showToast({
-            title: res.msg,
-            icon: 'none'
-          })
-        }
-   })
+  getDel(id,type) {
+    request({
+      url: api.company.deCollect,
+      data: {
+        company_id: id
+      }
+    }).then(res => {
+      if (res.code == 200) {
+        wx.showToast({
+          title: res.msg,
+          icon: 'none'
+        })
+        this.changeCollect(id,type)
+      }
+    })
   },
 
   /**
@@ -84,11 +121,13 @@ Page({
   },
   // 获取轮播图信息
   getSlideshow() {
-     request({url: api.common.slideshow}).then(res=>{
-        this.setData({
-            swiperList: res.data.list
-          })
-   })
+    request({
+      url: api.common.slideshow
+    }).then(res => {
+      this.setData({
+        swiperList: res.data.list
+      })
+    })
   },
   // 轮播图跳转到相应页面
   handleJump(e) {
@@ -107,11 +146,13 @@ Page({
   },
   // 获取产品库信息
   getEquipment() {
-       request({url: api.common.equipment}).then(res=>{
-        this.setData({
-            produceList: res.data.list
-          })
-   })
+    request({
+      url: api.common.equipment
+    }).then(res => {
+      this.setData({
+        produceList: res.data.list
+      })
+    })
   },
   // 获取企业名录列表
   getBusinessList() {
@@ -119,66 +160,70 @@ Page({
     that.setData({
       loading: true
     })
-    request({url: api.common.businessList}).then(res=>{
+    request({
+      url: api.common.businessList
+    }).then(res => {
+      that.setData({
+        loading: false
+      })
+      if (res.code == 200) {
+        let enterpriseList = res.data.list ? res.data.list : [];
+        if (enterpriseList.length == 0) {
           that.setData({
-          loading: false
-        })
-        if (res.code == 200) {
-          let enterpriseList = res.data.list ? res.data.list : [];
-          if (enterpriseList.length == 0) {
-            that.setData({
-              enterpriseList:[],
-              noData: true
-            })
-            return;
-          }
-          if (enterpriseList.length < 7) {
-            that.setData({
-              enterpriseList: enterpriseList,
-              // noMore: true
-            })
-            return;
-          } else {
-            that.setData({
-              enterpriseList: enterpriseList.slice(0, 7)
-            })
-          }
+            enterpriseList: [],
+            noData: true
+          })
+          return;
         }
-   })
+        if (enterpriseList.length < 7) {
+          that.setData({
+            enterpriseList: enterpriseList,
+            // noMore: true
+          })
+          return;
+        } else {
+          that.setData({
+            enterpriseList: enterpriseList.slice(0, 7)
+          })
+        }
+      }
+    })
   },
   // 获取客商名录列表
   getCustomerList() {
     const that = this;
-    
+
     that.setData({
       loading1: true
     })
-    request({url: api.common.customerList}).then(res=>{
+    request({
+      url: api.common.customerList
+    }).then(res => {
+      that.setData({
+        loading1: false
+      })
+      if (res.code == 200) {
+        let merchantsList = res.data.list ? res.data.list : [];
+        if (merchantsList.length == 0) {
           that.setData({
-          loading1: false
-        })
-        if (res.code == 200) {
-          let merchantsList = res.data.list ? res.data.list : [];
-          if (merchantsList.length == 0) {
-            that.setData({
-              merchantsList: [],
-              noData1: true
-            })
-            return;
-          }
-          if (merchantsList.length < 7) {
-            that.setData({
-              merchantsList: merchantsList,
-              // noMore1: true
-            })
-          } else {
-            that.setData({
-              merchantsList: merchantsList.slice(0, 7)
-            })
-            return;
-          }
+            merchantsList: [],
+            noData1: true
+          })
+          return;
         }
-   })
+        if (merchantsList.length < 7) {
+          that.setData({
+            merchantsList: merchantsList,
+            // noMore1: true
+          })
+        } else {
+          that.setData({
+            merchantsList: merchantsList.slice(0, 7)
+          })
+          return;
+        }
+      }
+    })
 
   },
   /**
@@ -209,16 +254,16 @@ Page({
     // 显示顶部刷新图标
     wx.showNavigationBarLoading();
     this.setData({
-      page:1,
-      noData:false,
-      noData1:false,
-      noMore1:false,
-      noMore:false,
-      loading:false,
-      produceList:[],
-      enterpriseList:[],
-      merchantsList:[],
-      swiperList:[]
+      page: 1,
+      noData: false,
+      noData1: false,
+      noMore1: false,
+      noMore: false,
+      loading: false,
+      produceList: [],
+      enterpriseList: [],
+      merchantsList: [],
+      swiperList: []
     })
     this.getSlideshow();
     this.getEquipment();
