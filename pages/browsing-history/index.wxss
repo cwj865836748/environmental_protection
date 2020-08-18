@@ -3,15 +3,14 @@
 @import '/pages/innovative-technology/index.wxss';
 @import '/common/enterprise/enterpriseList.wxss';
 .news-content {
-  height: 83vh;
   background-color: #f8f8f8;
   padding-bottom: 20rpx;
   overflow-y: scroll;
 }
 
-.tab-list {
+.tab-lists {
   /* background: linear-gradient(180deg, #ffffff, rgba(255, 255, 255, 0)); */
-  padding-bottom: 20rpx;
+  padding:30rpx 0 30rpx;
 }
 .shop-list{
   background-color: #ffffff;

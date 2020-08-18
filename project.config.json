@@ -152,6 +152,13 @@
 					"id": -1,
 					"name": "报名",
 					"pathName": "pages/apply/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "登录页",
+					"pathName": "pages/authorization/index",
 					"scene": null
 				}
 			]

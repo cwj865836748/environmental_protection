@@ -2,7 +2,7 @@
 <wxs src="../../wxs/filter.wxs" module="filter"></wxs>
 <navbar title="活动详情" back="{{true}}"></navbar>
 <!-- 活动标题 -->
-<view class="activity-title">{{info.title}}</view>
+<view class="activity-title">{{info.name}}</view>
 <!-- 活动图片和状态 -->
 <view class="activity-img">
 	<image src="{{info.pic}}"></image>
@@ -43,7 +43,7 @@
 </view>
 
 <view class="btn-wrap flex-x-center" wx:if="{{info.status==0}}">
-	<navigator url="/pages/apply/index?id={{activityId}}">
+	<navigator url="/pages/apply/index?id={{info.id}}">
 		<view class="btn flex-xy-center">点我报名</view>
 	</navigator>
 </view>

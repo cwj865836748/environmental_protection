@@ -15,7 +15,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.getMine()
+  
   },
    getMine(){
     request({url:api.user.userInfo}).then(res=>{
@@ -36,7 +36,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    this.getMine()
   },
 
   /**

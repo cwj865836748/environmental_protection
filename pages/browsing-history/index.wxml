@@ -1,6 +1,8 @@
 <!--pages/browsing-history/index.wxml-->
-<navbar title="浏览记录" back="{{true}}"></navbar>
-<view class="tab-list flex-y-center">
+<wxs src="../../wxs/filter.wxs" module="filter"></wxs>
+<navbar title="浏览记录" back="{{true}}" bind:getNavHeight="getNavHeight"></navbar>
+<view style="height:calc(100vh - {{navHeight}}px);">
+<view class="tab-lists flex-y-center">
 	<block wx:for="{{tabList}}">
 		<view class="news-tab flex-grow-1 flex-col flex-xy-center" wx:key="index" bindtap="handleChangeTab" data-id="{{item.id}}">
 			<view class=" tab-item {{tabIndex == item.id ? 'tab-item-active' : ''}}">{{item.title}}</view>
@@ -13,20 +15,23 @@
 <view class="news-content" wx:if="{{tabIndex == 1}}">
 
 	<view class="news-list pl30" wx:for="{{browsingList}}">
+		<navigator url="/pages/news-detail/index?id={{item.article_id}}&&type=3">
 		<view class="news-item flex-y-center">
 			<view class="item-img flex-xy-center">
 				<image class="flex-grow-0" src="{{item.article.pic}}"></image>
 			</view>
 			<view class="news-msg">
 				<view class="news-dec text-more">{{item.article.title}}</view>
-				<view class="news-time">{{item.createtime}}</view>
+				<view class="news-time">{{filter.getTime(item.createtime)}}</view>
 			</view>
 		</view>
+		</navigator>
 	</view>
-
+<include src="/common/noData/noData" />
 </view>
 
 <!-- 企业 -->
 <view class="news-content" wx:if="{{tabIndex == 2}}">
 	<include src="/common/enterprise/enterpriseList" />
+</view>
 </view>

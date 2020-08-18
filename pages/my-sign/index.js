@@ -23,8 +23,15 @@ Page({
     activityData:[],
     activityNext:false,
     activityPage:1,
-    noData:false
+    noData:false,
+    navHeight:null
   },
+  getNavHeight(e){
+    const {navHeight} = e.detail
+    this.setData ({
+     navHeight
+    })
+   },
   //  切换tab
   handleChangeTab(e) {
     let id = e.currentTarget.dataset.id;

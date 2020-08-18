@@ -1,5 +1,5 @@
 <block wx:for="{{enterpriseList}}">
-	<!-- <navigator url="/pages/enterprise-detail/index?id={{item.id}}"> -->
+	<!-- <navigator url="/pages/enterprise-detail/index?id={{item.id||item.company.id}}"> -->
 		<view class="shop-list flex" wx:key="index">
 			<view class="shop-item-logo flex-xy-center" bindtap="handleJumpCompany" data-id="{{item.id||item.company.id}}">
 				<image class="flex-grow-0" src="{{item.pic||item.company.pic}}"></image>

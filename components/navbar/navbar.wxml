@@ -2,8 +2,8 @@
 <view class="navbar" style='height:{{navHeight}}px;background-color:{{headColor}};'>
   <view style='height:{{statusBarHeight}}px;background-color:{{headColor}};'/>
   <view class="title-container" style='height:{{navHeight-statusBarHeight}}px;'>
-     <van-icon name="arrow-left" wx:if='{{back}}' bindtap="goBack"/>
-     <van-icon name="wap-home-o" wx:if='{{home}}' bindtap="goHome"/>
+     <van-icon name="arrow-left" wx:if='{{back}}' bindtap="goBack" style='color:{{titleColor}};'/>
+     <van-icon name="wap-home-o" wx:if='{{home}}' bindtap="goHome" style='color:{{titleColor}};'/>
     <view class="title_head" style='color:{{titleColor}};'>{{title}}</view>
   </view>
   </view>

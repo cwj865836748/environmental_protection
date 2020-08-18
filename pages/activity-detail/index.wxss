@@ -91,7 +91,6 @@
 .btn-wrap{
   width: 100%;
   background-color: #ffffff;
-  height: 100rpx;
   position: fixed;
   bottom: 0;
   left: 0;
@@ -103,4 +102,5 @@
   font-size: 28rpx;
   color: #ffffff;
   background: linear-gradient(90deg,#43b2fc 1%, #43a0fc 99%);
+  margin: 0;
 }
