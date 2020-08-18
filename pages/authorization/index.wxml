@@ -1,29 +1,32 @@
 <!--pages/authorization/index.wxml-->
 <!-- 头部导航栏 -->
-<view class="head">
-	<view class="head-nav flex-col flex-xy-center" style="height:{{navHeight}}px;">
-		<view style='height:{{statusBarHeight}}px;'></view>
-		<view class="nav-bar flex-y-center">
-			<!-- <image class="arrow" src="/images/shop_back@2x.png"></image> -->
-			<van-icon name="arrow-left" bindtap="goBack" />
-			<view class="head-title flex-grow-1">授权登录</view>
-		</view>
-	</view>
-	<image class="head-bg" src="/images/login_bg@2x.png"></image>
-</view>
+<navbar title="授权登录" back="{{true}}" headColor="transparent" titleColor="#fff"></navbar>
 
 <!-- 生态logo -->
-<view class="logo-box flex-col flex-xy-center">
+<!-- <view class="logo-box flex-col flex-xy-center">
 	<view class="login-logo flex-xy-center">
 		<image class="logo flex-grow-0" src="/images/login_logo@2x.png"></image>
 	</view>
 	<view class="login-name">生态联合网</view>
+</view> -->
+<view class='logo-box'>
+<image src="/images/mine/my_bg@2x.png" class='logo-box-bg'></image>
+<view class='login-logo flex-xy-center'>
+<image src="/images/login_logo@2x.png" class='logo'></image>
 </view>
+</view>
+<view class='login-name'>生态联合网</view>
 
 <!-- 授权按钮 -->
-<button wx:if="{{!status}}" open-type="getUserInfo" lang="zh_CN" bindgetuserinfo="authorLogin">
-	<view class="btn flex-xy-center" >授权微信登录</view>
+ <view wx:if="{{canIUse}}">
+<button wx:if="{{!status}}" open-type="getUserInfo" lang="zh_CN" 
+class="btn flex-xy-center" bindgetuserinfo="authorLogin">
+授权微信登录
 </button>
-<button  wx:if='{{status}}' open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber">
-	<view class="btn flex-xy-center">获取手机号</view>
+
+<button  wx:if='{{status}}' open-type="getPhoneNumber" 
+class="btn flex-xy-center" bindgetphonenumber="getPhoneNumber">
+获取手机号
 </button>
+</view>
+<view wx:else>请升级微信版本</view> 

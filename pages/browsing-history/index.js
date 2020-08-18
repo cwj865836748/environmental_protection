@@ -23,8 +23,15 @@ Page({
     enterpriseList: [],
     enterpriseNext:false,
     enterprisePage:1,
-    noData:false
+    noData:false,
+    navHeight:null
   },
+  getNavHeight(e){
+    const {navHeight} = e.detail
+    this.setData ({
+     navHeight
+    })
+   },
   //  切换tab
     //  切换tab
     handleChangeTab(e) {
@@ -71,6 +78,48 @@ Page({
             noData:!this.data.enterpriseList.length
            })
          })
+      })
+    },
+    handleCollect(e){
+      console.log(e)
+         let {collect,id} = e.currentTarget.dataset
+         if(collect==0){
+           this.addCollect(id)
+         }else {
+          this.delCollect(id)
+         }
+    },
+    addCollect(id){
+      request({url:api.company.addCollect,data:{company_id:id}}).then(res=>{
+        if(res.code==200){
+            wx.showToast({
+              title: res.msg
+          })
+          this.changeCollect(id)
+        }
+      })
+    },
+    delCollect(id){
+      request({url:api.company.deCollect,data:{company_id:id}}).then(res=>{
+        if(res.code==200){
+          
+            wx.showToast({
+              title: res.msg
+              
+            })
+            this.changeCollect(id)
+        }
+      })
+    },
+    changeCollect(id){
+      const List  = this.data.enterpriseList
+      List.forEach(item=>{
+        if(item.company.id==id){
+         item.is_collect= item.is_collect==0?1:0
+        }
+      })
+      this.setData({
+        enterpriseList:[...List]
       })
     },
     /**

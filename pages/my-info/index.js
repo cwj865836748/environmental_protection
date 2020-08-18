@@ -18,6 +18,7 @@ Page({
   },
   getPhoneNumber: function(e) {
     const {iv,encryptedData}=e.detail
+    console.log(e)
     wx.showLoading({
       title: "正在获取",
       mask: true
@@ -72,11 +73,6 @@ Page({
         wx.showToast({
           title: res.msg
         })
-        var pages =getCurrentPages()
-        if (pages.length >1) {
-          var beforePage = pages[pages.length- 2];//获取上一个页面实例对象
-          beforePage.getMine();//触发父页面中的方法
-        }
         wx.navigateBack({
           delta:1
         })

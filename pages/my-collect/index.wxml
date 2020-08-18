@@ -1,5 +1,6 @@
 <!--pages/my-collect/index.wxml-->
-<navbar title="我的收藏" back="{{true}}"></navbar>
+<navbar title="我的收藏" back="{{true}}" bind:getNavHeight="getNavHeight"></navbar>
+<view style="height:calc(100vh - {{navHeight}}px);">
 <view class="tab-list flex-y-center">
 	<block wx:for="{{tabList}}">
 		<view class="news-tab flex-grow-1 flex-col flex-xy-center" wx:key="index" bindtap="handleChangeTab" data-id="{{item.id}}">
@@ -10,6 +11,7 @@
 </view>
 
 <!-- 设备列表 -->
+
 <view class="produce-list flex-y-center" wx:if="{{tabIndex == 1}}">
 	<block wx:for="{{produceList}}" wx:key="index">
 		<view class="produce-item ml flex-col flex-xy-center">
@@ -29,4 +31,5 @@
 <view class="list-wrap" wx:if="{{tabIndex == 2}}">
 	<include src="/common/enterprise/enterpriseList" />
 	
+</view>
 </view>

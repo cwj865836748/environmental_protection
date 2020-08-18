@@ -5,7 +5,7 @@
   /* height: 84vh; */
 }
 .list-wrap{
-  height: 84vh;
+  /* height: 84vh; */
   overflow-y: scroll;
 }
 .tab-item{
@@ -24,8 +24,7 @@
 }
 
 .tab-list{
-  padding: 0 120rpx;
+  padding: 26rpx 120rpx  20rpx;
   justify-content: space-around;
-  margin-top: 26rpx;
-  margin-bottom: 20rpx;
+ 
 }

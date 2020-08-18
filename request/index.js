@@ -1,6 +1,6 @@
 import {showToast} from '../utils/wx'
 // 后台url
- const baseUrl = "http://106.52.153.11:8789";
+ const baseUrl = "https://enviorapi.galaxy1234.com";
  
 // 同时发送异步代码的次数
 let ajaxTimes = 0;
@@ -8,11 +8,11 @@ let ajaxTimes = 0;
 export const request = (params) => {
 
   let header = { ...params.header };
-  // if(wx.getStorageSync("token")){
-  //    header["token"] = wx.getStorageSync("token");
+  if(wx.getStorageSync("token")){
+     header["token"] = wx.getStorageSync("token");
        
-  // }
-  header["token"] = '1111';
+  }
+  // header["token"] = '1111';
   header['Content-Type']= header['Content-Type']? header['Content-Type']:"application/x-www-form-urlencoded"
   
   ajaxTimes++;
@@ -31,8 +31,7 @@ export const request = (params) => {
       success: (res) => {
         if (res.data.code == 201 ) {
           wx.clearStorageSync();
-          showToast(res.data.msg)
-          wx.reLaunch({ url: '/pages/authorization/authorization',}) 
+          wx.navigateTo({ url: '/pages/authorization/index'}) 
               }
         else{
                 resolve(res.data);

@@ -3,18 +3,15 @@
 @import '/pages/exhibition/index.wxss';
 @import '/pages/activity/index.wxss';
 .sign-wrap{
-  height: 88vh;
   background-color: #f8f8f8;
 }
 .tab-list{
   background: linear-gradient(180deg,#ffffff, rgba(255,255,255,0));
 }
 .exhibition-list{
-  height: 83vh;
   overflow-y: scroll;
 }
 .activity-list{
-  height: 83vh;
   overflow-y: scroll;
   padding: 0 30rpx;
 }

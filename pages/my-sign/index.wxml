@@ -1,7 +1,7 @@
 <!--pages/my-sign/index.wxml-->
 <wxs src="../../wxs/filter.wxs" module="filter"></wxs>
-<navbar title="我的报名" back="{{true}}"></navbar>
-<view class="sign-wrap">
+<navbar title="我的报名" back="{{true}}" bind:getNavHeight="getNavHeight"></navbar>
+<view class="sign-wrap"  style="height:calc(100vh - {{navHeight}}px);">
 	<view class="tab-list flex-y-center">
 		<block wx:for="{{tabList}}">
 			<view class="news-tab flex-grow-1 flex-col flex-xy-center" wx:key="index" bindtap="handleChangeTab" data-id="{{item.id}}">

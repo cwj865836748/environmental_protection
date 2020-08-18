@@ -42,7 +42,7 @@
     var month = date.getMonth() + 1
     var day = date.getDate()
     
-      return year + '-' + month + '-' + day;      
+      return year + '.' + month + '.' + day;      
 }
    var activeStatus = function(status){
       if(status==0){

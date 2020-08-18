@@ -1,7 +1,7 @@
 <!--pages/activity/index.wxml-->
 <wxs src="../../wxs/filter.wxs" module="filter"></wxs>
-<navbar title="活动" back="{{false}}"></navbar>
-<view class="activity-wrap">
+<navbar title="活动" back="{{false}}" bind:getNavHeight="getNavHeight"></navbar>
+<view class="activity-wrap" style="height:calc(100vh - {{navHeight}}px);">
 	<!-- 轮播图 -->
 	<view class="swiper-box">
 		<swiper indicator-dots="{{true}}" indicator-color="rgba(255,255,255,0.5)" indicator-active-color="#ffffff">
@@ -26,7 +26,7 @@
 					<!-- <view class="activity-status-overed flex-xy-center">已结束</view> -->
 				</view>
 				<view class="activity-item-right">
-					<view class="activity-name">{{item.name}}</view>
+					<view class="activity-name text-more">{{item.name}}</view>
 					<view class="activity-time-box flex-y-center">
 						<view class="activity-time-icon flex-xy-center">
 							<image class="flex-grow-0" src="/images/exhibition_time@2x.png"></image>

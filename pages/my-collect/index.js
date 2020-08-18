@@ -23,8 +23,15 @@ Page({
     enterprisePage:1,
     produceIs_Next:false,
     enterpriseIs_Next:false,
-    noData:false
+    noData:false,
+    navHeight:null
   },
+  getNavHeight(e){
+    const {navHeight} = e.detail
+    this.setData ({
+     navHeight
+    })
+   },
   //  切换tab
   handleChangeTab(e) {
     let {id} = e.currentTarget.dataset;
@@ -76,6 +83,30 @@ Page({
        })
       }
     })  
+  },
+  handleCollect(e){
+       let {id} = e.currentTarget.dataset
+       this.delCollect(id)
+  },
+  delCollect(id){
+    request({url:api.company.deCollect,data:{company_id:id}}).then(res=>{
+      if(res.code==200){
+        
+          wx.showToast({
+            title: res.msg
+            
+          })
+          this.changeCollect(id)
+      }
+    })
+  },
+  changeCollect(id){
+    const List  = this.data.enterpriseList
+    const index = List.findIndex(item=>item.id==id)
+    List.splice(index,1)
+    this.setData({
+      enterpriseList:[...List]
+    })
   },
   /**
    * 生命周期函数--监听页面加载

@@ -50,6 +50,7 @@ Component({
           })
         }
       } 
+      this.triggerEvent('getNavHeight', { navHeight:this.data.navHeight}); 
     },
   /**
    * 组件的方法列表
