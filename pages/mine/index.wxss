@@ -41,6 +41,9 @@
   font-size: 20px;
   color: #ffffff;
   letter-spacing: 1px;
+  width: 100%;
+  text-align: center;
+
 }
 
 /* 我的功能模块 */

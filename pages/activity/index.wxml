@@ -33,11 +33,11 @@
 						</view>
 						<view class="activity-time">{{filter.getTime(item.start_time)}}-{{filter.getTime(item.end_time)}}</view>
 					</view>
-					<view class="activity-location-box flex-y-center">
+					<view class="activity-location-box flex-y-center ">
 						<view class="activity-location-icon flex-xy-center">
 							<image class="flex-grow-0" src="/images/activity_location@2x.png"></image>
 						</view>
-						<view class="activity-location">{{item.address}}</view>
+						<view class="activity-location text-more-single">{{item.address}}</view>
 					</view>
 				</view>
 			</view>

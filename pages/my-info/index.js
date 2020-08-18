@@ -56,12 +56,6 @@ Page({
   },
   saveUser(){
     const {realname,company_name,position,email} = this.data.form
-    if(!realname){
-      return  wx.showToast({
-        title: '姓名不能为空',
-        icon:none
-      })
-    }
     const addForm = {
       realname,
       company_name,

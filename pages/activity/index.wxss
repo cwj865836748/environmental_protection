@@ -138,7 +138,7 @@ swiper {
 }
 
 .activity-location-icon {
-  width: 20rpx;
+  min-width: 20rpx;
   height: 24rpx;
   margin-right: 8rpx;
 }

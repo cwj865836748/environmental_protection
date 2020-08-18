@@ -189,6 +189,18 @@ function drawText(context, t, x, y, w) {
       context.fillText(str,x,y+(b+1)*24);
   }*/
 }
+function checkPhone(phone){ 
+  if(!(/^1[3456789]\d{9}$/.test(phone))){  
+      return false; 
+  }
+}
+ function checkEmail(email){
+  var reg = /^([a-zA-Z]|[0-9])(\w|\-)+@[a-zA-Z0-9]+\.([a-zA-Z]{2,4})$/;
+  if(!reg.test(email)){
+    return false; 
+  }
+}
+
 
 module.exports = {
   formatTime: formatTime,
@@ -196,5 +208,7 @@ module.exports = {
   wxPromisify: wxPromisify,
   unique: unique,
   formatTimeTwo: formatTimeTwo,
-  drawText:drawText
+  drawText:drawText,
+  checkPhone,
+  checkEmail
 }
