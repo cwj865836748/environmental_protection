@@ -1,4 +1,4 @@
-<view>
+<view class="noData">
 	<view class="qz-noda-box" wx:if="{{noData}}">
 		<image src="/images/nodata/empty_no data.png" class="a-image"></image>
 		<view class="a-title">暂无数据</view>

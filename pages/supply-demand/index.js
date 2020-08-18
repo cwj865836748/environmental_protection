@@ -72,8 +72,8 @@ Page({
    */
   onLoad: function (options) {
 
-    this.getSlideshow();
-    this.getLists();
+    // this.getSlideshow();
+    // this.getLists();
   },
 
   // 获取轮播图信息
@@ -158,7 +158,15 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    this.setData({
+      noData:false,
+      noMore:false,
+      loading:false,
+      page:1,
+      listData:[]
+    })
+    this.getSlideshow();
+    this.getLists();
   },
 
   /**

@@ -88,7 +88,7 @@ Page({
     }).then(res => {
       if (res.code == 200) {
         wx.showToast({
-          title: res.msg,
+          title: '收藏成功',
           icon: 'none'
         })
         this.changeCollect(id,type)
@@ -105,7 +105,7 @@ Page({
     }).then(res => {
       if (res.code == 200) {
         wx.showToast({
-          title: res.msg,
+          title: '取消收藏',
           icon: 'none'
         })
         this.changeCollect(id,type)

@@ -61,9 +61,9 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.getSlideshow();
-    this.getCategory();
-    this.getLists();
+    // this.getSlideshow();
+    // this.getCategory();
+    // this.getLists();
   },
   // 获取轮播图
   getSlideshow() {
@@ -156,7 +156,16 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    this.setData({
+      noData:false,
+      noMore:false,
+      page:1,
+      loading:false,
+      listData:[]
+    })
+    this.getSlideshow();
+    this.getCategory();
+    this.getLists();
   },
 
   /**

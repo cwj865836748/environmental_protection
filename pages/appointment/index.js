@@ -192,9 +192,23 @@ Page({
           console.log(res);
           if (res.code == 200) {
             wx.showToast({
-              title: res.msg,
+              title: '成功',
               icon: 'none'
             })
+            that.setData({
+              type: '企业参展',
+              name: '',
+              sex: 1,
+              company_name: '',
+              position: '',
+              email: '',
+              mobile: '',
+              company_url: '',
+              industry: ''
+            })
+            setTimeout(res => {
+              wx.navigateBack()
+            }, 1000)
           }
         })
       }
@@ -272,9 +286,23 @@ Page({
           console.log(res);
           if (res.code == 200) {
             wx.showToast({
-              title: res.msg,
+              title: '成功',
               icon: 'none'
             })
+            that.setData({
+              type: '企业参展',
+              name: '',
+              sex: 1,
+              company_name: '',
+              position: '',
+              email: '',
+              mobile: '',
+              company_url: '',
+              industry: ''
+            })
+            setTimeout(res => {
+              wx.navigateBack()
+            }, 1000)
           }
         })
       }

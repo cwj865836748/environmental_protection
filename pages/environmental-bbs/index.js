@@ -92,46 +92,74 @@ Page({
     let name = e.currentTarget.dataset.item.name;
     let selectList = this.data.selectList;
     let titleList = this.data.titleList;
-    let idList = this.data.idList;
+    let arr = [];
+    // console.log('是否被选中',checked);
+    // console.log('选中的id为',id);
+    // console.log('选中的名字',name)
     if (checked) {
-      selectList[index].checked = false;
-      if (titleList.length != 0) {
-        titleList.pop()
+      for (let i = 0; i < selectList.length; i++) {
+        if (selectList[i].id == id) {
+          selectList[i].checked = false;
+        }
       }
-      titleList.pop(name);
-      idList.pop(id)
+      var index1 = '';
+      if (titleList.length != 0) {
+        console.log(titleList)
+        for (let i = 0; i < titleList.length; i++) {
+          if (titleList[i].name == name) {
+            console.log('hahha')
+            index1 = i
+          }
+        }
+        console.log('下标', index1)
+        for (let i = 0; i < titleList.length; i++) {
+          if (i != index1) {
+            arr.push(titleList[i])
+          }
+        }
+        this.setData({
+          titleList: arr
+        })
+      }
     } else {
-      selectList[index].checked = true;
+      for (let i = 0; i < selectList.length; i++) {
+        if (selectList[i].id == id) {
+          selectList[i].checked = true;
+        }
+      }
       titleList.push({
         name: name,
         id: id
       });
-      idList.push(id);
+      this.setData({
+        titleList: titleList
+      })
     }
-    titleList = util.unique(titleList);
-    idList = util.unique(idList);
     this.setData({
       selectList: selectList,
-      titleList: titleList,
-      idList: idList,
       noData: false,
       noMore: false,
       loading: false,
-      listData: []
+      listData: [],
+      titleFlag: false
     })
     wx.setStorageSync('titleList', titleList);
-    wx.setStorageSync('idList', idList);
+    // wx.setStorageSync('idList', idList);
     // console.log(titleList)
     this.getExpertsList();
   },
   // 删除专家类型
   handleDelTile(e) {
+
+    this.setData({
+      titleList: false
+    })
+
     let id = e.currentTarget.dataset.id;
+    console.log('删除的id', id)
     let titleList = this.data.titleList;
-    let idList = this.data.idList;
     let selectList = this.data.selectList;
     let arr = [];
-    let arrId = [];
     for (let i = 0; i < titleList.length; i++) {
       if (titleList[i].id != id) {
         arr.push(titleList[i]);
@@ -143,14 +171,9 @@ Page({
         selectList[i].checked = false;
       }
     }
-    for (let i = 0; i < idList.length; i++) {
-      if (idList[i] != id) {
-        arrId.push(idList[i])
-      }
-    }
     this.setData({
       titleList: arr,
-      idList: arrId,
+      // idList: arrId,
       selectList: selectList,
       noData: false,
       noMore: false,
@@ -159,7 +182,7 @@ Page({
     })
 
     wx.setStorageSync('titleList', arr);
-    wx.setStorageSync('idList', arrId);
+    // wx.setStorageSync('idList', arrId);
 
     this.getExpertsList();
   },
@@ -191,13 +214,14 @@ Page({
    */
   onLoad: function (options) {
 
-    this.setData({
-      titleList: wx.getStorageSync('titleList') || [],
-      idList: wx.getStorageSync('idList') || []
-    })
-    this.getSlideshow();
-    this.getExpertsCategory();
-    this.getExpertsList();
+    // this.setData({
+    //   titleList: wx.getStorageSync('titleList') || [],
+    //   idList: wx.getStorageSync('idList') || []
+    // })
+    // this.getSlideshow();
+    // this.getExpertsCategory();
+    // this.getExpertsList();
+
   },
   // 获取轮播图
   getSlideshow() {
@@ -228,7 +252,7 @@ Page({
   // 专家智库分类
   getExpertsCategory() {
     const that = this;
-    let titleList = wx.getStorageSync('titleList') || [];
+    let titleList = wx.getStorageSync('titleList');
     request({
       url: api.forum.expertsCategory
     }).then(res => {
@@ -377,7 +401,18 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    this.setData({
+      titleList: wx.getStorageSync('titleList') || [],
+      idList: wx.getStorageSync('idList') || [],
+      noMore:false,
+      noData:false,
+      loading:false,
+      page:1,
+      listData:[]
+    })
+    this.getSlideshow();
+    this.getExpertsCategory();
+    this.getExpertsList();
   },
 
   /**
@@ -410,7 +445,7 @@ Page({
     }
     if (this.data.tabList == 1) {
       this.getExpertsList();
-    }else{
+    } else {
       this.getForumList();
     }
 

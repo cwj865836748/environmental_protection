@@ -9,6 +9,7 @@
   width: 150rpx;
   height: 150rpx;
   margin-right: 12rpx;
+  border: 2rpx solid #f8f8f8;
   border-radius: 20rpx;
 }
 
@@ -32,11 +33,13 @@
   font-size: 30rpx;
   color: #333333;
   line-height: 44rpx;
+  height: 44rpx;
 }
 .shop-content .shop-en-name{
   font-size: 22rpx;
   color: #999999;
   line-height: 34rpx;
+  height: 68rpx;
 }
 .shop-collect{
   width: 26rpx;

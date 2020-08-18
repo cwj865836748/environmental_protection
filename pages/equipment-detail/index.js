@@ -34,6 +34,7 @@ Page({
     this.setData({
       inviteShow: true,
     })
+     this.getPosterInfo();
   },
   onClose() {
     this.setData({
@@ -214,7 +215,7 @@ Page({
     })
     this.getEquipmentInfo();
     // this.getPoster();
-    this.getPosterInfo();
+    // this.getPosterInfo();
   },
   // 获取设备详情信息
   getEquipmentInfo() {
@@ -246,7 +247,7 @@ Page({
     }).then(res => {
       // console.log(res);
       wx.showToast({
-        title: res.msg,
+        title: '收藏成功',
         icon: 'none'
       })
     })
@@ -262,7 +263,7 @@ Page({
     }).then(res => {
       // console.log(res)
       wx.showToast({
-        title: res.msg,
+        title: '取消收藏',
         icon: 'none'
       })
     })
@@ -305,7 +306,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    this.getEquipmentInfo();
   },
 
   /**

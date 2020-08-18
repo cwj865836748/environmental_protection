@@ -30,7 +30,7 @@ Page({
       }
     ],
     listData: [],
-    subTabIndex: 1,
+    subTabIndex: 0,
     subTabList: [],
     produceList: [],
     etpTabIndex: 0,
@@ -209,12 +209,15 @@ Page({
   // 获取产品库分类
   getCategory() {
     const that = this;
+    let tabFirst = {id:0,name:'全部'};
     request({
       url: api.equipment.category
     }).then(res => {
       if (res.code == 200) {
+        let list = res.data.list;
+        list.unshift(tabFirst)
         that.setData({
-          subTabList: res.data.list
+          subTabList: list
         })
       }
     })
@@ -431,7 +434,7 @@ Page({
     }).then(res => {
       if (res.code == 200) {
         wx.showToast({
-          title: res.msg,
+          title: '收藏成功',
           icon: 'none'
         })
         this.changeCollect(id);
@@ -448,7 +451,7 @@ Page({
     }).then(res => {
       if (res.code == 200) {
         wx.showToast({
-          title: res.msg,
+          title: '取消收藏',
           icon: 'none'
         })
         this.changeCollect(id);

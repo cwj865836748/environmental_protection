@@ -45,19 +45,6 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    if (App.globalData.navBar) {
-      this.setData({
-        navHeight: App.globalData.navBar.navHeight,
-        statusBarHeight: App.globalData.navBar.statusBarHeight
-      })
-    } else {
-      App.userInfoReadyCallback = res => {
-        this.setData({
-          navHeight: App.globalData.navBar.navHeight,
-          statusBarHeight: App.globalData.navBar.statusBarHeight
-        })
-      }
-    }
 
     console.log('企业show', options.show);
     this.setData({
@@ -143,7 +130,7 @@ Page({
     }).then(res => {
       //  console.log(res)
       wx.showToast({
-        title: res.msg,
+        title: '收藏成功',
         icon: 'none'
       })
 
@@ -160,7 +147,7 @@ Page({
     }).then(res => {
       // console.log(res);
       wx.showToast({
-        title: res.msg,
+        title: '取消收藏',
         icon: 'none'
       })
 
@@ -178,7 +165,8 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    this.getCompanyDetail();
+    this.getEquipment();
   },
 
   /**

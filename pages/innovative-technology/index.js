@@ -17,7 +17,7 @@ Page({
     indicatorDots: true,
     swiperList: [],
     listData: [],
-    subTabIndex: 1,
+    subTabIndex: 0,
     subTabList: [],
     noData: false,
     noMore: false,
@@ -61,9 +61,9 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.getSlideshow();
-    this.getCategory();
-    this.getLists();
+    // this.getSlideshow();
+    // this.getCategory();
+    // this.getLists();
   },
   // 获取轮播图
   getSlideshow() {
@@ -81,13 +81,16 @@ Page({
   },
   // 获取分类
   getCategory() {
+    let tabFirst = {id:0,name:'全部'};
     request({
       url: api.technology.category
     }).then(res => {
       console.log(res);
       if (res.code == 200) {
+        let list = res.data.list;
+        list.unshift(tabFirst)
         this.setData({
-          subTabList: res.data.list
+          subTabList: list
         })
       }
     })
@@ -156,7 +159,16 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    this.setData({
+      noMore:false,
+      noData:false,
+      loading:false,
+      page:1,
+      listData:[]
+    })
+    this.getSlideshow();
+    this.getCategory();
+    this.getLists();
   },
 
   /**

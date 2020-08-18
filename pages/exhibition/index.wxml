@@ -23,9 +23,9 @@
 			</view>
 		</navigator>
 	</block>
- 
- <include src="/common/noData/noData" />
 
 </view>
+
+<include src="/common/noData/noData" />
 
 <include src="/common/consult/consult" />
