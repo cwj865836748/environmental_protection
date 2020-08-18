@@ -65,43 +65,43 @@ Page({
       sexIndex: sexIndex
     })
   },
-  onChangeCName(e){
+  onChangeCName(e) {
     this.setData({
-      company_name:e.detail
+      company_name: e.detail
     })
   },
-  onChangeName(e){
+  onChangeName(e) {
     this.setData({
-      name:e.detail
+      name: e.detail
     })
   },
-  onChangePosition(e){
+  onChangePosition(e) {
     this.setData({
-      position:e.detail
+      position: e.detail
     })
   },
-  onChangeEmail(e){
+  onChangeEmail(e) {
     this.setData({
-      email:e.detail
+      email: e.detail
     })
   },
-  onChangeMobile(e){
+  onChangeMobile(e) {
     this.setData({
-      mobile:e.detail
+      mobile: e.detail
     })
   },
-  onChangeUrl(e){
+  onChangeUrl(e) {
     this.setData({
-      company_url:e.detail
+      company_url: e.detail
     })
   },
-  onChangeIndustry(e){
+  onChangeIndustry(e) {
     this.setData({
-      industry:e.detail
+      industry: e.detail
     })
   },
   // 提交
-  handleGit(){
+  handleGit() {
     this.postAppointment();
   },
   /**
@@ -118,84 +118,166 @@ Page({
     const that = this;
     let regEmail = /^\w{3,}(\.\w+)*@[A-z0-9]+(\.[A-z]{2,5}){1,2}$/;
     let regMobile = /^[1][3,4,5,7,8][0-9]{9}$/;
-    if (this.type == '') {
-      wx.showToast({
-        title: '请选择参展类型',
-        icon: 'none'
-      })
-      return;
-    } else if (this.data.company_name == '') {
-      wx.showToast({
-        title: '公司名称不能为空',
-        icon: 'none'
-      })
-      return;
-    }else if(this.data.name == ''){
-      wx.showToast({
-        title: '负责人姓名不能为空',
-        icon:'none'
-      })
-      return ;
-    } else if (this.data.position == '') {
-      wx.showToast({
-        title: '职位不能为空',
-        icon: 'none'
-      })
-      return;
-    } else if (this.data.email == '') {
-      wx.showToast({
-        title: '邮箱不能为空',
-        icon: 'none'
-      })
-      return;
-    } else if (!regEmail.test(that.data.email)) {
-      wx.showToast({
-        title: '邮箱有误，请重新输入',
-        icon: "none"
-      })
-      that.setData({
-        email: ''
-      })
-      return;
-    } else if (this.data.mobile == '') {
-      wx.showToast({
-        title: '手机号不能为空',
-        icon: "none"
-      })
-      return;
-    } else if (!regMobile.test(that.data.mobile)) {
-      wx.showToast({
-        title: '手机号码有误，请重新输入',
-        icon: "none"
-      })
-      this.setData({
-        mobile: ''
-      })
-      return;
+    if (this.data.selectedIndex == 1) {
+      if (this.data.type == '') {
+        wx.showToast({
+          title: '请选择参展类型',
+          icon: 'none'
+        })
+        return;
+      } else if (this.data.company_name == '') {
+        wx.showToast({
+          title: '公司名称不能为空',
+          icon: 'none'
+        })
+        return;
+      } else if (this.data.name == '') {
+        wx.showToast({
+          title: '负责人姓名不能为空',
+          icon: 'none'
+        })
+        return;
+      } else if (this.data.position == '') {
+        wx.showToast({
+          title: '职位不能为空',
+          icon: 'none'
+        })
+        return;
+      } else if (this.data.email == '') {
+        wx.showToast({
+          title: '邮箱不能为空',
+          icon: 'none'
+        })
+        return;
+      } else if (!regEmail.test(that.data.email)) {
+        wx.showToast({
+          title: '邮箱有误，请重新输入',
+          icon: "none"
+        })
+        that.setData({
+          email: ''
+        })
+        return;
+      } else if (this.data.mobile == '') {
+        wx.showToast({
+          title: '手机号不能为空',
+          icon: "none"
+        })
+        return;
+      } else if (!regMobile.test(that.data.mobile)) {
+        wx.showToast({
+          title: '手机号码有误，请重新输入',
+          icon: "none"
+        })
+        this.setData({
+          mobile: ''
+        })
+        return;
+      } else {
+        request({
+          url: api.exhibition.add,
+          data: {
+            type: that.data.typeIndex,
+            name: that.data.name,
+            sex: that.data.sexIndex,
+            company_name: that.data.company_name,
+            exhibition_id: that.data.exhibition_id,
+            position: that.data.position,
+            email: that.data.email,
+            mobile: that.data.mobile,
+            company_url: that.data.company_url,
+            industry: that.data.industry
+          }
+        }).then(res => {
+          console.log(res);
+          if (res.code == 200) {
+            wx.showToast({
+              title: res.msg,
+              icon: 'none'
+            })
+          }
+        })
+      }
     } else {
-      request({
-        url: api.exhibition.add,
-        data: {
-          type:that.data.typeIndex,
-          name:that.data.name,
-          sex:that.data.sexIndex,
-          company_name:that.data.company_name,
-          exhibition_id:that.data.exhibition_id,
-          position:that.data.position,
-          email:that.data.email,
-          mobile:that.data.mobile,
-          company_url:that.data.company_url,
-          industry:that.data.industry
-        }
-      }).then(res => {
-        console.log(res);
-        if(res.code == 200){
-          wx.showToast({
-            title: res.msg,
-            icon:'none'
-          })
-        }
-      })
+      if (this.data.type == '') {
+        wx.showToast({
+          title: '请选择参展类型',
+          icon: 'none'
+        })
+        return;
+      } else if (this.data.name == '') {
+        wx.showToast({
+          title: '姓名不能为空',
+          icon: 'none'
+        })
+        return;
+      } else if (this.data.company_name == '') {
+        wx.showToast({
+          title: '公司名称不能为空',
+          icon: 'none'
+        })
+        return;
+      } else if (this.data.position == '') {
+        wx.showToast({
+          title: '职位不能为空',
+          icon: 'none'
+        })
+        return;
+      } else if (this.data.email == '') {
+        wx.showToast({
+          title: '邮箱不能为空',
+          icon: 'none'
+        })
+        return;
+      } else if (!regEmail.test(that.data.email)) {
+        wx.showToast({
+          title: '邮箱有误，请重新输入',
+          icon: "none"
+        })
+        that.setData({
+          email: ''
+        })
+        return;
+      } else if (this.data.mobile == '') {
+        wx.showToast({
+          title: '手机号不能为空',
+          icon: "none"
+        })
+        return;
+      } else if (!regMobile.test(that.data.mobile)) {
+        wx.showToast({
+          title: '手机号码有误，请重新输入',
+          icon: "none"
+        })
+        this.setData({
+          mobile: ''
+        })
+        return;
+      } else {
+        request({
+          url: api.exhibition.add,
+          data: {
+            type: that.data.typeIndex,
+            name: that.data.name,
+            sex: that.data.sexIndex,
+            company_name: that.data.company_name,
+            exhibition_id: that.data.exhibition_id,
+            position: that.data.position,
+            email: that.data.email,
+            mobile: that.data.mobile,
+            company_url: that.data.company_url,
+            industry: that.data.industry
+          }
+        }).then(res => {
+          console.log(res);
+          if (res.code == 200) {
+            wx.showToast({
+              title: res.msg,
+              icon: 'none'
+            })
+          }
+        })
+      }
     }
   },
   /**

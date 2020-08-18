@@ -1,33 +1,51 @@
 // pages/search/index.js
-const App=getApp()
+const App = getApp()
 var utils = require('../../utils/util.js')
-import {navigateTo} from '../../utils/wx.js';
+import {
+  navigateTo
+} from '../../utils/wx.js';
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    search:''
+    search: '',
+    id: '',
+    // type = 1 从首页跳转而来 type = 2 从展会详情跳转而来
+    type: ''
   },
-  handleJump(e){
+  handleJump(e) {
     let search = e.detail;
     this.setData({
-      search:search
+      search: search
     })
     console.log(search);
-    wx.navigateTo({
-      url: '/pages/search-result/index?search=' + search,
-    });
+    if (this.data.type == 1) {
+      wx.navigateTo({
+        url: '/pages/search-result/index?search=' + search + '&&type=1',
+      });
+    }else{
+      wx.navigateTo({
+        url: '/pages/search-result/index?search=' + search + '&&type=2' + '&&id=' + this.data.id,
+      });
+    }
+
     this.setData({
-      search:''
+      search: ''
     })
   },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    console.log('搜索type', options.type);
+    let type = options.type;
+    let id = options.id;
+    this.setData({
+      type: type,
+      id: id
+    })
   },
 
   /**

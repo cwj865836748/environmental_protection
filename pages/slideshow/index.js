@@ -12,7 +12,7 @@ Page({
   data: {
     id: '',
     info: '',
-    // type == 1 为供需快报  type == 2 为环保论坛 type == 3  为技术创新 type == 4 为环保展会 type ==5 为活动
+    // type == 1 为供需快报  type == 2 为环保论坛 type == 3  为技术创新 type == 4 为环保展会 type == 5 为活动
     type: ''
   },
 
@@ -106,6 +106,7 @@ Page({
       }
     })
   },
+  // 获取轮播图详情 - 活动
   getSlideshowDetailC(){
     const that = this;
     request({

@@ -17,6 +17,14 @@
 		<video class="video" src="{{info.media}}" controls='true'></video>
 	</view>
 
+	<!-- 搜索框 -->
+	<navigator hover-class="none" url="/pages/search/index?type=2&&id={{info.id}}">
+		<view class="head-input flex-y-center">
+			<image class="input-icon flex-grow-0" src="/images/home/home_search@2x.png"></image>
+			<view class="input-tips flex-y-center">请输入您要找的企业/设备</view>
+		</view>
+	</navigator>
+
 </view>
 
 <view class="exhibition-wrap">
@@ -39,7 +47,7 @@
 		</navigator>
 
 
-		<navigator url="/pages/link-us/index?id={{info.id}}" class=" flex-grow-1">
+		<navigator url="/pages/link-us/index?id={{info.id}}&&type=0" class=" flex-grow-1">
 			<view class="function-item flex-col flex-xy-center">
 				<image class="function-icon flex-grow-0" src="/images/exhibition_module_ico3@2x.png"></image>
 				<view class="function-dec">联系我们</view>
@@ -112,12 +120,12 @@
 
 </view>
 
-<navigator url="/pages/appointment/index?id={{info.id}}">
-	<view class="registration flex-x-center">
-		<view class="btn  flex-xy-center">预约登记</view>
-	</view>
-</navigator>
-
-
+<block wx:if="{{info.status == 0 || info.status == 2 }}">
+	<navigator url="/pages/appointment/index?id={{info.id}}">
+		<view class="registration flex-x-center">
+			<view class="btn  flex-xy-center">预约登记</view>
+		</view>
+	</navigator>
+</block>
 
 <include src="/common/consult/consult" />

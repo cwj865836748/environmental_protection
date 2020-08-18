@@ -15,7 +15,9 @@ Page({
    * 页面的初始数据
    */
   data: {
-    id: ''
+    id: '',
+    // type = 0 表示从展会详情进入 type = 1 表示从我的中的联系我们进入
+    type: ''
   },
 
   /**
@@ -24,9 +26,16 @@ Page({
   onLoad: function (options) {
     console.log(options.id);
     this.setData({
-      id: options.id
+      id: options.id,
+      type: options.type
     })
-    this.getDetail();
+    if (this.data.type == 0) {
+      this.getDetail();
+    } else if(this.data.type == 1){
+
+      this.getLinkInfo()
+    }
+
   },
   // 获取展会详情
   getDetail() {
@@ -37,9 +46,21 @@ Page({
         exhibition_id: that.data.id
       }
     }).then(res => {
-      console.log(res);
+      // console.log(res);
       if (res.code == 200) {
         WxParse.wxParse('content', 'html', res.data.info.contact, that);
+      }
+    })
+  },
+  // 获取联系我们详情
+  getLinkInfo() {
+    const that = this;
+    request({
+      url: api.configInfo.contact
+    }).then(res => {
+      // console.log(res);
+      if (res.code == 200) {
+        WxParse.wxParse('content', 'html', res.data.info, that);
       }
     })
   },

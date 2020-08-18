@@ -54,7 +54,7 @@
 <!-- 个人参展 -->
 <van-cell-group wx:if="{{selectedIndex == 0}}">
 
-	<van-field value="{{ username }}" clearable placeholder="请输入姓名" label="姓名" bind:change="onChange" />
+	<van-field value="{{ name }}" clearable placeholder="请输入姓名" label="姓名" bind:change="onChangeName" />
 
 	<view class="list-cell flex-y-center">
 		<view class="list-cell-title">性别</view>
@@ -70,13 +70,13 @@
 		</view>
 	</view>
 
-		<van-field value="{{ componyName }}" clearable placeholder="请输入公司名称" label="公司名称" bind:change="onChange" />
+		<van-field value="{{ company_name }}" clearable placeholder="请输入公司名称" label="公司名称" bind:change="onChangeCName" />
 
-	<van-field value="{{ post }}" clearable placeholder="请输入职位" label="职位" bind:change="onChange" />
+	<van-field value="{{ position }}" clearable placeholder="请输入职位" label="职位" bind:change="onChangePosition" />
 
-	<van-field value="{{ email }}" clearable placeholder="请输入邮箱账号" label="邮箱" bind:change="onChange" />
+	<van-field value="{{ email }}" clearable placeholder="请输入邮箱账号" label="邮箱" bind:change="onChangeEmail" />
 
-	<van-field value="{{ phone }}" clearable placeholder="请输入手机号" label="手机号" bind:change="onChange" />
+	<van-field value="{{ mobile }}" clearable placeholder="请输入手机号" label="手机号" bind:change="onChangeMobile" />
 
 </van-cell-group>
 

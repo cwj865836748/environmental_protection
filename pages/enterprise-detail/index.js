@@ -30,11 +30,16 @@ Page({
     let collect = e.currentTarget.dataset.collect;
     if (collect == 0) {
       this.getAdd()
-    } else {
-      this.getDel()
+      this.getCompanyDetail();
     }
-
-    this.getCompanyDetail();
+   
+  },
+  handleCollect1(e) {
+    let collect = e.currentTarget.dataset.collect;
+    if (collect == 1) {
+      this.getDel()
+      this.getCompanyDetail();
+    }
   },
   /**
    * 生命周期函数--监听页面加载
