@@ -93,7 +93,8 @@ Page({
       request({url:api.company.addCollect,data:{company_id:id}}).then(res=>{
         if(res.code==200){
             wx.showToast({
-              title: res.msg
+              title: '收藏成功',
+              icon:'none'
           })
           this.changeCollect(id)
         }
@@ -104,7 +105,8 @@ Page({
         if(res.code==200){
           
             wx.showToast({
-              title: res.msg
+              title: '取消收藏成功',
+              icon:'none'
               
             })
             this.changeCollect(id)

@@ -15,6 +15,7 @@
   position: relative;
   margin-top: 10rpx;
   border-radius: 10rpx;
+  overflow: hidden;
 }
 
 .activity-img image {
@@ -76,7 +77,7 @@
 .meeting-introduce{
   width: 690rpx;
   margin-top: 14rpx;
-  margin-bottom: 100rpx;
+  padding-bottom: 100rpx;
 }
 .meetting-title{
   font-size: 30rpx;

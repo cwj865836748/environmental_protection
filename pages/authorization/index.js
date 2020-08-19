@@ -18,11 +18,11 @@ Page({
    */
   onLoad: function (options) {
     var that = this;
-    // if (options.status) {
-    //   that.setData({
-    //     status: options.status
-    //   })
-    // }
+    if (options.status) {
+      that.setData({
+        status: options.status
+      })
+    }
   },
   authorLogin: function (e) {
     let _this = this;
@@ -57,12 +57,9 @@ Page({
               wx.hideLoading();
               if (auth.code == 200) {
                 wx.setStorageSync('token', auth.data.token);
-                wx.navigateBack({
-                  delta: 1
+                _this.setData({
+                  status: !_this.data.status,
                 })
-                // _this.setData({
-                //   status: !_this.data.status,
-                // })
               } else {
                 wx.showToast({
                   title: auth.desc,
@@ -76,42 +73,42 @@ Page({
       }
     });
   },
-  // getPhoneNumber: function (e) {
-  //   const {
-  //     iv,
-  //     encryptedData
-  //   } = e.detail
-  //   console.log(e)
-  //   wx.showLoading({
-  //     title: "正在获取",
-  //     mask: true
-  //   });
-  //   wx.login({
-  //     success(res) {
-  //       if (res.code) {
-  //         request({
-  //           url: api.login.userPhone,
-  //           data: {
-  //             code: res.code,
-  //             iv,
-  //             encrypted_data: encryptedData
-  //           }
-  //         }).then(res => {
-  //           wx.hideLoading();
-  //           if (res.code == 200) {
-  //             wx.setStorageSync('userPhone', res.data)
-  //             wx.navigateBack({
-  //               delta: 1
-  //             })
-  //           }
-  //         })
-  //       } else {
-  //         console.log('获取失败！' + res.errMsg)
-  //       }
-  //     }
-  //   })
+  getPhoneNumber: function (e) {
+    const {
+      iv,
+      encryptedData
+    } = e.detail
+    console.log(e)
+    wx.showLoading({
+      title: "正在获取",
+      mask: true
+    });
+    wx.login({
+      success(res) {
+        if (res.code) {
+          request({
+            url: api.login.userPhone,
+            data: {
+              code: res.code,
+              iv,
+              encrypted_data: encryptedData
+            }
+          }).then(res => {
+            wx.hideLoading();
+            if (res.code == 200) {
+              wx.setStorageSync('userPhone', res.data)
+              wx.navigateBack({
+                delta: 1
+              })
+            }
+          })
+        } else {
+          console.log('获取失败！' + res.errMsg)
+        }
+      }
+    })
 
-  // },
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

@@ -53,6 +53,7 @@ Page({
   },
   goSwiperDetail(e){
    const {item} = e.target.dataset
+   console.log(item)
    if(item.jump_type==0){
      return
    }else if(item.jump_type==1){
@@ -61,8 +62,7 @@ Page({
      })
    }else {
     wx.navigateTo({
-      url: `/pages/activity-detail
-      /index?id=${item.active_id}`,
+      url: `/pages/activity-detail/index?id=${item.active_id}`,
     })
    }
   },

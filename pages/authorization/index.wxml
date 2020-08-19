@@ -23,8 +23,8 @@
 		授权微信登录
 	</button>
 
-	<button wx:if='{{status}}' open-type="getPhoneNumber" class="btn flex-xy-center" bindgetphonenumber="getPhoneNumber">
+	<!-- <button wx:if='{{status}}' open-type="getPhoneNumber" class="btn flex-xy-center" bindgetphonenumber="getPhoneNumber">
 		获取手机号
-	</button>
+	</button> -->
 </view>
 <view wx:else>请升级微信版本</view>
