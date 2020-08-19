@@ -5,6 +5,9 @@
 /* .van-field__input{
   padding-left:30rpx !important;
 } */
+.search{
+  margin-bottom: 20rpx;
+}
 /* 头部搜索框 */
 .head-input {
   width: 690rpx;
@@ -63,6 +66,7 @@
   flex-wrap: wrap;
   /* height: 79vh; */
   overflow-y: scroll;
+  margin-top: 20rpx;
 }
 
 .produce-item {

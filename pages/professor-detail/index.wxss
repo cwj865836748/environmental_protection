@@ -24,7 +24,7 @@
   font-size: 36rpx;
   height: 54rpx;
   color: #333333;
-  margin-top: 14rpx;
+  margin-top: 30rpx;
 }
 
 .professor-dec-box {

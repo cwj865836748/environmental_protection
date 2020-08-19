@@ -3,17 +3,23 @@
 .wrap{
   width: 100%;
   padding: 0 30rpx;
+  word-break: break-all;
 }
 .news-title{
   width: 690rpx;
   min-height: 100rpx;
   font-size: 32rpx;
   color: #333333;
+  word-break: break-all;
 }
 .news-time{
   font-size: 26rpx;
   color: #999999;
+  margin-top: 12rpx;
 }
 .news-content{
   margin-top: 20rpx;
+}
+image{
+  width: 690rpx !important;
 }

@@ -29,7 +29,9 @@ Page({
     mobile: '',
     company_info: '',
     remark: '',
-    category: ''
+    category: '',
+    // jumpType = 0 表示从供应跳转 jumpType = 1 表示从需求跳转
+    jumpType: ''
   },
   onChangeName(e) {
     this.setData({
@@ -107,6 +109,9 @@ Page({
    */
   onLoad: function (options) {
     this.getTypeList();
+    this.setData({
+      jumpType: options.type
+    })
   },
   // 获取类别分类列表
   getTypeList() {
@@ -203,19 +208,26 @@ Page({
           })
         }
         that.setData({
-          type:0,
-          name:'',
-          sex:1,
-          company_name:'',
-          position:'',
-          email:'',
-          mobile:'',
-          company_info:'',
-          remark:''
+          type: 0,
+          name: '',
+          sex: 1,
+          company_name: '',
+          position: '',
+          email: '',
+          mobile: '',
+          company_info: '',
+          remark: ''
         })
         setTimeout(res => {
+          var jumpType = that.data.jumpType;
+          var pages = getCurrentPages();
+          var prevPage = pages[pages.length - 2]; //上一个页面
+          //直接调用上一个页面的setData()方法，把数据存到上一个页面中去
+          prevPage.setData({
+            typeIndex:jumpType
+          })
           wx.navigateBack()
-        },1000)
+        }, 1000)
       })
     }
 

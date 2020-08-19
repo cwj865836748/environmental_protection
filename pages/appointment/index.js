@@ -49,6 +49,7 @@ Page({
     console.log(id);
     this.setData({
       selectedIndex: id,
+      typeIndex:id,
       type: title,
       arrowFlag: false
     })

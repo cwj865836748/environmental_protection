@@ -61,7 +61,7 @@
 	<van-field value="{{ mobile }}" clearable placeholder="请输入手机号" type="number" label="手机号" bind:change="onChangeMoblie" />
 
 	<view class="textarea-wrap">
-		<van-field value="{{ company_info }}" bind:change="onChangeCInfo" label="企业信息" type="textarea" clearable placeholder="请输入企业信息(选填)" autosize style="height:244rpx;" border="{{false}}" />
+		<van-field value="{{ company_info }}" bind:change="onChangeCInfo" label="企业信息" type="textarea" clearable placeholder="请输入企业信息(选填)" autosize style="height:244rpx;" />
 	</view>
 
 	<view class="textarea-wrap border-no">

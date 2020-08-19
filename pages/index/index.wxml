@@ -19,9 +19,12 @@
 			<view class="input-tips flex-y-center">请输入您要找的企业/设备</view>
 		</view>
 	</navigator>
-
-
+	<view class="banner">
+		<image src="/images/home/banner@2x.png"></image>
+	</view>
+	<view class="banner-line"></view>
 </view>
+
 
 <!-- 功能模块 -->
 <view class="function-box flex-y-center">
@@ -37,7 +40,7 @@
 	<navigator class="flex-grow-1" url="/pages/environmental-bbs/index">
 		<view class="function-item flex-col flex-xy-center">
 			<image class="function-icon flex-grow-0" src="/images/home/home_module_ico2@2x.png"></image>
-			<view class="function-dec">专家论坛</view>
+			<view class="function-dec">环保论坛</view>
 		</view>
 	</navigator>
 

@@ -1,6 +1,7 @@
 @import '/common/enterprise/enterpriseList.wxss';
 @import '/common/noData/noData.wxss';
 @import '/common/consult/consult.wxss';
+
 .swiper-box {
   width: 100%;
   height: 420rpx;
@@ -9,18 +10,22 @@
 
 .swiper-item {
   width: 100%;
-  height: 100%;
+  height: 420rpx;
 }
-.swiper-item image{
+
+.swiper-item image {
   width: 750rpx;
   height: 420rpx;
 }
-.video{
+
+.video {
   width: 100%;
   height: 100%;
 }
+
 swiper {
   height: 420rpx;
+  width: 100%;
 }
 
 .wx-swiper-dot {
@@ -56,7 +61,25 @@ swiper {
   color: #ffffff;
   /* opacity: 0.5; */
 }
-
+.banner{
+  width: 100%;
+  height: 46rpx;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+}
+.banner image{
+  width: 100%;
+  height: 100%;
+}
+.banner-line{
+  width: 100%;
+  height: 2rpx;
+  background: #ffffff;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+}
 /* 功能模块 */
 .function-box {
   width: 100%;
@@ -102,13 +125,14 @@ swiper {
 
 .arrow-right {
   width: 10rpx;
-  height: 15rpx;
+  height: 20rpx;
   margin-left: 5rpx;
+  padding-top: 5rpx;
 }
 
 .arrow-right image {
   width: 100%;
-  height: 100%;
+  height: 15rpx;
 }
 
 /* 产品库 */
@@ -116,21 +140,27 @@ swiper {
   overflow: scroll;
   padding-bottom: 10rpx;
 }
-.produce-item-box{
+
+.produce-item-box {
   margin-right: 40rpx;
   /* width: 220rpx; */
 }
-.produce-item{
-  border-radius: 20rpx;
+
+.produce-item {
+  border-radius: 10rpx;
   overflow: hidden;
 }
+
 .produce-item-img {
   width: 220rpx;
   height: 220rpx;
+  border-radius: 10rpx;
 }
-.ml15{
+
+.ml15 {
   margin-left: 15rpx;
 }
+
 .produce-item-name {
   color: #666666;
   font-size: 26rpx;
@@ -138,10 +168,8 @@ swiper {
   width: 220rpx;
   text-align: center;
 }
+
 /* 隐藏滚动条 */
 ::-webkit-scrollbar {
   display: none
 }
-
-
-

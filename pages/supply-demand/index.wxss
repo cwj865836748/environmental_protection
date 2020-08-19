@@ -97,19 +97,24 @@ swiper {
 }
 .news-item{
   background-color: #ffffff;
+  border-radius: 10rpx;
 }
 .item-img{
   width: 260rpx;
   height: 160rpx;
   margin-right: 16rpx;
+  border-radius: 10rpx;
 }
 .item-img image{
   width: 100%;
   height: 100%;
+  border-radius: 10rpx;
 }
 .news-msg{
   width: 412rpx;
   height: 160rpx;
+  /* border-radius: 10rpx; */
+  padding: 8rpx 0 12rpx 0;
 }
 .news-dec{
   width: 392rpx;

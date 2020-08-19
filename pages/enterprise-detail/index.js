@@ -32,7 +32,7 @@ Page({
       this.getAdd()
       this.getCompanyDetail();
     }
-   
+
   },
   handleCollect1(e) {
     let collect = e.currentTarget.dataset.collect;
@@ -40,6 +40,15 @@ Page({
       this.getDel()
       this.getCompanyDetail();
     }
+  },
+  // 跳转设备详情页
+  handleJump(e) {
+    console.log(e.currentTarget.dataset.id);
+    let id = e.currentTarget.dataset.id;
+    wx.navigateTo({
+      url: '/pages/enterprise-detail/index?id='+id+'&&show='+this.data.show,
+    })
+
   },
   /**
    * 生命周期函数--监听页面加载
@@ -52,8 +61,8 @@ Page({
       show: options.show
     })
 
-    this.getCompanyDetail();
-    this.getEquipment();
+    // this.getCompanyDetail();
+    // this.getEquipment();
 
   },
   // 获取企业详情
@@ -165,6 +174,13 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
+    this.setData({
+      noData:false,
+      noMore:false,
+      loading:false,
+      page:1,
+      produceList:[]
+    })
     this.getCompanyDetail();
     this.getEquipment();
   },

@@ -32,7 +32,7 @@
 				<view class="item-img flex-xy-center">
 					<image class="flex-grow-0" src="{{item.pic}}"></image>
 				</view>
-				<view class="news-msg">
+				<view class="news-msg flex-y-between">
 					<view class="news-dec text-more">{{item.title}}</view>
 					<view class="news-time">{{item.createtime}}</view>
 				</view>
@@ -45,10 +45,10 @@
 </view>
 
 <!-- 发布按钮 -->
-<view class="publish-btn">
-	<navigator url="/pages/publish/index">
+<view class="publish-btn" bindtap="handlePublish">
+	<!-- <navigator url="/pages/publish/index"> -->
 		<view class="btn flex-xy-center">我要发布</view>
-	</navigator>
+	<!-- </navigator> -->
 </view>
 
 <include src="/common/consult/consult" />

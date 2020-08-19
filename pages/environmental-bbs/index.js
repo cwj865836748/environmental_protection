@@ -28,7 +28,7 @@ Page({
       }
     ],
     listData: [],
-    subTabIndex: 1,
+    subTabIndex: 0,
     subTabList: [],
     titleList: [],
     selectList: [],
@@ -150,11 +150,9 @@ Page({
   },
   // 删除专家类型
   handleDelTile(e) {
-
     this.setData({
-      titleList: false
+      titleFlag:false
     })
-
     let id = e.currentTarget.dataset.id;
     console.log('删除的id', id)
     let titleList = this.data.titleList;
@@ -239,12 +237,18 @@ Page({
   // 高峰论坛分类
   getForumCategory() {
     const that = this;
+    let tabFirst = {
+      id: 0,
+      name: '全部'
+    };
     request({
       url: api.forum.forumCategory
     }).then(res => {
       if (res.code == 200) {
+        let list = res.data.list;
+        list.unshift(tabFirst)
         that.setData({
-          subTabList: res.data.list
+          subTabList: list
         })
       }
     })
@@ -341,7 +345,10 @@ Page({
     that.setData({
       loading: false
     })
-    let idList = that.data.idList;
+    let idList = [];
+    for (let i = 0; i < this.data.titleList.length; i++) {
+      idList.push(that.data.titleList[i].id);
+    }
     let id = '';
     if (idList.length != 0) {
       for (let i = 0; i < idList.length; i++) {
@@ -404,11 +411,11 @@ Page({
     this.setData({
       titleList: wx.getStorageSync('titleList') || [],
       idList: wx.getStorageSync('idList') || [],
-      noMore:false,
-      noData:false,
-      loading:false,
-      page:1,
-      listData:[]
+      noMore: false,
+      noData: false,
+      loading: false,
+      page: 1,
+      listData: []
     })
     this.getSlideshow();
     this.getExpertsCategory();

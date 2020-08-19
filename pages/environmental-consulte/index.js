@@ -17,7 +17,7 @@ Page({
     indicatorDots: true,
     swiperList: [],
     listData: [],
-    subTabIndex: 1,
+    subTabIndex: 0,
     subTabList: [],
     noData: false,
     noMore: false,
@@ -81,13 +81,16 @@ Page({
   },
   // 获取分类
   getCategory() {
+    let tabFirst = {id:0,name:'全部'};
     request({
       url: api.article.category
     }).then(res => {
       console.log(res);
       if (res.code == 200) {
+        let list = res.data.list;
+        list.unshift(tabFirst)
         this.setData({
-          subTabList: res.data.list,
+          subTabList: list,
         })
       }
     })

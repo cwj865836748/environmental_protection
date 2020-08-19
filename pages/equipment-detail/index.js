@@ -34,7 +34,7 @@ Page({
     this.setData({
       inviteShow: true,
     })
-     this.getPosterInfo();
+    this.getPosterInfo();
   },
   onClose() {
     this.setData({
@@ -168,7 +168,7 @@ Page({
   // 跳转企业详情页
   handleJump(e) {
     let id = e.currentTarget.dataset.id;
-    console.log('展示',this.data.show);
+    console.log('展示', this.data.show);
     let show = this.data.show;
     if (this.data.show) {
       wx.navigateTo({
@@ -191,8 +191,16 @@ Page({
     } else {
       this.getDel()
     }
-
-    this.getEquipmentInfo();
+  },
+  changeCollect(id) {
+    const info = this.data.info
+    if (info.id == id) {
+      info.is_collect = info.is_collect == 0 ? 1 : 0
+    }
+    this.setData({
+      info:info
+    })
+    // console.log(info)
   },
   /**
    * 生命周期函数--监听页面加载
@@ -250,15 +258,16 @@ Page({
         title: '收藏成功',
         icon: 'none'
       })
+      this.changeCollect(that.data.id);
     })
   },
   // 删除收藏
-  getDel() {
+  getDel(id) {
     const that = this;
     request({
       url: api.equipment.delCollect,
       data: {
-        id: that.data.id
+        id: id
       }
     }).then(res => {
       // console.log(res)
@@ -266,6 +275,7 @@ Page({
         title: '取消收藏',
         icon: 'none'
       })
+      this.changeCollect(that.data.id);
     })
   },
   // 获取分享海报

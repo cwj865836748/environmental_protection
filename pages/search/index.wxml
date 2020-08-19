@@ -1,5 +1,5 @@
 <!--pages/search/index.wxml-->
 <navbar title="搜索" back="{{true}}"></navbar>
 <view class="search">
-	<van-field value="{{ search }}" placeholder="请输入您要找的企业/设备" border="{{ false }}" clearable bind:change="onChange" bind:confirm="handleJump" />
+	<van-field value="{{ search }}" placeholder="请输入您要找的企业/设备" border="{{ false }}" focus="{{true}}" clearable bind:change="onChange" bind:confirm="handleJump" />
 </view>

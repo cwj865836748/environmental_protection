@@ -8,13 +8,13 @@
 	</view>
 </navigator> -->
 <view class="search">
-	<van-field value="{{ search }}" placeholder="请输入您要找的设备" border="{{ false }}" clearable bind:change="onChange" bind:confirm="onConfirm" />
+	<van-field value="{{ search }}" placeholder="请输入您要找的企业" border="{{ false }}" clearable bind:change="onChange" bind:confirm="onConfirm" />
 </view>
 
 <!-- tab 标签页 -->
 <view class="sub-tab-list flex-y-center">
 	<view class="sub-tab-item flex-col flex-xy-center" wx:key="index" wx:for="{{subTabList}}" bindtap="handleChangeTab" data-id="{{item.id}}">
-		<view class="sub-tab-item-name {{ subTabIndex == item.id ? 'sub-tab-item-name-active' : ''}}">{{item.name}}</view>
+		<view class="sub-tab-item-name text-more {{ subTabIndex == item.id ? 'sub-tab-item-name-active' : ''}}">{{item.name}}</view>
 		<view class="{{ subTabIndex == item.id ? 'sub-tab-item-line' : ''}}"></view>
 	</view>
 </view>

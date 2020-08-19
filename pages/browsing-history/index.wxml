@@ -31,7 +31,7 @@
 </view>
 
 <!-- 企业 -->
-<view class="news-content" wx:if="{{tabIndex == 2}}">
+<view class="news-content " wx:if="{{tabIndex == 2}}">
 	<include src="/common/enterprise/enterpriseList" />
 </view>
 </view>

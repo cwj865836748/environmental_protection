@@ -1,7 +1,7 @@
 <!--pages/my-sign/index.wxml-->
 <wxs src="../../wxs/filter.wxs" module="filter"></wxs>
 <navbar title="我的报名" back="{{true}}" bind:getNavHeight="getNavHeight"></navbar>
-<view class="sign-wrap"  style="height:calc(100vh - {{navHeight}}px);">
+<view class="sign-wrap" style="height:calc(100vh - {{navHeight}}px);">
 	<view class="tab-list flex-y-center">
 		<block wx:for="{{tabList}}">
 			<view class="news-tab flex-grow-1 flex-col flex-xy-center" wx:key="index" bindtap="handleChangeTab" data-id="{{item.id}}">
@@ -18,7 +18,7 @@
 				<view class="item-img flex-xy-center">
 					<image class="flex-grow-0" src="{{item.pic}}"></image>
 				</view>
-				<view class="exhibition-title">{{item.name}}</view>
+				<view class="exhibition-title text-more-single">{{item.name}}</view>
 				<view class="exhibition-status-box flex-y-center">
 					<view class="exhibition-time flex-y-center">
 						<view class="time-icon flex-xy-center">
@@ -26,13 +26,13 @@
 						</view>
 						<view class="time flex-y-center">{{filter.getTime(item.start_time)}}-{{filter.getTime(item.end_time)}}</view>
 					</view>
-						<view class="{{item.status==0?'status-sign':(item.status==1?'status-going':(item.status==2?'status-writing':'status-overed'))}} flex-xy-center exhibition-status">
-					{{filter.activeStatus(item.status)}}
+					<view class="{{item.status==0?'status-sign':(item.status==1?'status-going':(item.status==2?'status-writing':'status-overed'))}} flex-xy-center exhibition-status">
+						{{filter.activeStatus(item.status)}}
 					</view>
 				</view>
 			</view>
 		</navigator>
-   <include src="/common/noData/noData"/> 
+		<include src="/common/noData/noData" />
 	</view>
 
 	<!-- 活动列表 -->
@@ -42,29 +42,32 @@
 			<view class="activity-item flex">
 				<view class="activity-item-left flex-xy-center">
 					<image class="activity-item-img flex-grow-0" src="{{item.pic}}"></image>
-						<view class="{{item.status==0?'activity-status-ready':(item.status==1?'activity-status-going':(item.status==2?'activity-status-writing':'activity-status-overed'))}} flex-xy-center">
-					{{filter.activeStatus(item.status)}}
+					<view class="{{item.status==0?'activity-status-ready':(item.status==1?'activity-status-going':(item.status==2?'activity-status-writing':'activity-status-overed'))}} flex-xy-center">
+						{{filter.activeStatus(item.status)}}
 					</view>
 				</view>
-				<view class="activity-item-right">
-					<view class="activity-name">{{item.name}}</view>
-					<view class="activity-time-box flex-y-center">
-						<view class="activity-time-icon flex-xy-center">
-							<image class="flex-grow-0" src="/images/exhibition_time@2x.png"></image>
+				<view class="activity-item-right flex-y-between">
+					<view class="activity-name text-more">{{item.name}}</view>
+					<view>
+						<view class="activity-time-box flex-y-center">
+							<view class="activity-time-icon flex-xy-center">
+								<image class="flex-grow-0" src="/images/exhibition_time@2x.png"></image>
+							</view>
+							<view class="activity-time">{{filter.getTime(item.start_time)}}-{{filter.getTime(item.end_time)}}</view>
 						</view>
-						<view class="activity-time">{{filter.getTime(item.start_time)}}-{{filter.getTime(item.end_time)}}</view>
-					</view>
-					<view class="activity-location-box flex-y-center">
-						<view class="activity-location-icon flex-xy-center">
-							<image class="flex-grow-0" src="/images/activity_location@2x.png"></image>
+						<view class="activity-location-box flex-y-center ">
+							<view class="activity-location-icon flex-xy-center">
+								<image class="flex-grow-0" src="/images/activity_location@2x.png"></image>
+							</view>
+							<view class="activity-location text-more-single">{{item.address}}</view>
 						</view>
-						<view class="activity-location">{{item.address}}</view>
+
 					</view>
 				</view>
 			</view>
 		</navigator>
 
- <include src="/common/noData/noData"/> 
+		<include src="/common/noData/noData" />
 	</view>
 
 </view>

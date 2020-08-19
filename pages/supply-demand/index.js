@@ -5,7 +5,9 @@ import {
 } from '../../utils/wx.js';
 const utils = require('../../utils/util.js');
 const api = require('../../request/api.js');
-import {request} from '../../request/index.js'
+import {
+  request
+} from '../../request/index.js'
 
 Page({
 
@@ -17,12 +19,12 @@ Page({
     autoplay: false,
     interval: 2000,
     duration: 500,
-    noData:false,
-    noMore:false,
-    loading:false,
-    page:1,
+    noData: false,
+    noMore: false,
+    loading: false,
+    page: 1,
     swiperList: [],
-    slideshow_id:'',
+    slideshow_id: '',
     tabIndex: 0,
     tabList: [{
         title: '供应',
@@ -43,10 +45,10 @@ Page({
     let id = e.currentTarget.dataset.id;
     this.setData({
       tabIndex: id,
-      noData:false,
-      noMore:false,
-      loading:false,
-      listData:[]
+      noData: false,
+      noMore: false,
+      loading: false,
+      listData: []
     })
 
     this.getLists();
@@ -58,12 +60,24 @@ Page({
     })
   },
   // 跳转轮播图详情
-  handleJumpSlide(e){
+  handleJumpSlide(e) {
     let jump = e.currentTarget.dataset.jump;
     let id = e.currentTarget.dataset.id;
-    if(jump == 1){
+    if (jump == 1) {
       wx.navigateTo({
-        url: '/pages/slideshow/index?id='+id +'&&type=1',
+        url: '/pages/slideshow/index?id=' + id + '&&type=1',
+      })
+    }
+  },
+  // 跳转到发布页面
+  handlePublish() {
+    if (this.data.tabIndex == 0) {
+      wx.navigateTo({
+        url: '/pages/publish/index?type=0',
+      })
+    } else {
+      wx.navigateTo({
+        url: '/pages/publish/index?type=1',
       })
     }
   },
@@ -77,74 +91,80 @@ Page({
   },
 
   // 获取轮播图信息
-  getSlideshow(){
+  getSlideshow() {
     const that = this;
-    request({ url: api.supply.slideshow }).then(res=>{
-         if (res.code == 200) {
-         that.setData({
-              swiperList:res.data.list
-          })
-        }
-   })
+    request({
+      url: api.supply.slideshow
+    }).then(res => {
+      if (res.code == 200) {
+        that.setData({
+          swiperList: res.data.list
+        })
+      }
+    })
   },
   // 获取供需列表
-  getLists(){
+  getLists() {
     const that = this;
     that.setData({
-      loading:true
+      loading: true
     })
-     request({ url: api.supply.lists,
-      data:{
-        type:that.data.tabIndex,
-        page:that.data.page
-      } }).then(res=>{
+    request({
+      url: api.supply.lists,
+      data: {
+        type: that.data.tabIndex,
+        page: that.data.page
+      }
+    }).then(res => {
       that.setData({
-          loading:false
-        })
-        console.log(res);
-        if(res.code == 200){
-          let listData = res.data.list ? res.data.list : [];
-          let is_next = res.data.is_next;
+        loading: false
+      })
+      console.log(res);
+      if (res.code == 200) {
+        let listData = res.data.list ? res.data.list : [];
+        let is_next = res.data.is_next;
 
-          if(listData.length == 0 && that.data.page == 1){
-            that.setData({
-              listData:[],
-              noData:true
-            })
-            return;
-          }
-
-          if(listData.length != 0 && !is_next){
-            for(let i=0;i<listData.length;i++){
-              console.log(utils.formatTimeTwo(listData[i].createtime,'Y-M-D h:m')) 
-              listData[i].createtime = utils.formatTimeTwo(listData[i].createtime,'Y-M-D h:m')
-            }
-            that.setData({
-              listData:that.data.listData.concat(listData),
-              noMore:true
-            })
-            return;
-          }
-
-          if(listData.length != 0 && is_next){
-            that.setData({
-             listData:that.data.listData.concat(listData),
-             page:that.data.page + 1
-            })
-          }
-
+        if (listData.length == 0 && that.data.page == 1) {
+          that.setData({
+            listData: [],
+            noData: true
+          })
+          return;
         }
-   })
+
+        if (listData.length != 0 && !is_next) {
+          for (let i = 0; i < listData.length; i++) {
+            console.log(utils.formatTimeTwo(listData[i].createtime, 'Y-M-D h:m'))
+            listData[i].createtime = utils.formatTimeTwo(listData[i].createtime, 'Y-M-D h:m')
+          }
+          that.setData({
+            listData: that.data.listData.concat(listData),
+            noMore: true
+          })
+          return;
+        }
+
+        if (listData.length != 0 && is_next) {
+          that.setData({
+            listData: that.data.listData.concat(listData),
+            page: that.data.page + 1
+          })
+        }
+
+      }
+    })
   },
   // 轮播图详情页
-  getSlideDetail(){
+  getSlideDetail() {
     const that = this;
-     request({ url: api.supply.slideshowDetail,
-      data:{
-        slideshow_id:that.data.slideshow_id
-      } }).then(res=>{
-       console.log(res);
-   })
+    request({
+      url: api.supply.slideshowDetail,
+      data: {
+        slideshow_id: that.data.slideshow_id
+      }
+    }).then(res => {
+      console.log(res);
+    })
   },
 
   /**
@@ -159,11 +179,11 @@ Page({
    */
   onShow: function () {
     this.setData({
-      noData:false,
-      noMore:false,
-      loading:false,
-      page:1,
-      listData:[]
+      noData: false,
+      noMore: false,
+      loading: false,
+      page: 1,
+      listData: []
     })
     this.getSlideshow();
     this.getLists();
@@ -194,7 +214,7 @@ Page({
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-    if(this.data.noMore){
+    if (this.data.noMore) {
       return false;
     }
     this.getLists();

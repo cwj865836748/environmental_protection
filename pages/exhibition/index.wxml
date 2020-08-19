@@ -7,7 +7,7 @@
 				<view class="item-img flex-xy-center">
 					<image class="flex-grow-0" src="{{item.pic}}"></image>
 				</view>
-				<view class="exhibition-title">{{item.name}}</view>
+				<view class="exhibition-title text-more-single">{{item.name}}</view>
 				<view class="exhibition-status-box flex-y-center">
 					<view class="exhibition-time flex-y-center">
 						<view class="time-icon flex-xy-center">

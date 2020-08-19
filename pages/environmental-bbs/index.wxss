@@ -62,7 +62,7 @@
   height: 13rpx;
 }
 .title-dec-arrow-box{
-  width: 20rpx;
+  width: 40rpx;
   height: 100%;
 }
 

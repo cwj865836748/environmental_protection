@@ -8,6 +8,5 @@
   "navigationBarBackgroundColor": "#ffffff",
   "navigationBarTextStyle": "black",
   "navigationBarTitleText": "产品库",
-  "backgroundTextStyle": "dark",
-  "enablePullDownRefresh": true
+  "backgroundTextStyle": "dark"
 }

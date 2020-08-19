@@ -37,9 +37,9 @@
 			<image class="flex-grow-0" src="{{company.pic}}"></image>
 		</view>
 		<view class="belong-dec flex-y-center">
-			<view class="dec-left">
-				<view class="belong-zh-title">{{company.name}}</view>
-				<view class="belong-en-title">{{company.name_eg}}</view>
+			<view class="dec-left flex-y-between">
+				<view class="belong-zh-title text-more-single">{{company.name}}</view>
+				<view class="belong-en-title text-more">{{company.name_eg}}</view>
 			</view>
 			<view class="dec-right flex-xy-center" bindtap="handleJump" data-id="{{company.id}}">进入企业</view>
 		</view>

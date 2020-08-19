@@ -99,6 +99,8 @@ swiper {
   width: 130rpx;
   height: 130rpx;
   margin-right: 16rpx;
+  border-radius: 20rpx;
+  border:2rpx solid #f8f8f8
 }
 
 .belong-img image {

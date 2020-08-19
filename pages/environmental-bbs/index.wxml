@@ -72,7 +72,7 @@
 		<!-- 二级 tab 标签页 -->
 		<view class="sub-tab-list flex-y-center">
 			<view class="sub-tab-item flex-col flex-xy-center" wx:key="index" wx:for="{{subTabList}}" bindtap="handleChangeSubTab" data-id="{{item.id}}">
-				<view class="sub-tab-item-name {{ subTabIndex == item.id ? 'sub-tab-item-name-active' : ''}}">{{item.name}}</view>
+				<view class="sub-tab-item-name text-more {{ subTabIndex == item.id ? 'sub-tab-item-name-active' : ''}}">{{item.name}}</view>
 				<view class="{{ subTabIndex == item.id ? 'sub-tab-item-line' : ''}}"></view>
 			</view>
 		</view>
@@ -84,7 +84,7 @@
 					<view class="item-img flex-xy-center">
 						<image class="flex-grow-0" src="{{item.pic}}"></image>
 					</view>
-					<view class="news-msg">
+					<view class="news-msg flex-y-between">
 						<view class="news-dec text-more">{{item.title}}</view>
 						<view class="news-time">{{item.createtime}}</view>
 					</view>

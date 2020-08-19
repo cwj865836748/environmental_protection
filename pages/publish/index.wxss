@@ -1,4 +1,16 @@
 /* pages/publish/index.wxss */
+.van-cell::after {
+  /* position: absolute; */
+  /* box-sizing: border-box; */
+  /* content: ' '; */
+  /* pointer-events: none; */
+  /* right: 16px; */
+  /* bottom: 0; */
+  /* left: 16px; */
+  border-bottom: 2rpx solid #f8f8f8 !important;
+  /* -webkit-transform: scaleY(0.5); */
+  /* transform: scaleY(0.5); */
+}
 .van-cell {
   padding: var(--cell-vertical-padding, 13px) var(--cell-horizontal-padding, 16px) !important;
   color: #333333 !important;
@@ -20,7 +32,6 @@
 .van-field__input {
   color: #333333 !important;
 }
-
 .list-cell {
   min-height: 100rpx;
   width: 100%;
@@ -60,11 +71,14 @@
   width: 21rpx;
   height: 13rpx;
 }
-
+textarea{
+  height: 202rpx !important;
+  overflow: scroll;
+}
 .textarea-wrap {
   width: 100%;
-  min-height: 202rpx;
   border-bottom: 2rpx solid #f8f8f8;
+  /* overflow: scroll; */
 }
 
 .border-no {
