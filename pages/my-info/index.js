@@ -18,7 +18,7 @@ Page({
   },
   getPhoneNumber: function(e) {
     const {iv,encryptedData}=e.detail
-    console.log(e)
+    const _this = this
     wx.showLoading({
       title: "正在获取",
       mask: true
@@ -33,7 +33,12 @@ Page({
           }}).then(res=>{
             wx.hideLoading();
             if (res.code == 200) {
-               
+               const form ={
+                mobile:res.data.phone
+               }
+               _this.setData({
+                form:{..._this.data.form,...form}
+               })
             }
           })
         } else {

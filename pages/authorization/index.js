@@ -17,12 +17,12 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    var that = this;
-    if (options.status) {
-      that.setData({
-        status: options.status
-      })
-    }
+    // var that = this;
+    // if (options.status) {
+    //   that.setData({
+    //     status: options.status
+    //   })
+    // }
   },
   authorLogin: function (e) {
     let _this = this;
@@ -57,8 +57,8 @@ Page({
               wx.hideLoading();
               if (auth.code == 200) {
                 wx.setStorageSync('token', auth.data.token);
-                _this.setData({
-                  status: !_this.data.status,
+                wx.navigateBack({
+                  delta: 1
                 })
               } else {
                 wx.showToast({
@@ -97,9 +97,6 @@ Page({
             wx.hideLoading();
             if (res.code == 200) {
               wx.setStorageSync('userPhone', res.data)
-              wx.navigateBack({
-                delta: 1
-              })
             }
           })
         } else {

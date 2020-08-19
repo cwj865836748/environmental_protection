@@ -93,7 +93,8 @@ Page({
       if(res.code==200){
         
           wx.showToast({
-            title: res.msg
+            title: '取消收藏成功',
+            icon:'none'
             
           })
           this.changeCollect(id)
@@ -106,6 +107,12 @@ Page({
     List.splice(index,1)
     this.setData({
       enterpriseList:[...List]
+    })
+  },
+  handleJumpCompany(e){
+    let {id} = e.currentTarget.dataset
+    wx.navigateTo({
+      url: `/pages/enterprise-detail/index?id=${id}`
     })
   },
   /**

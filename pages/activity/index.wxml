@@ -20,29 +20,31 @@
 				<view class="activity-item-left flex-xy-center">
 					<image class="activity-item-img flex-grow-0" src="{{item.pic}}"></image>
 					<view class="{{item.status==0?'activity-status-ready':(item.status==1?'activity-status-going':(item.status==2?'activity-status-writing':'activity-status-overed'))}} flex-xy-center">
-					{{filter.activeStatus(item.status)}}
+						{{filter.activeStatus(item.status)}}
 					</view>
 					<!-- <view class="activity-status-writing flex-xy-center">未开始</view> -->
 					<!-- <view class="activity-status-overed flex-xy-center">已结束</view> -->
 				</view>
-				<view class="activity-item-right">
+				<view class="activity-item-right flex-y-between">
 					<view class="activity-name text-more">{{item.name}}</view>
-					<view class="activity-time-box flex-y-center">
-						<view class="activity-time-icon flex-xy-center">
-							<image class="flex-grow-0" src="/images/exhibition_time@2x.png"></image>
+					<view>
+						<view class="activity-time-box flex-y-center">
+							<view class="activity-time-icon flex-xy-center">
+								<image class="flex-grow-0" src="/images/exhibition_time@2x.png"></image>
+							</view>
+							<view class="activity-time">{{filter.getTime(item.start_time)}}-{{filter.getTime(item.end_time)}}</view>
 						</view>
-						<view class="activity-time">{{filter.getTime(item.start_time)}}-{{filter.getTime(item.end_time)}}</view>
-					</view>
-					<view class="activity-location-box flex-y-center ">
-						<view class="activity-location-icon flex-xy-center">
-							<image class="flex-grow-0" src="/images/activity_location@2x.png"></image>
+						<view class="activity-location-box flex-y-center ">
+							<view class="activity-location-icon flex-xy-center">
+								<image class="flex-grow-0" src="/images/activity_location@2x.png"></image>
+							</view>
+							<view class="activity-location text-more-single">{{item.address}}</view>
 						</view>
-						<view class="activity-location text-more-single">{{item.address}}</view>
 					</view>
 				</view>
 			</view>
 		</navigator>
-   <include src="/common/noData/noData"/> 
+		<include src="/common/noData/noData" />
 
 	</view>
 
