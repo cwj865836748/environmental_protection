@@ -11,6 +11,10 @@
 				</swiper-item>
 			</block>
 		</swiper>
+		<view class="banner">
+			<image src="/images/home/banner@2x.png"></image>
+		</view>
+		<view class="banner-line"></view>
 	</view>
 
 	<!-- 活动列表 -->
@@ -20,7 +24,7 @@
 				<view class="activity-item-left flex-xy-center">
 					<image class="activity-item-img flex-grow-0" src="{{item.pic}}"></image>
 					<view class="{{item.status==0?'activity-status-ready':(item.status==1?'activity-status-going':(item.status==2?'activity-status-writing':'activity-status-overed'))}} flex-xy-center">
-					{{filter.activeStatus(item.status)}}
+						{{filter.activeStatus(item.status)}}
 					</view>
 					<!-- <view class="activity-status-writing flex-xy-center">未开始</view> -->
 					<!-- <view class="activity-status-overed flex-xy-center">已结束</view> -->
@@ -42,7 +46,7 @@
 				</view>
 			</view>
 		</navigator>
-   <include src="/common/noData/noData"/> 
+		<include src="/common/noData/noData" />
 
 	</view>
 
