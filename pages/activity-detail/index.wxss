@@ -4,8 +4,10 @@
 .activity-title {
   width: 690rpx;
   margin: 0 auto;
-  font-size: 32rpx;
+  font-size: 40rpx;
   color: #333333;
+  font-weight: bold;
+  margin-bottom: 20rpx;
 }
 
 .activity-img {

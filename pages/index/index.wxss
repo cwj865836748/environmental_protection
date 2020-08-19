@@ -142,7 +142,7 @@ swiper {
 }
 
 .produce-item-box {
-  margin-right: 40rpx;
+  margin-right: 16rpx;
   /* width: 220rpx; */
 }
 

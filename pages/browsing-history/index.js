@@ -24,12 +24,13 @@ Page({
     enterpriseNext:false,
     enterprisePage:1,
     noData:false,
-    navHeight:null
+    navHeight:null,
+    navHeight1:null
   },
   getNavHeight(e){
     const {navHeight} = e.detail
     this.setData ({
-     navHeight
+     navHeight,
     })
    },
   //  切换tab
