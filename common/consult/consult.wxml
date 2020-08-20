@@ -1,6 +1,6 @@
 <view class="consult">
 	<button open-type="contact" class=" flex-col flex-xy-center">
-		<image class="flex-grow-0" src="/images/home/home_service@2x.png"></image>
+		<image mode="cover" class="flex-grow-0" src="/images/home/home_service@2x.png"></image>
 		<view class="consult-title">在线咨询</view>
 	</button>
 </view>

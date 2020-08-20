@@ -2,11 +2,19 @@
 /* @import '/pages/index/index.wxss'; */
 @import '/pages/search/index.wxss';
 @import '/common/noData/noData.wxss';
-/* .van-field__input{
+.van-field__input{
   padding-left:30rpx !important;
-} */
+}
 .search{
   margin-bottom: 20rpx;
+  position: relative;
+}
+.search-icon{
+  width: 27rpx;
+  height: 27rpx;
+  position: absolute;
+  top: calc(50% - 13.5rpx);
+  left: 22rpx;
 }
 /* 头部搜索框 */
 .head-input {
@@ -38,10 +46,12 @@
   overflow: scroll;
   height: 90rpx;
   /* padding-left: 30rpx; */
+  background: linear-gradient(180deg,#ffffff 16%, rgba(255,255,255,0));
+  min-width: 750rpx;
 }
 
 .sub-tab-item-name {
-  width: 160rpx;
+  min-width: 160rpx;
   text-align: center;
   color: #999999;
   font-size: 30rpx;

@@ -1,100 +1,118 @@
 <!--pages/environmental-bbs/index.wxml-->
 <wxs module="utils" src="../../utils/filter.wxs"></wxs>
-<!-- 头部导航 -->
-<view class="head">
-	<navbar title="环保论坛" back="{{true}}" headColor="transparent" titleColor="#fff"></navbar>
-	<!-- 轮播图 -->
-	<view class="swiper-box">
-		<swiper indicator-dots="{{indicatorDots}}" autoplay="true" indicator-color="rgba(255,255,255,0.5)" indicator-active-color="#ffffff">
-			<block wx:for="{{swiperList}}" wx:key="*this">
-				<swiper-item>
-					<image class="swiper-item" src="{{item.pic}}" bindtap="handleJumpSlide" data-jump="{{item.jump_type}}" data-id="{{item.id}}"></image>
-				</swiper-item>
-			</block>
-		</swiper>
+<scroll-view scroll-y="false" bindscroll="scroll" style="height:100%;">
+	<!-- 头部导航 -->
+	<view class="head">
+		<navbar title="专家论坛" back="{{true}}" headColor="{{headColor}}" titleColor="{{titleColor}}"></navbar>
+		<!-- 轮播图 -->
+		<view class="swiper-box">
+			<swiper indicator-dots="{{indicatorDots}}" autoplay="true" indicator-color="rgba(255,255,255,0.5)" indicator-active-color="#ffffff">
+				<block wx:for="{{swiperList}}" wx:key="*this">
+					<swiper-item>
+						<image mode="cover" class="swiper-item" src="{{item.pic}}" bindtap="handleJumpSlide" data-jump="{{item.jump_type}}" data-id="{{item.id}}"></image>
+					</swiper-item>
+				</block>
+			</swiper>
+		</view>
+
 	</view>
 
-</view>
+	<!-- tab 内容区 -->
+	<view class="news-wrap flex-col">
 
-<!-- tab 内容区 -->
-<view class="news-wrap flex-col">
+		<view class="tab-list flex-y-center">
+			<block wx:for="{{tabList}}">
+				<view class="news-tab flex-grow-1 flex-col flex-xy-center" wx:key="index" bindtap="handleChangeTab" data-id="{{item.id}}">
+					<view class=" tab-item {{tabIndex == item.id ? 'tab-item-active' : ''}}">{{item.title}}</view>
+					<view class="{{tabIndex == item.id ? 'tab-line-active' : ''}}"></view>
+				</view>
+			</block>
+		</view>
 
-	<view class="tab-list flex-y-center">
-		<block wx:for="{{tabList}}">
-			<view class="news-tab flex-grow-1 flex-col flex-xy-center" wx:key="index" bindtap="handleChangeTab" data-id="{{item.id}}">
-				<view class=" tab-item {{tabIndex == item.id ? 'tab-item-active' : ''}}">{{item.title}}</view>
-				<view class="{{tabIndex == item.id ? 'tab-line-active' : ''}}"></view>
+		<!-- 专家类型选择 -->
+		<block wx:if="{{titleList.length==0}}">
+			<view class="professor-title-wrap flex" wx:if="{{tabIndex == 1}}" bindtap="handleChooseTitle">
+				<view class="professor-title-list flex-y-center">
+					<!-- <view class="professor-title-item flex-y-center"> -->
+					<view class="title-dec-type flex-xy-center">请选择分类</view>
+					<!-- </view> -->
+				</view>
+				<view class="title-dec-arrow-box flex-xy-center">
+					<image class="title-dec-arrow" src="/images/form_down@2x.png"></image>
+				</view>
 			</view>
 		</block>
-	</view>
 
-	<!-- 专家类型选择 -->
-	<view class="professor-title-wrap flex" wx:if="{{tabIndex == 1}}">
-		<view class="professor-title-list flex-y-center">
-			<view class="professor-title-item flex-y-center" wx:for="{{titleList}}">
-				<view class="title-dec flex-xy-center">{{item.name}}</view>
-				<image class="title-dec-delete flex-grow-0" src="/images/home/home_delete@2x.png"  bindtap="handleDelTile" data-id="{{item.id}}"></image>
+		<block wx:else>
+			<view class="professor-title-wrap flex" wx:if="{{tabIndex == 1}}">
+				<view class="professor-title-list flex-y-center">
+					<view class="professor-title-item flex-y-center" wx:for="{{titleList}}">
+						<view class="title-dec flex-xy-center">{{item.name}}</view>
+						<image mode="cover" class="title-dec-delete flex-grow-0" src="/images/home/home_delete@2x.png" bindtap="handleDelTile" data-id="{{item.id}}"></image>
+					</view>
+				</view>
+				<view class="title-dec-arrow-box flex-xy-center" bindtap="handleChooseTitle">
+					<image class="title-dec-arrow" src="/images/form_down@2x.png"></image>
+				</view>
 			</view>
-		</view>
-		<view class="title-dec-arrow-box flex-y-center"  bindtap="handleChooseTitle">
-			<image class="title-dec-arrow" src="/images/form_down@2x.png"></image>
-		</view>
-	</view>
+		</block>
 
-	<!-- 下拉框 -->
-	<view class="select-wrap" wx:if="{{titleFlag}}">
-		<view class="select-arrow"></view>
-		<view class="select-box">
-			<view class="select-list flex-y-center {{ index == 0 ? 'mt37' : 'mt53'}}" wx:for="{{selectList}}" bindtap="handleSelectTitle" data-item="{{item}}" data-index="{{index}}">
-				<view class="select-item {{item.checked ? 'select-item-active' : ''}}">{{item.name}}</view>
-				<view class="select-right flex-xy-center">
-					<image class="flex-grow-0" src="/images/home/home_right@2x.png" wx:if="{{item.checked}}"></image>
+
+		<!-- 下拉框 -->
+		<view class="select-wrap" wx:if="{{titleFlag}}">
+			<view class="select-arrow"></view>
+			<view class="select-box">
+				<view class="select-list flex-y-center {{ index == 0 ? 'mt37' : 'mt53'}}" wx:for="{{selectList}}" bindtap="handleSelectTitle" data-item="{{item}}" data-index="{{index}}">
+					<view class="select-item {{item.checked ? 'select-item-active' : ''}}">{{item.name}}</view>
+					<view class="select-right flex-xy-center">
+						<image mode="cover" class="flex-grow-0" src="/images/home/home_right@2x.png" wx:if="{{item.checked}}"></image>
+					</view>
 				</view>
 			</view>
 		</view>
-	</view>
 
-	<!-- 专家列表 -->
-	<view class="professor-list flex" wx:if="{{tabIndex == 1}}">
-		<view class="professor-item flex-col flex-xy-center {{ index % 2 == 0 ? 'ml30' : 'ml20'}}" wx:for="{{listData}}" bindtap="handleEJump" data-id="{{item.id}}">
-			<image class="professor-avatar flex-grow-0" src="{{item.pic}}"></image>
-			<view class="professor-name">{{item.name}}</view>
-			<!-- <view class="professor-title text-more-single flex-xy-center">
+		<!-- 专家列表 -->
+		<view class="professor-list flex" wx:if="{{tabIndex == 1}}">
+			<view class="professor-item flex-col flex-xy-center {{ index % 2 == 0 ? 'ml30' : 'ml20'}}" wx:for="{{listData}}" bindtap="handleEJump" data-id="{{item.id}}">
+				<image mode="cover" class="professor-avatar flex-grow-0" src="{{item.pic}}"></image>
+				<view class="professor-name">{{item.name}}</view>
+				<!-- <view class="professor-title text-more-single flex-xy-center">
 				<view class="text-more-single" wx:if="{{utils.isMore(item.position[0])}}">{{item.position[0]}}</view>
 				<view wx:if="{{!utils.isMore(item.position[0])}}" class="professor-position text-more-single" wx:for="{{item.position}}" wx:for-item="positionItem">{{positionItem}}</view>
 			</view> -->
-			<view class="professor-title text-more-single">{{item.position[0]}}</view>
-		</view>
-	</view>
-
-	<!-- 论坛信息列表 -->
-	<block wx:if="{{tabIndex == 2}}">
-		<!-- 二级 tab 标签页 -->
-		<view class="sub-tab-list flex-y-center">
-			<view class="sub-tab-item flex-col flex-xy-center" wx:key="index" wx:for="{{subTabList}}" bindtap="handleChangeSubTab" data-id="{{item.id}}">
-				<view class="sub-tab-item-name text-more {{ subTabIndex == item.id ? 'sub-tab-item-name-active' : ''}}">{{item.name}}</view>
-				<view class="{{ subTabIndex == item.id ? 'sub-tab-item-line' : ''}}"></view>
+				<view class="professor-title text-more-single">{{item.position[0]}}</view>
 			</view>
 		</view>
 
-		<view class="news-content">
-
-			<view class="news-list pl30" wx:for="{{listData}}" bindtap="handleFJump" data-id="{{item.id}}">
-				<view class="news-item flex-y-center">
-					<view class="item-img flex-xy-center">
-						<image class="flex-grow-0" src="{{item.pic}}"></image>
-					</view>
-					<view class="news-msg flex-y-between">
-						<view class="news-dec text-more">{{item.title}}</view>
-						<view class="news-time">{{item.createtime}}</view>
-					</view>
+		<!-- 论坛信息列表 -->
+		<block wx:if="{{tabIndex == 2}}">
+			<!-- 二级 tab 标签页 -->
+			<view class="sub-tab-list flex-y-center">
+				<view class="sub-tab-item flex-col flex-xy-center" wx:key="index" wx:for="{{subTabList}}" bindtap="handleChangeSubTab" data-id="{{item.id}}">
+					<view class="sub-tab-item-name text-more {{ subTabIndex == item.id ? 'sub-tab-item-name-active' : ''}}">{{item.name}}</view>
+					<view class="{{ subTabIndex == item.id ? 'sub-tab-item-line' : ''}}"></view>
 				</view>
 			</view>
 
-		</view>
+			<view class="news-content">
+
+				<view class="news-list pl30" wx:for="{{listData}}" bindtap="handleFJump" data-id="{{item.id}}">
+					<view class="news-item flex-y-center">
+						<view class="item-img flex-xy-center">
+							<image mode="cover" class="flex-grow-0" src="{{item.pic}}"></image>
+						</view>
+						<view class="news-msg flex-y-between">
+							<view class="news-dec text-more">{{item.title}}</view>
+							<view class="news-time">{{item.createtime}}</view>
+						</view>
+					</view>
+				</view>
+
+			</view>
 
 
 
-	</block>
-	<include src="/common/noData/noData" />
-</view>
+		</block>
+		<include src="/common/noData/noData" />
+	</view>
+</scroll-view>

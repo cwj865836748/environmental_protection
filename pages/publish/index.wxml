@@ -5,13 +5,13 @@
 	<view class="list-cell flex-y-center">
 		<view class="list-cell-title">类型</view>
 		<view class="list-cell-choose flex-y-center" bindtap="handleChooseCategory" data-typeName="供应" data-typeIndex="0">
-			<image class="list-cell-icon flex-grow-0" src="/images/form_select0@2x.png" wx:if="{{typeName == '供应' && typeIndex == 0 }}"></image>
-			<image class="list-cell-icon flex-grow-0" src="/images/form_select@2x.png" wx:if="{{typeName != '供应' && typeIndex != 0 }}"></image>
+			<image mode="cover" class="list-cell-icon flex-grow-0" src="/images/form_select0@2x.png" wx:if="{{typeName == '供应' && typeIndex == 0 }}"></image>
+			<image mode="cover" class="list-cell-icon flex-grow-0" src="/images/form_select@2x.png" wx:if="{{typeName != '供应' && typeIndex != 0 }}"></image>
 			<view class="list-cell-name">供应</view>
 		</view>
 		<view class="list-cell-choose flex-y-center" bindtap="handleChooseCategory" data-typeName="需求" data-typeIndex="1">
-			<image class="list-cell-icon flex-grow-0" src="/images/form_select0@2x.png" wx:if="{{typeName == '需求' && typeIndex == 1 }}"></image>
-			<image class="list-cell-icon flex-grow-0" src="/images/form_select@2x.png" wx:if="{{typeName != '需求' && typeIndex != 1 }}"></image>
+			<image mode="cover" class="list-cell-icon flex-grow-0" src="/images/form_select0@2x.png" wx:if="{{typeName == '需求' && typeIndex == 1 }}"></image>
+			<image mode="cover" class="list-cell-icon flex-grow-0" src="/images/form_select@2x.png" wx:if="{{typeName != '需求' && typeIndex != 1 }}"></image>
 			<view class="list-cell-name">需求</view>
 		</view>
 	</view>
@@ -21,13 +21,13 @@
 	<view class="list-cell flex-y-center">
 		<view class="list-cell-title">性别</view>
 		<view class="list-cell-choose flex-y-center" bindtap="handleChooseSex" data-sexIndex="1" data-sexName="男">
-			<image class="list-cell-icon flex-grow-0" src="/images/form_select0@2x.png" wx:if="{{sexIndex == 1 && sexName == '男'}}"></image>
-			<image class="list-cell-icon flex-grow-0" src="/images/form_select@2x.png" wx:if="{{sexIndex != 1 && sexName != '男'}}"></image>
+			<image mode="cover" class="list-cell-icon flex-grow-0" src="/images/form_select0@2x.png" wx:if="{{sexIndex == 1 && sexName == '男'}}"></image>
+			<image mode="cover" class="list-cell-icon flex-grow-0" src="/images/form_select@2x.png" wx:if="{{sexIndex != 1 && sexName != '男'}}"></image>
 			<view class="list-cell-name">男</view>
 		</view>
 		<view class="list-cell-choose flex-y-center" bindtap="handleChooseSex" data-sexIndex="2" data-sexName="女">
-			<image class="list-cell-icon flex-grow-0" src="/images/form_select0@2x.png" wx:if="{{sexIndex == 2 && sexName == '女'}}"></image>
-			<image class="list-cell-icon flex-grow-0" src="/images/form_select@2x.png" wx:if="{{sexIndex != 2 && sexName != '女'}}"></image>
+			<image mode="cover" class="list-cell-icon flex-grow-0" src="/images/form_select0@2x.png" wx:if="{{sexIndex == 2 && sexName == '女'}}"></image>
+			<image mode="cover" class="list-cell-icon flex-grow-0" src="/images/form_select@2x.png" wx:if="{{sexIndex != 2 && sexName != '女'}}"></image>
 			<view class="list-cell-name">女</view>
 		</view>
 	</view>
@@ -36,7 +36,7 @@
 
 	<view class="list-cell-content flex-y-center" bindtap="handleChooseType">
 		<van-field value="{{ category }}" placeholder="请选择" label="类别" disabled bind:change="onChange" />
-		<image class="arrow flex-grow-0" src="/images/form_down@2x.png"></image>
+		<image mode="cover" class="arrow flex-grow-0" src="/images/form_down@2x.png"></image>
 	</view>
 
 
@@ -47,7 +47,7 @@
 			<view class="select-list flex-y-center {{ index == 0 ? 'mt37' : 'mt53'}}" wx:for="{{selectList}}" bindtap="handleSelectTitle" data-id="{{item.id}}" data-name="{{item.name}}">
 				<view class="select-item {{selectedIndex == item.id ? 'select-item-active' : ''}}">{{item.name}}</view>
 				<view class="select-right flex-xy-center">
-					<image class="flex-grow-0" src="/images/home/home_right@2x.png" wx:if="{{ selectedIndex == item.id }}"></image>
+					<image mode="cover" class="flex-grow-0" src="/images/home/home_right@2x.png" wx:if="{{ selectedIndex == item.id }}"></image>
 				</view>
 			</view>
 		</view>

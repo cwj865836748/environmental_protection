@@ -14,6 +14,9 @@ Page({
    * 页面的初始数据
    */
   data: {
+    scrollTop: null,
+    headColor: 'transparent',
+    titleColor: '#fff',
     indicatorDots: true,
     swiperList: [],
     listData: [],
@@ -23,6 +26,38 @@ Page({
     noMore: false,
     loading: false,
     page: 1
+  },
+  //滚动条监听
+  scroll: function (e) {
+    if (e.detail.scrollTop < 50) {
+      this.setData({
+        headColor: 'transparent',
+        titleColor: '#fff'
+      })
+      // 设置导航条背景色
+      wx.setNavigationBarColor({
+        frontColor: '#ffffff',
+        backgroundColor: '#ffffff'
+      })
+    } else {
+      this.setData({
+        headColor: '#fff',
+        titleColor: '#333333'
+      })
+      wx.setNavigationBarColor({
+        frontColor: '#000000',
+        backgroundColor: '#000000'
+      })
+    }
+    this.setData({
+      scrollTop: e.detail.scrollTop
+    })
+    if (e.detail.scrollTop > 1700 & this.data.isCir) {
+      this.animate()
+      this.setData({
+        isCir: false
+      })
+    }
   },
   goBack() {
     wx.navigateBack()
@@ -41,12 +76,12 @@ Page({
     this.getLists()
   },
   // 轮播图跳转
-  handleJump(e){
+  handleJump(e) {
     let jump = e.currentTarget.dataset.item.jump_type;
     let id = e.currentTarget.dataset.item.id;
-    if(jump == 1){
+    if (jump == 1) {
       wx.navigateTo({
-        url: '/pages/slideshow/index?id='+id+'&&type=3',
+        url: '/pages/slideshow/index?id=' + id + '&&type=3',
       })
     }
   },
@@ -54,7 +89,7 @@ Page({
   jumpPage(e) {
     let id = e.currentTarget.dataset.id;
     wx.navigateTo({
-      url: '/pages/news-detail/index?id='+id + '&&type=2',
+      url: '/pages/news-detail/index?id=' + id + '&&type=2',
     })
   },
   /**
@@ -81,7 +116,10 @@ Page({
   },
   // 获取分类
   getCategory() {
-    let tabFirst = {id:0,name:'全部'};
+    let tabFirst = {
+      id: 0,
+      name: '全部'
+    };
     request({
       url: api.technology.category
     }).then(res => {
@@ -160,11 +198,11 @@ Page({
    */
   onShow: function () {
     this.setData({
-      noMore:false,
-      noData:false,
-      loading:false,
-      page:1,
-      listData:[]
+      noMore: false,
+      noData: false,
+      loading: false,
+      page: 1,
+      listData: []
     })
     this.getSlideshow();
     this.getCategory();
@@ -196,7 +234,7 @@ Page({
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-    if(this.data.noMore){
+    if (this.data.noMore) {
       return false;
     }
     this.getLists()

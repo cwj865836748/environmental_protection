@@ -14,7 +14,7 @@ button::after{
   background-color: #43B2FC;
   position: fixed;
   right: 30rpx;
-  top: 900rpx;
+  bottom: 80rpx;
 }
 
 .consult image{

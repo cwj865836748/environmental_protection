@@ -61,8 +61,8 @@ swiper {
 .equipment-title {
   font-size: 30rpx;
   color: #333333;
-  width: 392rpx;
-  word-break: break-all
+  width:540rpx;
+  word-break: break-all;
 }
 
 .equipment-collect {

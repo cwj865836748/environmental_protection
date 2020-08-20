@@ -220,11 +220,13 @@ Page({
         })
         setTimeout(res => {
           var jumpType = that.data.jumpType;
+          var typeIndex = that.data.typeIndex
           var pages = getCurrentPages();
           var prevPage = pages[pages.length - 2]; //上一个页面
           //直接调用上一个页面的setData()方法，把数据存到上一个页面中去
           prevPage.setData({
-            typeIndex:jumpType
+            typeIndex:jumpType,
+            tabIndex:typeIndex
           })
           wx.navigateBack()
         }, 1000)

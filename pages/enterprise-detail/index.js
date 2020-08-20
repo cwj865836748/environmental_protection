@@ -46,7 +46,7 @@ Page({
     console.log(e.currentTarget.dataset.id);
     let id = e.currentTarget.dataset.id;
     wx.navigateTo({
-      url: '/pages/enterprise-detail/index?id='+id+'&&show='+this.data.show,
+      url: '/pages/equipment-detail/index?id='+id+'&&show='+this.data.show,
     })
 
   },

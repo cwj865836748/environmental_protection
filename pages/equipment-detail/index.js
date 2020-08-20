@@ -58,9 +58,10 @@ Page({
   // 生成Canvas 
   createCanvas() {
     let that = this;
+    console.log('海报内容',that.data.posterInfo)
     const ctx = wx.createCanvasContext('myCanvas');
-    let postPath = this.data.info.pic;
-    let qrImg = this.data.qrImg;
+    let postPath = that.data.posterInfo.pic;
+    let qrImg = that.data.posterInfo.qrcode;
     wx.getImageInfo({
       src: postPath,
       success: function (res) {
@@ -72,7 +73,8 @@ Page({
       src: qrImg,
       success: function (res) {
         console.log(res)
-        ctx.drawImage(res.path, that.data.canvasWidth - 82, that.data.canvasWidth - 20, 82, 82);
+        // ctx.drawImage(res.path, that.data.canvasWidth - 82, that.data.canvasWidth - 20, 82, 82);
+        utils.circleImg(ctx,res.path,that.data.canvasWidth - 82,that.data.canvasWidth - 82,41)
         // 设备名称
         ctx.setFillStyle('#333333');
         ctx.setFontSize(15);
@@ -296,10 +298,10 @@ Page({
     request({
       url: api.equipment.qrcode,
       data: {
-        id: that.data.id
+        equipment_id: that.data.id
       }
     }).then(res => {
-      console.log(res);
+      console.log('海报',res);
       that.setData({
         posterInfo: res.data.info
       })

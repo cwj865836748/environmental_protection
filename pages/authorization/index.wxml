@@ -10,9 +10,9 @@
 	<view class="login-name">生态联合网</view>
 </view> -->
 <view class='logo-box'>
-	<image src="/images/mine/my_bg@2x.png" class='logo-box-bg'></image>
+	<image mode="cover" src="/images/mine/my_bg@2x.png" class='logo-box-bg'></image>
 	<view class='login-logo flex-xy-center'>
-		<image src="/images/login_logo@2x.png" class='logo'></image>
+		<image mode="cover" src="/images/login_logo@2x.png" class='logo'></image>
 	</view>
 </view>
 <view class='login-name'>生态联合网</view>

@@ -5,7 +5,7 @@
 	<swiper indicator-dots="{{indicatorDots}}" autoplay="true" indicator-color="rgba(255,255,255,0.5)" indicator-active-color="#ffffff">
 		<block wx:for="{{info.slideshow}}" wx:key="*this">
 			<swiper-item>
-				<image class="swiper-item" src="{{item}}"></image>
+				<image mode="cover" class="swiper-item" src="{{item}}"></image>
 			</swiper-item>
 		</block>
 	</swiper>
@@ -22,8 +22,8 @@
 		<view class="equipment-title">{{info.name}}</view>
 		<view class="equipment-function flex-y-center">
 			<view class="equipment-collect flex-xy-center" bindtap="handleCollect" data-collect="{{info.is_collect}}">
-				<image class="flex-grow-0" src="/images/details_collect@2x.png" wx:if="{{info.is_collect == 0}}"></image>
-				<image src="/images/details_collect0@2x.png" wx:if="{{info.is_collect == 1}}"></image>
+				<image mode="cover" class="flex-grow-0" src="/images/details_collect@2x.png" wx:if="{{info.is_collect == 0}}"></image>
+				<image mode="cover" src="/images/details_collect0@2x.png" wx:if="{{info.is_collect == 1}}"></image>
 			</view>
 			<view class="equipment-share flex-xy-center" bindtap="handleShowPopup">
 				<image class="flex-grow-0" src="/images/details_share@2x.png"></image>
@@ -34,7 +34,7 @@
 	<!-- 设备企业 -->
 	<view class="equipment-belong flex-y-center">
 		<view class="belong-img flex-y-center">
-			<image class="flex-grow-0" src="{{company.pic}}"></image>
+			<image mode="cover" class="flex-grow-0" src="{{company.pic}}"></image>
 		</view>
 		<view class="belong-dec flex-y-center">
 			<view class="dec-left flex-y-between">
@@ -65,14 +65,14 @@
 		<view class="inviteshow-top flex">
 			<view class="inviteshow-left flex">
 				<view class="inviteshow-left-img flex-x-center">
-					<image src="/images/details_share_WeChat@2x.png"></image>
+					<image mode="cover" src="/images/details_share_WeChat@2x.png"></image>
 				</view>
 				<view class="invite-tips flex-xy-center">微信好友</view>
 				<button open-type="share"></button>
 			</view>
 			<view class="inviteshow-left flex" catchtap="producePoster">
 				<view class="inviteshow-left-img flex-x-center">
-					<image src="/images/details_share_pic@2x.png"></image>
+					<image mode="cover" src="/images/details_share_pic@2x.png"></image>
 				</view>
 				<view class="invite-tips flex-xy-center">生成海报</view>
 			</view>
@@ -90,7 +90,7 @@
 		<view class="poster-btn-box flex-y-center flex-x-center">
 			<view class="btn save flex-y-center flex-x-center">
 				<view class="save-icon-box flex-x-center flex-y-center">
-					<image class="save-icon" src="/images/details_download@2x.png"></image>
+					<image mode="cover" class="save-icon" src="/images/details_download@2x.png"></image>
 				</view>
 				<view class="save-name flex-x-center flex-y-center" bindtap="checkAuthorize">保存图片</view>
 			</view>

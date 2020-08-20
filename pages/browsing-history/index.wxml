@@ -1,7 +1,7 @@
 <!--pages/browsing-history/index.wxml-->
 <wxs src="../../wxs/filter.wxs" module="filter"></wxs>
 <navbar title="浏览记录" back="{{true}}" bind:getNavHeight="getNavHeight"></navbar>
-<view style="height:calc(100vh - {{navHeight}}px);" class="history-wrap">
+<view style="height:calc(100vh - {{navHeight}}px);" class="history-wrap {{tabIndex == 1 ? 'gray' : ''}}">
 	<view class="tab-lists flex-y-center">
 		<block wx:for="{{tabList}}">
 			<view class="news-tab flex-grow-1 flex-col flex-xy-center" wx:key="index" bindtap="handleChangeTab" data-id="{{item.id}}">
@@ -21,7 +21,7 @@
 			<navigator url="/pages/news-detail/index?id={{item.article_id}}&&type=3">
 				<view class="news-item flex-y-center">
 					<view class="item-img flex-xy-center">
-						<image class="flex-grow-0" src="{{item.article.pic}}"></image>
+						<image mode="cover" class="flex-grow-0" src="{{item.article.pic}}"></image>
 					</view>
 					<view class="news-msg">
 						<view class="news-dec text-more">{{item.article.title}}</view>

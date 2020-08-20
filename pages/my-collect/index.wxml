@@ -17,7 +17,7 @@
 	<navigator url="/pages/equipment-detail/index?id={{item.equipment_id}}">
 		<view class="produce-item ml flex-col flex-xy-center">
 			<view class="produce-item-img-box flex-xy-center">
-				<image class="produce-item-img flex-grow-0" src="{{item.equipment.pic}}"></image>
+				<image mode="cover" class="produce-item-img flex-grow-0" src="{{item.equipment.pic}}"></image>
 			</view>
 			<view class="produce-item-dec text-more-single">{{item.equipment.name}}</view>
 		</view>

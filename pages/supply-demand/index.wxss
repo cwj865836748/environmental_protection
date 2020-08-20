@@ -77,12 +77,12 @@ swiper {
 }
 
 .tab-list{
-  padding: 0 120rpx;
+  padding: 30rpx 120rpx 10rpx 120rpx;
   justify-content: space-around;
   /* height: 106rpx; */
-  margin-top: 26rpx;
-  margin-bottom: 20rpx;
-  /* background: linear-gradient(180deg,#ffffff 16%, rgba(255,255,255,0)); */
+  /* margin-top: 26rpx; */
+  /* margin-bottom: 20rpx; */
+  background: linear-gradient(180deg,#ffffff 16%, rgba(255,255,255,0));
 }
 
 /* 快报内容 */

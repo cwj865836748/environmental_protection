@@ -2,7 +2,7 @@
 <navbar title="专家详情" back="{{true}}"></navbar>
 <!-- 专家头像 -->
 <view class="professor-avatar">
-  <image src="{{info.pic}}"></image>
+  <image mode="cover" src="{{info.user_pic}}"></image>
 </view>
 <!-- 专家介绍 -->
 <view class="professor-introduce">

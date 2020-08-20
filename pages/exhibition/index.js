@@ -51,7 +51,7 @@ Page({
 
         if (listData.length != 0 && !is_next) {
           for (let i = 0; i < listData.length; i++) {
-            listData[i].deadline_time = utils.formatTimeTwo(listData[i].deadline_time * 1000, 'Y.M.D');
+            listData[i].start_time = utils.formatTimeTwo(listData[i].start_time * 1000, 'Y.M.D');
             listData[i].end_time = utils.formatTimeTwo(listData[i].end_time * 1000, 'Y.M.D')
           }
           that.setData({
@@ -63,7 +63,7 @@ Page({
 
         if (listData.length != 0 && is_next) {
           for (let i = 0; i < listData.length; i++) {
-            listData[i].deadline_time = utils.formatTimeTwo(listData[i].deadline_time * 1000, 'Y.M.D');
+            listData[i].start_time = utils.formatTimeTwo(listData[i].start_time * 1000, 'Y.M.D');
             listData[i].end_time = utils.formatTimeTwo(listData[i].end_time * 1000, 'Y.M.D')
           }
           that.setData({

@@ -197,3 +197,6 @@ textarea, navigator, audio, image, video, map, canvas, contact-button {
 .por {
   position: relative;
 }
+image{
+  background-size: cover;
+}

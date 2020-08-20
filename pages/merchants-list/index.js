@@ -20,7 +20,7 @@ Page({
     loading1: false,
     search: '',
     page: 1,
-    subTabIndex: 1,
+    subTabIndex: 0,
     subTabList: [],
     merchantsList: [],
     // type == 1 表示从首页跳转过来 type == 2 表示从展会详情跳转过来
@@ -107,12 +107,15 @@ Page({
   // 获取商家分类
   getCategroy() {
     const that = this;
+    let tabFirst = {id:0,name:'全部'};
     request({
       url: api.company.category
     }).then(res => {
       if (res.code == 200) {
+        let list = res.data.list;
+        list.unshift(tabFirst)
         that.setData({
-          subTabList: res.data.list
+          subTabList: list
         })
       }
     })

@@ -11,6 +11,9 @@ Page({
    * 页面的初始数据
    */
   data: {
+    scrollTop: null,
+    headColor: 'transparent',
+    titleColor: '#fff',
     indicatorDots: true,
     noData: false,
     noMore: false,
@@ -34,6 +37,38 @@ Page({
     selectList: [],
     titleFlag: false,
     idList: []
+  },
+  //滚动条监听
+  scroll: function (e) {
+    if (e.detail.scrollTop < 50) {
+      this.setData({
+        headColor: 'transparent',
+        titleColor: '#fff'
+      })
+      // 设置导航条背景色
+      wx.setNavigationBarColor({
+        frontColor: '#ffffff',
+        backgroundColor: '#ffffff'
+      })
+    } else {
+      this.setData({
+        headColor: '#fff',
+        titleColor: '#333333'
+      })
+      wx.setNavigationBarColor({
+        frontColor: '#000000',
+        backgroundColor: '#000000'
+      })
+    }
+    this.setData({
+      scrollTop: e.detail.scrollTop
+    })
+    if (e.detail.scrollTop > 1700 & this.data.isCir) {
+      this.animate()
+      this.setData({
+        isCir: false
+      })
+    }
   },
   goBack() {
     wx.navigateBack()
@@ -151,7 +186,7 @@ Page({
   // 删除专家类型
   handleDelTile(e) {
     this.setData({
-      titleFlag:false
+      titleFlag: false
     })
     let id = e.currentTarget.dataset.id;
     console.log('删除的id', id)

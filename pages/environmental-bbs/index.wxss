@@ -57,19 +57,23 @@
   margin-right: 14rpx;
 }
 
+.title-dec-type{
+  font-size: 28rpx;
+  color: #cccccc;
+}
 .title-dec-delete {
   width: 13rpx;
   height: 13rpx;
 }
 .title-dec-arrow-box{
-  width: 40rpx;
-  height: 100%;
+  width: 80rpx;
+  min-height: 80rpx;
 }
 
 .title-dec-arrow {
   width: 21rpx;
   height: 11rpx;
-  margin-top: 31rpx;
+  /* margin-top: 31rpx; */
 }
 
 /* 下拉选择框 */
@@ -175,6 +179,5 @@
 }
 
 .tab-list {
-  height: 50rpx;
-  margin-bottom: 10rpx;
+  padding: 30rpx 120rpx 0 120rpx;
 }

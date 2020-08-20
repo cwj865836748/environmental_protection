@@ -2,7 +2,7 @@
 <navbar title="预约登记" back="{{true}}"></navbar>
 <view class="list-cell-content flex-y-center" bindtap="handleChooseType">
 	<van-field value="{{ type }}" placeholder="请选择" label="参展类型" disabled bind:change="onChangetype" />
-	<image class="arrow flex-grow-0" src="/images/form_down@2x.png"></image>
+	<image mode="cover" class="arrow flex-grow-0" src="/images/form_down@2x.png"></image>
 </view>
 
 <!-- 下拉框 -->
@@ -12,7 +12,7 @@
 		<view class="select-list flex-y-center {{ index == 0 ? 'mt37' : 'mt53'}}" wx:for="{{selectList}}" bindtap="handleSelectTitle" data-id="{{item.id}}" data-title="{{item.title}}">
 			<view class="select-item {{selectedIndex == item.id ? 'select-item-active' : ''}}">{{item.title}}</view>
 			<view class="select-right flex-xy-center">
-				<image class="flex-grow-0" src="/images/home/home_right@2x.png" wx:if="{{ selectedIndex == item.id}}"></image>
+				<image mode="cover" class="flex-grow-0" src="/images/home/home_right@2x.png" wx:if="{{ selectedIndex == item.id}}"></image>
 			</view>
 		</view>
 	</view>
@@ -28,8 +28,8 @@
 	<view class="list-cell flex-y-center">
 		<view class="list-cell-title">性别</view>
 		<view class="list-cell-choose flex-y-center" bindtap="handleChooseSex" data-sexIndex="1" data-sexName="男">
-			<image class="list-cell-icon flex-grow-0" src="/images/form_select0@2x.png" wx:if="{{sexIndex == 1 && sexName == '男'}}"></image>
-			<image class="list-cell-icon flex-grow-0" src="/images/form_select@2x.png" wx:if="{{sexIndex != 1 && sexName != '男'}}"></image>
+			<image mode="cover" class="list-cell-icon flex-grow-0" src="/images/form_select0@2x.png" wx:if="{{sexIndex == 1 && sexName == '男'}}"></image>
+			<image mode="cover" class="list-cell-icon flex-grow-0" src="/images/form_select@2x.png" wx:if="{{sexIndex != 1 && sexName != '男'}}"></image>
 			<view class="list-cell-name">男</view>
 		</view>
 		<view class="list-cell-choose flex-y-center" bindtap="handleChooseSex" data-sexIndex="2" data-sexName="女">
@@ -59,13 +59,13 @@
 	<view class="list-cell flex-y-center">
 		<view class="list-cell-title">性别</view>
 		<view class="list-cell-choose flex-y-center" bindtap="handleChooseSex" data-sexIndex="1" data-sexName="男">
-			<image class="list-cell-icon flex-grow-0" src="/images/form_select0@2x.png" wx:if="{{sexIndex == 1 && sexName == '男'}}"></image>
-			<image class="list-cell-icon flex-grow-0" src="/images/form_select@2x.png" wx:if="{{sexIndex != 1 && sexName != '男'}}"></image>
+			<image mode="cover" class="list-cell-icon flex-grow-0" src="/images/form_select0@2x.png" wx:if="{{sexIndex == 1 && sexName == '男'}}"></image>
+			<image mode="cover" class="list-cell-icon flex-grow-0" src="/images/form_select@2x.png" wx:if="{{sexIndex != 1 && sexName != '男'}}"></image>
 			<view class="list-cell-name">男</view>
 		</view>
 		<view class="list-cell-choose flex-y-center" bindtap="handleChooseSex" data-sexIndex="2" data-sexName="女">
-			<image class="list-cell-icon flex-grow-0" src="/images/form_select0@2x.png" wx:if="{{sexIndex == 2 && sexName == '女'}}"></image>
-			<image class="list-cell-icon flex-grow-0" src="/images/form_select@2x.png" wx:if="{{sexIndex != 2 && sexName != '女'}}"></image>
+			<image mode="cover" class="list-cell-icon flex-grow-0" src="/images/form_select0@2x.png" wx:if="{{sexIndex == 2 && sexName == '女'}}"></image>
+			<image mode="cover" class="list-cell-icon flex-grow-0" src="/images/form_select@2x.png" wx:if="{{sexIndex != 2 && sexName != '女'}}"></image>
 			<view class="list-cell-name">女</view>
 		</view>
 	</view>

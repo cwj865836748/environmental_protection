@@ -1,48 +1,52 @@
 <!--pages/innovative-technology/index.wxml-->
-<!-- 头部导航 -->
-<view class="head">
-	<navbar title="创新技术" back="{{true}}" headColor="transparent" titleColor="#fff"></navbar>
+<scroll-view scroll-y="false" bindscroll="scroll" style="height:100%;">
 
-	<!-- 轮播图 -->
-	<view class="swiper-box">
-		<swiper indicator-dots="{{indicatorDots}}" autoplay="true" indicator-color="rgba(255,255,255,0.5)" indicator-active-color="#ffffff">
-			<block wx:for="{{swiperList}}" wx:key="*this">
-				<swiper-item>
-					<image class="swiper-item" src="{{item.pic}}" bindtap="handleJump" data-item="{{item}}"></image>
-				</swiper-item>
-			</block>
-		</swiper>
-	</view>
-</view>
+	<!-- 头部导航 -->
+	<view class="head">
+		<navbar title="创新技术" back="{{true}}" headColor="{{headColor}}" titleColor="{{titleColor}}"></navbar>
 
-<!-- tab 内容区 -->
-<view class="news-wrap flex-col">
-
-	<!-- 论坛信息列表 -->
-	<!-- 二级 tab 标签页 -->
-	<view class="sub-tab-list flex-y-center">
-		<view class="sub-tab-item flex-col flex-xy-center" wx:key="index" wx:for="{{subTabList}}" bindtap="handleChangeSubTab" data-id="{{item.id}}">
-			<view class="sub-tab-item-name text-more {{ subTabIndex == item.id ? 'sub-tab-item-name-active' : ''}}">{{item.name}}</view>
-			<view class="{{ subTabIndex == item.id ? 'sub-tab-item-line' : ''}}"></view>
+		<!-- 轮播图 -->
+		<view class="swiper-box">
+			<swiper indicator-dots="{{indicatorDots}}" autoplay="true" indicator-color="rgba(255,255,255,0.5)" indicator-active-color="#ffffff">
+				<block wx:for="{{swiperList}}" wx:key="*this">
+					<swiper-item>
+						<image mode="cover" class="swiper-item" src="{{item.pic}}" bindtap="handleJump" data-item="{{item}}"></image>
+					</swiper-item>
+				</block>
+			</swiper>
 		</view>
 	</view>
 
-	<view class="news-content">
+	<!-- tab 内容区 -->
+	<view class="news-wrap flex-col">
 
-		<view class="{{index != 0 ? 'news-list' : ''}} pl30" wx:for="{{listData}}" bindtap="jumpPage" data-id="{{item.id}}">
-			<view class="news-item flex-y-center">
-				<view class="item-img flex-xy-center">
-					<image class="flex-grow-0" src="{{item.pic}}"></image>
-				</view>
-				<view class="news-msg flex-y-between">
-					<view class="news-dec text-more">{{item.title}}</view>
-					<view class="news-time">{{item.createtime}}</view>
-				</view>
+		<!-- 论坛信息列表 -->
+		<!-- 二级 tab 标签页 -->
+		<view class="sub-tab-list flex-y-center">
+			<view class="sub-tab-item flex-col flex-xy-center" wx:key="index" wx:for="{{subTabList}}" bindtap="handleChangeSubTab" data-id="{{item.id}}">
+				<view class="sub-tab-item-name text-more {{ subTabIndex == item.id ? 'sub-tab-item-name-active' : ''}}">{{item.name}}</view>
+				<view class="{{ subTabIndex == item.id ? 'sub-tab-item-line' : ''}}"></view>
 			</view>
 		</view>
 
-		<include src="/common/noData/noData" />
+		<view class="news-content">
+
+			<view class="{{index != 0 ? 'news-list' : ''}} pl30" wx:for="{{listData}}" bindtap="jumpPage" data-id="{{item.id}}">
+				<view class="news-item flex-y-center">
+					<view class="item-img flex-xy-center">
+						<image mode="cover" class="flex-grow-0" src="{{item.pic}}"></image>
+					</view>
+					<view class="news-msg flex-y-between">
+						<view class="news-dec text-more">{{item.title}}</view>
+						<view class="news-time">{{item.createtime}}</view>
+					</view>
+				</view>
+			</view>
+
+			<include src="/common/noData/noData" />
+		</view>
+
+
 	</view>
 
-
-</view>
+</scroll-view>

@@ -5,7 +5,7 @@
 <view class="activity-title">{{info.name}}</view>
 <!-- 活动图片和状态 -->
 <view class="activity-img">
-	<image src="{{info.pic}}"></image>
+	<image mode="cover" src="{{info.pic}}"></image>
 <view class="{{info.status==0?'activity-status-ready':(info.status==1?'activity-status-going':(info.status==2?'activity-status-writing':'activity-status-overed'))}} flex-xy-center">
 					{{filter.activeStatus(info.status)}}
 					</view>
@@ -42,7 +42,7 @@
 
 </view>
 
-<view class="btn-wrap flex-x-center" wx:if="{{info.status==0}}">
+<view class="btn-wrap flex-x-center" wx:if="{{info.is_end==1}}">
 	<navigator url="/pages/apply/index?id={{info.id}}">
 		<view class="btn flex-xy-center">点我报名</view>
 	</navigator>

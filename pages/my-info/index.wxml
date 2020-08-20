@@ -2,7 +2,7 @@
 <navbar title="个人信息" back="{{true}}"></navbar>
 <view class="my-msg flex-col flex-xy-center">
 	<view class="my-avatar flex-xy-center">
-		<image class="flex-grow-0" src="{{form.avatar}}"></image>
+		<image mode="cover" class="flex-grow-0" src="{{form.avatar}}"></image>
 	</view>
 	<view class="my-name">{{form.nickname}}</view>
 </view>

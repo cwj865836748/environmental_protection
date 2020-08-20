@@ -5,15 +5,15 @@
 		<navigator url="/pages/exhibition-detail/index?id={{item.id}}">
 			<view class="exhibition-item">
 				<view class="item-img flex-xy-center">
-					<image class="flex-grow-0" src="{{item.pic}}"></image>
+					<image mode="cover" class="flex-grow-0" src="{{item.pic}}"></image>
 				</view>
 				<view class="exhibition-title text-more-single">{{item.name}}</view>
 				<view class="exhibition-status-box flex-y-center">
 					<view class="exhibition-time flex-y-center">
 						<view class="time-icon flex-xy-center">
-							<image class="flex-grow-0" src="/images/exhibition_time@2x.png"></image>
+							<image mode="cover" class="flex-grow-0" src="/images/exhibition_time@2x.png"></image>
 						</view>
-						<view class="time flex-y-center">{{item.deadline_time}}-{{item.end_time}}</view>
+						<view class="time flex-y-center">{{item.start_time}}-{{item.end_time}}</view>
 					</view>
 						<view class="exhibition-status flex-xy-center status-sign" wx:if="{{item.status == 0}}">报名中</view>
 					<view class="exhibition-status flex-xy-center status-going" wx:if="{{item.status == 1}}">进行中</view>

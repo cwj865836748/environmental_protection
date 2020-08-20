@@ -3,10 +3,10 @@
 <!-- 头部信息 -->
 <view class="wrap">
 	<view class="minHead">
-		<image class="my-bg" src="/images/mine/my_bg@2x.png"></image>
+		<image mode="cover" class="my-bg" src="/images/mine/my_bg@2x.png"></image>
 
 	  <view class="my-icon">
-			<image src="{{info.avatar}}"></image>
+			<image mode="cover" src="{{info.avatar}}"></image>
 		</view> 
 
 		<view class="my-name">{{info.nickname}}</view>
@@ -20,11 +20,11 @@
 		<navigator url="/pages/my-info/index">
 			<view class="my-function-item flex-y-center">
 				<view class="function-item-left flex-y-center">
-					<image class="flex-grow-0 function-item-icon1" src="/images/mine/my_ico1@2x.png"></image>
+					<image mode="cover" class="flex-grow-0 function-item-icon1" src="/images/mine/my_ico1@2x.png"></image>
 					<view class="function-item-name">个人信息</view>
 				</view>
 				<view class="function-item-right flex-xy-center">
-					<image class="function-item-arrow flex-grow-0" src="/images/mine/my_right@2x.png"></image>
+					<image mode="cover" class="function-item-arrow flex-grow-0" src="/images/mine/my_right@2x.png"></image>
 				</view>
 			</view>
 		</navigator>
@@ -36,11 +36,11 @@
 		<navigator url="/pages/my-collect/index">
 			<view class="my-function-item flex-y-center">
 				<view class="function-item-left flex-y-center">
-					<image class="flex-grow-0 function-item-icon2" src="/images/mine/my_ico2@2x.png"></image>
+					<image mode="cover" class="flex-grow-0 function-item-icon2" src="/images/mine/my_ico2@2x.png"></image>
 					<view class="function-item-name">我的收藏</view>
 				</view>
 				<view class="function-item-right flex-xy-center">
-					<image class="function-item-arrow flex-grow-0" src="/images/mine/my_right@2x.png"></image>
+					<image mode="cover" class="function-item-arrow flex-grow-0" src="/images/mine/my_right@2x.png"></image>
 				</view>
 			</view>
 		</navigator>
@@ -52,11 +52,11 @@
 		<navigator url="/pages/my-sign/index">
 			<view class="my-function-item flex-y-center">
 				<view class="function-item-left flex-y-center">
-					<image class="flex-grow-0 function-item-icon3" src="/images/mine/my_ico3@2x.png"></image>
+					<image mode="cover" class="flex-grow-0 function-item-icon3" src="/images/mine/my_ico3@2x.png"></image>
 					<view class="function-item-name">我的报名</view>
 				</view>
 				<view class="function-item-right flex-xy-center">
-					<image class="function-item-arrow flex-grow-0" src="/images/mine/my_right@2x.png"></image>
+					<image mode="cover" class="function-item-arrow flex-grow-0" src="/images/mine/my_right@2x.png"></image>
 				</view>
 			</view>
 		</navigator>
@@ -70,11 +70,11 @@
 		<button open-type="contact">
 			<view class="my-function-item flex-y-center">
 				<view class="function-item-left flex-y-center">
-					<image class="flex-grow-0 function-item-icon4" src="/images/mine/my_ico4@2x.png"></image>
+					<image mode="cover" class="flex-grow-0 function-item-icon4" src="/images/mine/my_ico4@2x.png"></image>
 					<view class="function-item-name">在线咨询</view>
 				</view>
 				<view class="function-item-right flex-xy-center">
-					<image class="function-item-arrow flex-grow-0" src="/images/mine/my_right@2x.png"></image>
+					<image mode="cover" class="function-item-arrow flex-grow-0" src="/images/mine/my_right@2x.png"></image>
 				</view>
 			</view>
 		</button>
