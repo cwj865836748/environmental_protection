@@ -13,7 +13,7 @@
   width: 27rpx;
   height: 27rpx;
   position: absolute;
-  top: calc(50% - 13.5rpx);
+  top: calc(50% - 13rpx);
   left: 22rpx;
 }
 /* 头部搜索框 */
@@ -52,6 +52,8 @@
 
 .sub-tab-item-name {
   min-width: 160rpx;
+  white-space: nowrap;
+  flex:1;
   text-align: center;
   color: #999999;
   font-size: 30rpx;

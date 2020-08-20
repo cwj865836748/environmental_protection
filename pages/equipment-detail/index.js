@@ -264,12 +264,12 @@ Page({
     })
   },
   // 删除收藏
-  getDel(id) {
+  getDel() {
     const that = this;
     request({
       url: api.equipment.delCollect,
       data: {
-        id: id
+        equipment_id: that.data.id
       }
     }).then(res => {
       // console.log(res)
