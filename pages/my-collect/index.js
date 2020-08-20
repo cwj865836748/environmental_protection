@@ -103,7 +103,7 @@ Page({
   },
   changeCollect(id){
     const List  = this.data.enterpriseList
-    const index = List.findIndex(item=>item.id==id)
+    const index = List.findIndex(item=>item.company_id==id)
     List.splice(index,1)
     this.setData({
       enterpriseList:[...List]

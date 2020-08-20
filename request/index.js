@@ -17,10 +17,10 @@ export const request = (params) => {
   
   ajaxTimes++;
   // 显示加载中 效果
-  wx.showLoading({
-    title: "加载中",
-    mask: true
-  });
+  // wx.showLoading({
+  //   title: "加载中",
+  //   mask: true
+  // });
 
   return new Promise((resolve, reject) => {
     wx.request({

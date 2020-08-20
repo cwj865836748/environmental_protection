@@ -58,7 +58,7 @@ Page({
           browsingNext:res.data.is_next,
          },()=>{
           if(this.data.browsingList.length){
-            return 
+            return
           }
            this.setData({
             noData:!this.data.browsingList.length
@@ -104,11 +104,11 @@ Page({
     delCollect(id){
       request({url:api.company.deCollect,data:{company_id:id}}).then(res=>{
         if(res.code==200){
-          
+
             wx.showToast({
               title: '取消收藏成功',
               icon:'none'
-              
+
             })
             this.changeCollect(id)
         }
@@ -125,6 +125,12 @@ Page({
         enterpriseList:[...List]
       })
     },
+    handleJumpCompany(e){
+      let {id} = e.currentTarget.dataset
+      wx.navigateTo({
+          url: `/pages/enterprise-detail/index?id=${id}`
+      })
+  },
     /**
      * 生命周期函数--监听页面加载
      */

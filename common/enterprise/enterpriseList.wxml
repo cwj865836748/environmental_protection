@@ -1,15 +1,15 @@
 <block wx:for="{{enterpriseList}}">
 	<!-- <navigator url="/pages/enterprise-detail/index?id={{item.id||item.company.id}}"> -->
 		<view class="shop-list flex" wx:key="index">
-			<view class="shop-item-logo flex-xy-center" bindtap="handleJumpCompany" data-id="{{item.id||item.company.id}}">
+			<view class="shop-item-logo flex-xy-center" bindtap="handleJumpCompany" data-id="{{item.id||item.company_id}}">
 				<image class="flex-grow-0" src="{{item.pic||item.company.pic}}"></image>
 			</view>
 			<view class="shop-item-right flex-y-center">
-				<view class="shop-content" bindtap="handleJumpCompany" data-id="{{item.id||item.company.id}}">
+				<view class="shop-content" bindtap="handleJumpCompany" data-id="{{item.id||item.company_id}}">
 					<view class="shop-zh-name text-more-single">{{item.name||item.company.name}}</view>
 					<view class="shop-en-name text-more">{{item.name_eg||item.company.name_eg}}</view>
 				</view>
-				<view class="shop-collect flex-xy-center" bindtap="handleCollect" data-id="{{item.id||item.company.id}}" data-collect="{{item.is_collect}}" data-type="1">
+				<view class="shop-collect flex-xy-center" catchtap="handleCollect" data-id="{{item.id||item.company_id}}" data-collect="{{item.is_collect}}" data-type="1">
 					<image class="flex-grow-0" src="/images/home/home_collect@2x.png" wx:if="{{item.is_collect == 0}}"></image>
 					<image class="flex-grow-0" src="/images/home/home_collect0@2x.png" wx:if="{{item.is_collect == 1}}"></image>
 				</view>

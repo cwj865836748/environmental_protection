@@ -57,8 +57,8 @@ Page({
               wx.hideLoading();
               if (auth.code == 200) {
                 wx.setStorageSync('token', auth.data.token);
-                _this.setData({
-                  status: !_this.data.status,
+                wx.navigateBack({
+                  delta: 1
                 })
               } else {
                 wx.showToast({
