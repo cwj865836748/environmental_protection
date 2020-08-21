@@ -49,6 +49,7 @@
   justify-content: space-between;
   padding: 0 10rpx;
   margin: 5rpx 10rpx 5rpx 0;
+  background: rgba(67,178,252,0.1);
 }
 
 .title-dec {

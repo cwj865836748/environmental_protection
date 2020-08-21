@@ -15,6 +15,7 @@
   border-radius: 10rpx;
   position: absolute;
   top: 550rpx;
+  /* top:410rpx; */
   left: calc(50% - 345rpx);
   font-size: 28rpx;
   color: #ffffff;
