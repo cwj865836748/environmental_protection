@@ -29,7 +29,7 @@
 					<!-- <view class="activity-status-writing flex-xy-center">未开始</view> -->
 					<!-- <view class="activity-status-overed flex-xy-center">已结束</view> -->
 				</view>
-				<view class="activity-item-right">
+				<view class="activity-item-right flex-y-between">
 					<view class="activity-name text-more">{{item.name}}</view>
 					<view class="activity-time-box flex-y-center">
 						<view class="activity-time-icon flex-xy-center">

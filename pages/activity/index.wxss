@@ -148,7 +148,7 @@ swiper {
   font-size: 30rpx;
   color: #333333;
   margin: 6rpx 0 14rpx 0;
-  height: 82rpx;
+  /* height: 82rpx; */
 }
 
 .activity-time-icon {
