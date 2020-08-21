@@ -1,6 +1,8 @@
 <!--pages/link-us/index.wxml-->
 <navbar title="联系我们" back="{{true}}"></navbar>
 <view class="content">
-	<import src="../../wxParse/wxParse.wxml" />
-	<template is="wxParse" data="{{wxParseData:content.nodes}}" />
+	<!-- <import src="../../wxParse/wxParse.wxml" /> -->
+	<!-- <template is="wxParse" data="{{wxParseData:content.nodes}}" /> -->
+	<rich-text nodes="{{info.contact}}" wx:if="{{type == 0}}"></rich-text>
+	<rich-text nodes="{{info}}" wx:else></rich-text>
 </view>

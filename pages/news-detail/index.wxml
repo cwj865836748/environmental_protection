@@ -4,11 +4,12 @@
 	<view class="news-title">{{info.title}}</view>
 	<view class="news-time">{{info.createtime}}</view>
 	<view class="news-content">
-		<import src="../../wxParse/wxParse.wxml" />
-		<template is="wxParse" data="{{wxParseData:content.nodes}}" />
+		<!-- <import src="../../wxParse/wxParse.wxml" /> -->
+		<!-- <template is="wxParse" data="{{wxParseData:content.nodes}}" /> -->
+		<rich-text nodes="{{info.content}}"></rich-text>
 	</view>
 </view>
 
-<block wx:if="{{type == 1}}">
+<block wx:if="{{type == 0}}">
 	<include src="/common/consult/consult" />
 </block>

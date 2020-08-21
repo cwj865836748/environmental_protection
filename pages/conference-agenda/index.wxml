@@ -1,6 +1,7 @@
 <!--pages/conference-agenda/index.wxml-->
 <navbar title="大会日程" back="{{true}}"></navbar>
 <view class="content">
-	<import src="../../wxParse/wxParse.wxml" />
-	<template is="wxParse" data="{{wxParseData:content.nodes}}" />
+	<!-- <import src="../../wxParse/wxParse.wxml" /> -->
+	<!-- <template is="wxParse" data="{{wxParseData:content.nodes}}" /> -->
+		<rich-text nodes="{{info.schedule}}"></rich-text>
 </view>

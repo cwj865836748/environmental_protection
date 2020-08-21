@@ -112,6 +112,7 @@ Page({
       if (res.code == 200) {
         WxParse.wxParse('content', 'html', res.data.info.content, that);
         let info = res.data.info;
+        info.content = info.content.replace(/\<img/gi, '<img style="width:100%;height:auto" ')
         info.createtime = utils.formatTimeTwo(info.createtime * 1000, 'Y-M-D h:m')
         that.setData({
           info: info

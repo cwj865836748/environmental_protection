@@ -1,7 +1,10 @@
 /* pages/activity/index.wxss */
 @import '/common/consult/consult.wxss';
 @import '/common/noData/noData.wxss';
+.banner-line{
+  background: #f8f8f8 !important;
 
+}
 .swiper-box {
   width: 100%;
   height: 420rpx;
@@ -70,6 +73,7 @@ swiper {
   height: 190rpx;
   margin-top: 20rpx;
   background-color: #ffffff;
+  border-radius: 10rpx;
 }
 
 .activity-item-left {
@@ -83,6 +87,7 @@ swiper {
 .activity-item-left image {
   width: 100%;
   height: 100%;
+  border-radius: 10rpx;
 }
 
 .activity-status-going {
@@ -179,4 +184,7 @@ swiper {
   color: #999999;
   line-height: 44rpx;
   width: 380rpx;
+}
+.consult{
+  bottom: 50rpx;
 }

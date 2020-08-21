@@ -49,7 +49,9 @@
   background: linear-gradient(180deg,#ffffff 16%, rgba(255,255,255,0));
   min-width: 750rpx;
 }
-
+.sub-tab-item{
+  margin-right: 15rpx;
+}
 .sub-tab-item-name {
   min-width: 160rpx;
   white-space: nowrap;

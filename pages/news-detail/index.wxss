@@ -20,6 +20,16 @@
 .news-content{
   margin-top: 20rpx;
 }
-image{
+rich-text>image{
   width: 690rpx !important;
 }
+button>image{
+  width: 34rpx !important;
+  height: 34rpx !important;
+  margin-bottom: 4rpx !important;
+}
+rich-text{
+  width: 690rpx;
+}
+
+  

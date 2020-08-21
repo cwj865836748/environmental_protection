@@ -30,23 +30,28 @@ Page({
     let collect = e.currentTarget.dataset.collect;
     if (collect == 0) {
       this.getAdd()
-      this.getCompanyDetail();
-    }
-
-  },
-  handleCollect1(e) {
-    let collect = e.currentTarget.dataset.collect;
-    if (collect == 1) {
+      // this.getCompanyDetail();
+    } else {
       this.getDel()
-      this.getCompanyDetail();
+      // this.getCompanyDetail();
     }
+  },
+  changeCollect(id) {
+    const info = this.data.info
+    if (info.id == id) {
+      info.is_collect = info.is_collect == 0 ? 1 : 0
+    }
+    this.setData({
+      info: info
+    })
+    // console.log(info)
   },
   // 跳转设备详情页
   handleJump(e) {
     console.log(e.currentTarget.dataset.id);
     let id = e.currentTarget.dataset.id;
     wx.navigateTo({
-      url: '/pages/equipment-detail/index?id='+id+'&&show='+this.data.show,
+      url: '/pages/equipment-detail/index?id=' + id + '&&show=' + this.data.show,
     })
 
   },
@@ -142,6 +147,7 @@ Page({
         title: '收藏成功',
         icon: 'none'
       })
+      this.changeCollect(that.data.id);
 
     })
   },
@@ -159,7 +165,7 @@ Page({
         title: '取消收藏',
         icon: 'none'
       })
-
+      this.changeCollect(that.data.id);
     })
   },
 
@@ -175,11 +181,11 @@ Page({
    */
   onShow: function () {
     this.setData({
-      noData:false,
-      noMore:false,
-      loading:false,
-      page:1,
-      produceList:[]
+      noData: false,
+      noMore: false,
+      loading: false,
+      page: 1,
+      produceList: []
     })
     this.getCompanyDetail();
     this.getEquipment();

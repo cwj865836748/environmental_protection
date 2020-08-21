@@ -91,6 +91,7 @@ Page({
       noData: false,
       noMore: false,
       loading: false,
+      titleFlag:false,
       listData: []
     })
     if (id == 1) {
@@ -109,6 +110,7 @@ Page({
       noData: false,
       noMore: false,
       loading: false,
+      titleFlag:false,
       listData: []
     })
     this.getForumList();
@@ -453,8 +455,15 @@ Page({
       listData: []
     })
     this.getSlideshow();
-    this.getExpertsCategory();
-    this.getExpertsList();
+    if (this.data.tabIndex == 1) {
+      this.getExpertsCategory();
+      this.getExpertsList();
+    }else{
+      this.getForumCategory();
+      this.getForumList();
+    }
+  
+
   },
 
   /**

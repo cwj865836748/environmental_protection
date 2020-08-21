@@ -17,7 +17,8 @@ Page({
   data: {
     id: '',
     // type = 0 表示从展会详情进入 type = 1 表示从我的中的联系我们进入
-    type: ''
+    type: '',
+    info:''
   },
 
   /**
@@ -49,6 +50,11 @@ Page({
       // console.log(res);
       if (res.code == 200) {
         WxParse.wxParse('content', 'html', res.data.info.contact, that);
+        let info = res.data.info
+        info.contact = info.contact.replace(/\<img/gi, '<img style="width:100%;height:auto" ');
+        that.setData({
+          info:info
+        })
       }
     })
   },
@@ -61,6 +67,11 @@ Page({
       // console.log(res);
       if (res.code == 200) {
         WxParse.wxParse('content', 'html', res.data.info, that);
+        let info = res.data.info
+        info = info.replace(/\<img/gi, '<img style="width:100%;height:auto" ');
+        that.setData({
+          info:info
+        })
       }
     })
   },

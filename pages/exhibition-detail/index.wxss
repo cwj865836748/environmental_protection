@@ -88,3 +88,6 @@ swiper {
   font-size: 28rpx;
   color: #ffffff;
 }
+.consult{
+  bottom: 150rpx;
+}

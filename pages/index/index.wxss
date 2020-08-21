@@ -173,3 +173,6 @@ swiper {
 ::-webkit-scrollbar {
   display: none
 }
+.consult{
+  bottom: 50rpx;
+}

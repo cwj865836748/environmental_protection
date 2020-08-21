@@ -92,3 +92,6 @@ page{
   border-radius: 26px 0px 0px 26px;
   background-color: #c9c9c9;
 }
+.consult{
+  bottom: 50rpx;
+}
