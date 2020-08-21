@@ -2,6 +2,9 @@
 /* @import '/pages/index/index.wxss'; */
 @import '/pages/search/index.wxss';
 @import '/common/noData/noData.wxss';
+.ml15{
+  margin-left: 15rpx;
+}
 .van-field__input{
   padding-left:30rpx !important;
 }
@@ -53,7 +56,7 @@
   margin-right: 15rpx;
 }
 .sub-tab-item-name {
-  min-width: 160rpx;
+  min-width: 100rpx;
   white-space: nowrap;
   flex:1;
   text-align: center;

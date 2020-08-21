@@ -115,6 +115,12 @@ Page({
       url: `/pages/enterprise-detail/index?id=${id}`
     })
   },
+  handleJumpE(e){
+    let {id} = e.currentTarget.dataset
+    wx.navigateTo({
+      url:`/pages/equipment-detail/index?id=${id}` ,
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */
