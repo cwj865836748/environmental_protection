@@ -181,13 +181,13 @@ function drawText(context, t, x, y, w) {
   }
 
   // 只显示2行，加...
-  /*for(var b = 0; b < 2; b++){
-      var str = row[b];
-      if(b == 1){
-          str = str.substring(0,str.length-1) + '...';
-      }
-      context.fillText(str,x,y+(b+1)*24);
-  }*/
+  // for (var b = 0; b < 2; b++) {
+  //   var str = row[b];
+  //   if (b == 1) {
+  //     str = str.substring(0, str.length - 1) + '...';
+  //   }
+  //   context.fillText(str, x, y + (b + 1) * 24);
+  // }
 }
 
 
@@ -203,10 +203,12 @@ function circleImg(ctx, img, x, y, r) {
   var cx = x + r;
   var cy = y + r;
   ctx.arc(cx, cy + 1.3 * r, r, 0, 2 * Math.PI);
-  ctx.strokeStyle = "#fff"
+  ctx.setFillStyle('#fff');
   ctx.clip();
   ctx.drawImage(img, x, y + 1.3 * r, d, d);
   ctx.restore();
+  ctx.strokeStyle = '#fff';
+  ctx.stroke();
 }
 
 function checkEmail(email) {

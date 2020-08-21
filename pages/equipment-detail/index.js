@@ -20,7 +20,7 @@ Page({
     canvasHeight: '',
     inviteShow: false,
     showPoster: false,
-    postImg: 'https://img02.mockplus.cn/idoc/xd/2020-07-30/79bffc54-d65a-4c76-8592-810c7c3c5e54.png',
+    postImg: '',
     qrImg: 'https://img02.mockplus.cn/idoc/xd/2020-07-30/272d2398-e2ee-4119-8694-e33c43f765fe.png',
     saveImg: '',
     id: '',
@@ -34,7 +34,7 @@ Page({
     this.setData({
       inviteShow: true,
     })
-    this.getPosterInfo();
+    // this.getPosterInfo();
   },
   onClose() {
     this.setData({
@@ -58,28 +58,29 @@ Page({
   // 生成Canvas 
   createCanvas() {
     let that = this;
-    console.log('海报内容',that.data.posterInfo)
+    // console.log('海报内容',that.data.posterInfo)
     const ctx = wx.createCanvasContext('myCanvas');
-    let postPath = that.data.posterInfo.pic;
+    // let postPath = that.data.posterInfo.pic;
     let qrImg = that.data.posterInfo.qrcode;
-    wx.getImageInfo({
-      src: postPath,
-      success: function (res) {
-        console.log(res);
-        ctx.drawImage(res.path, 0, 0, that.data.canvasWidth, that.data.canvasWidth);
-      }
-    })
+    // wx.getImageInfo({
+    //   src: postPath,
+    //   success: function (res) {
+    //     console.log(res);
+    //     ctx.drawImage(res.path, 0, 0, that.data.canvasWidth, that.data.canvasWidth);
+    //   }
+    // })
     wx.getImageInfo({
       src: qrImg,
       success: function (res) {
         console.log(res)
+        ctx.drawImage(that.data.postImg, 0, 0, that.data.canvasWidth, that.data.canvasWidth);
         // ctx.drawImage(res.path, that.data.canvasWidth - 82, that.data.canvasWidth - 20, 82, 82);
-        utils.circleImg(ctx,res.path,that.data.canvasWidth - 82,that.data.canvasWidth - 82,41)
+        utils.circleImg(ctx, res.path, that.data.canvasWidth - 82, that.data.canvasWidth - 82, 41)
         // 设备名称
         ctx.setFillStyle('#333333');
         ctx.setFontSize(15);
         // ctx.fillText(that.data.info.name, 20, 325);
-        utils.drawText(ctx, that.data.info.name, 20, that.data.canvasWidth, 200);
+        utils.drawText(ctx, that.data.info.name, 30, that.data.canvasWidth, 200);
         ctx.stroke();
         // 企业名称
         ctx.fillStyle = '#f8f8f8';
@@ -200,7 +201,7 @@ Page({
       info.is_collect = info.is_collect == 0 ? 1 : 0
     }
     this.setData({
-      info:info
+      info: info
     })
     // console.log(info)
   },
@@ -225,7 +226,7 @@ Page({
     })
     this.getEquipmentInfo();
     // this.getPoster();
-    // this.getPosterInfo();
+    this.getPosterInfo();
   },
   // 获取设备详情信息
   getEquipmentInfo() {
@@ -301,10 +302,21 @@ Page({
         equipment_id: that.data.id
       }
     }).then(res => {
-      console.log('海报',res);
+      // console.log('海报', res);
+      let postPath = res.data.info.pic;
       that.setData({
         posterInfo: res.data.info
       })
+      wx.getImageInfo({
+        src: postPath,
+        success: function (res) {
+          console.log(res);
+          that.setData({
+            postImg:res.path
+          })
+        }
+      })
+      that.createCanvas();
     })
   },
   /**
