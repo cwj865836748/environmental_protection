@@ -3,7 +3,7 @@
 
 .select-wrap {
   width: 690rpx;
-  height: 398rpx;
+  /* height: 398rpx; */
   position: absolute;
   top: 205rpx;
   left: 30rpx;

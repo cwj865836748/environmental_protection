@@ -49,7 +49,7 @@ Page({
     console.log(id);
     this.setData({
       selectedIndex: id,
-      typeIndex:id,
+      typeIndex: id,
       type: title,
       arrowFlag: false
     })
@@ -99,6 +99,12 @@ Page({
   onChangeIndustry(e) {
     this.setData({
       industry: e.detail
+    })
+  },
+  // 点击取消弹框
+  handleDelChoose() {
+    this.setData({
+      arrowFlag: false
     })
   },
   // 提交
