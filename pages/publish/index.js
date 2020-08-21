@@ -109,9 +109,21 @@ Page({
    */
   onLoad: function (options) {
     this.getTypeList();
+    let jumpType = options.type;
     this.setData({
-      jumpType: options.type
+      jumpType: jumpType,
     })
+    if(jumpType == 0){
+      this.setData({
+        typeIndex:jumpType,
+        typeName:'供应'
+      })
+    }else{
+      this.setData({
+        typeIndex:jumpType,
+        typeName:'需求'
+      })
+    }
   },
   // 获取类别分类列表
   getTypeList() {

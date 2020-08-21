@@ -224,6 +224,9 @@ Page({
   // 跳转专家详情页面
   handleEJump(e) {
     let id = e.currentTarget.dataset.id;
+    this.setData({
+      titleFlag:false
+    })
     wx.navigateTo({
       url: '/pages/professor-detail/index?id=' + id,
     })
@@ -452,6 +455,7 @@ Page({
       noData: false,
       loading: false,
       page: 1,
+      titleFlag:false,
       listData: []
     })
     this.getSlideshow();
