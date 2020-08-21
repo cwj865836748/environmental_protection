@@ -1,74 +1,75 @@
 <!--pages/publish/index.wxml-->
 <navbar title="我要发布" back="{{true}}"></navbar>
-<van-cell-group>
+	<van-cell-group>
 
-	<view class="list-cell flex-y-center">
-		<view class="list-cell-title">类型</view>
-		<view class="list-cell-choose flex-y-center" bindtap="handleChooseCategory" data-typeName="供应" data-typeIndex="0">
-			<image mode="cover" class="list-cell-icon flex-grow-0" src="/images/form_select0@2x.png" wx:if="{{typeName == '供应' && typeIndex == 0 }}"></image>
-			<image mode="cover" class="list-cell-icon flex-grow-0" src="/images/form_select@2x.png" wx:if="{{typeName != '供应' && typeIndex != 0 }}"></image>
-			<view class="list-cell-name">供应</view>
+		<view class="list-cell flex-y-center" bindtap="handleDelChoose">
+			<view class="list-cell-title">类型</view>
+			<view class="list-cell-choose flex-y-center" bindtap="handleChooseCategory" data-typeName="供应" data-typeIndex="0">
+				<image mode="cover" class="list-cell-icon flex-grow-0" src="/images/form_select0@2x.png" wx:if="{{typeName == '供应' && typeIndex == 0 }}"></image>
+				<image mode="cover" class="list-cell-icon flex-grow-0" src="/images/form_select@2x.png" wx:if="{{typeName != '供应' && typeIndex != 0 }}"></image>
+				<view class="list-cell-name">供应</view>
+			</view>
+			<view class="list-cell-choose flex-y-center" bindtap="handleChooseCategory" data-typeName="需求" data-typeIndex="1">
+				<image mode="cover" class="list-cell-icon flex-grow-0" src="/images/form_select0@2x.png" wx:if="{{typeName == '需求' && typeIndex == 1 }}"></image>
+				<image mode="cover" class="list-cell-icon flex-grow-0" src="/images/form_select@2x.png" wx:if="{{typeName != '需求' && typeIndex != 1 }}"></image>
+				<view class="list-cell-name">需求</view>
+			</view>
 		</view>
-		<view class="list-cell-choose flex-y-center" bindtap="handleChooseCategory" data-typeName="需求" data-typeIndex="1">
-			<image mode="cover" class="list-cell-icon flex-grow-0" src="/images/form_select0@2x.png" wx:if="{{typeName == '需求' && typeIndex == 1 }}"></image>
-			<image mode="cover" class="list-cell-icon flex-grow-0" src="/images/form_select@2x.png" wx:if="{{typeName != '需求' && typeIndex != 1 }}"></image>
-			<view class="list-cell-name">需求</view>
+
+		<van-field bindtap="handleDelChoose" value="{{ name }}" clearable placeholder="请输入姓名" label="姓名" bind:change="onChangeName" />
+
+		<view class="list-cell flex-y-center" bindtap="handleDelChoose">
+			<view class="list-cell-title">性别</view>
+			<view class="list-cell-choose flex-y-center" bindtap="handleChooseSex" data-sexIndex="1" data-sexName="男">
+				<image mode="cover" class="list-cell-icon flex-grow-0" src="/images/form_select0@2x.png" wx:if="{{sexIndex == 1 && sexName == '男'}}"></image>
+				<image mode="cover" class="list-cell-icon flex-grow-0" src="/images/form_select@2x.png" wx:if="{{sexIndex != 1 && sexName != '男'}}"></image>
+				<view class="list-cell-name">男</view>
+			</view>
+			<view class="list-cell-choose flex-y-center" bindtap="handleChooseSex" data-sexIndex="2" data-sexName="女">
+				<image mode="cover" class="list-cell-icon flex-grow-0" src="/images/form_select0@2x.png" wx:if="{{sexIndex == 2 && sexName == '女'}}"></image>
+				<image mode="cover" class="list-cell-icon flex-grow-0" src="/images/form_select@2x.png" wx:if="{{sexIndex != 2 && sexName != '女'}}"></image>
+				<view class="list-cell-name">女</view>
+			</view>
 		</view>
-	</view>
 
-	<van-field value="{{ name }}" clearable placeholder="请输入姓名" label="姓名" bind:change="onChangeName" />
+		<van-field bindtap="handleDelChoose" value="{{ company_name }}" clearable placeholder="请输入公司名称" label="公司名称" bind:change="onChangeCName" />
 
-	<view class="list-cell flex-y-center">
-		<view class="list-cell-title">性别</view>
-		<view class="list-cell-choose flex-y-center" bindtap="handleChooseSex" data-sexIndex="1" data-sexName="男">
-			<image mode="cover" class="list-cell-icon flex-grow-0" src="/images/form_select0@2x.png" wx:if="{{sexIndex == 1 && sexName == '男'}}"></image>
-			<image mode="cover" class="list-cell-icon flex-grow-0" src="/images/form_select@2x.png" wx:if="{{sexIndex != 1 && sexName != '男'}}"></image>
-			<view class="list-cell-name">男</view>
+		<view class="list-cell-content flex-y-center" bindtap="handleChooseType">
+			<van-field value="{{ category }}" placeholder="请选择" label="类别" disabled bind:change="onChange" />
+			<image mode="cover" class="arrow flex-grow-0" src="/images/form_down@2x.png"></image>
 		</view>
-		<view class="list-cell-choose flex-y-center" bindtap="handleChooseSex" data-sexIndex="2" data-sexName="女">
-			<image mode="cover" class="list-cell-icon flex-grow-0" src="/images/form_select0@2x.png" wx:if="{{sexIndex == 2 && sexName == '女'}}"></image>
-			<image mode="cover" class="list-cell-icon flex-grow-0" src="/images/form_select@2x.png" wx:if="{{sexIndex != 2 && sexName != '女'}}"></image>
-			<view class="list-cell-name">女</view>
-		</view>
-	</view>
-
-	<van-field value="{{ company_name }}" clearable placeholder="请输入公司名称" label="公司名称" bind:change="onChangeCName" />
-
-	<view class="list-cell-content flex-y-center" bindtap="handleChooseType">
-		<van-field value="{{ category }}" placeholder="请选择" label="类别" disabled bind:change="onChange" />
-		<image mode="cover" class="arrow flex-grow-0" src="/images/form_down@2x.png"></image>
-	</view>
 
 
-	<!-- 下拉框 -->
-	<view class="select-wrap" wx:if="{{arrowFlag}}">
-		<view class="select-arrow"></view>
-		<view class="select-box">
-			<view class="select-list flex-y-center {{ index == 0 ? 'mt37' : 'mt53'}}" wx:for="{{selectList}}" bindtap="handleSelectTitle" data-id="{{item.id}}" data-name="{{item.name}}">
-				<view class="select-item {{selectedIndex == item.id ? 'select-item-active' : ''}}">{{item.name}}</view>
-				<view class="select-right flex-xy-center">
-					<image mode="cover" class="flex-grow-0" src="/images/home/home_right@2x.png" wx:if="{{ selectedIndex == item.id }}"></image>
+		<!-- 下拉框 -->
+		<view class="select-wrap" wx:if="{{arrowFlag}}">
+			<view class="select-arrow"></view>
+			<view class="select-box">
+				<view class="select-list flex-y-center {{ index == 0 ? 'mt37' : 'mt53'}}" wx:for="{{selectList}}" bindtap="handleSelectTitle" data-id="{{item.id}}" data-name="{{item.name}}">
+					<view class="select-item {{selectedIndex == item.id ? 'select-item-active' : ''}}">{{item.name}}</view>
+					<view class="select-right flex-xy-center">
+						<image mode="cover" class="flex-grow-0" src="/images/home/home_right@2x.png" wx:if="{{ selectedIndex == item.id }}"></image>
+					</view>
 				</view>
 			</view>
 		</view>
-	</view>
 
 
-	<van-field value="{{ position }}" clearable placeholder="请输入职位" label="职位" bind:change="onChangePosition" />
+		<van-field bindtap="handleDelChoose" value="{{ position }}" clearable placeholder="请输入职位" label="职位" bind:change="onChangePosition" />
 
-	<van-field value="{{ email }}" clearable placeholder="请输入邮箱账号" label="邮箱" bind:change="onChangeEmail" />
+		<van-field bindtap="handleDelChoose" value="{{ email }}" clearable placeholder="请输入邮箱账号" label="邮箱" bind:change="onChangeEmail" />
 
-	<van-field value="{{ mobile }}" clearable placeholder="请输入手机号" type="number" label="手机号" bind:change="onChangeMoblie" />
+		<van-field bindtap="handleDelChoose" value="{{ mobile }}" clearable placeholder="请输入手机号" type="number" label="手机号" bind:change="onChangeMoblie" />
 
-	<view class="textarea-wrap">
-		<van-field value="{{ company_info }}" bind:change="onChangeCInfo" label="企业信息" type="textarea" clearable placeholder="请输入企业信息(选填)" autosize style="height:244rpx;" />
-	</view>
+		<view class="textarea-wrap" >
+			<van-field bindtap="handleDelChoose" value="{{ company_info }}" bind:change="onChangeCInfo" label="企业信息" type="textarea" clearable placeholder="请输入企业信息(选填)" autosize style="height:244rpx;" />
+		</view>
 
-	<view class="textarea-wrap border-no">
-		<van-field value="{{ remark }}" bind:change="onChangeRemark" label="备注" type="textarea" clearable placeholder="请输入您的备注(选填)" autosize style="height:244rpx;" border="{{false}}" />
-	</view>
+		<view class="textarea-wrap border-no" >
+			<van-field bindtap="handleDelChoose" value="{{ remark }}" bind:change="onChangeRemark" label="备注" type="textarea" clearable placeholder="请输入您的备注(选填)" autosize style="height:244rpx;" border="{{false}}" />
+		</view>
 
 
-</van-cell-group>
+	</van-cell-group>
+
 
 <view class="btn flex-xy-center" bindtap="handlePublish">发布</view>

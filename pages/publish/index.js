@@ -104,6 +104,12 @@ Page({
       sexIndex: sexIndex
     })
   },
+  // 点击取消弹框
+  handleDelChoose(){
+    this.setData({
+      arrowFlag:false
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */
