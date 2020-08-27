@@ -148,6 +148,10 @@ Page({
         }
 
         if (listData.length != 0 && is_next) {
+          for (let i = 0; i < listData.length; i++) {
+            console.log(utils.formatTimeTwo(listData[i].createtime * 1000, 'Y-M-D h:m'))
+            listData[i].createtime = utils.formatTimeTwo(listData[i].createtime * 1000, 'Y-M-D h:m')
+          }
           that.setData({
             listData: that.data.listData.concat(listData),
             page: that.data.page + 1

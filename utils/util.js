@@ -133,7 +133,9 @@ function unique(arr) {
 
 // 时间戳 转 日期
 function formatTimeTwo(number, format) {
-
+  if (number && number.toString().length == 10) {
+    number *= 1000
+  }
   var formateArr = ['Y', 'M', 'D', 'h', 'm', 's'];
   var returnArr = [];
   var num = number
