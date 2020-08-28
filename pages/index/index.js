@@ -211,14 +211,14 @@ Page({
           })
           return;
         }
-        if (merchantsList.length < 7) {
+        if (merchantsList.length < 8) {
           that.setData({
             merchantsList: merchantsList,
             // noMore1: true
           })
         } else {
           that.setData({
-            merchantsList: merchantsList.slice(0, 7)
+            merchantsList: merchantsList.slice(0, 8)
           })
           return;
         }

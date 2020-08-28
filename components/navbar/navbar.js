@@ -63,9 +63,9 @@ Component({
     goBack() {
       let pages = getCurrentPages();
       if (pages.length == 1) {
-        wx.navigateTo({
-          url: '/pages/index/index',
-        })
+       wx.reLaunch({
+         url: '/pages/index/index',
+       })
       } else {
         navigateBack(1)
       }

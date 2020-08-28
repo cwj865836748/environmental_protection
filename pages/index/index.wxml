@@ -127,7 +127,7 @@
 
 </view>
 
-<view class="enterprise-wrap {{merchantList.length>4 ? 'height' : ''}}">
+<view class="enterprise-wrap {{merchantsList.length>4 ? 'height' : ''}}">
 	<include src="/common/merchantsList/merchantsList" />
 </view>
 
