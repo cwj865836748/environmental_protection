@@ -115,18 +115,21 @@ Page({
   // 保存图片
   handleSave() {
     const that = this;
-    console.log('success')
+    console.log('success');
+    that.createCanvas();
+    // console.log(that.data.saveImg)
     wx.downloadFile({
-      url: that.data.posterInfo,
+      url: that.data.saveImg,
       success: function (res) {
         wx.saveImageToPhotosAlbum({
           filePath: res.tempFilePath,
           success(result) {
+            // console.log('乘车')
             wx.showToast({
               title: '保存成功',
               icon: 'none',
             })
-            this.setData({
+            that.setData({
               showPlace: false
             })
           }
