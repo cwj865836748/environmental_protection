@@ -357,7 +357,7 @@ Page({
 
         if (listData.length != 0 && !is_next) {
           for (let i = 0; i < listData.length; i++) {
-            listData[i].createtime = util.formatTimeTwo((listData[i].createtime) * 1000, 'Y-M-D h:m')
+            listData[i].createtime = util.formatTimeTwo((listData[i].createtime) * 1000, 'Y-M-D')
           }
           that.setData({
             listData: that.data.listData.concat(listData),
@@ -368,7 +368,7 @@ Page({
 
         if (listData.length != 0 && is_next) {
           for (let i = 0; i < listData.length; i++) {
-            listData[i].createtime = util.formatTimeTwo((listData[i].createtime) * 1000, 'Y-M-D h:m')
+            listData[i].createtime = util.formatTimeTwo((listData[i].createtime) * 1000, 'Y-M-D')
           }
           that.setData({
             listData: that.data.listData.concat(listData),

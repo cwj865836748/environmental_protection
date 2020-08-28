@@ -53,7 +53,7 @@
   min-width: 750rpx;
 }
 .sub-tab-item{
-  margin-right: 15rpx;
+  margin-right: 52rpx;
 }
 .sub-tab-item-name {
   min-width: 100rpx;

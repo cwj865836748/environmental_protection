@@ -31,7 +31,7 @@
 
 	<navigator class=" flex-grow-1" url="/pages/supply-demand/index">
 		<view class="function-item flex-col flex-xy-center">
-			<image mode="cover" class="function-icon flex-grow-0" src="/images/home/home_module_ico1@2x.png" ></image>
+			<image mode="cover" class="function-icon flex-grow-0" src="/images/home/home_module_ico1@2x.png"></image>
 			<view class="function-dec">供需快报</view>
 		</view>
 
@@ -107,7 +107,10 @@
 	</navigator>
 </view>
 
-<include src="/common/enterprise/enterpriseList" />
+<view class="enterprise-wrap {{enterpriseList.length>4 ? 'height' : ''}}">
+	<include src="/common/enterprise/enterpriseList" />
+</view>
+
 
 <view class="line"></view>
 
@@ -124,6 +127,9 @@
 
 </view>
 
-<include src="/common/merchantsList/merchantsList" />
+<view class="enterprise-wrap {{merchantList.length>4 ? 'height' : ''}}">
+	<include src="/common/merchantsList/merchantsList" />
+</view>
+
 
 <include src="/common/consult/consult" />

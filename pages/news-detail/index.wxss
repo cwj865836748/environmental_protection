@@ -1,35 +1,40 @@
 /* pages/news-detail/index.wxss */
 @import '/common/consult/consult.wxss';
-.wrap{
+
+.wrap {
   width: 100%;
   padding: 0 30rpx;
   word-break: break-all;
 }
-.news-title{
+
+.news-title {
   width: 690rpx;
-  min-height: 100rpx;
+  /* min-height: 100rpx; */
   font-size: 32rpx;
   color: #333333;
   word-break: break-all;
 }
-.news-time{
+
+.news-time {
   font-size: 26rpx;
   color: #999999;
   margin-top: 12rpx;
 }
-.news-content{
+
+.news-content {
   margin-top: 20rpx;
 }
-rich-text>image{
-  width: 690rpx !important;
+
+rich-text {
+  width: 690rpx;
 }
-button>image{
+
+/* image{
+  width: 690rpx !important;
+} */
+
+button>image {
   width: 34rpx !important;
   height: 34rpx !important;
   margin-bottom: 4rpx !important;
 }
-rich-text{
-  width: 690rpx;
-}
-
-  

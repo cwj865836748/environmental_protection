@@ -175,7 +175,7 @@ Page({
           })
           return;
         }
-        if (enterpriseList.length < 7) {
+        if (enterpriseList.length < 8) {
           that.setData({
             enterpriseList: enterpriseList,
             // noMore: true
@@ -183,7 +183,7 @@ Page({
           return;
         } else {
           that.setData({
-            enterpriseList: enterpriseList.slice(0, 7)
+            enterpriseList: enterpriseList.slice(0, 8)
           })
         }
       }
