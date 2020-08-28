@@ -120,7 +120,7 @@ swiper {
   width: 392rpx;
   /* height: 78rpx; */
   color: #333333;
-  margin: 8rpx 0 26rpx 0;
+  /* margin: 8rpx 0 26rpx 0; */
 }
 .news-time{
   font-size: 24rpx;
