@@ -40,7 +40,6 @@ Page({
     }).then(res => {
       console.log(res);
       if (res.code == 200) {
-        WxParse.wxParse('content', 'html', res.data.info.schedule, that);
         let info = res.data.info
         info.schedule = info.schedule.replace(/\<img/gi, '<img style="width:100%;height:auto" ');
         that.setData({
