@@ -4,6 +4,7 @@ import {
   request
 } from '../../request/index.js'
 const api = require('../../request/api.js');
+let WxParse = require('../../wxParse/wxParse.js');
 Page({
 
   /**
@@ -80,6 +81,7 @@ Page({
       }
     }).then(res => {
       if (res.code == 200) {
+        WxParse.wxParse('content', 'html', res.data.info.introduce, that);
         that.setData({
           info: res.data.info
         })

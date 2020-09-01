@@ -60,6 +60,8 @@ Page({
     let that = this;
     // console.log('海报内容',that.data.posterInfo)
     const ctx = wx.createCanvasContext('myCanvas');
+    ctx.fillStyle = "#FFFFFF";
+    ctx.fillRect(0, 0, that.data.canvasWidth, that.data.canvasHeight);
     // let postPath = that.data.posterInfo.pic;
     let qrImg = that.data.posterInfo.qrcode;
     // wx.getImageInfo({
@@ -99,7 +101,7 @@ Page({
             destWidth: that.data.canvasHeight * 2,
             canvasId: 'myCanvas',
             success: function (res) {
-              console.log(res.tempFilePath);
+              // console.log(res.tempFilePath);
               that.setData({
                 saveImg: res.tempFilePath
               })

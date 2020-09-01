@@ -6,7 +6,7 @@ import {
 } from '../../utils/wx.js'
 import api from '../../request/api.js';
 import {request} from '../../request/index.js'
-
+let WxParse = require('../../wxParse/wxParse.js');
 Page({
 
   /**
@@ -34,6 +34,7 @@ Page({
     const that = this;
      request({ url: api.forum.expertsDetail, data: {experts_id: that.data.id} }).then(res=>{
          if(res.code == 200){
+           WxParse.wxParse('content', 'html', res.data.info.introduce, that);
           let info = res.data.info
           let position = info.position;
           let str = '';

@@ -2,21 +2,26 @@
 <navbar title="专家详情" back="{{true}}"></navbar>
 <!-- 专家头像 -->
 <view class="professor-avatar">
-  <image mode="cover" src="{{info.user_pic}}"></image>
+	<image mode="cover" src="{{info.user_pic}}"></image>
 </view>
 <!-- 专家介绍 -->
 <view class="professor-introduce">
-  <view class="professor-name flex-y-center">{{info.name}}</view>
-  <view class="professor-dec">{{info.position}}</view>
-  <view class="professor-title-list flex-y-center">
-    <view class="professor-title-item flex-xy-center" wx:for="{{titleList}}">{{item.name}}</view>
-  </view>
+	<view class="professor-name flex-y-center">{{info.name}}</view>
+	<view class="professor-dec">{{info.position}}</view>
+	<view class="professor-title-list flex-y-center">
+		<view class="professor-title-item flex-xy-center" wx:for="{{titleList}}">{{item.name}}</view>
+	</view>
 </view>
 
 <!-- 人物介绍 -->
 <view class="figure-introduce flex-y-center">
-  <view class="figure-line"></view>
-  <view class="figure-title">人物简介</view>
+	<view class="figure-line"></view>
+	<view class="figure-title">人物简介</view>
 </view>
 
-<view class="figure-detail">{{info.introduce}}</view>
+<!-- <view class="figure-detail">{{info.introduce}}</view> -->
+
+<view class="figure-detail">
+	<import src="../../wxParse/wxParse.wxml" />
+	<template is="wxParse" data="{{wxParseData:content.nodes}}" />
+</view>

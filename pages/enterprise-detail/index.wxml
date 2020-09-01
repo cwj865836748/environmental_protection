@@ -66,7 +66,7 @@
 			</view>
 			<!-- 收藏前 -->
 			<view class="msg-right flex-xy-center" bindtap="handleCollect" data-collect="{{info.is_collect}}">
-				<image mode="cover" class="flex-grow-0"  wx:if="{{info.is_collect == 0}}" src="/images/details_collect@2x.png"></image>
+				<image mode="cover" class="flex-grow-0" wx:if="{{info.is_collect == 0}}" src="/images/details_collect@2x.png"></image>
 				<image mode="cover" class="flex-grow-0" wx:if="{{info.is_collect == 1}}" src="/images/details_collect0@2x.png"></image>
 			</view>
 			<!-- 收藏后 -->
@@ -94,7 +94,11 @@
 		<view class="introduce-title">企业简介</view>
 	</view>
 
-	<view class="etp-dec">{{info.introduce}}</view>
+	<!-- <view class="etp-dec">{{info.introduce}}</view> -->
+	<view class="etp-dec">
+		<import src="../../wxParse/wxParse.wxml" />
+		<template is="wxParse" data="{{wxParseData:content.nodes}}" />
+	</view>
 
 	<view class="segmentation"></view>
 
