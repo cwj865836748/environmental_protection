@@ -21,7 +21,7 @@ Page({
     inviteShow: false,
     showPoster: false,
     postImg: '',
-    qrImg: 'https://img02.mockplus.cn/idoc/xd/2020-07-30/272d2398-e2ee-4119-8694-e33c43f765fe.png',
+    qrImg: '',
     saveImg: '',
     id: '',
     info: '',
@@ -47,7 +47,8 @@ Page({
       inviteShow: false,
       showPoster: true
     })
-    this.createCanvas()
+    // this.createCanvas()
+    // this.handleSaveImg()
   },
   onClickPoster() {
     this.setData({
@@ -55,22 +56,135 @@ Page({
     })
   },
   noop() {},
+  handleSaveImg() {
+    let that = this;
+    this.getPosterInfo();
+    wx.showLoading({
+      title: "正在保存图片",
+      mask: false,
+    });
+
+    console.log('保存图片')
+
+    var ctx = wx.createCanvasContext('myCanvas');
+
+    var postImg = that.data.postImg
+    var qrImg = that.data.qrImg
+
+
+    ctx.fillStyle = "#FFFFFF";
+    ctx.fillRect(0, 0, that.data.canvasWidth, that.data.canvasHeight);
+
+    ctx.drawImage(postImg, 0, 0, that.data.canvasWidth, that.data.canvasWidth);
+    ctx.save();
+
+    utils.circleImg(ctx, qrImg, that.data.canvasWidth - 82, that.data.canvasWidth - 82, 41)
+    ctx.save();
+
+    // 设备名称
+    ctx.setFillStyle('#333333');
+    ctx.setFontSize(15);
+    utils.drawText(ctx, that.data.info.name, 25, that.data.canvasWidth, 200);
+    ctx.stroke();
+    ctx.save();
+
+    // 企业名称
+    ctx.fillStyle = '#f8f8f8';
+    ctx.fillRect(0, that.data.canvasHeight - 32, that.data.canvasWidth, 32);
+    ctx.setFillStyle('#999999');
+    ctx.setFontSize(12);
+    ctx.setTextAlign('center');
+    ctx.fillText(that.data.company.name, that.data.canvasWidth / 2, that.data.canvasHeight - 16);
+    ctx.save();
+
+    // 绘制生成画报
+    ctx.draw(false, setTimeout(function () {
+      console.log(ctx)
+      wx.canvasToTempFilePath({
+        canvasId: 'myCanvas',
+        success: function (res) {
+          console.log('5')
+          console.log(res)
+          var tempFilePath = res.tempFilePath;
+          that.setData({
+            saveImg: tempFilePath,
+          });
+          console.log('保存的图片哈')
+          that.getSaveImage()
+        },
+        fail: function (res) {
+          console.log(res);
+        },
+        complete: function (res) {
+          console.log('所有', res)
+        }
+      })
+    }, 100));
+  },
+  /**
+   * 保存图片
+   */
+  getSaveImage: function () {
+    let that = this;
+    console.log('正在保存')
+    wx.getImageInfo({
+      src: that.data.saveImg,
+      success(res) {
+        wx.saveImageToPhotosAlbum({
+          filePath: res.path,
+          success: function (res) {
+            wx.hideLoading();
+            wx.showToast({
+              title: "保存成功",
+              icon: 'success',
+              duration: 3000
+            })
+          },
+          fail: function (res) {
+            wx.hideLoading();
+            if (res.errMsg == "saveImageToPhotosAlbum:fail auth deny") {
+              wx.showModal({
+                title: '温馨提示',
+                content: '取消授权则不能保存图片',
+                success(res) {
+                  wx.openSetting({
+                    success(res) {
+                      // wx.showToast({
+                      //   title: '授权成功',
+                      //   icon: 'none',
+                      //   duration: 3000
+                      // })
+                      console.log(res.authSetting)
+                    }
+                  })
+                }
+              })
+            } else {
+              wx.showToast({
+                title: '保存失败',
+                icon: 'none',
+                duration: 3000
+              });
+            }
+          }
+        })
+      },
+      fail(error) {
+        console.log(error)
+      }
+    })
+  },
   // 生成Canvas 
   createCanvas() {
     let that = this;
-    // console.log('海报内容',that.data.posterInfo)
     const ctx = wx.createCanvasContext('myCanvas');
+
     ctx.fillStyle = "#FFFFFF";
     ctx.fillRect(0, 0, that.data.canvasWidth, that.data.canvasHeight);
-    // let postPath = that.data.posterInfo.pic;
     let qrImg = that.data.posterInfo.qrcode;
-    // wx.getImageInfo({
-    //   src: postPath,
-    //   success: function (res) {
-    //     console.log(res);
-    //     ctx.drawImage(res.path, 0, 0, that.data.canvasWidth, that.data.canvasWidth);
-    //   }
-    // })
+    that.setData({
+      qrImg: qrImg
+    })
     wx.getImageInfo({
       src: qrImg,
       success: function (res) {
@@ -81,7 +195,6 @@ Page({
         // 设备名称
         ctx.setFillStyle('#333333');
         ctx.setFontSize(15);
-        // ctx.fillText(that.data.info.name, 20, 325);
         utils.drawText(ctx, that.data.info.name, 30, that.data.canvasWidth, 200);
         ctx.stroke();
         // 企业名称
@@ -91,6 +204,7 @@ Page({
         ctx.setFontSize(12);
         ctx.setTextAlign('center');
         ctx.fillText(that.data.company.name, that.data.canvasWidth / 2, that.data.canvasHeight - 16);
+        console.log(ctx)
         ctx.draw(false, setTimeout(function () {
           wx.canvasToTempFilePath({
             x: 0,
@@ -118,7 +232,7 @@ Page({
   handleSave() {
     const that = this;
     console.log('success');
-    that.createCanvas();
+    // that.createCanvas();
     // console.log(that.data.saveImg)
     wx.downloadFile({
       url: that.data.saveImg,
@@ -230,8 +344,8 @@ Page({
       canvasHeight: myCanvasHeight
     })
     this.getEquipmentInfo();
-    // this.getPoster();
     this.getPosterInfo();
+    // this.handleSaveImg();
   },
   // 获取设备详情信息
   getEquipmentInfo() {
@@ -286,18 +400,6 @@ Page({
       this.changeCollect(that.data.id);
     })
   },
-  // 获取分享海报
-  getPoster() {
-    const that = this;
-    request({
-      url: api.configInfo.poster
-    }).then(res => {
-      // console.log(res);
-      that.setData({
-        posterInfo: res.data.info
-      })
-    })
-  },
   // 获取海报内容相关信息
   getPosterInfo() {
     const that = this;
@@ -317,11 +419,22 @@ Page({
         success: function (res) {
           console.log(res);
           that.setData({
-            postImg:res.path
+            postImg: res.path
           })
         }
       })
-      that.createCanvas();
+
+      wx.getImageInfo({
+        src: res.data.info.qrcode,
+        success: function (res) {
+          console.log(res);
+          that.setData({
+            qrImg: res.path
+          })
+        }
+      })
+
+      // that.createCanvas();
     })
   },
   /**

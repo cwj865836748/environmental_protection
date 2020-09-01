@@ -10,10 +10,12 @@
   width: 100%;
   height: 100%;
 }
-.video{
+
+.video {
   width: 100%;
   height: 100%;
 }
+
 swiper {
   height: 100%;
 }
@@ -28,6 +30,7 @@ swiper {
   width: 12rpx;
   height: 12rpx;
 }
+
 .equipment-img {
   width: 750rpx;
   height: 750rpx;
@@ -37,10 +40,12 @@ swiper {
   width: 100%;
   height: 100%;
 }
-.video{
+
+.video {
   width: 100%;
   height: 100%;
 }
+
 /* 设备介绍 */
 .equipment-wrap {
   width: 100%;
@@ -61,7 +66,7 @@ swiper {
 .equipment-title {
   font-size: 30rpx;
   color: #333333;
-  width:540rpx;
+  width: 540rpx;
   word-break: break-all;
 }
 
@@ -100,7 +105,7 @@ swiper {
   height: 130rpx;
   margin-right: 16rpx;
   border-radius: 20rpx;
-  border:2rpx solid #f8f8f8
+  border: 2rpx solid #f8f8f8
 }
 
 .belong-img image {
@@ -229,6 +234,52 @@ swiper {
   background-color: #ffffff;
 }
 
+.equipment-img-box {
+  width: 630rpx;
+  height: 630rpx;
+}
+
+.equipment-img-popup {
+  width: 100%;
+  height: 100%;
+}
+
+.equipment-decs-box {
+  width: 360rpx;
+  color: #333333;
+  font-size: 30rpx;
+  line-height: 44rpx;
+  margin: 34rpx 0 0 24rpx;
+}
+
+.equipment-qr {
+  width: 160rpx;
+  height: 160rpx;
+  border-radius: 50%;
+  overflow: hidden;
+  position: absolute;
+  top: 578rpx;
+  right: 8rpx;
+}
+
+.equipment-qr>image {
+  width: 160rpx;
+  height: 160rpx;
+  border-radius: 50%;
+}
+
+.equipment-belong-popup {
+  width: 100%;
+  height: 60rpx;
+  background: #f8f8f8;
+  border-radius: 0px 0px 20px 20px;
+  color: #999999;
+  font-size: 24rpx;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+}
+
 .block-poster .poster-bg {
   width: 100%;
   height: 100%;
@@ -238,7 +289,7 @@ swiper {
   z-index: -2;
 }
 
-.poster-img{
+.poster-img {
   width: 100%;
   height: 100%;
 }
@@ -274,6 +325,7 @@ swiper {
   height: 30rpx;
   margin-right: 26rpx;
 }
-.invite-tips{
+
+.invite-tips {
   height: 36rpx;
 }

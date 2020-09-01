@@ -1,7 +1,7 @@
 <!--pages/equipment-detail/index.wxml-->
 <navbar title="设备详情" back="{{true}}"></navbar>
 <!-- 轮播图 -->
-<view class="swiper-box"  wx:if="{{info.media_type == 0}}">
+<view class="swiper-box" wx:if="{{info.media_type == 0}}">
 	<swiper indicator-dots="{{indicatorDots}}" autoplay="true" indicator-color="rgba(255,255,255,0.5)" indicator-active-color="#ffffff">
 		<block wx:for="{{info.slideshow}}" wx:key="*this">
 			<swiper-item>
@@ -83,16 +83,30 @@
 <!-- 生成海报 -->
 <van-overlay show="{{ showPoster }}" bind:click="onClickPoster" z-index="300">
 	<view class="wrapper-poster">
-		<view class="block-poster" style="width:{{canvasWidth}}px;height:{{canvasHeight}}px" catch:tap="noop">
+		<canvas style="width:315px;height:403px;position:absolute;top:9999px;left:0;z-index:235;" canvas-id="myCanvas"></canvas>
+		<!-- <view class="block-poster" style="width:{{canvasWidth}}px;height:{{canvasHeight}}px" catch:tap="noop">
 			<canvas canvas-id="myCanvas" style="width:{{canvasWidth}}px;height:{{canvasHeight}}px"></canvas>
-			<!-- <image class="poster-img" src="{{posterInfo}}"></image> -->
+		</view> -->
+
+		<view class="block-poster">
+			<view class="equipment-img-box flex-xy-center">
+				<image class="equipment-img-popup flex-grow-0" src="{{postImg}}"></image>
+			</view>
+			<view class="equipment-decs-box">{{info.name}}</view>
+			<view class="equipment-belong-popup flex-xy-center">{{company.name}}</view>
+			<view class="equipment-qr flex-xy-center">
+				<image class="flex-grow-0" src="{{qrImg}}"></image>
+			</view>
 		</view>
+
+
+
 		<view class="poster-btn-box flex-y-center flex-x-center">
 			<view class="btn save flex-y-center flex-x-center">
 				<view class="save-icon-box flex-x-center flex-y-center">
 					<image mode="cover" class="save-icon" src="/images/details_download@2x.png"></image>
 				</view>
-				<view class="save-name flex-x-center flex-y-center" bindtap="checkAuthorize">保存图片</view>
+				<view class="save-name flex-x-center flex-y-center" bindtap="handleSaveImg">保存图片</view>
 			</view>
 		</view>
 	</view>
