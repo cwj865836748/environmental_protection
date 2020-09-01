@@ -90,12 +90,12 @@
 
 		<view class="block-poster">
 			<view class="equipment-img-box flex-xy-center">
-				<image class="equipment-img-popup flex-grow-0" src="{{postImg}}"></image>
+				<image class="equipment-img-popup flex-grow-0" src="{{posterInfo.pic}}"></image>
 			</view>
 			<view class="equipment-decs-box">{{info.name}}</view>
 			<view class="equipment-belong-popup flex-xy-center">{{company.name}}</view>
 			<view class="equipment-qr flex-xy-center">
-				<image class="flex-grow-0" src="{{qrImg}}"></image>
+				<image class="flex-grow-0" src="{{posterInfo.qrcode}}"></image>
 			</view>
 		</view>
 

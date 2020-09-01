@@ -73,28 +73,29 @@ Page({
 
 
     ctx.fillStyle = "#FFFFFF";
-    ctx.fillRect(0, 0, that.data.canvasWidth, that.data.canvasHeight);
+    // ctx.fillRect(0, 0, that.data.canvasWidth, that.data.canvasHeight);
+    ctx.fillRect(0, 0, 315,403);
 
-    ctx.drawImage(postImg, 0, 0, that.data.canvasWidth, that.data.canvasWidth);
+    ctx.drawImage(postImg, 0, 0, 315, 315);
     ctx.save();
 
-    utils.circleImg(ctx, qrImg, that.data.canvasWidth - 82, that.data.canvasWidth - 82, 41)
+    utils.circleImg(ctx, qrImg, 233, 233, 41)
     ctx.save();
 
     // 设备名称
     ctx.setFillStyle('#333333');
     ctx.setFontSize(15);
-    utils.drawText(ctx, that.data.info.name, 25, that.data.canvasWidth, 200);
+    utils.drawText(ctx, that.data.info.name, 30, 315, 200);
     ctx.stroke();
     ctx.save();
 
     // 企业名称
     ctx.fillStyle = '#f8f8f8';
-    ctx.fillRect(0, that.data.canvasHeight - 32, that.data.canvasWidth, 32);
+    ctx.fillRect(0, 371, 315, 32);
     ctx.setFillStyle('#999999');
     ctx.setFontSize(12);
     ctx.setTextAlign('center');
-    ctx.fillText(that.data.company.name, that.data.canvasWidth / 2, that.data.canvasHeight - 16);
+    ctx.fillText(that.data.company.name, 157, 387);
     ctx.save();
 
     // 绘制生成画报
