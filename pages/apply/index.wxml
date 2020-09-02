@@ -2,44 +2,51 @@
 <wxs src="../../wxs/filter.wxs" module="filter"></wxs>
 <navbar title="报名" back="{{true}}"></navbar>
 <van-cell-group>
-	<van-field value='{{ readyType}}' placeholder="请选择" label="报名类型" disabled bindtap='showSelect'/>
-
-	<van-field wx:if="{{addForm.type==1}}" value="{{ addForm.company_name }}" clearable placeholder="请输入公司名称" data-key='company_name' label="公司名称" bind:change="onChange"/>
+	<view class="flex-y-center upDownIcon por">
+		<view class="upDownImage por" bindtap="showSelect">
+			<van-field value='{{ readyType}}' placeholder="请选择" label="报名类型" disabled/>
+			<image mode="cover" class="arrow flex-grow-0" src="/images/form_down@2x.png"></image>
+		</view>
+		<!-- 下拉框 -->
+		<view class="chooseList" wx:if="{{show}}">
+			<block wx:for="{{selectList}}" wx:key="index">
+				<view class="chooseListOne flex-y-center flex-x-between {{item.type==addForm.type?'chooseListOneActive':''}}" data-type="{{item.type}}" data-name="{{item.name}}" bindtap="onSelect">
+					<text>{{item.name}}</text>
+					<image src="/images/home/home_right@2x.png" wx:if="{{item.type==addForm.type}}"></image>
+				</view>
+			</block>
+		</view>
+	</view>
+	<van-field wx:if="{{addForm.type==1}}" value="{{ addForm.company_name }}" clearable placeholder="请输入公司名称" data-key='company_name' label="公司名称" bind:change="onChange" />
 	<!-- 院校 -->
-	<van-field wx:if="{{addForm.type==3}}" value="{{ addForm.company_name }}" clearable placeholder="请输入院校名称" label="院校名称" bind:change="onChange" data-key='company_name'/>
+	<van-field wx:if="{{addForm.type==3}}" value="{{ addForm.company_name }}" clearable placeholder="请输入院校名称" label="院校名称" bind:change="onChange" data-key='company_name' />
 	<!-- 协会 -->
 	<van-field wx:if="{{addForm.type==2}}" value="{{ addForm.company_name }}" clearable placeholder="请输入协会名称" label="协会名称" bind:change="onChange" data-key='company_name' />
 	<!-- 个人 -->
-	<van-field wx:if="{{addForm.type==0}}" value="{{ addForm.name }}" clearable placeholder="请输入姓名" label="姓名" bind:change="onChange" data-key='name'/>
-	<van-field wx:if="{{addForm.type!=0}}" value="{{ addForm.name }}" clearable placeholder="请输入负责人姓名" label="负责人" bind:change="onChange" data-key='name'/>
+	<van-field wx:if="{{addForm.type==0}}" value="{{ addForm.name }}" clearable placeholder="请输入姓名" label="姓名" bind:change="onChange" data-key='name' />
+	<van-field wx:if="{{addForm.type!=0}}" value="{{ addForm.name }}" clearable placeholder="请输入负责人姓名" label="负责人" bind:change="onChange" data-key='name' />
 
-<view class="list-cell flex-y-center">
-	<view class="list-cell-title">性别</view>
-	<van-radio-group value="{{ addForm.sex }}" bind:change="onChange" data-key='sex' class="flex-y-center">
-    <van-radio icon-size="17" name="1">男</van-radio>
-    <van-radio icon-size="17" name="2">女</van-radio>
-  </van-radio-group>
-</view>
+	<view class="list-cell flex-y-center">
+		<view class="list-cell-title">性别</view>
+		<van-radio-group value="{{ addForm.sex }}" bind:change="onChange" data-key='sex' class="flex-y-center">
+			<van-radio icon-size="17" name="1">男</van-radio>
+			<van-radio icon-size="17" name="2">女</van-radio>
+		</van-radio-group>
+	</view>
 
-	<van-field  wx:if="{{addForm.type!=0}}" value="{{ addForm.position }}" clearable placeholder="请输入职位" label="职位" bind:change="onChange" data-key='position' />
+	<van-field wx:if="{{addForm.type!=0}}" value="{{ addForm.position }}" clearable placeholder="请输入职位" label="职位" bind:change="onChange" data-key='position' />
 
-	<van-field value="{{ addForm.email }}" clearable placeholder="请输入邮箱账号" label="邮箱" bind:change="onChange" data-key='email'/>
+	<van-field value="{{ addForm.email }}" clearable placeholder="请输入邮箱账号" label="邮箱" bind:change="onChange" data-key='email' />
 
-	<van-field value="{{ addForm.mobile }}" clearable placeholder="请输入手机号" label="手机号" bind:change="onChange" data-key='mobile'/>
+	<van-field value="{{ addForm.mobile }}" clearable placeholder="请输入手机号" label="手机号" bind:change="onChange" data-key='mobile' />
 
-	<van-field  wx:if="{{addForm.type==1}}" value="{{  addForm.company_url	  }}" clearable placeholder="请输入公司网址(选填)" label="公司网址" bind:change="onChange" data-key='company_url'/>
+	<van-field wx:if="{{addForm.type==1}}" value="{{  addForm.company_url	  }}" clearable placeholder="请输入公司网址(选填)" label="公司网址" bind:change="onChange" data-key='company_url' />
 
-	<van-field wx:if="{{addForm.type==1}}" value="{{ addForm.industry }}" clearable placeholder="请输入公司所在行业(选填)" label="所在行业" bind:change="onChange" data-key='industry'/>
+	<van-field wx:if="{{addForm.type==1}}" value="{{ addForm.industry }}" clearable placeholder="请输入公司所在行业(选填)" label="所在行业" bind:change="onChange" data-key='industry' />
 
 
 </van-cell-group>
 
 
 <view class="btn flex-xy-center" bindtap="submit">提交</view>
-<van-action-sheet
-  show="{{ show }}"
-  actions="{{ selectList }}"
-  bind:select="onSelect"
-	cancel-text="取消"
-	bind:cancel="onCancle"
-/>
+<!-- <van-action-sheet show="{{ show }}" actions="{{ selectList }}" bind:select="onSelect" cancel-text="取消" bind:cancel="onCancle" /> -->

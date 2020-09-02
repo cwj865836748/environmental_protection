@@ -52,14 +52,14 @@ Page({
   },
   showSelect() {
     this.setData({
-      show: true
+      show: !this.data.show
     })
   },
   onSelect(event) {
     const {
       name,
       type
-    } = event.detail
+    } = event.currentTarget.dataset
     this.setData({
       show: false,
       addForm: {
@@ -68,6 +68,7 @@ Page({
       },
       readyType: name
     })
+    this.onCancle()
   },
   onCancle() {
     this.setData({

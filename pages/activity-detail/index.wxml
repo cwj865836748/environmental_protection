@@ -19,8 +19,11 @@
 			<view class="introduce-title">活动时间与地点</view>
 		</view>
 	</view>
-	<view class="phone">时间：{{filter.getTime(info.start_time)}}-{{filter.getTime(info.end_time)}}</view>
+	<view class="phone">活动时间：{{filter.getTime(info.start_time)}}-{{filter.getTime(info.end_time)}}</view>
+	<view class="area">报名时间：{{filter.getTime(info.apply_time)}}-{{filter.getTime(info.deadline_time)}}</view>
+
 	<view class="area">地址：{{info.address}}</view>
+
 
 	<view class="segmentation"></view>
 

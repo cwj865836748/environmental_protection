@@ -31,17 +31,19 @@
 				</view>
 				<view class="activity-item-right flex-y-between">
 					<view class="activity-name text-more">{{item.name}}</view>
-					<view class="activity-time-box flex-y-center">
-						<view class="activity-time-icon flex-xy-center">
-							<image mode="cover" class="flex-grow-0" src="/images/exhibition_time@2x.png"></image>
+					<view>
+						<view class="activity-time-box flex-y-center">
+							<view class="activity-time-icon flex-xy-center">
+								<image mode="cover" class="flex-grow-0" src="/images/exhibition_time@2x.png"></image>
+							</view>
+							<view class="activity-time">{{filter.getTime(item.start_time)}}-{{filter.getTime(item.end_time)}}</view>
 						</view>
-						<view class="activity-time">{{filter.getTime(item.start_time)}}-{{filter.getTime(item.end_time)}}</view>
-					</view>
-					<view class="activity-location-box flex-y-center ">
-						<view class="activity-location-icon flex-xy-center">
-							<image mode="cover" class="flex-grow-0" src="/images/activity_location@2x.png"></image>
+						<view class="activity-location-box flex-y-center ">
+							<view class="activity-location-icon flex-xy-center">
+								<image mode="cover" class="flex-grow-0" src="/images/activity_location@2x.png"></image>
+							</view>
+							<view class="activity-location text-more-single">{{item.address}}</view>
 						</view>
-						<view class="activity-location text-more-single">{{item.address}}</view>
 					</view>
 				</view>
 			</view>
