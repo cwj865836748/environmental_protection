@@ -58,7 +58,7 @@ Page({
   noop() {},
   handleSaveImg() {
     let that = this;
-    this.getPosterInfo();
+    // this.getPosterInfo();
     wx.showLoading({
       title: "正在保存图片",
       mask: false,
