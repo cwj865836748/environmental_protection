@@ -3,3 +3,9 @@
   width: 100%;
   padding:0 30rpx;
 }
+rich-text{
+  width: 690rpx !important;
+}
+image{
+  width: 690rpx !important;
+}
