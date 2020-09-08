@@ -22,6 +22,7 @@
 <!-- <view class="figure-detail">{{info.introduce}}</view> -->
 
 <view class="figure-detail">
-	<import src="../../wxParse/wxParse.wxml" />
-	<template is="wxParse" data="{{wxParseData:content.nodes}}" />
+	<!-- <import src="../../wxParse/wxParse.wxml" /> -->
+	<!-- <template is="wxParse" data="{{wxParseData:content.nodes}}" /> -->
+	<rich-text nodes="{{info.introduce}}"></rich-text>
 </view>

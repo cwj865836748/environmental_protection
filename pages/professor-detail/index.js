@@ -34,8 +34,9 @@ Page({
     const that = this;
      request({ url: api.forum.expertsDetail, data: {experts_id: that.data.id} }).then(res=>{
          if(res.code == 200){
-           WxParse.wxParse('content', 'html', res.data.info.introduce, that);
-          let info = res.data.info
+          //  WxParse.wxParse('content', 'html', res.data.info.introduce, that);
+          let info = res.data.info;
+          info.introduce = info.introduce.replace(/\<img/gi, '<img style="width:100%;height:auto" ');
           let position = info.position;
           let str = '';
           for(let i=0;i<position.length;i++){
