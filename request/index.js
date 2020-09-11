@@ -1,6 +1,7 @@
 import {showToast} from '../utils/wx'
 // 后台url
- const baseUrl = "https://enviorapi.galaxy1234.com";
+//  const baseUrl = "https://enviorapi.galaxy1234.com";
+const baseUrl = 'https://api.stlinknet.com';
  
 // 同时发送异步代码的次数
 let ajaxTimes = 0;
