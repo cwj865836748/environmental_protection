@@ -72,8 +72,9 @@ Component({
 
     },
     goHome() {
-      let pages = getCurrentPages()
-      navigateBack(pages.length)
+      wx.reLaunch({
+        url: '/pages/index/index',
+      })
     },
 
   }
