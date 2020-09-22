@@ -81,9 +81,11 @@ Page({
       }
     }).then(res => {
       if (res.code == 200) {
-        WxParse.wxParse('content', 'html', res.data.info.introduce, that);
+        // WxParse.wxParse('content', 'html', res.data.info.introduce, that);
+        let info = res.data.info
+        info.introduce = info.introduce.replace(/\<img/gi, '<img style="width:100%;height:auto" ')
         that.setData({
-          info: res.data.info
+          info: info
         })
       }
     })
