@@ -182,7 +182,9 @@ function html2json(html, bindName) {
             if(node.tag === 'source'){
                 results.source = node.attr.src;
             }
-            
+            if (node.tag =="embed"){
+                node.tag='video';
+               }
             if (unary) {
                 // if this tag doesn't have end tag
                 // like <img src="hoge.png"/>
