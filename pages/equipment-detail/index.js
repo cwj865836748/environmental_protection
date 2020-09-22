@@ -339,7 +339,7 @@ Page({
       },
     })
     this.setData({
-      id: options.id,
+      id: options.id||options.scene,
       show: options.show,
       canvasWidth: myCanvasWidth,
       canvasHeight: myCanvasHeight

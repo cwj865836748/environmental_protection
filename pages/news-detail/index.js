@@ -54,6 +54,7 @@ Page({
         let info = res.data.info;
         info.content = info.content.replace(/\<img/gi, '<img style="width:100%;height:auto" ')
         info.createtime = utils.formatTimeTwo(info.createtime * 1000, 'Y-M-D')
+        WxParse.wxParse('content', 'html', info.content, this);
         that.setData({
           info: info
         })
@@ -74,6 +75,7 @@ Page({
         let info = res.data.info;
         info.content = info.content.replace(/\<img/gi, '<img style="width:100%;height:auto" ')
         info.createtime = utils.formatTimeTwo(info.createtime * 1000, 'Y-M-D')
+        WxParse.wxParse('content', 'html', info.content, this);
         that.setData({
           info: info
         })
@@ -94,6 +96,7 @@ Page({
         let info = res.data.info;
         info.content = info.content.replace(/\<img/gi, '<img style="width:100%;height:auto" ')
         info.createtime = utils.formatTimeTwo(info.createtime * 1000, 'Y-M-D')
+        WxParse.wxParse('content', 'html', info.content, this);
         that.setData({
           info: info
         })
@@ -114,6 +117,7 @@ Page({
         let info = res.data.info;
         info.content = info.content.replace(/\<img/gi, '<img style="width:100%;height:auto" ')
         info.createtime = utils.formatTimeTwo(info.createtime * 1000, 'Y-M-D')
+        WxParse.wxParse('content', 'html', info.content, this);
         that.setData({
           info: info
         })
