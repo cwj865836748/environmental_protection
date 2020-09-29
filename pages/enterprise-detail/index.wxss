@@ -1,7 +1,6 @@
 /* pages/enterprise-detail/index.wxss */
 @import '/pages/authorization/index.wxss';
 @import '/pages/produce-library/index.wxss';
-
 /* 轮播图 */
 .swiper-box {
   width: 100%;
@@ -205,3 +204,7 @@ swiper {
   margin-top: 28rpx;
   margin-bottom: 20rpx;
 }
+
+/* rich-text {
+  width: 660rpx !important;
+} */
