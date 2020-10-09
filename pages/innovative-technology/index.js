@@ -239,6 +239,12 @@ Page({
     }
     this.getLists()
   },
+  scrollToLower(){
+    if (this.data.noMore) {
+      return false;
+    }
+    this.getLists();
+  },
 
   /**
    * 用户点击右上角分享

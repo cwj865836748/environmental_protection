@@ -496,6 +496,7 @@ Page({
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
+    // console.log('onReachBottom')
     if (this.data.noMore) {
       return false;
     }
@@ -505,6 +506,16 @@ Page({
       this.getForumList();
     }
 
+  },
+  scrollToLower(){
+    if (this.data.noMore) {
+      return false;
+    }
+    if (this.data.tabIndex == 1) {
+      this.getExpertsList();
+    } else {
+      this.getForumList();
+    }
   },
 
   /**

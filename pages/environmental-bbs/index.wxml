@@ -1,6 +1,6 @@
 <!--pages/environmental-bbs/index.wxml-->
 <wxs module="utils" src="../../utils/filter.wxs"></wxs>
-<scroll-view scroll-y="false" bindscroll="scroll" style="height:100%;">
+<scroll-view scroll-y="false" bindscroll="scroll" style="height:100%;" bindscrolltolower="scrollToLower">
 	<!-- 头部导航 -->
 	<view class="head">
 		<navbar title="专家论坛" back="{{true}}" headColor="{{headColor}}" titleColor="{{titleColor}}"></navbar>
@@ -109,7 +109,6 @@
 				</view>
 
 			</view>
-
 
 
 		</block>
