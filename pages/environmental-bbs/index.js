@@ -92,6 +92,7 @@ Page({
       noMore: false,
       loading: false,
       titleFlag:false,
+      page:1,
       listData: []
     })
     if (id == 1) {
