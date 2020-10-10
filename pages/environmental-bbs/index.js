@@ -112,6 +112,7 @@ Page({
       noMore: false,
       loading: false,
       titleFlag:false,
+      page:1,
       listData: []
     })
     this.getForumList();
@@ -178,6 +179,7 @@ Page({
       noData: false,
       noMore: false,
       loading: false,
+      page:1,
       listData: [],
       titleFlag: false
     })
@@ -214,6 +216,7 @@ Page({
       noData: false,
       noMore: false,
       loading: false,
+      page:1,
       listData: []
     })
 
