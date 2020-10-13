@@ -92,6 +92,7 @@ Page({
       noMore: false,
       loading: false,
       titleFlag:false,
+      page:1,
       listData: []
     })
     if (id == 1) {
@@ -111,6 +112,7 @@ Page({
       noMore: false,
       loading: false,
       titleFlag:false,
+      page:1,
       listData: []
     })
     this.getForumList();
@@ -177,6 +179,7 @@ Page({
       noData: false,
       noMore: false,
       loading: false,
+      page:1,
       listData: [],
       titleFlag: false
     })
@@ -213,6 +216,7 @@ Page({
       noData: false,
       noMore: false,
       loading: false,
+      page:1,
       listData: []
     })
 
@@ -495,6 +499,7 @@ Page({
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
+    // console.log('onReachBottom')
     if (this.data.noMore) {
       return false;
     }
@@ -504,6 +509,16 @@ Page({
       this.getForumList();
     }
 
+  },
+  scrollToLower(){
+    if (this.data.noMore) {
+      return false;
+    }
+    if (this.data.tabIndex == 1) {
+      this.getExpertsList();
+    } else {
+      this.getForumList();
+    }
   },
 
   /**

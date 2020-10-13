@@ -1,5 +1,5 @@
 <!--pages/innovative-technology/index.wxml-->
-<scroll-view scroll-y="false" bindscroll="scroll" style="height:100%;">
+<scroll-view scroll-y="false" bindscroll="scroll" style="height:100%;" bindscrolltolower="scrollToLower">
 
 	<!-- 头部导航 -->
 	<view class="head">

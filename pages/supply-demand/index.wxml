@@ -1,5 +1,5 @@
 <!--pages/supply-demand/index.wxml-->
-<scroll-view scroll-y="false" bindscroll="scroll" style="height:100%;">
+<scroll-view scroll-y="false" bindscroll="scroll" style="height:100%;" bindscrolltolower="scrollToLower">
 	<view class="head">
 		<navbar title="供需快报" back="{{true}}" headColor="{{headColor}}" titleColor="{{titleColor}}"></navbar>
 		<!-- 轮播图 -->

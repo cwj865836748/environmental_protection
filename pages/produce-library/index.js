@@ -82,7 +82,10 @@ Page({
   // 获取产品库分类
   getCategory() {
     const that = this;
-    let tabFirst = {id:0,name:'全部'};
+    let tabFirst = {
+      id: 0,
+      name: '全部'
+    };
     request({
       url: api.equipment.category
     }).then(res => {
@@ -112,9 +115,10 @@ Page({
       that.setData({
         loading: false,
       })
-      // console.log("设备列表", res);
+      console.log("设备列表", res.data.list.length);
       if (res.code == 200) {
         let produceList = res.data.list ? res.data.list : [];
+        console.log(produceList.length)
         let is_next = res.data.is_next;
         if (produceList.length == 0 && that.data.page == 1) {
           that.setData({
@@ -131,15 +135,16 @@ Page({
           })
           return;
         }
+
+        if (produceList.length != 0 && is_next) {
+          that.setData({
+            produceList: that.data.produceList.concat(produceList),
+            page: that.data.page + 1
+          })
+          return;
+        }
       }
 
-      if (produceList.length != 0 && is_next) {
-        that.setData({
-          produceList: that.data.produceList.concat(produceList),
-          page: that.data.page + 1
-        })
-        return;
-      }
     })
   },
   // 获取设备列表 - 展会
@@ -160,7 +165,7 @@ Page({
       that.setData({
         loading: false,
       })
-      console.log("设备列表", res);
+      console.log("设备列表", res.data.list);
       if (res.code == 200) {
         let produceList = res.data.list ? res.data.list : [];
         let is_next = res.data.is_next;
@@ -198,9 +203,9 @@ Page({
       wx.navigateTo({
         url: '/pages/equipment-detail/index?id=' + id,
       })
-    }else if(this.data.type == 2){
+    } else if (this.data.type == 2) {
       wx.navigateTo({
-        url: '/pages/equipment-detail/index?id='+id+'&&show=true',
+        url: '/pages/equipment-detail/index?id=' + id + '&&show=true',
       })
     }
 
@@ -259,6 +264,7 @@ Page({
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
+    console.log('onReachBottom')
     if (this.data.noMore) {
       return false;
     }

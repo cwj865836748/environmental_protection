@@ -96,8 +96,9 @@
 
 	<!-- <view class="etp-dec">{{info.introduce}}</view> -->
 	<view class="etp-dec">
-		<import src="../../wxParse/wxParse.wxml" />
-		<template is="wxParse" data="{{wxParseData:content.nodes}}" />
+		<!-- <import src="../../wxParse/wxParse.wxml" />
+		<template is="wxParse" data="{{wxParseData:content.nodes}}" /> -->
+			<rich-text nodes="{{info.introduce}}"></rich-text>
 	</view>
 
 	<view class="segmentation"></view>
