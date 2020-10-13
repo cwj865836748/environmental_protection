@@ -219,8 +219,6 @@ function checkEmail(email) {
     return false;
   }
 }
-
-
 module.exports = {
   formatTime: formatTime,
   getAuth: getAuth,

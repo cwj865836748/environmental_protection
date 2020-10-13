@@ -1,176 +1,190 @@
 {
-  "description": "项目配置文件",
-  "packOptions": {
-    "ignore": []
-  },
-  "setting": {
-    "urlCheck": true,
-    "es6": true,
-    "enhance": false,
-    "postcss": true,
-    "preloadBackgroundData": false,
-    "minified": true,
-    "newFeature": true,
-    "coverView": true,
-    "nodeModules": true,
-    "autoAudits": false,
-    "showShadowRootInWxmlPanel": true,
-    "scopeDataCheck": false,
-    "uglifyFileName": false,
-    "checkInvalidKey": true,
-    "checkSiteMap": true,
-    "uploadWithSourceMap": true,
-    "compileHotReLoad": false,
-    "useMultiFrameRuntime": false,
-    "useApiHook": true,
-    "babelSetting": {
-      "ignore": [],
-      "disablePlugins": [],
-      "outputPath": ""
-    },
-    "useIsolateContext": true,
-    "useCompilerModule": true,
-    "userConfirmedUseCompilerModuleSwitch": false,
-    "packNpmManually": false,
-    "packNpmRelationList": []
-  },
-  "compileType": "miniprogram",
-  "libVersion": "2.11.0",
-  "appid": "wxb66d8846893bb11c",
-  "projectname": "%E7%8E%AF%E4%BF%9D%E4%BC%9A%E5%B1%95%E5%B0%8F%E7%A8%8B%E5%BA%8F",
-  "cloudfunctionTemplateRoot": "",
-  "watchOptions": {
-    "ignore": []
-  },
-  "debugOptions": {
-    "hidedInDevtools": []
-  },
-  "scripts": {},
-  "simulatorType": "wechat",
-  "simulatorPluginLibVersion": {},
-  "condition": {
-    "search": {
-      "current": -1,
-      "list": []
-    },
-    "conversation": {
-      "current": -1,
-      "list": []
-    },
-    "plugin": {
-      "current": -1,
-      "list": []
-    },
-    "game": {
-      "current": -1,
-      "list": []
-    },
-    "gamePlugin": {
-      "current": -1,
-      "list": []
-    },
-    "miniprogram": {
-      "current": 21,
-      "list": [
-        {
-          "id": -1,
-          "name": "活动",
-          "pathName": "pages/activity/index",
-          "query": "",
-          "scene": null
-        },
-        {
-          "id": -1,
-          "name": "我的",
-          "pathName": "pages/mine/index",
-          "query": "",
-          "scene": null
-        },
-        {
-          "id": -1,
-          "name": "pages/innovative-technology/index",
-          "pathName": "pages/innovative-technology/index",
-          "query": "",
-          "scene": null
-        },
-        {
-          "id": -1,
-          "name": "pages/environmental-consulte/index",
-          "pathName": "pages/environmental-consulte/index",
-          "query": "",
-          "scene": null
-        },
-        {
-          "id": -1,
-          "name": "pages/index/index",
-          "pathName": "pages/index/index",
-          "query": "",
-          "scene": null
-        },
-        {
-          "id": -1,
-          "name": "pages/exhibition/index",
-          "pathName": "pages/exhibition/index",
-          "query": "",
-          "scene": null
-        },
-        {
-          "id": -1,
-          "name": "pages/index/index",
-          "pathName": "pages/index/index",
-          "query": "",
-          "scene": null
-        },
-        {
-          "id": -1,
-          "name": "pages/exhibition-detail/index",
-          "pathName": "pages/exhibition-detail/index",
-          "query": "",
-          "scene": null
-        },
-        {
-          "id": -1,
-          "name": "pages/exhibition/index",
-          "pathName": "pages/exhibition/index",
-          "query": "",
-          "scene": null
-        },
-        {
-          "id": -1,
-          "name": "pages/appointment/index",
-          "pathName": "pages/appointment/index",
-          "query": "",
-          "scene": null
-        },
-        {
-          "id": -1,
-          "name": "pages/exhibition/index",
-          "pathName": "pages/exhibition/index",
-          "query": "",
-          "scene": null
-        },
-        {
-          "id": -1,
-          "name": "pages/index/index",
-          "pathName": "pages/index/index",
-          "query": "",
-          "scene": null
-        },
-        {
-          "id": -1,
-          "name": "报名",
-          "pathName": "pages/apply/index",
-          "query": "",
-          "scene": null
-        },
-        {
-          "id": -1,
-          "name": "登录页",
-          "pathName": "pages/authorization/index",
-          "query": "",
-          "scene": null
-        }
-      ]
-    }
-  }
+	"description": "项目配置文件",
+	"packOptions": {
+		"ignore": []
+	},
+	"setting": {
+		"urlCheck": true,
+		"es6": true,
+		"enhance": false,
+		"postcss": true,
+		"preloadBackgroundData": false,
+		"minified": true,
+		"newFeature": true,
+		"coverView": true,
+		"nodeModules": true,
+		"autoAudits": false,
+		"showShadowRootInWxmlPanel": true,
+		"scopeDataCheck": false,
+		"uglifyFileName": false,
+		"checkInvalidKey": true,
+		"checkSiteMap": true,
+		"uploadWithSourceMap": true,
+		"compileHotReLoad": false,
+		"useMultiFrameRuntime": false,
+		"useApiHook": true,
+		"babelSetting": {
+			"ignore": [],
+			"disablePlugins": [],
+			"outputPath": ""
+		},
+		"useIsolateContext": true,
+		"useCompilerModule": true,
+		"userConfirmedUseCompilerModuleSwitch": false,
+		"packNpmManually": false,
+		"packNpmRelationList": []
+	},
+	"compileType": "miniprogram",
+	"libVersion": "2.11.0",
+	"appid": "wxb66d8846893bb11c",
+	"projectname": "%E7%8E%AF%E4%BF%9D%E4%BC%9A%E5%B1%95%E5%B0%8F%E7%A8%8B%E5%BA%8F",
+	"cloudfunctionTemplateRoot": "",
+	"watchOptions": {
+		"ignore": []
+	},
+	"debugOptions": {
+		"hidedInDevtools": []
+	},
+	"scripts": {},
+	"simulatorType": "wechat",
+	"simulatorPluginLibVersion": {},
+	"condition": {
+		"search": {
+			"current": -1,
+			"list": []
+		},
+		"conversation": {
+			"current": -1,
+			"list": []
+		},
+		"plugin": {
+			"current": -1,
+			"list": []
+		},
+		"game": {
+			"current": -1,
+			"list": []
+		},
+		"gamePlugin": {
+			"current": -1,
+			"list": []
+		},
+		"miniprogram": {
+			"current": 21,
+			"list": [
+				{
+					"id": -1,
+					"name": "活动",
+					"pathName": "pages/activity/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "我的",
+					"pathName": "pages/mine/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/innovative-technology/index",
+					"pathName": "pages/innovative-technology/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/environmental-consulte/index",
+					"pathName": "pages/environmental-consulte/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/index/index",
+					"pathName": "pages/index/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/exhibition/index",
+					"pathName": "pages/exhibition/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/index/index",
+					"pathName": "pages/index/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/exhibition-detail/index",
+					"pathName": "pages/exhibition-detail/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/exhibition/index",
+					"pathName": "pages/exhibition/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/appointment/index",
+					"pathName": "pages/appointment/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/exhibition/index",
+					"pathName": "pages/exhibition/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/index/index",
+					"pathName": "pages/index/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "报名",
+					"pathName": "pages/apply/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "登录页",
+					"pathName": "pages/authorization/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/index/index",
+					"pathName": "pages/index/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/index/index",
+					"pathName": "pages/index/index",
+					"query": "",
+					"scene": null
+				}
+			]
+		}
+	}
 }
