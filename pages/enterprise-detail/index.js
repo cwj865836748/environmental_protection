@@ -84,6 +84,7 @@ Page({
         // WxParse.wxParse('content', 'html', res.data.info.introduce, that);
         let info = res.data.info
         info.introduce = info.introduce.replace(/\<img/gi, '<img style="width:95%;height:auto" ')
+        !info.type&&this.getEquipment()
         that.setData({
           info: info
         })
@@ -192,7 +193,6 @@ Page({
       produceList: []
     })
     this.getCompanyDetail();
-    this.getEquipment();
   },
 
   /**

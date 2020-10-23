@@ -13,13 +13,12 @@ App({
   onLaunch: function () {
     //获取导航栏数据
     this.getNavBar()
-    this.autoUpdate()
   },
   /**
    * 当小程序启动，或从后台进入前台显示，会触发 onShow
    */
   onShow: function (options) {
-
+     this.autoUpdate()
   },
   /**
    * 当小程序从前台进入后台，会触发 onHide
